@@ -6,6 +6,7 @@ namespace LMS
 {
     public partial class Startup
     {
+        //comment test check name
         public void Configuration(IAppBuilder app)
         {
             ConfigureAuth(app);
