@@ -8,6 +8,7 @@ namespace LMS
     {
         //comment test check name
         //coykie nawala si aaaaaa
+        //naa nko
         public void Configuration(IAppBuilder app)
         {
             ConfigureAuth(app);
