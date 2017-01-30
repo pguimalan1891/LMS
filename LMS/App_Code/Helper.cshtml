@@ -1,0 +1,37 @@
+﻿@using System.Web.Mvc
+
+@helper Script(string scriptName, UrlHelper url)
+{
+<script src="@url.Content("~/Scripts/" + scriptName)" type="text/javascript"></script>
+}
+
+@helper Css(string cssName, UrlHelper url)
+{
+<link href="@url.Content("~/Content/" + cssName)" rel="stylesheet" type="text/css" />
+}
+
+@helper ContentCSS(string cssName, UrlHelper url)
+{
+<link href="@url.Content("~/Content/" + cssName)" rel="stylesheet" type="text/css" />
+}
+
+@helper ContentScript(string scriptName, UrlHelper url)
+{
+<script src="@url.Content("~/Content/" + scriptName)" type="text/javascript"></script>
+}
+
+@helper ContentImage(string imgName, string style, UrlHelper url)
+{
+<img src="@url.Content("~/Content/images/" + imgName)" class="@style" />
+}
+
+@helper LoaderImg(UrlHelper url)
+{
+<img src="@url.Content("~/Content/images/loader.gif")" />
+}
+
+@helper LoadCustomJS(string scriptName, UrlHelper url)
+{
+<script src="@url.Content("~/" + scriptName)" type="text/javascript"></script>
+}
+
