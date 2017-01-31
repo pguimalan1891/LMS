@@ -12,6 +12,6 @@ namespace DataObjects
     {
         List<Dictionary<string, object>> getLibraryComponent(string DType);
         List<Dictionary<string, object>> getLibraryUpdateComponent(string DType);
-
+        int updLibraryComponent(string DType, int OpCode, string Components);
     }
 }

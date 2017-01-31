@@ -28,5 +28,13 @@ namespace DataObjects.AdoNET
             return db.ReadDictionary(sql, 1, parms);
         }
 
+        public int updLibraryComponent(string DType,int OpCode,string Components)
+        {
+            string sql = "dbo.usp_getDevelopmentToolsLibrary";
+            object[] parms = { "DType", DType, "OpCode",OpCode, "Components",Components };
+            int x = db.Scalar(sql, 1, parms).AsInt();
+            return x;
+        }
+
     }
 }

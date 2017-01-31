@@ -9,7 +9,8 @@ namespace LMS
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Content/Scripts/jquery-{version}.js"));
+                        "~/Content/Scripts/jquery-{version}.js",
+                        "~/Content/jquery/jquery-ui-1.12.1/jquery-ui.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Content/Scripts/jquery.validate*"));
@@ -26,15 +27,19 @@ namespace LMS
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/site.css",
                       "~/Content/bootstrap/css/bootstrap.min.css",
-                      "~/Content/datatable/media/css/dataTables.bootstrap.min.css"));
+                      "~/Content/jquery/jquery-ui-1.12.1/jquery-ui.css"));
 
             bundles.Add(new StyleBundle("~/Content/DataTableCSS").Include(
-                    //"~/Content/datatable/media/css/jquery.dataTables.min.css",
+                    "~/Content/datatable/media/css/dataTables.bootstrap.min.css",
+                    "~/Content/datatable/media/css/responsive.bootstrap.min.css"
                     ));
 
             bundles.Add(new ScriptBundle("~/Content/DataTableJS").Include(
                     "~/Content/datatable/media/js/jquery.dataTables.min.js",
-                    "~/Content/datatable/media/js/dataTables.bootstrap.min.js"));
+                    "~/Content/datatable/media/js/dataTables.bootstrap.min.js",
+                    "~/Content/datatable/media/js/dataTables.responsive.min.js",
+                    "~/Content/datatable/media/js/responsive.bootstrap.min.js"
+                    ));
         }
     }
 }

@@ -48,7 +48,16 @@ namespace LMS.Controllers.DevelopmentTools
         [HttpGet]
         public ActionResult FetchLibraryUpdateCompent()
         {
-            return null;
+            return Json(this.service.getLIbraryUpdateComponent("CompanyType" + "UpdCom"),JsonRequestBehavior.AllowGet);
         }
+
+        [HttpPost]
+        public ActionResult AddComponent(LibraryComponentModel libcomp)
+        {
+            return null;
+            //int resp = this.service.updLibraryComponent("CompanyType", opCode, data);
+            //return Content(resp > 0 ? "ok" : "exist");
+        }
+
     }
 }

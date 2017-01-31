@@ -1,10 +1,13 @@
 ﻿var tblComponent = $("#tbl-component")
 var fntblComponent = $("#tbl-component thead")
+var compnent = "";
 $(document).ready(function () {
+    compnent = "Company Type"
     loadComponents("/DevelopmentTools/FetchLibraryComponent");    
 });
 
 function loadComponents(url) {
+
     var req = $.ajax({
         type: 'GET',
         async: true,
@@ -47,14 +50,80 @@ function loadComponents(url) {
             "bProcessing": true,
             "bServerside": true,
             "sAjaxDataProp": "",
-            "data": data,
+            "data": data,            
             "columns": dataColumns
         });
     });
 }
 
+function AddComponent() {
+    $.get("/DevelopmentTools/FetchLibraryUpdateCompent", {}, function (data) {
+
+        dlgAdd = $("#dlgAdd");        
+        dlgAdd.empty();
+        var AppendStr = "";
+        $.each(data, function (datakey, comp) {
+
+            AppendStr += "<div class='row'>" +
+                   "<div class='col-md-3 col-md-offset-1' style='padding:5px'>" + comp.FieldName + "</div>" +
+                   "<div class='col-md-4' style='padding:2px'><input class='retvetxtBox' type='text' width='100%' id='txt" + comp.FieldName + "' /></div>" +
+                   "</div>";            
+        });
+        dlgAdd.append(AppendStr);        
+        dlgAdd.dialog({
+            title: "Add " + compnent,
+            width: 450,
+            closeOnEscape: false,
+            resizable: false,
+            modal: true,
+            draggable: true,
+            create: function () {
+                $(this).parent().find('button:contains("Add")').addClass('btn btn-info btn-small');
+                $(this).parent().find('button:contains("Close")').addClass('btn btn-danger btn-small');
+            },
+            open: function (event, ui) {
+                $(".ui-dialog-titlebar-close", ui.dialog | ui).hide();
+            },
+            buttons: {
+                "Add": function () {
+                    var AddRet = "";
+                    $(".retvetxtBox").each(function (index, element) {
+                        AddRet += $(element).val() + "|"
+                    });
+
+                    var props = {
+                        ComponentName: "None",
+                        compData: AddRet,
+                        opCode: "0"
+                    };
+                    
+                    var req = $.ajax({
+                        type: 'POST',
+                        async: true,
+                        url: "/DevelopmentTools/AddComponent",
+                        contentType: "applicaiton/json; charset=utf-8",
+                        data: { 'libcomp': JSON.stringify(props) }
+                    });
+                    req.error(function (request, status, error) {
+                        alert(request.responseText);
+                    });
+                    req.done(function (data) {
+                        alert("Successfully Added!");
+                        $(this).dialog('destroy');
+                        $(this).empty();
+                    });
+                },
+                "Close": function () {
+                    $(this).dialog('destroy');
+                    $(this).empty();
+                }
+            }
+        });
+    });
+}
+
 function EditComponent(editItem) {
-    alert(editItem);
+   
 }
 
 function DeleteComponent(delItem) {

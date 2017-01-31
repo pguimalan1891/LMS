@@ -47,5 +47,11 @@ namespace ServiceLayer
 
             return lstInfo;
         }
+
+        public int updLibraryComponent(string DType, int OpCode, string Components)
+        {
+            int x = library.updLibraryComponent(DType, OpCode, Components);
+            return x;
+        }
     }
 }

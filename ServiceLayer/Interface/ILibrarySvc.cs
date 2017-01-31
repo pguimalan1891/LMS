@@ -12,6 +12,7 @@ namespace ServiceLayer.Interface
         List<Dictionary<string, object>> getLibraryComponent(string DType);
 
         List<Dictionary<string, object>> getLIbraryUpdateComponent(string updComponent);
+        int updLibraryComponent(string DType, int OpCode, string Components);
 
     }
 }
