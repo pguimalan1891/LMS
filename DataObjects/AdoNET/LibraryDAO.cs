@@ -30,7 +30,7 @@ namespace DataObjects.AdoNET
 
         public int updLibraryComponent(string DType,int OpCode,string Components)
         {
-            string sql = "dbo.usp_getDevelopmentToolsLibrary";
+            string sql = "dbo.usp_updDevelopmentToolsLibrary";
             object[] parms = { "DType", DType, "OpCode",OpCode, "Components",Components };
             int x = db.Scalar(sql, 1, parms).AsInt();
             return x;

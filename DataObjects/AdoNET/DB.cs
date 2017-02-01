@@ -75,7 +75,7 @@ namespace DataObjects.AdoNET
             using (var connection = CreateConnection())
             {
                 using (var command = CreateCommand(sql, connection, commandType, parms))
-                {
+                {                    
                     return command.ExecuteScalar();
                 }
             }

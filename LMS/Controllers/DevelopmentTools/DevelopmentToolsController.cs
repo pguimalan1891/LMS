@@ -52,12 +52,25 @@ namespace LMS.Controllers.DevelopmentTools
         }
 
         [HttpPost]
-        public ActionResult AddComponent(LibraryComponentModel libcomp)
+        public ActionResult AddComponent(string compData,int opCode)
         {
-            return null;
-            //int resp = this.service.updLibraryComponent("CompanyType", opCode, data);
-            //return Content(resp > 0 ? "ok" : "exist");
+            
+            int resp = this.service.updLibraryComponent("CompanyType", opCode, compData);
+            return Content(resp == 1 ? "1" : resp.ToString());
         }
 
+        [HttpPost]
+        public ActionResult UpdateComponent(string compData, int opCode)
+        {
+            int resp = this.service.updLibraryComponent("CompanyType", opCode, compData);
+            return Content(resp == 1 ? "1" : resp.ToString());
+        }
+
+        [HttpPost]
+        public ActionResult DeleteComponent(string compData, int opCode)
+        {
+            int resp = this.service.updLibraryComponent("CompanyType", opCode, compData);
+            return Content(resp == 1 ? "1" : resp.ToString());
+        }
     }
 }
