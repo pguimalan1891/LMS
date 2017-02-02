@@ -39,37 +39,38 @@ namespace LMS.Controllers.DevelopmentTools
             md.ComponentName = "Company Type";
             return View(md);
         }
+        
         [HttpGet]
         public ActionResult FetchLibraryComponent()
         {
-            return Json(this.service.getLibraryComponent("CompanyType"),JsonRequestBehavior.AllowGet);
+            return Json(this.service.getLibraryComponent("industry"),JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
         public ActionResult FetchLibraryUpdateCompent()
         {
-            return Json(this.service.getLIbraryUpdateComponent("CompanyType" + "UpdCom"),JsonRequestBehavior.AllowGet);
+            return Json(this.service.getLIbraryUpdateComponent("industry" + "UpdCom"),JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
         public ActionResult AddComponent(string compData,int opCode)
         {
-            
-            int resp = this.service.updLibraryComponent("CompanyType", opCode, compData);
+            compData = Guid.NewGuid().ToString() + "|" + compData;
+            int resp = this.service.updLibraryComponent("industry", opCode, compData);
             return Content(resp == 1 ? "1" : resp.ToString());
         }
 
-        [HttpPost]
+        [HttpPost]        
         public ActionResult UpdateComponent(string compData, int opCode)
         {
-            int resp = this.service.updLibraryComponent("CompanyType", opCode, compData);
+            int resp = this.service.updLibraryComponent("industry", opCode, compData);
             return Content(resp == 1 ? "1" : resp.ToString());
         }
 
         [HttpPost]
         public ActionResult DeleteComponent(string compData, int opCode)
         {
-            int resp = this.service.updLibraryComponent("CompanyType", opCode, compData);
+            int resp = this.service.updLibraryComponent("industry", opCode, compData);
             return Content(resp == 1 ? "1" : resp.ToString());
         }
     }

@@ -27,11 +27,11 @@ namespace LMS
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/site.css",
                       "~/Content/bootstrap/css/bootstrap.min.css",
-                      "~/Content/jquery/jquery-ui-1.12.1/jquery-ui.css"));
+                      "~/Content/jquery/jquery-ui-1.12.1/jquery-ui.css",
+                      "~/Content/metroBootstrap/dist/css/metro-bootstrap.min.css"));
 
             bundles.Add(new StyleBundle("~/Content/DataTableCSS").Include(
-                    "~/Content/datatable/media/css/dataTables.bootstrap.min.css",
-                    "~/Content/datatable/media/css/responsive.bootstrap.min.css"
+                    "~/Content/datatable/media/css/dataTables.bootstrap.min.css"                    
                     ));
 
             bundles.Add(new ScriptBundle("~/Content/DataTableJS").Include(
