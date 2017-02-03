@@ -38,6 +38,7 @@ namespace LMS
                      "~/Content/uiPlugins/theme/css/bootstrap.min.css",
                       "~/Content/uiPlugins/theme/css/animate.css",
                        "~/Content/uiPlugins/theme/css/font-awesome.min.css",
+                        "~/Content/uiPlugins/theme/css/toastr.min.css",
                     "~/Content/uiPlugins/theme/css/style.css"));
            
 
@@ -48,6 +49,7 @@ namespace LMS
                    "~/Content/uiPlugins/theme/js/plugins/jquery.slimscroll.min.js",
                    "~/Content/uiPlugins/theme/js/inspinia.js",
                     "~/Content/uiPlugins/theme/js/plugins/pace.min.js",
+                    "~/Content/uiPlugins/theme/js/toastr.min.js",
                      "~/Content/uiPlugins/theme/js/plugins/jquery-ui.min.js"));
 
             bundles.Add(new ScriptBundle("~/Content/DataTableJS").Include(

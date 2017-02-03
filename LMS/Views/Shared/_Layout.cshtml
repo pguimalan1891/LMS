@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>    
     @Styles.Render("~/Content/themeui/css")
+    @Styles.Render("~/Content/DataTableCSS")
 
 
 
@@ -143,6 +144,10 @@
     
 
     @Scripts.Render("~/Content/themeui/js")
+    @Scripts.Render("~/Content/DataTableJS")
+
+
+
 
     @RenderSection("scripts", required: false)
 </body>

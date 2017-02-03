@@ -282,8 +282,8 @@
     <Content Include="Content\uiPlugins\theme\js\plugins\jquery.metisMenu.js" />
     <Content Include="Content\uiPlugins\theme\js\plugins\jquery.slimscroll.min.js" />
     <Content Include="Content\uiPlugins\theme\js\plugins\pace.min.js" />
-    <Content Include="Content\uiPlugins\toast\toastr.min.css" />
-    <Content Include="Content\uiPlugins\toast\toastr.min.js" />
+    <Content Include="Content\uiPlugins\theme\css\toastr.min.css" />
+    <Content Include="Content\uiPlugins\theme\js\toastr.min.js" />
     <Content Include="favicon.ico" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
