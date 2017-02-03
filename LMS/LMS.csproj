@@ -102,13 +102,13 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
-    <Reference Include="WebGrease">
-      <Private>True</Private>
-      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
-    </Reference>
     <Reference Include="Antlr3.Runtime">
       <Private>True</Private>
       <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+      <Private>True</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -264,6 +264,26 @@
     <Content Include="Content\jquery\jquery-ui-1.12.1\jquery-ui.theme.css" />
     <Content Include="Content\jquery\jquery-ui-1.12.1\jquery-ui.theme.min.css" />
     <Content Include="Content\jquery\jquery-ui-1.12.1\LICENSE.txt" />
+    <Content Include="Content\uiPlugins\theme\css\animate.css" />
+    <Content Include="Content\uiPlugins\theme\css\bootstrap.css" />
+    <Content Include="Content\uiPlugins\theme\css\bootstrap.min.css" />
+    <Content Include="Content\uiPlugins\theme\css\font-awesome.min.css" />
+    <Content Include="Content\uiPlugins\theme\css\style.css" />
+    <Content Include="Content\uiPlugins\theme\css\style.min.css" />
+    <Content Include="Content\uiPlugins\theme\img\profile_small.jpg" />
+    <Content Include="Content\uiPlugins\theme\img\profile_small.png" />
+    <Content Include="Content\uiPlugins\theme\js\bootstrap.js" />
+    <Content Include="Content\uiPlugins\theme\js\bootstrap.min.js" />
+    <Content Include="Content\uiPlugins\theme\js\inspinia.js" />
+    <Content Include="Content\uiPlugins\theme\js\jquery-2.1.1.js" />
+    <Content Include="Content\uiPlugins\theme\js\jquery-ui-1.10.4.min.js" />
+    <Content Include="Content\uiPlugins\theme\js\jquery-ui.custom.min.js" />
+    <Content Include="Content\uiPlugins\theme\js\plugins\jquery-ui.min.js" />
+    <Content Include="Content\uiPlugins\theme\js\plugins\jquery.metisMenu.js" />
+    <Content Include="Content\uiPlugins\theme\js\plugins\jquery.slimscroll.min.js" />
+    <Content Include="Content\uiPlugins\theme\js\plugins\pace.min.js" />
+    <Content Include="Content\uiPlugins\theme\css\toastr.min.css" />
+    <Content Include="Content\uiPlugins\theme\js\toastr.min.js" />
     <Content Include="favicon.ico" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -387,6 +407,10 @@
     <Folder Include="Content\metroBootstrap\dist\" />
     <Folder Include="Content\metroBootstrap\fonts\" />
     <Folder Include="Content\metroBootstrap\styles\" />
+    <Folder Include="Content\uiPlugins\theme\css\font-awesome\" />
+    <Folder Include="Content\uiPlugins\theme\css\patterns\" />
+    <Folder Include="Content\uiPlugins\theme\css\plugins\" />
+    <Folder Include="Content\uiPlugins\theme\js\demo\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />

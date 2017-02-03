@@ -16,7 +16,7 @@ function loadComponents(url) {
     });
 
     req.error(function (request, status, error) {
-        alert(request.responseText);
+        toastr.error(request.responseText);
     });
 
     req.done(function (data) {
@@ -137,16 +137,16 @@ function AddComponent() {
                         data: "{'compData': '" + AddRet + "','opCode': 0 }"
                     });
                     req.error(function (request, status, error) {
-                        alert(request.responseText);
+                        toastr.error(request.responseText);
                     });
                     req.done(function (data) {
                         if (data == "1") {
-                            alert("Record Added!");
+                            toastr.info("Record Added!");
                             dlgAdd.dialog('destroy');
                             dlgAdd.empty();
                             tblComponent.ajax.reload();
                         } else {
-                            alert(data + " SQL Error Number!");
+                            toastr.error(data + " SQL Error Number!");
                         }                        
                     });
                 },
@@ -248,16 +248,16 @@ function EditComponent(editItem) {
                         data: "{'compData': '" + UpdateRet + "','opCode': 1 }"
                     });
                     req.error(function (request, status, error) {
-                        alert(request.responseText);
+                        toastr.error(request.responseText);
                     });
                     req.done(function (data) {
                         if (data == "1") {
-                            alert("Record Updated!");
+                            toastr.info("Record Updated!");
                             dlgEdit.dialog('destroy');
                             dlgEdit.empty();
                             tblComponent.ajax.reload();
                         } else {
-                            alert(data + " SQL Error Number!");
+                            toastr.error(data + " SQL Error Number!");
                         }
                     });
                 },
@@ -345,16 +345,16 @@ function DeleteComponent(delItem) {
                         data: "{'compData': '" + DeleteRet + "','opCode': 2 }"
                     });
                     req.error(function (request, status, error) {
-                        alert(request.responseText);
+                        toastr.error(request.responseText);
                     });
                     req.done(function (data) {
                         if (data == "1") {
-                            alert("Record Deleted!");
+                            toastr.info("Record Deleted!");
                             dlgDelete.dialog('destroy');
                             dlgDelete.empty();
                             tblComponent.ajax.reload();
                         } else {
-                            alert(data + " SQL Error Number!");
+                            toastr.error(data + " SQL Error Number!");
                         }
                     });
                 },
