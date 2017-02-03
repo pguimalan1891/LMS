@@ -271,6 +271,7 @@
     <Content Include="Content\uiPlugins\theme\css\style.css" />
     <Content Include="Content\uiPlugins\theme\css\style.min.css" />
     <Content Include="Content\uiPlugins\theme\img\profile_small.jpg" />
+    <Content Include="Content\uiPlugins\theme\img\profile_small.png" />
     <Content Include="Content\uiPlugins\theme\js\bootstrap.js" />
     <Content Include="Content\uiPlugins\theme\js\bootstrap.min.js" />
     <Content Include="Content\uiPlugins\theme\js\inspinia.js" />
