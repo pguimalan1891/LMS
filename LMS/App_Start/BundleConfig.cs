@@ -34,6 +34,22 @@ namespace LMS
                     "~/Content/datatable/media/css/dataTables.bootstrap.min.css"                    
                     ));
 
+            bundles.Add(new StyleBundle("~/Content/themeui/css").Include(
+                     "~/Content/uiPlugins/theme/css/bootstrap.min.css",
+                      "~/Content/uiPlugins/theme/css/animate.css",
+                       "~/Content/uiPlugins/theme/css/font-awesome.min.css",
+                    "~/Content/uiPlugins/theme/css/style.css"));
+           
+
+            bundles.Add(new ScriptBundle("~/Content/themeui/js").Include(
+                   "~/Content/uiPlugins/theme/js/jquery-2.1.1.js",
+                   "~/Content/uiPlugins/theme/js/bootstrap.min.js",
+                   "~/Content/uiPlugins/theme/js/plugins/jquery.metisMenu.js",
+                   "~/Content/uiPlugins/theme/js/plugins/jquery.slimscroll.min.js",
+                   "~/Content/uiPlugins/theme/js/inspinia.js",
+                    "~/Content/uiPlugins/theme/js/plugins/pace.min.js",
+                     "~/Content/uiPlugins/theme/js/plugins/jquery-ui.min.js"));
+
             bundles.Add(new ScriptBundle("~/Content/DataTableJS").Include(
                     "~/Content/datatable/media/js/jquery.dataTables.min.js",
                     "~/Content/datatable/media/js/dataTables.bootstrap.min.js",
