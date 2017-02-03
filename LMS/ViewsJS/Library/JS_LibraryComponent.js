@@ -79,8 +79,8 @@ function AddComponent() {
                 if (comp.FieldComponentType == "single") {
                     AppendStr += "<div class='row'>" +
                            "<div class='form-group'>" +
-                           "<div class='col-md-3 col-md-offset-1' ><label for='txt" + comp.FieldComponentID + "'>" + comp.FieldName + "</label></div>" +
-                           "<div class='col-md-7'><input style='width:100%' class='form-control retvetxtBox' type='text' id='txt" + comp.FieldComponentID + "' /></div>" +
+                           "<div class='col-md-3 col-md-offset-1'><label for='txt" + comp.FieldComponentID + "'>" + comp.FieldName + "</label></div>" +
+                           "<div class='form-group'><div class='col-md-7'><input style='width:100%' class='form-control retvetxtBox' type='text' id='txt" + comp.FieldComponentID + "' /></div></div>" +
                            "</div></div>";
                     dlgAdd.append(AppendStr);
                     AppendStr = "";
@@ -171,9 +171,10 @@ function EditComponent(editItem) {
             if (comp.FieldisHide == "Show") {
                 if (comp.FieldComponentType == "single") {
                     AppendStr += "<div class='row'>" +
-                           "<div class='col-md-3 col-md-offset-1'>" + comp.FieldName + "</div>" +
-                           "<div class='col-md-7'><input style='width:100%' class='retvetxtBox' type='text' id='txt" + comp.FieldName + "'/></div>" +
-                           "</div>";
+                            "<div class='form-group'>" +
+                            "<div class='col-md-3 col-md-offset-1'><label for='txt" + comp.FieldName + "'>" + comp.FieldName + "</label></div>" +
+                            "<div class='form-group'><div class='col-md-7'><input style='width:100%' class='retvetxtBox form-control' type='text' id='txt" + comp.FieldName + "'/></div></div>" +
+                            "</div></div>";
                     dlgEdit.append(AppendStr);
                     AppendStr = "";
                 } else if (comp.FieldComponentType == "select") {
@@ -185,8 +186,10 @@ function EditComponent(editItem) {
                     });
                     if (isgrpSelectExist == 0) {
                         AppendStr += "<div class='row'>" +
-                           "<div class='col-md-3 col-md-offset-1' >" + comp.FieldName + "</div>";
-                        AppendStr += "<div class='form-group'><div class='col-md-7'><select style='width:100%' class='form-control retvetSelect' id='slc" + comp.FieldComponentID + "'><option value='" + comp.FieldValue + "'>" + comp.FieldDisplay + "</option></select></div></div></div>";
+                            "<div class='form-group'>" +
+                            "<div class='col-md-3 col-md-offset-1' ><label for='slc" + comp.FieldComponentID + "'>" + comp.FieldName + "</label></div>";
+                        AppendStr += "<div class='form-group'><div class='col-md-7'><select style='width:100%' class='form-control retvetSelect' id='slc" + comp.FieldComponentID + "'><option value='" + comp.FieldValue + "'>" + comp.FieldDisplay + "</option></select></div>" +
+                            "</div></div>";
                         grpSelect[comp.FieldName] = comp.FieldName;
                         dlgEdit.append(AppendStr);
                         AppendStr = "";
@@ -216,7 +219,7 @@ function EditComponent(editItem) {
         });        
         dlgEdit.dialog({
             title: "Update " + compnent,
-            width: 450,
+            width: '450',
             closeOnEscape: false,
             resizable: false,
             modal: true,
@@ -278,9 +281,10 @@ function DeleteComponent(delItem) {
             if (comp.FieldisHide == "Show") {               
                 if (comp.FieldComponentType == "single") {
                     AppendStr += "<div class='row'>" +
-                           "<div class='col-md-3 col-md-offset-1'>" + comp.FieldName + "</div>" +
-                           "<div class='col-md-7'><span id='spn" + comp.FieldComponentID + "' /></div>" +
-                           "</div>";
+                           "<div class='form-group'>" +
+                           "<div class='col-md-3 col-md-offset-1'><label for='spn" + comp.FieldComponentID + "'>" + comp.FieldName + "</label></div>" +
+                           "<div class='form-group'><div class='col-md-7'><span class='form-control' id='spn" + comp.FieldComponentID + "' /></div></div>" +
+                           "</div></div>";
                     dlgDelete.append(AppendStr);
                     AppendStr = "";
                 } else if (comp.FieldComponentType == "select") {
@@ -292,8 +296,10 @@ function DeleteComponent(delItem) {
                     });
                     if (isgrpSelectExist == 0) {
                         AppendStr += "<div class='row'>" +
-                           "<div class='col-md-3 col-md-offset-1' >" + comp.FieldName + "</div>";
-                        AppendStr += "<div class='form-group'><div class='col-md-7'><span id='spn" + comp.FieldComponentID + "' /></div></div></div>";
+                            "<div class='form-group'>" +
+                            "<div class='col-md-3 col-md-offset-1'><label for='spn" + comp.FieldComponentID + "'>" + comp.FieldName + "</label></div>";
+                        AppendStr += "<div class='form-group'><div class='col-md-7'><span class='form-control' id='spn" + comp.FieldComponentID + "' /></div></div>" +
+                            "</div></div>";
                         grpSelect[comp.FieldName] = comp.FieldName;
                         dlgDelete.append(AppendStr);
                         AppendStr = "";
