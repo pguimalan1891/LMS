@@ -37,6 +37,7 @@ namespace LMS.Controllers.DevelopmentTools
         {
             LibraryComponentModel md = new LibraryComponentModel();
             md.ComponentName = "Company Type";
+            ViewBag.Title = "Loans Management System";
             return View(md);
         }
         
