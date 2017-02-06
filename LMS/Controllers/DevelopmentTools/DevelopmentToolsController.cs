@@ -44,34 +44,34 @@ namespace LMS.Controllers.DevelopmentTools
         [HttpGet]
         public ActionResult FetchLibraryComponent()
         {
-            return Json(this.service.getLibraryComponent("industry"),JsonRequestBehavior.AllowGet);
+            return Json(this.service.getLibraryComponent("borrower_type"),JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
         public ActionResult FetchLibraryUpdateCompent()
         {
-            return Json(this.service.getLIbraryUpdateComponent("industry" + "UpdCom"),JsonRequestBehavior.AllowGet);
+            return Json(this.service.getLIbraryUpdateComponent("borrower_type" + "UpdCom"),JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
         public ActionResult AddComponent(string compData,int opCode)
         {
             compData = Guid.NewGuid().ToString() + "|" + compData;
-            int resp = this.service.updLibraryComponent("industry", opCode, compData);
+            int resp = this.service.updLibraryComponent("borrower_type", opCode, compData);
             return Content(resp == 1 ? "1" : resp.ToString());
         }
 
         [HttpPost]        
         public ActionResult UpdateComponent(string compData, int opCode)
         {
-            int resp = this.service.updLibraryComponent("industry", opCode, compData);
+            int resp = this.service.updLibraryComponent("borrower_type", opCode, compData);
             return Content(resp == 1 ? "1" : resp.ToString());
         }
 
         [HttpPost]
         public ActionResult DeleteComponent(string compData, int opCode)
         {
-            int resp = this.service.updLibraryComponent("industry", opCode, compData);
+            int resp = this.service.updLibraryComponent("borrower_type", opCode, compData);
             return Content(resp == 1 ? "1" : resp.ToString());
         }
     }
