@@ -17,10 +17,10 @@
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-md-3">
-                            <h4>@Model.ComponentName</h4>
+                            <h3>@Model.ComponentName</h3>
                         </div>
-                        <div class="col-md-1 col-md-offset-8">
-                            <a class='btn btn-success btn-minier' href='#' title='Add' onClick='AddComponent()'><b></b><span class='glyphicon glyphicon-plus' aria-hidden='true'></span></a>
+                        <div class="col-md-2 col-md-offset-7">
+                            <a style="width:100%" class='btn btn-success btn-minier' href='#' title='Add' onClick='AddComponent()'><b></b><span class='glyphicon glyphicon-plus' aria-hidden='true'></span></a>
                         </div>
                     </div>
                 </div>
@@ -42,8 +42,53 @@
 
     @using (Html.BeginForm(null, null, FormMethod.Post, null))
     {
-        <div id="dlgAdd"></div>
-        <div id="dlgEdit"></div>
-        <div id="dlgDelete"></div>
+        @*<div id="dlgAdd"></div>*@
+        <div id="dlgAdd" class="modal fade" role="dialog">
+            <div class="modal-dialog" style="width:450px;background-color:#ffffff;">
+                <div class="modal-header">                    
+                    <h3 class="modal-title">@Model.ComponentName</h3>
+                </div>
+                <div class="modal-body" style="background-color:white">
+                    <div id="dlgadd-modal-body">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-info btn-sm" id="dlgadd-add-btn">Add @Model.ComponentName</button>
+                    <button class="btn btn-danger btn-sm" id="dlgadd-close-btn">Close</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="dlgEdit" class="modal fade" role="dialog">
+            <div class="modal-dialog" style="width:450px;background-color:#ffffff;">
+                <div class="modal-header">
+                    <h3 class="modal-title">@Model.ComponentName</h3>
+                </div>
+                <div class="modal-body" style="background-color:white">
+                    <div id="dlgedit-modal-body">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-info btn-sm" id="dlgEdit-update-btn">Update @Model.ComponentName</button>
+                    <button class="btn btn-danger btn-sm" id="dlgEdit-close-btn">Close</button>
+                </div>
+            </div>
+        </div>       
+        <div id="dlgDelete" class="modal fade" role="dialog">
+            <div class="modal-dialog" style="width:450px;background-color:#ffffff;">
+                <div class="modal-header">
+                    <h3 class="modal-title">@Model.ComponentName</h3>
+                </div>
+                <div class="modal-body" style="background-color:white">
+                    <div id="dlgdelete-modal-body">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-danger btn-sm" id="dlgDelete-delete-btn">Delete @Model.ComponentName</button>
+                    <button class="btn btn-info btn-sm" id="dlgDelete-close-btn">Cancel</button>
+                </div>
+            </div>
+        </div>
     }
 </div>
+
