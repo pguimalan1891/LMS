@@ -168,6 +168,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\Collections\OfficialReceiptController.cs" />
     <Compile Include="Controllers\Customer\CustomerController.cs" />
     <Compile Include="Controllers\DevelopmentTools\DevelopmentToolsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -399,6 +400,14 @@
     <Content Include="Views\DevelopmentTools\Library.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\DevelopmentTools\_AddLibraryComponent.cshtml" />
+    <Content Include="Web.config" />
+    <Content Include="Views\OfficialReceipt\OfficialReceipt.cshtml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
