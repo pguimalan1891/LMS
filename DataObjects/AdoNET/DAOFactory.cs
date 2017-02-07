@@ -17,5 +17,10 @@ namespace DataObjects.AdoNET
         {
             get { return new CustomerDAO(); }
         }
+
+        public IBookingDAO BookingDAO
+        {
+            get { return new BookingDAO(); }
+        }
     }
 }

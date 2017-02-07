@@ -364,6 +364,7 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <None Include="Scripts\_references.js" />
+    <Content Include="ViewsJS\Booking\JS_Booking.js" />
     <Content Include="ViewsJS\Customer\JS_Customer.js" />
     <Content Include="ViewsJS\Library\JS_LibraryComponent.js" />
     <Content Include="Web.config" />
@@ -414,6 +415,7 @@
     <Folder Include="Content\uiPlugins\theme\css\patterns\" />
     <Folder Include="Content\uiPlugins\theme\css\plugins\" />
     <Folder Include="Content\uiPlugins\theme\js\demo\" />
+    <Folder Include="Controllers\Booking\" />
     <Folder Include="Views\Collections\" />
   </ItemGroup>
   <ItemGroup>
@@ -452,7 +454,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>12615</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
