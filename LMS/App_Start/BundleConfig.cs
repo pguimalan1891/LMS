@@ -31,7 +31,8 @@ namespace LMS
                       "~/Content/metroBootstrap/dist/css/metro-bootstrap.min.css"));
 
             bundles.Add(new StyleBundle("~/Content/DataTableCSS").Include(
-                    "~/Content/datatable/media/css/dataTables.bootstrap.min.css"                    
+                    "~/Content/datatable/media/css/dataTables.bootstrap.min.css",
+                    "~/Content/datatable/media/css/responsive.dataTables.min.css"
                     ));
 
             bundles.Add(new StyleBundle("~/Content/themeui/css").Include(
@@ -55,7 +56,7 @@ namespace LMS
             bundles.Add(new ScriptBundle("~/Content/DataTableJS").Include(
                     "~/Content/datatable/media/js/jquery.dataTables.min.js",
                     "~/Content/datatable/media/js/dataTables.bootstrap.min.js",
-                    "~/Content/datatable/media/js/dataTables.responsive.min.js",
+                    "~/Content/datatable/media/js/dataTables.responsive.js",
                     "~/Content/datatable/media/js/responsive.bootstrap.min.js"
                     ));
         }

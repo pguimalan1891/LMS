@@ -62,9 +62,7 @@ function loadComponents(url) {
                 }
             });
         });
-    });
-
-      
+    });      
 }
 
 function AddComponent() {
