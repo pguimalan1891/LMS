@@ -16,19 +16,20 @@ namespace ServiceLayer
 
         public List<Dictionary<string, object>> getCustomerRecord()
         {
-            var qryResult = customer.getCustomerRecord();
-            List<Dictionary<string, object>> lstInfo = new List<Dictionary<string, object>>();
-            foreach (var rec in qryResult)
-            {
-                Dictionary<string, object> d = new Dictionary<string, object>();
-                foreach (var x in rec)
-                {
-                    d.Add(x.Key, x.Value);
-                }
-                lstInfo.Add(d);
-            }
+        //    var qryResult = customer.getCustomerRecord();
+        //    List<Dictionary<string, object>> lstInfo = new List<Dictionary<string, object>>();
+        //    foreach (var rec in qryResult)
+        //    {
+        //        Dictionary<string, object> d = new Dictionary<string, object>();
+        //        foreach (var x in rec)
+        //        {
+        //            d.Add(x.Key, x.Value);
+        //        }
+        //        lstInfo.Add(d);
+        //    }
 
-            return lstInfo;
+        //    return lstInfo;
+            return customer.getCustomerRecord();
         }
 
     }

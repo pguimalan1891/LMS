@@ -41,7 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BookingSvc.cs" />
     <Compile Include="CustomerSvc.cs" />
+    <Compile Include="Interface\IBookingSvc.cs" />
     <Compile Include="Interface\ICustomerSvc.cs" />
     <Compile Include="Interface\ILibrarySvc.cs" />
     <Compile Include="LibrarySvc.cs" />
