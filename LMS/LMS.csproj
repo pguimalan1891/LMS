@@ -59,6 +59,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Routing" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
@@ -165,7 +166,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\CollectionsController.cs" />
+    <Compile Include="Controllers\Booking\BookingController.cs" />
     <Compile Include="Controllers\Customer\CustomerController.cs" />
     <Compile Include="Controllers\DevelopmentTools\DevelopmentToolsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -405,6 +406,7 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\DevelopmentTools\_AddLibraryComponent.cshtml" />
     <Content Include="Views\Customer\Customer.cshtml" />
+    <Content Include="Views\Booking\Booking.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -415,7 +417,6 @@
     <Folder Include="Content\uiPlugins\theme\css\patterns\" />
     <Folder Include="Content\uiPlugins\theme\css\plugins\" />
     <Folder Include="Content\uiPlugins\theme\js\demo\" />
-    <Folder Include="Controllers\Booking\" />
     <Folder Include="Views\Collections\" />
   </ItemGroup>
   <ItemGroup>
