@@ -13,5 +13,16 @@ namespace LMS.Controllers
         {
             return View();
         }
+
+        public ActionResult vw_OfficialReceipt_forSubmission()
+        {
+            return View("OfficialReceipt_ForSubmission",null);
+        }
+
+        public ActionResult vw_OfficialReceipt_postStatus()
+        {
+            return View("OfficialReceipt_ForSubmission", null);
+        }
+
     }
 }

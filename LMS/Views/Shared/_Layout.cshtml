@@ -67,10 +67,42 @@
                     <li>
                         <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">Collections</span> <span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
-                            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                            <li>
+                                <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">Official Receipt</span> <span class="fa arrow"></span></a>
+                                <ul class="nav nav-third-level">
+                                    <li>@Html.ActionLink("For Submission", "vw_OfficialReceipt_forSubmission", "Collections")</li>
+                                    <li>@Html.ActionLink("SUbmitted", "vw_OfficialReceipt_postStatus", "Collections")</li>
+                                    <li>@Html.ActionLink("Cancelled", "vw_OfficialReceipt_postStatus", "Collections")</li>
+                                    <li>@Html.ActionLink("Listing", "Contact", "Home")</li>
+                                </ul>
+                            </li>
+                            <li><a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">PDC Acknowledgement Receipt</span> <span class="fa arrow"></span></a>
+                                <ul class="nav nav-third-level">
+                                    <li>@Html.ActionLink("Active", "Contact", "Home")</li>
+                                    <li>@Html.ActionLink("Generated", "Contact", "Home")</li>
+                                    <li>@Html.ActionLink("Cancelled", "Contact", "Home")</li>
+                                    <li>@Html.ActionLink("Listing", "Contact", "Home")</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">PDC Batch Encoding</span> <span class="fa arrow"></span></a>
+                                <ul class="nav nav-third-level">
+                                    <li>@Html.ActionLink("For Submission", "Contact", "Home")</li>
+                                    <li>@Html.ActionLink("Submitted", "Contact", "Home")</li>
+                                    <li>@Html.ActionLink("Cancelled", "Contact", "Home")</li>
+                                    <li>@Html.ActionLink("Listing", "Contact", "Home")</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">Return Check Notice</span> <span class="fa arrow"></span></a>
+                                <ul class="nav nav-third-level">
+                                    <li>@Html.ActionLink("Add New", "Contact", "Home")</li>
+                                    <li>@Html.ActionLink("For Submission", "Contact", "Home")</li>
+                                    <li>@Html.ActionLink("Submitted", "Contact", "Home")</li>
+                                    <li>@Html.ActionLink("Cancelled", "Contact", "Home")</li>
+                                    <li>@Html.ActionLink("Listing", "Contact", "Home")</li>
+                                </ul>
+                            </li>
                         </ul>
                     </li>
                     <li>
