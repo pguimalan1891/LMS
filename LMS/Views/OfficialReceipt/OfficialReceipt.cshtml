@@ -1,0 +1,26 @@
+﻿@model LMS.Models.OfficialReceiptViewModel
+@{
+    ViewBag.Title = "OfficialReceipt";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>OfficialReceipt</h2>
+<div class="panel panel-info">
+        <div class="panel panel-heading">
+            Sundry Collection
+        </div>
+        <div>
+            @Html.TextBoxFor(m => m.OR_Number)
+        </div>
+    </div>
+@if(ViewBag.isSundry == true)
+{
+    <div class="panel panel-info">
+        <div class="panel panel-heading">
+            Sundry Collection
+        </div>
+        <div>
+            @Html.TextBoxFor(m => m.OR_Number)
+        </div>
+    </div>
+}

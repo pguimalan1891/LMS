@@ -16,36 +16,36 @@ namespace ServiceLayer
 
         public List<Dictionary<string, object>> getLibraryComponent(string DType)
         {
-            var qryResult = library.getLibraryComponent(DType);
-            List<Dictionary<string, object>> lstInfo = new List<Dictionary<string, object>>();
-            foreach (var rec in qryResult)
-            {
-                Dictionary<string, object> d = new Dictionary<string, object>();
-                foreach(var x in rec)
-                {
-                    d.Add(x.Key, x.Value);
-                }
-                lstInfo.Add(d);
-            }
+            //var qryResult = library.getLibraryComponent(DType);
+            //List<Dictionary<string, object>> lstInfo = new List<Dictionary<string, object>>();
+            //foreach (var rec in qryResult)
+            //{
+            //    Dictionary<string, object> d = new Dictionary<string, object>();
+            //    foreach(var x in rec)
+            //    {
+            //        d.Add(x.Key, x.Value);
+            //    }
+            //    lstInfo.Add(d);
+            //}
 
-            return lstInfo;
+            return library.getLibraryComponent(DType);
         }
 
         public List<Dictionary<string, object>> getLIbraryUpdateComponent(string updComponent)
         {
-            var qryResult = library.getLibraryUpdateComponent(updComponent);
-            List<Dictionary<string, object>> lstInfo = new List<Dictionary<string, object>>();
-            foreach (var rec in qryResult)
-            {
-                Dictionary<string, object> d = new Dictionary<string, object>();
-                foreach (var x in rec)
-                {
-                    d.Add(x.Key, x.Value);
-                }
-                lstInfo.Add(d);
-            }
+            //var qryResult = library.getLibraryUpdateComponent(updComponent);
+            //List<Dictionary<string, object>> lstInfo = new List<Dictionary<string, object>>();
+            //foreach (var rec in qryResult)
+            //{
+            //    Dictionary<string, object> d = new Dictionary<string, object>();
+            //    foreach (var x in rec)
+            //    {
+            //        d.Add(x.Key, x.Value);
+            //    }
+            //    lstInfo.Add(d);
+            //}
 
-            return lstInfo;
+            return library.getLibraryUpdateComponent(updComponent);
         }
 
         public int updLibraryComponent(string DType, int OpCode, string Components)

@@ -31,7 +31,7 @@ namespace LMS.Controllers
         public ActionResult Customer()
         {
             return View();
-        }
+        }        
 
         [HttpGet]
         public ActionResult FetchCustomerRecord()
