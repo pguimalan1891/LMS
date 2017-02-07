@@ -52,13 +52,11 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Abstractions" />
     <Reference Include="System.Web.Routing" />
@@ -105,7 +103,6 @@
       <Private>True</Private>
       <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
       <Private>True</Private>
@@ -169,6 +166,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CollectionsController.cs" />
+    <Compile Include="Controllers\Customer\CustomerController.cs" />
     <Compile Include="Controllers\DevelopmentTools\DevelopmentToolsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -221,6 +219,7 @@
     <Content Include="Content\datatable\media\css\jquery.dataTables.min.css" />
     <Content Include="Content\datatable\media\css\jquery.dataTables_themeroller.css" />
     <Content Include="Content\datatable\media\css\responsive.bootstrap.min.css" />
+    <Content Include="Content\datatable\media\css\responsive.dataTables.min.css" />
     <Content Include="Content\datatable\media\images\favicon.ico" />
     <Content Include="Content\datatable\media\images\sort_asc.png" />
     <Content Include="Content\datatable\media\images\sort_asc_disabled.png" />
@@ -237,6 +236,7 @@
     <Content Include="Content\datatable\media\js\dataTables.jqueryui.min.js" />
     <Content Include="Content\datatable\media\js\dataTables.material.js" />
     <Content Include="Content\datatable\media\js\dataTables.material.min.js" />
+    <Content Include="Content\datatable\media\js\dataTables.responsive.js" />
     <Content Include="Content\datatable\media\js\dataTables.responsive.min.js" />
     <Content Include="Content\datatable\media\js\dataTables.semanticui.js" />
     <Content Include="Content\datatable\media\js\dataTables.semanticui.min.js" />
@@ -364,7 +364,15 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <None Include="Scripts\_references.js" />
+    <Content Include="ViewsJS\Customer\JS_Customer.js" />
     <Content Include="ViewsJS\Library\JS_LibraryComponent.js" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
@@ -395,15 +403,7 @@
     <Content Include="Views\DevelopmentTools\Library.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\DevelopmentTools\_AddLibraryComponent.cshtml" />
-    <Content Include="Web.config" />
-    <Content Include="Views\Collections\OfficialReceipt_ForSubmission.cshtml" />
-    <Content Include="Views\Collections\OfficialReceipt_postStatus.cshtml" />
-    <None Include="Web.Debug.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </None>
-    <None Include="Web.Release.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </None>
+    <Content Include="Views\Customer\Customer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -414,6 +414,7 @@
     <Folder Include="Content\uiPlugins\theme\css\patterns\" />
     <Folder Include="Content\uiPlugins\theme\css\plugins\" />
     <Folder Include="Content\uiPlugins\theme\js\demo\" />
+    <Folder Include="Views\Collections\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />

@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace DataObjects
 {
-    public interface IDAOFactory
+    public interface ICustomerDAO
     {
-        ILibraryDAO LibraryDAO { get; }
-        ICustomerDAO CustomerDAO { get; }
+        List<Dictionary<string, object>> getCustomerRecord();
     }
 }

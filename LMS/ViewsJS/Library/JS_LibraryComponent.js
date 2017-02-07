@@ -62,25 +62,24 @@ function loadComponents(url) {
                 }
             });
         });
-    });
-
-    
+    });      
 }
 
 function AddComponent() {
     event.preventDefault();
     $.get("/DevelopmentTools/FetchLibraryUpdateCompent", {}, function (data) {
-        dlgAdd = $("#dlgAdd");        
+        var dlgAdd = $("#dlgadd-modal-body");
+        var dlgAddMain = $("#dlgAdd");
         dlgAdd.empty();
         var grpSelect = {};
         var AppendStr = "";
         $.each(data, function (datakey, comp) {
             if (comp.FieldisHide == "Show") {
                 if (comp.FieldComponentType == "single") {
-                    AppendStr += "<div class='row'>" +
+                    AppendStr += "<div class='row-fluid'>" +
                            "<div class='form-group'>" +
-                           "<div class='col-md-3 col-md-offset-1'><label for='txt" + comp.FieldComponentID + "'>" + comp.FieldName + "</label></div>" +
-                           "<div class='form-group'><div class='col-md-7'><input style='width:100%' class='form-control retvetxtBox' type='text' id='txt" + comp.FieldComponentID + "' /></div></div>" +
+                           "<label class='control-label' for='txtAdd" + comp.FieldComponentID + "'>" + comp.FieldName + "</label>" +
+                           "<input style='width:100%' class='form-control retveAddtxtBox' type='text' id='txtAdd" + comp.FieldComponentID + "' />" +
                            "</div></div>";
                     dlgAdd.append(AppendStr);
                     AppendStr = "";
@@ -92,77 +91,63 @@ function AddComponent() {
                         }
                     });
                     if (isgrpSelectExist == 0) {
-                        AppendStr += "<div class='row'>" +
+                        AppendStr += "<div class='row-fluid'>" +
                             "<div class='form-group'>" +
-                            "<div class='col-md-3 col-md-offset-1' ><label for='slc" + comp.FieldComponentID + "'>" + comp.FieldName + "</label></div>";
-                        AppendStr += "<div class='form-group'><div class='col-md-7'><select style='width:100%' class='form-control retvetSelect' id='slc" + comp.FieldComponentID + "'><option value='" + comp.FieldValue + "'>" + comp.FieldDisplay + "</option></select></div>" +
-                            "</div></div></div>";
+                            "<label class='control-label' for='slcAdd" + comp.FieldComponentID + "'>" + comp.FieldName + "</label>";
+                        AppendStr += "<select style='width:100%' class='form-control retvetAddSelect' id='slcAdd" + comp.FieldComponentID + "'><option value='" + comp.FieldValue + "'>" + comp.FieldDisplay + "</option></select>" +
+                            "</div></div>";
                         grpSelect[comp.FieldName] = comp.FieldName;
                         dlgAdd.append(AppendStr);
                         AppendStr = "";
                     } else {
-                        $("#slc" + comp.FieldComponentID).append("<option value='" + comp.FieldValue + "'>" + comp.FieldDisplay + "</option>");
+                        $("#slcAdd" + comp.FieldComponentID).append("<option value='" + comp.FieldValue + "'>" + comp.FieldDisplay + "</option>");
                     }
                 }
             }
-        });              
-        dlgAdd.dialog({
-            title: "Add " + compnent,
-            width: 450,
-            closeOnEscape: false,
-            resizable: false,
-            modal: true,
-            draggable: true,
-            create: function () {
-                $(this).parent().find('button:contains("Add New")').addClass('btn btn-info btn-small');
-                $(this).parent().find('button:contains("Close")').addClass('btn btn-danger btn-small');
-            },
-            open: function (event, ui) {
-                $(".ui-dialog-titlebar-close", ui.dialog | ui).hide();
-            },
-            buttons: {
-                "Add New": function () {
-                    var AddRet = "";
-                    $(".retvetxtBox").each(function (index, element) {
-                        AddRet += $(element).val() + "|"
-                    });
-                    $(".retvetSelect").each(function (index, element) {
-                        AddRet += $("#" + element.id + ">option:selected").val() + "|";
-                    });
-                    var req = $.ajax({
-                        type: 'POST',
-                        async: true,
-                        url: "/DevelopmentTools/AddComponent",
-                        contentType: "application/json; charset=utf-8",
-                        data: "{'compData': '" + AddRet + "','opCode': 0 }"
-                    });
-                    req.error(function (request, status, error) {
-                        toastr.error(request.responseText);
-                    });
-                    req.done(function (data) {
-                        if (data == "1") {
-                            toastr.info("Record Added!");
-                            dlgAdd.dialog('destroy');
-                            dlgAdd.empty();
-                            tblComponent.ajax.reload();
-                        } else {
-                            toastr.error(data + " SQL Error Number!");
-                        }                        
-                    });
-                },
-                "Close": function () {
-                    $(this).dialog('destroy');
-                    $(this).empty();
-                }
-            }
+        });        
+        dlgAddMain.modal();
+        $("#dlgadd-close-btn").unbind("click");
+        $("#dlgadd-close-btn").bind("click", function () {
+            dlgAddMain.modal("hide");            
         });
+        $("#dlgadd-add-btn").unbind("click");
+        $("#dlgadd-add-btn").bind("click", function () {
+            var AddRet = "";
+            $(".retveAddtxtBox").each(function (index, element) {
+                AddRet += $(element).val() + "|"
+            });
+            $(".retvetAddSelect").each(function (index, element) {
+                AddRet += $("#" + element.id + ">option:selected").val() + "|";
+            });
+            var req = $.ajax({
+                type: 'POST',
+                async: true,
+                url: "/DevelopmentTools/AddComponent",
+                contentType: "application/json; charset=utf-8",
+                data: "{'compData': '" + AddRet + "','opCode': 0 }"
+            });
+            req.error(function (request, status, error) {
+                toastr.error(request.responseText);
+            });
+            req.done(function (data) {
+                if (data == "1") {
+                    toastr.info("Record Added!");
+                    dlgAddMain.modal("hide");
+                    tblComponent.ajax.reload();
+                } else {
+                    toastr.error(data + " SQL Error Number!");
+                }
+            });
+        });
+        
     });
 }
 
 function EditComponent(editItem) {
     event.preventDefault();
     $.get("/DevelopmentTools/FetchLibraryUpdateCompent", {}, function (data) {
-        dlgEdit = $("#dlgEdit");
+        var dlgEdit = $("#dlgedit-modal-body");
+        var dlgEditMain = $("#dlgEdit");
         dlgEdit.empty();
         var grpSelect = {};
         var AppendStr = "";
@@ -170,10 +155,10 @@ function EditComponent(editItem) {
         $.each(data, function (datakey, comp) {
             if (comp.FieldisHide == "Show") {
                 if (comp.FieldComponentType == "single") {
-                    AppendStr += "<div class='row'>" +
+                    AppendStr += "<div class='row-fluid'>" +
                             "<div class='form-group'>" +
-                            "<div class='col-md-3 col-md-offset-1'><label for='txt" + comp.FieldName + "'>" + comp.FieldName + "</label></div>" +
-                            "<div class='form-group'><div class='col-md-7'><input style='width:100%' class='retvetxtBox form-control' type='text' id='txt" + comp.FieldName + "'/></div></div>" +
+                            "<label class='control-label' for='txtEdit" + comp.FieldComponentID + "'>" + comp.FieldName + "</label>" +
+                            "<input style='width:100%' class='retveEdittxtBox form-control' type='text' id='txtEdit" + comp.FieldComponentID + "'/>" +
                             "</div></div>";
                     dlgEdit.append(AppendStr);
                     AppendStr = "";
@@ -185,16 +170,16 @@ function EditComponent(editItem) {
                         }
                     });
                     if (isgrpSelectExist == 0) {
-                        AppendStr += "<div class='row'>" +
+                        AppendStr += "<div class='row-fluid'>" +
                             "<div class='form-group'>" +
-                            "<div class='col-md-3 col-md-offset-1' ><label for='slc" + comp.FieldComponentID + "'>" + comp.FieldName + "</label></div>";
-                        AppendStr += "<div class='form-group'><div class='col-md-7'><select style='width:100%' class='form-control retvetSelect' id='slc" + comp.FieldComponentID + "'><option value='" + comp.FieldValue + "'>" + comp.FieldDisplay + "</option></select></div>" +
+                            "<label class='control-label' for='slc" + comp.FieldComponentID + "'>" + comp.FieldName + "</label>";
+                        AppendStr += "<select style='width:100%' class='form-control retvetEditSelect' id='slcEdit" + comp.FieldComponentID + "'><option value='" + comp.FieldValue + "'>" + comp.FieldDisplay + "</option></select>" +
                             "</div></div>";
                         grpSelect[comp.FieldName] = comp.FieldName;
                         dlgEdit.append(AppendStr);
                         AppendStr = "";
                     } else {
-                        $("#slc" + comp.FieldComponentID).append("<option value='" + comp.FieldValue + "'>" + comp.FieldDisplay + "</option>");
+                        $("#slcEdit" + comp.FieldComponentID).append("<option value='" + comp.FieldValue + "'>" + comp.FieldDisplay + "</option>");
                     }
                 }
             }
@@ -208,65 +193,49 @@ function EditComponent(editItem) {
         $.each(data, function (datakey, comp) {            
             //$("#txt" + comp.FieldName).val($("#tbl-component tbody tr:has(\"" + editItem + "\") td:eq(" + comp.FieldLink + ")").text());            
             if (comp.FieldComponentType == "select") {                
-                $("#slc" + comp.FieldComponentID + " option").filter(function () {
+                $("#slcEdit" + comp.FieldComponentID + " option").filter(function () {
                     return this.text == row[comp.FieldName];
                 }).attr('selected', true);;
             } else {
-                $("#txt" + comp.FieldComponentID).val(row[comp.FieldName]);
+                $("#txtEdit" + comp.FieldComponentID).val(row[comp.FieldName]);
             }
             
        
-        });        
-        dlgEdit.dialog({
-            title: "Update " + compnent,
-            width: '450',
-            closeOnEscape: false,
-            resizable: false,
-            modal: true,
-            draggable: true,
-            create: function () {
-                $(this).parent().find('button:contains("Update")').addClass('btn btn-info btn-small');
-                $(this).parent().find('button:contains("Close")').addClass('btn btn-danger btn-small');
-            },
-            open: function (event, ui) {
-                $(".ui-dialog-titlebar-close", ui.dialog | ui).hide();
-            },
-            buttons: {
-                "Update": function () {
-                    var UpdateRet = editItem + "|";
-                    $(".retvetxtBox").each(function (index, element) {
-                        UpdateRet += $(element).val() + "|"
-                    });
-                    $(".retvetSelect").each(function (index, element) {
-                        UpdateRet += $("#" + element.id + ">option:selected").val() + "|";
-                    });
-                    var req = $.ajax({
-                        type: 'POST',
-                        async: true,
-                        url: "/DevelopmentTools/UpdateComponent",
-                        contentType: "application/json; charset=utf-8",
-                        data: "{'compData': '" + UpdateRet + "','opCode': 1 }"
-                    });
-                    req.error(function (request, status, error) {
-                        toastr.error(request.responseText);
-                    });
-                    req.done(function (data) {
-                        if (data == "1") {
-                            toastr.info("Record Updated!");
-                            dlgEdit.dialog('destroy');
-                            dlgEdit.empty();
-                            tblComponent.ajax.reload();
-                        } else {
-                            toastr.error(data + " SQL Error Number!");
-                        }
-                    });
-                },
-                "Close": function () {
-                    $(this).dialog('destroy');
-                    $(this).empty();
-                }
-            }
         });
+        dlgEditMain.modal();
+        $("#dlgEdit-close-btn").unbind("click");
+        $("#dlgEdit-close-btn").bind("click", function () {
+            dlgEditMain.modal("hide");
+        });
+        $("#dlgEdit-update-btn").unbind("click");
+        $("#dlgEdit-update-btn").bind("click", function () {
+            var UpdateRet = editItem + "|";
+            $(".retveEdittxtBox").each(function (index, element) {
+                UpdateRet += $(element).val() + "|"
+            });
+            $(".retvetEditSelect").each(function (index, element) {
+                UpdateRet += $("#" + element.id + ">option:selected").val() + "|";
+            });
+            var req = $.ajax({
+                type: 'POST',
+                async: true,
+                url: "/DevelopmentTools/UpdateComponent",
+                contentType: "application/json; charset=utf-8",
+                data: "{'compData': '" + UpdateRet + "','opCode': 1 }"
+            });
+            req.error(function (request, status, error) {
+                toastr.error(request.responseText);
+            });
+            req.done(function (data) {
+                if (data == "1") {
+                    toastr.info("Record Updated!");
+                    dlgEditMain.modal("hide");
+                    tblComponent.ajax.reload();
+                } else {
+                    toastr.error(data + " SQL Error Number!");
+                }
+            });
+        });       
     });
 }
 
@@ -274,16 +243,17 @@ function DeleteComponent(delItem) {
     event.preventDefault();
     $.get("/DevelopmentTools/FetchLibraryUpdateCompent", {}, function (data) {
         var grpSelect = {};
-        dlgDelete = $("#dlgDelete");
+        var dlgDelete = $("#dlgdelete-modal-body");
+        var dlgDeleteMain = $("#dlgDelete");
         dlgDelete.empty();
         var AppendStr = "";
         $.each(data, function (datakey, comp) {
             if (comp.FieldisHide == "Show") {               
                 if (comp.FieldComponentType == "single") {
-                    AppendStr += "<div class='row'>" +
+                    AppendStr += "<div class='row-fluid'>" +
                            "<div class='form-group'>" +
-                           "<div class='col-md-3 col-md-offset-1'><label for='spn" + comp.FieldComponentID + "'>" + comp.FieldName + "</label></div>" +
-                           "<div class='form-group'><div class='col-md-7'><span class='form-control' id='spn" + comp.FieldComponentID + "' /></div></div>" +
+                           "<label class='control-label' for='spnDelete" + comp.FieldComponentID + "'>" + comp.FieldName + "</label>" +
+                           "<span class='form-control' id='spnDelete" + comp.FieldComponentID + "' />" +
                            "</div></div>";
                     dlgDelete.append(AppendStr);
                     AppendStr = "";
@@ -295,10 +265,10 @@ function DeleteComponent(delItem) {
                         }
                     });
                     if (isgrpSelectExist == 0) {
-                        AppendStr += "<div class='row'>" +
+                        AppendStr += "<div class='row-fluid'>" +
                             "<div class='form-group'>" +
-                            "<div class='col-md-3 col-md-offset-1'><label for='spn" + comp.FieldComponentID + "'>" + comp.FieldName + "</label></div>";
-                        AppendStr += "<div class='form-group'><div class='col-md-7'><span class='form-control' id='spn" + comp.FieldComponentID + "' /></div></div>" +
+                            "<label class='control-label' for='spnDelete" + comp.FieldComponentID + "'>" + comp.FieldName + "</label>";
+                        AppendStr += "<span class='form-control' id='spnDelete" + comp.FieldComponentID + "' />" +
                             "</div></div>";
                         grpSelect[comp.FieldName] = comp.FieldName;
                         dlgDelete.append(AppendStr);
@@ -309,60 +279,42 @@ function DeleteComponent(delItem) {
                 }
             }
             identifier = comp.FieldLink;
-        });
-        //dlgDelete.append(AppendStr);        
-
+        });        
         var row = tblComponent.row(function (idx, data, node) {
             return data[identifier] === delItem ? true : false;
         }).data();
 
         $.each(data, function (datakey, comp) {            
-            $("#spn" + comp.FieldComponentID).text(row[comp.FieldName]);
+            $("#spnDelete" + comp.FieldComponentID).text(row[comp.FieldName]);
         });
-        dlgDelete.dialog({
-            title: "Delete " + compnent,
-            width: 450,
-            closeOnEscape: false,
-            resizable: false,
-            modal: true,
-            draggable: true,            
-            create: function () {
-                $(this).parent().find('button:contains("Yes")').addClass('btn btn-danger btn-small');
-                $(this).parent().find('button:contains("No")').addClass('btn btn-info btn-small');
-            },
-            open: function (event, ui) {
-                $(".ui-dialog-titlebar-close", ui.dialog | ui).hide();
-            },
-            buttons: {
-                "Yes": function () {
-                    var DeleteRet = delItem + "|";
-                    
-                    var req = $.ajax({
-                        type: 'POST',
-                        async: true,
-                        url: "/DevelopmentTools/DeleteComponent",
-                        contentType: "application/json; charset=utf-8",
-                        data: "{'compData': '" + DeleteRet + "','opCode': 2 }"
-                    });
-                    req.error(function (request, status, error) {
-                        toastr.error(request.responseText);
-                    });
-                    req.done(function (data) {
-                        if (data == "1") {
-                            toastr.info("Record Deleted!");
-                            dlgDelete.dialog('destroy');
-                            dlgDelete.empty();
-                            tblComponent.ajax.reload();
-                        } else {
-                            toastr.error(data + " SQL Error Number!");
-                        }
-                    });
-                },
-                "No": function () {
-                    $(this).dialog('destroy');
-                    $(this).empty();
+        dlgDeleteMain.modal();
+        $("#dlgDelete-close-btn").unbind("click");
+        $("#dlgDelete-close-btn").bind("click", function () {
+            dlgDeleteMain.modal("hide");
+        });
+        $("#dlgDelete-delete-btn").unbind("click");
+        $("#dlgDelete-delete-btn").bind("click", function () {
+            var DeleteRet = delItem + "|";
+            var req = $.ajax({
+                type: 'POST',
+                async: true,
+                url: "/DevelopmentTools/DeleteComponent",
+                contentType: "application/json; charset=utf-8",
+                data: "{'compData': '" + DeleteRet + "','opCode': 2 }"
+            });
+            req.error(function (request, status, error) {
+                toastr.error(request.responseText);
+            });
+            req.done(function (data) {
+                if (data == "1") {
+                    toastr.info("Record Deleted!");
+                    dlgDeleteMain.modal("hide");
+                    tblComponent.ajax.reload();
+                } else {
+                    toastr.error(data + " SQL Error Number!");
                 }
-            }
+            });
         });
+       
     });
 }

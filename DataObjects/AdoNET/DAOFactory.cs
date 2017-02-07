@@ -12,5 +12,10 @@ namespace DataObjects.AdoNET
         {
             get { return new LibraryDAO(); }
         }
+        
+        public ICustomerDAO CustomerDAO
+        {
+            get { return new CustomerDAO(); }
+        }
     }
 }

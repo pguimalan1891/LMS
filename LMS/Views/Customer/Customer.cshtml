@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewBag.Title = "Customer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Scripts
+{
+    @*@Styles.Render("~/Content/DataTableCSS")
+    @Scripts.Render("~/Content/DataTableJS")*@
+    @Helper.LoadCustomJS("ViewsJS/Customer/JS_Customer.js", Url)
+}
+
+<style type="text/css">
+    
+</style>
+<div class="container-fluid">
+    <div class="row">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-md-3">
+                        <h3>Borrower Information Sheet</h3>
+                    </div>                    
+                </div>
+            </div>
+            <div class="panel-body">
+                <div class="row">                    
+                    <div class="col-md-12">
+                        <div class="table-responsive">
+                            <table id="tbl-customer" class="table table-striped table-bordered dt-responsive no-wrap" cellspacing="0" width="100%">
+                                <thead>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
