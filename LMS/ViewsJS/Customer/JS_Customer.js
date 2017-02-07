@@ -18,19 +18,8 @@ function loadComponents(url) {
     });
 
     req.done(function (data) {
-        var dataColumns = [];
-        //var dataColumns =
-        //    [
-        //    {
-        //        "data": null, "targets": -1, "sortable": false,
-        //        "render": function (data, type, full, meta) {
-        //            return "<a class='btn btn-success btn-minier' href='#' title='Edit' onClick='EditComponent(\"" + data.ID + "\")'><span class='glyphicon glyphicon-edit' aria-hidden='true'></span></a>";
-        //        }
-        //    },
-        //    ];
-        //var colCount = 1;
-        
-        
+        var dataColumns = [];       
+                
         var thead = "<tr>"
         var colCount = 0;        
         $.each(data, function (datakey, comp) {
@@ -66,13 +55,7 @@ function loadComponents(url) {
             "columns": dataColumns
         });
         tblComponent.columns(0).visible(false, false);
-        //$.get("/DevelopmentTools/FetchLibraryUpdateCompent", {}, function (data) {
-        //    $.each(data, function (datakey, comp) {
-        //        if (comp.FieldisHide == "Hide") {
-        //            tblComponent.columns(comp.FieldisHideColIndex).visible(false, false);
-        //        }
-        //    });
-        //});
+        
     });
 }
 

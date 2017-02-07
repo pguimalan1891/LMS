@@ -24,5 +24,7 @@ namespace DataObjects.AdoNET
             object[] parms = { };
             return db.ReadDictionary(sql, 0, parms);
         }
+
+        
     }
 }

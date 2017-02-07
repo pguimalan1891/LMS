@@ -402,6 +402,7 @@
     <Content Include="Views\DevelopmentTools\_AddLibraryComponent.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Views\OfficialReceipt\OfficialReceipt.cshtml" />
+    <Content Include="Views\Customer\Customer.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
