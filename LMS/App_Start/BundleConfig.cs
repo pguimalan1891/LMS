@@ -56,7 +56,7 @@ namespace LMS
             bundles.Add(new ScriptBundle("~/Content/DataTableJS").Include(
                     "~/Content/datatable/media/js/jquery.dataTables.min.js",
                     "~/Content/datatable/media/js/dataTables.bootstrap.min.js",
-                    "~/Content/datatable/media/js/dataTables.responsive.js",
+                    "~/Content/datatable/media/js/dataTables.responsive.min.js",
                     "~/Content/datatable/media/js/responsive.bootstrap.min.js"
                     ));
         }

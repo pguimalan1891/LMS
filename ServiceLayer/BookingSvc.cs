@@ -4,20 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataObjects;
-using BusinessObjects;
 using ServiceLayer.Interface;
 
 namespace ServiceLayer
 {
-    public class CustomerSvc : ICustomerSvc
+    public class BookingSvc: IBookingSvc
     {
         static readonly IDAOFactory factory = DAOFactories.GetFactory();
-        static readonly ICustomerDAO customer = factory.CustomerDAO;
+        static readonly IBookingDAO booking = factory.BookingDAO;
 
-        public List<Dictionary<string, object>> getCustomerRecord()
-        {            
-            return customer.getCustomerRecord();
+        public List<Dictionary<string, object>> getBookingRecords()
+        {
+            return booking.getBookingRecords();
         }
-
     }
 }
