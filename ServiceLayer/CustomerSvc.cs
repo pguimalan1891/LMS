@@ -15,8 +15,20 @@ namespace ServiceLayer
         static readonly ICustomerDAO customer = factory.CustomerDAO;
 
         public List<Dictionary<string, object>> getCustomerRecord()
-        {            
-            return customer.getCustomerRecord();
+        {
+            var qryResult = customer.getCustomerRecord();
+            List<Dictionary<string, object>> lstInfo = new List<Dictionary<string, object>>();
+            foreach (var rec in qryResult)
+            {
+                Dictionary<string, object> d = new Dictionary<string, object>();
+                foreach (var x in rec)
+                {
+                    d.Add(x.Key, x.Value);
+                }
+                lstInfo.Add(d);
+            }
+
+            return lstInfo;
         }
 
     }
