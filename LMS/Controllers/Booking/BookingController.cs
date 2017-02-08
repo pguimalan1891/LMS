@@ -35,9 +35,9 @@ namespace LMS.Controllers
         }
 
         [HttpPost]
-        public ActionResult RetrieveBookingRecords(string status)
+        public ActionResult RetrieveBookingRecords(int status)
         {
-            return Json(this.service.getBookingRecords());
+            return Json(this.service.getBookingRecords(status));
         }
     }
 }

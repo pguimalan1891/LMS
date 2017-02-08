@@ -10,7 +10,7 @@ function getBookingRecords(url) {
         async: true,
         url: url,
         contentType: "application/json; charset=utf-8",
-        data: {},
+        data: JSON.stringify({ 'status': 14 })
     });
 
     req.error(function (request, status, error) {
@@ -50,8 +50,10 @@ function getBookingRecords(url) {
                 "url": url,
                 "datatype": "json",
                 "type": "post",
-                "data": {
-                    'status': 30
+                //"data": JSON.stringify({ 'status': 14 })
+                "data": function (d) {
+                    d.status = 14;
+                    return d;
                 }
             },
             "columns": dataColumns

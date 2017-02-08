@@ -8,6 +8,6 @@ namespace ServiceLayer.Interface
 {
    public interface IBookingSvc
     {
-        List<Dictionary<string, object>> getBookingRecords();
+        List<Dictionary<string, object>> getBookingRecords(int status);
     }
 }

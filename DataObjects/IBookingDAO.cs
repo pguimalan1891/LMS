@@ -8,7 +8,7 @@ namespace DataObjects
 {
     public interface IBookingDAO
     {
-        List<Dictionary<string, object>> getBookingRecords();
+        List<Dictionary<string, object>> getBookingRecords(int status);
 
     }
 }
