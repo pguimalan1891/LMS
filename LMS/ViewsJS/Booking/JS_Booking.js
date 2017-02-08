@@ -49,7 +49,10 @@ function getBookingRecords(url) {
             "ajax": {
                 "url": url,
                 "datatype": "json",
-                "type": "post"
+                "type": "post",
+                "data": {
+                    'status': 30
+                }
             },
             "columns": dataColumns
         });
