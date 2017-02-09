@@ -34,6 +34,11 @@ namespace LMS.Controllers
             return View();
         }
 
+        public ActionResult DirectLoanReceipt()
+        {
+            return View();
+        }
+
         [HttpPost]
         public ActionResult RetrieveBookingRecords(int status)
         {

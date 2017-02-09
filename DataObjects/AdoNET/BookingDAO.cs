@@ -15,10 +15,10 @@ namespace DataObjects.AdoNET
 
         public List<Dictionary<string,object>> getBookingRecords(int status)
         {
-            string sql = "exec RetrieveBookingRecords";
+            string sql = "RetrieveBookingRecords";
 
             object[] parms = { "@statuscode", status };
-            return db.ReadDictionary(sql, 0, parms);
+            return db.ReadDictionary(sql, 1, parms);
         }
     }
 }

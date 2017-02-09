@@ -408,8 +408,14 @@
     </Content>
     <Content Include="Views\OfficialReceipt\OfficialReceipt.cshtml" />
     <Content Include="Views\Customer\Customer.cshtml" />
-    <Content Include="Views\Booking\Booking.cshtml" />
     <Content Include="Views\Customer\_Display_CustomerRecord.cshtml" />
+    <Content Include="Views\Booking\DirectLoanReceipt.cshtml" />
+    <Content Include="Views\Booking\CheckVoucher.cshtml" />
+    <Content Include="Views\Booking\CIRForm.cshtml" />
+    <Content Include="Views\Booking\DisbursementVoucher.cshtml" />
+    <Content Include="Views\Booking\PromissoryNoteAllocation.cshtml" />
+    <Content Include="Views\Booking\ChangeCCI.cshtml" />
+    <Content Include="Views\Booking\BankAssignment.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
