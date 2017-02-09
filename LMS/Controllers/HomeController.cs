@@ -8,9 +8,17 @@ namespace LMS.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        public ActionResult Index(LMS.Models.ApplicationUserAccount user)
         {
-            return View();
+            if(Session["loginDetails"] != null)
+            {
+                
+                return View();
+            }else
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            
         }
 
         public ActionResult About()

@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace ServiceLayer.Interface
 {
-   public interface IBookingSvc
+    public interface IAccountSvc
     {
-        List<Dictionary<string, object>> getBookingRecords(int status);
+         List<Dictionary<string, object>> Login(string username, string password);
+
     }
 }

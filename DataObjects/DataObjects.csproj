@@ -34,7 +34,7 @@
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Mvc, Version=3.0.0.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -45,11 +45,13 @@
   <ItemGroup>
     <Compile Include="AdoNET\BookingDAO.cs" />
     <Compile Include="AdoNET\CustomerDAO.cs" />
+    <Compile Include="AdoNET\AccountDAO.cs" />
     <Compile Include="DAOFactories.cs" />
     <Compile Include="AdoNET\DAOFactory.cs" />
     <Compile Include="AdoNET\DB.cs" />
     <Compile Include="AdoNET\LibraryDAO.cs" />
     <Compile Include="AdoNET\Extensions.cs" />
+    <Compile Include="IAccountDAO.cs" />
     <Compile Include="IBookingDAO.cs" />
     <Compile Include="ICustomerDAO.cs" />
     <Compile Include="IDAOFactory.cs" />
@@ -61,6 +63,13 @@
       <Project>{11cf88ed-be2a-4a2b-9209-878689f4cea6}</Project>
       <Name>BusinessObjects</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="SPs\Account\usp_Login.sql" />
+    <Content Include="SPs\Booking\RetrieveBookingRecords.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

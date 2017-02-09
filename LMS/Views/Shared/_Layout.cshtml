@@ -1,10 +1,19 @@
-﻿<!DOCTYPE html>
+﻿
+@{
+    if(Session["loginDetails"] != null)
+    {
+        ViewBag.isEnabled = true;
+        ViewBag.ApplicationUserAccount = Session["loginDetails"];
+    }
+
+ }
+<!DOCTYPE html>
 <html>
 <head>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>    
+    <title>RFC - Loans Management System</title>    
     @Styles.Render("~/Content/themeui/css")
     @Styles.Render("~/Content/DataTableCSS")
 
@@ -16,6 +25,9 @@
         body {
             font-family: 'Ubuntu', sans-serif !important;
         }
+        input.form-control{
+            border-bottom: 1px solid #CCC;
+        }
     </style>
 
 </head>
@@ -25,103 +37,107 @@
             <div class="sidebar-collapse">
                 <ul class="nav" id="side-menu">
                     <li class="nav-header">
-                        <div class="dropdown profile-element">
-                            <span>
-                                <img alt="image" width="35px" height="35px"  class="img-circle" src="~/Content/uiPlugins/theme/img/profile_small.png" />
-                            </span>
-                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                                <span class="clear">
-                                    <span class="block m-t-xs">
-                                        <strong class="font-bold">User Name Here</strong>
-                                    </span> <span class="text-muted text-xs block">Loans Collection Specialist<b class="caret"></b></span>
+                        @if (ViewBag.isEnabled == true)
+                        {
+                            <div class="dropdown profile-element">
+                                <span>
+                                    <img alt="image" width="35px" height="35px" class="img-circle" src="~/Content/uiPlugins/theme/img/profile_small.png" />
                                 </span>
-                            </a>
-                            <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                                <li><a href="#profile.html">Profile</a></li>
-                                <li><a href="#contacts.html">Pending</a></li>
-                                <li><a href="#mailbox.html">Notifications</a></li>
-                                <li class="divider"></li>
-                                <li><a href="#login.html">Logout</a></li>
-                            </ul>
-                        </div>
+                                <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                    <span class="clear">
+                                        <span class="block m-t-xs">
+                                            <strong class="font-bold">@Html.Label("position", (string)ViewBag.ApplicationUserAccount[0]["NAME"])</strong>
+                                        </span>
+                                        <span class="text-muted text-xs block">@Html.Label("position", (string)ViewBag.ApplicationUserAccount[0]["DESCRIPTION"])<b class="caret"></b></span>
+                                    </span>
+                                </a>
+                                <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                                    <li><a href="#profile.html">Profile</a></li>
+                                    <li><a href="#contacts.html">Pending</a></li>
+                                    <li><a href="#mailbox.html">Notifications</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="#login.html">Logout</a></li>
+                                </ul>
+                            </div>
+
+                        }
+                        else
+                        {
+                            <div class="dropdown profile-element">
+                                <span>
+                                    <img alt="image" width="35px" height="35px" class="img-circle" src="~/Content/uiPlugins/theme/img/profile_small.png" />
+                                </span>
+                                <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                    <span class="clear">
+                                      RFC - Loans Management System
+                                    </span>
+                                </a>
+                          
+                            </div>
+                        }
+                        
                         <div class="logo-element">
                             RFC
                         </div>
                     </li>
-                    <li class="active">
-                        <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">Application</span> <span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">Booking</span> <span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">Collections</span> <span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">Official Receipt</span> <span class="fa arrow"></span></a>
-                                <ul class="nav nav-third-level">
-                                    <li>@Html.ActionLink("For Submission", "", "OfficialReceipt")</li>
-                                    <li>@Html.ActionLink("SUbmitted", "Index", "OfficialReceipt")</li>
-                                    <li>@Html.ActionLink("Cancelled", "Index", "OfficialReceipt")</li>
-                                    <li>@Html.ActionLink("Listing", "Contact", "Home")</li>
-                                </ul>
-                            </li>
-                            <li><a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">PDC Acknowledgement Receipt</span> <span class="fa arrow"></span></a>
-                                <ul class="nav nav-third-level">
-                                    <li>@Html.ActionLink("Active", "Contact", "Home")</li>
-                                    <li>@Html.ActionLink("Generated", "Contact", "Home")</li>
-                                    <li>@Html.ActionLink("Cancelled", "Contact", "Home")</li>
-                                    <li>@Html.ActionLink("Listing", "Contact", "Home")</li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">PDC Batch Encoding</span> <span class="fa arrow"></span></a>
-                                <ul class="nav nav-third-level">
-                                    <li>@Html.ActionLink("For Submission", "Contact", "Home")</li>
-                                    <li>@Html.ActionLink("Submitted", "Contact", "Home")</li>
-                                    <li>@Html.ActionLink("Cancelled", "Contact", "Home")</li>
-                                    <li>@Html.ActionLink("Listing", "Contact", "Home")</li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">Return Check Notice</span> <span class="fa arrow"></span></a>
-                                <ul class="nav nav-third-level">
-                                    <li>@Html.ActionLink("Add New", "Contact", "Home")</li>
-                                    <li>@Html.ActionLink("For Submission", "Contact", "Home")</li>
-                                    <li>@Html.ActionLink("Submitted", "Contact", "Home")</li>
-                                    <li>@Html.ActionLink("Cancelled", "Contact", "Home")</li>
-                                    <li>@Html.ActionLink("Listing", "Contact", "Home")</li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="layouts.html"><i class="fa fa-diamond"></i> <span class="nav-label">Diamonds Here</span> <span class="label label-primary pull-right">NEW</span></a>
-                    </li>
+                    @if (ViewBag.isEnabled == true)
+                    {
+                        <li class="active">
+                            <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">Application</span> <span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                                <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">Booking</span> <span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                                <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                                <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                                <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">Collections</span> <span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">Official Receipt</span> <span class="fa arrow"></span></a>
+                                    <ul class="nav nav-third-level">
+                                        <li>@Html.ActionLink("Sundry Collection", "NewSundry", "OfficialReceipt")</li>
+                                        <li>@Html.ActionLink("OR Listing", "Contact", "Home")</li>
+                                    </ul>
+                                </li>
+                                <li>@Html.ActionLink("PDC Acknowledgement Receipt", "Contact", "Home")</li>
+                                <li>@Html.ActionLink("PDC Batch Encoding", "Contact", "Home")</li>
+                                <li>@Html.ActionLink("Return Check Notice", "Contact", "Home")</li>
+                                <li>@Html.ActionLink("Deposit Slip", "Contact", "Home")</li>
+                            </ul>
+                        </li>
+                    }
 
                 </ul>
             </div>
         </nav>
         <div id="page-wrapper" class="gray-bg">
             <div class="row border-bottom">
-                <nav class="navbar navbar-static-top white-bg" role="navigation" style="margin-bottom: 0">
-                 
-                    <ul class="nav navbar-top-links navbar-right">
-                       <li> <a href="@Url.Action("Logout", "Account")"><i class="fa fa-sign-out"></i> Logout</a>
-</li>
-                        
-                    </ul>
-                </nav>
+               
+                @if (ViewBag.isEnabled == true)
+                {
+                    <nav class="navbar navbar-static-top white-bg" role="navigation" style="margin-bottom: 0">
+                        <div class="navbar-header">
+                            <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+
+                        </div>
+                        <ul class="nav navbar-top-links navbar-right">
+                            <li>
+                                <a href="@Url.Action("Logout", "Account")"><i class="fa fa-sign-out"></i> Logout</a>
+                            </li>
+
+                        </ul>
+                    </nav>
+                }
+                
             </div>
             <div class="wrapper wrapper-content">
                 @RenderBody()
@@ -131,7 +147,7 @@
 
                 </div>
                 <div>
-                    <strong>Copyright</strong> Coykie &amp; Company &copy; 2014-2015
+                    
                 </div>
             </div>
         </div>

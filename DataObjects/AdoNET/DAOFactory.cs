@@ -18,6 +18,11 @@ namespace DataObjects.AdoNET
             get { return new CustomerDAO(); }
         }
 
+        public IAccountDAO AccountDAO
+        {
+            get { return new AccountDAO(); }
+        }
+
         public IBookingDAO BookingDAO
         {
             get { return new BookingDAO(); }

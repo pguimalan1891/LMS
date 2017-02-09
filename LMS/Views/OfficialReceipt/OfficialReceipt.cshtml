@@ -21,10 +21,8 @@
                             <p>Please fill-in all required fields.</p>
                             <div class="form-group">
                                 <label class="col-lg-2 control-label">Or No.:</label>
-
-                                <div class="col-lg-10">
-                                    <input type="email" placeholder="" class="form-control">
-                                </div>
+                                    <div class="col-lg-10"><input type="text" placeholder="" class="form-control"></div>
+                               
                             </div>
                             <div class="form-group">
                                 <label class="col-lg-2 control-label">OR Date.:</label>
@@ -72,6 +70,8 @@
                 </div>
 
             </div>
+        @if (Model.isSundry != true)
+        {
             <div class="col-md-5">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
@@ -149,75 +149,155 @@
                 </div>
 
             </div>
-        </div>
-   
-        <div class="row">
-            <div class="ibox float-e-margins">
-                <div class="ibox-title">
-                    <h5>General Information</h5>
-                </div>
-                <div class="ibox-content">
-                    <div class="form-horizontal">
-                        <p>Please fill-in all required fields.</p>
-                        <div class="form-group">
-                            <label class="col-lg-2 control-label">Or No.:</label>
 
-                            <div class="col-lg-10">
-                                <input type="email" placeholder="" class="form-control">
+        }else
+        {
+            <div class="col-md-5">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>Sundry Collection</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                <label class="col-lg-5 control-label">Handling Fee:</label>
+
+                                <div class="col-lg-7">
+                                    <input type="text" placeholder="" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-5 control-label">DST Amount:</label>
+
+                                <div class="col-lg-7"><input type="text" placeholder="" class="form-control"></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-5 control-label">Restructuring Fee:</label>
+
+                                <div class="col-lg-7"><input type="text" placeholder="" class="form-control"></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-5 control-label">GIBCO Premium</label>
+
+                                <div class="col-lg-7"><input type="text" placeholder="" class="form-control"></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-5 control-label">Processing Fee:</label>
+
+                                <div class="col-lg-7"><input type="text" placeholder="" class="form-control"></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-5 control-label">PIP:</label>
+
+                                <div class="col-lg-7"><input type="text" placeholder="" class="form-control"></div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-lg-5 control-label">Downpayment:</label>
+
+                                <div class="col-lg-7"><input type="text" placeholder="" class="form-control"></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-5 control-label">Other Amount:</label>
+
+                                <div class="col-lg-7"><input type="text" placeholder="" class="form-control"></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-5 control-label">Other Description:</label>
+
+                                <div class="col-lg-7"><input type="text" placeholder="" class="form-control"></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-5 control-label">Sales of Repossessed:</label>
+
+                                <div class="col-lg-7"><input type="text" placeholder="" class="form-control"></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-5 control-label">Total Sundry:</label>
+
+                                <div class="col-lg-7"><input type="text" placeholder="" class="form-control"></div>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="col-lg-2 control-label">OR Date.:</label>
-
-                            <div class="col-lg-10"><input type="date" placeholder="" class="form-control"></div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-lg-2 control-label">Branch:</label>
-
-                            <div class="col-lg-10"><input type="text" placeholder="" class="form-control"></div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-lg-2 control-label">Payment Mode</label>
-
-                            <div class="col-lg-10"><input type="text" placeholder="" class="form-control"></div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-lg-2 control-label">Amount Due:</label>
-
-                            <div class="col-lg-10"><input type="text" placeholder="" class="form-control"></div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-lg-2 control-label">Amount Received:</label>
-
-                            <div class="col-lg-10"><input type="text" placeholder="" class="form-control"></div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-lg-2 control-label">Bank Name:</label>
-
-                            <div class="col-lg-10">
-                                <select class="form-control">
-                                    <option>Branch One</option>
-                                    <option>Branch One</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-lg-2 control-label">Check No.:</label>
-
-                            <div class="col-lg-10"><input type="text" placeholder="" class="form-control"></div>
-                        </div>
-
                     </div>
                 </div>
+
             </div>
+        }
 
         </div>
-    
+   
+        @if (Model.isSundry != true)
+        {
+
+            <div class="row">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>General Information</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="form-horizontal">
+                            <p>Please fill-in all required fields.</p>
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label">Or No.:</label>
+
+                                <div class="col-lg-10">
+                                    <input type="email" placeholder="" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label">OR Date.:</label>
+
+                                <div class="col-lg-10"><input type="date" placeholder="" class="form-control"></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label">Branch:</label>
+
+                                <div class="col-lg-10"><input type="text" placeholder="" class="form-control"></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label">Payment Mode</label>
+
+                                <div class="col-lg-10"><input type="text" placeholder="" class="form-control"></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label">Amount Due:</label>
+
+                                <div class="col-lg-10"><input type="text" placeholder="" class="form-control"></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label">Amount Received:</label>
+
+                                <div class="col-lg-10"><input type="text" placeholder="" class="form-control"></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label">Bank Name:</label>
+
+                                <div class="col-lg-10">
+                                    <select class="form-control">
+                                        <option>Branch One</option>
+                                        <option>Branch One</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label">Check No.:</label>
+
+                                <div class="col-lg-10"><input type="text" placeholder="" class="form-control"></div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        }
+       
         <div class="row">
             <div class="pull-right">
                 <div class="btn btn-success">
-                    Save Official Receipt
-                </div>
+                            Submit
+                  </div>
                 <div class="btn btn-danger">
                     Cancel
                 </div>
@@ -227,7 +307,3 @@
     
     </div>
 </div>
-@if(ViewBag.isSundry == true)
-{
-    
-}

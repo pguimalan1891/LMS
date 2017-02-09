@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace DataObjects
 {
-    public interface IBookingDAO
+    public interface IAccountDAO
     {
-        List<Dictionary<string, object>> getBookingRecords(int status);
-
+         List<Dictionary<string, object>> Login(string username, string password);
+        
     }
 }
