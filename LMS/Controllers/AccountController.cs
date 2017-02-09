@@ -56,21 +56,31 @@ namespace LMS.Controllers
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
             Session["loginDetails"] = null;
-            List<Dictionary<string, object>> result = acctService.Login(model.Email, model.Password);
-            if(result[0]["Status"].ToString() == "Open")
+            List<Dictionary<string, object>> result = acctService.Login(model.Email.ToUpper(), model.Password);
+            if(result.Count>0)
             {
-                Session["loginDetails"] = result;
-                return RedirectToAction("Index", "Home", null);
+                if (result[0]["Status"].ToString() == "Open")
+                {
+                    Session["loginDetails"] = result;
+                    return RedirectToAction("Index", "Home", null);
+                }
+                else if (result.Count > 0)
+                {
+                    ModelState.AddModelError("", "Account is " + result[0]["Status"].ToString());
+                    return View(model);
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Invalid username or password");
+                    return View(model);
+                }
             }
-            else if(result.Count>0)
-            {
-                ModelState.AddModelError("", "Account is "+ result[0]["Status"].ToString());
-                return View(model);
-            }else
+            else
             {
                 ModelState.AddModelError("", "Invalid username or password");
                 return View(model);
             }
+           
 
 
 
