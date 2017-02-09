@@ -1,0 +1,534 @@
+﻿@using LMS.Models
+@model LMS.Models.Customer.CustomerModel
+<div style="background-color:white;">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Personal Information</h5>
+                </div>
+                <div class="ibox-content">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Borrower Code</label>
+                            <div class="col-lg-9">
+                                <span class="form-control">@Model.custRecord.Code</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">First Name</label>
+                            <div class="col-lg-9">
+                                <span class="form-control">@Model.custRecord.FirstName</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Middle Name</label>
+                            <div class="col-lg-9">
+                                <span class="form-control">@Model.custRecord.MiddleName</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Last Name</label>
+                            <div class="col-lg-9">
+                                <span class="form-control">@Model.custRecord.LastName</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Date of Birth</label>
+                            <div class="col-lg-5">
+                                <span class="form-control">@Model.custRecord.DateOfBirth</span>
+                            </div>
+                            <div class="col-lg-4">
+                                <span class="form-control">Years Old</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Gender</label>
+                            <div class="col-lg-9">
+                                <span class="form-control">@Model.custRecord.Gender</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Citizenship</label>
+                            <div class="col-lg-9">
+                                <span class="form-control">@Model.custRecord.Citizenship</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Account Information</h5>
+                </div>
+                <div class="ibox-content">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Date as Of</label>
+                            <div class="col-lg-9">
+                                <span class="form-control">@Model.custRecord.DatetimeCreated.Replace("|", "")</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">District/Branch</label>
+                            <div class="col-lg-5">
+                                <span class="form-control">@Model.custRecord.District</span>
+                            </div>
+                            <div class="col-lg-4">
+                                <span class="form-control">@Model.custRecord.Organization</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Application Type</label>
+                            <div class="col-lg-9">
+                                <span class="form-control">@Model.custRecord.ApplicationType</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Agent</label>
+                            <div class="col-lg-9">
+                                <span class="form-control">@Model.custRecord.AgentLastName @Model.custRecord.AgentFirstName @Model.custRecord.AgentMiddleName</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Borrower Type</label>
+                            <div class="col-lg-9">
+                                <span class="form-control">@Model.custRecord.BorrowerType</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Source</label>
+                            <div class="col-lg-9">
+                                <span class="form-control">@Model.custRecord.LeadSource</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-7">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Civil Status Information</h5>
+                </div>
+                <div class="ibox-content">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Civil Status</label>
+                            <div class="col-lg-9">
+                                <span class="form-control">@Model.custRecord.CivilStatus</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Date of Marriage</label>
+                            <div class="col-lg-9">
+                                <span class="form-control">@Model.custRecord.DateOfMarriage</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Spouse First Name</label>
+                            <div class="col-lg-9">
+                                <span class="form-control">@Model.custRecord.SpouseFirstName</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Spouse Middle Name</label>
+                            <div class="col-lg-9">
+                                <span class="form-control">@Model.custRecord.SpouseMiddleName</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Spouse Last Name</label>
+                            <div class="col-lg-9">
+                                <span class="form-control">@Model.custRecord.SpouseLastName</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Spouse Birth Date</label>
+                            <div class="col-lg-9">
+                                <span class="form-control">@Model.custRecord.SpouseDateofBirth</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Spouse Contact No.</label>
+                            <div class="col-lg-9">
+                                <span class="form-control">@Model.custRecord.SpouseContactNumber</span>
+                            </div>
+                        </div>
+                        @{
+                            <table class="table table-bordered" width="100%" cellspacing="0" style="font-size:smaller;">
+                                <thead>
+                                    <tr>
+                                        <th>Type</th>
+                                        <th>Employer / Business</th>
+                                        <th>Nature</th>
+                                        <th>Monthly Income</th>
+                                        <th>Contact No.</th>
+                                        <th>Active Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @{bool spouseEmpExist = false;}
+                                    @foreach (var emp in Model.custEmployment)
+                                    {                                        
+                                        if (@emp.IsSpouse == "Y")
+                                        {
+                                            spouseEmpExist = true;
+                                            <tr>
+                                                <td>@emp.BusinessType</td>
+                                                <td>@emp.EmployerName</td>
+                                                <td>@emp.NatureOfBusiness</td>
+                                                <td>@emp.Income</td>
+                                                <td>@emp.Contact_No</td>
+                                                <td>
+                                                    @if (@emp.ToDate == null)
+                                                {
+                                                        @emp.FromDate; <text> to Present</text>
+                                                    }
+                                                    else
+                                                    {
+                                                        @emp.FromDate; <text> to </text> @emp.ToDate;
+}
+                                                </td>
+                                            </tr>
+                                        }
+                                    }
+                                    @if (spouseEmpExist == false)
+                                    {
+                                        <tr><td colspan="6">The spouse neither have any employment record nor have any businesses.</td></tr>
+                                    }
+
+                                </tbody>
+                            </table>
+
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-5">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Social Security Information</h5>
+                </div>
+                <div class="ibox-content">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label">SSS No.</label>
+                            <div class="col-lg-8">
+                                <span class="form-control">@Model.custRecord.SSSNumber</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label">GSIS No.</label>
+                            <div class="col-lg-8">
+                                <span class="form-control">@Model.custRecord.GSISNumber</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label">Tax ID No.</label>
+                            <div class="col-lg-8">
+                                <span class="form-control">@Model.custRecord.TinNumber</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label">RCN</label>
+                            <div class="col-lg-8">
+                                <span class="form-control">@Model.custRecord.RCN</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label">RCN Place Issued</label>
+                            <div class="col-lg-8">
+                                <span class="form-control">@Model.custRecord.RCNPlaceIssued</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label">RCN Date Issued</label>
+                            <div class="col-lg-8">
+                                <span class="form-control">@Model.custRecord.RCNDateIssued</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-7">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Contacts And Addresses</h5>
+                </div>
+                <div class="ibox-content">
+                    <div class="form-horizontal">
+                        @foreach (var addr in Model.custAddress)
+                        {
+                            if (@addr.AddressTypeID == "0")
+                            {
+                                <div class="form-group">
+                                    <label class="col-lg-3 control-label">Province/City</label>
+                                    <div class="col-lg-5">
+                                        <span class="form-control">@addr.City</span>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <span class="form-control">@addr.Province</span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-3 control-label">Barangay</label>
+                                    <div class="col-lg-9">
+                                        <span class="form-control">@addr.BarangayName</span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-3 control-label">Street Address</label>
+                                    <div class="col-lg-9">
+                                        <span class="form-control">@addr.StreetAddress</span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-3 control-label">Postal Code</label>
+                                    <div class="col-lg-9">
+                                        <span class="form-control">@addr.PostalCode</span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-3 control-label">Date of Residence</label>
+                                    <div class="col-lg-9">
+                                        <span class="form-control">@addr.ResidentDate</span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-3 control-label">Home Ownership</label>
+                                    <div class="col-lg-9">
+                                        <span class="form-control">@addr.HomeOwnerShip</span>
+                                    </div>
+                                </div>
+                            }
+                        }
+                        <table class="table table-bordered" width="100%" cellspacing="0" style="font-size:smaller;">
+                            <thead>
+                                <tr>
+                                    <th>Address Type</th>
+                                    <th>Full Address</th>
+                                    <th>Contact Number/s</th>
+                                    <th>Residence Date</th>
+                                    <th>Ownership</th>
+                                </tr>
+                            </thead>
+                            <tbody>                                
+                                @{ bool isSendAddressExist = false;}
+                                @foreach (var addr in Model.custAddress)
+                                {
+                                    if (@addr.AddressTypeID != "0")
+                                    {
+                                        isSendAddressExist = true;
+                                        <tr>
+                                            <td>@addr.AddressType</td>
+                                            <td>@addr.StreetAddress, @addr.BarangayName, @addr.City, @addr.PostalCode, @addr.Province</td>
+                                            <td>@addr.PhoneNumber, @addr.MobileNumber</td>
+                                            <td>@addr.ResidentDate</td>
+                                            <td>@addr.HomeOwnerShip</td>
+                                        </tr>
+                                    }
+                                }
+                                @if (isSendAddressExist == false)
+                                {
+                                    <tr>
+                                        <td colspan="5">No Other Addresses.</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Dependents Information</h5>
+                </div>
+                <div class="ibox-content">
+                    <table class="table table-bordered" width="100%" cellspacing="0" style="font-size:smaller;">
+                        <thead>
+                            <tr>
+                                <th>Fullname</th>
+                                <th>Gender</th>
+                                <th>Date of Birth</th>
+                                <th>Relationship</th>
+                                <th>Full Address</th>
+                                <th>School Address</th>
+                                <th>Contact No.</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{ bool isSendDependentExist = false;}
+                            @foreach (var dep in Model.custDependents)
+                            {                                
+                                isSendDependentExist = true;
+                                <tr>
+                                    <td>@dep.LastName, @dep.FirstName @dep.MiddleName</td>
+                                    <td>@dep.Gender</td>
+                                    <td>@dep.BirthDate</td>
+                                    <td>@dep.RelationshipType</td>
+                                    <td>@dep.StreetAddress, @dep.Province, @dep.City</td>
+                                    <td>@dep.SchoolAddress</td>
+                                    <td>@dep.ContactNo</td>
+                                </tr>                               
+                            }
+                            @if (isSendDependentExist == false)
+                            {
+                                <tr>
+                                    <td colspan="7">This customer have no dependents.</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Acquired Education</h5>
+                </div>
+                <div class="ibox-content">
+                    <table class="table table-bordered" width="100%" cellspacing="0" style="font-size:smaller;">
+                        <thead>
+                            <tr>
+                                <th>Education Type</th>
+                                <th>School Attended</th>
+                                <th>Date Graduated</th>                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{ bool isSendEducationExist = false;}
+                            @foreach (var edu in Model.custEducation)
+                            {
+                                isSendEducationExist = true;
+                                <tr>
+                                    <td>@edu.EducationType</td>
+                                    <td>@edu.SchoolName</td>
+                                    <td>@edu.GraduationDate</td>                                    
+                                </tr>
+                            }
+                            @if (isSendEducationExist == false)
+                            {
+                                <tr>
+                                    <td colspan="3">This customer do not have any acquired education.</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Character References</h5>
+                </div>
+                <div class="ibox-content">
+                    <table class="table table-bordered" width="100%" cellspacing="0" style="font-size:smaller;">
+                        <thead>
+                            <tr>
+                                <th>Full Name</th>
+                                <th>Relationship</th>
+                                <th>Full Address</th>
+                                <th>Contact No.</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{ bool isSendCharacterExist = false;}
+                            @foreach (var cha in Model.custCharacter)
+                            {
+                                isSendCharacterExist = true;
+                                <tr>
+                                    <td>@cha.LastName, @cha.FirstName @cha.MiddleName</td>
+                                    <td>@cha.RelationShip</td>
+                                    <td>@cha.StreetAddress, @cha.City</td>
+                                    <td>@cha.ContactNo</td>
+                                </tr>
+                            }
+                            @if (isSendCharacterExist == false)
+                            {
+                                <tr>
+                                    <td colspan="4">This customer have no character reference available.</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Employment/Business Record and History</h5>
+                </div>
+                <div class="ibox-content">
+                    <table class="table table-bordered" width="100%" cellspacing="0" style="font-size:smaller;">
+                        <thead>
+                            <tr>
+                                <th>Type</th>
+                                <th>Employer / Business</th>
+                                <th>Nature</th>
+                                <th>Monthly Income</th>
+                                <th>Contact No.</th>
+                                <th>Active Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{bool isEmploymentExist = false;}
+                            @foreach (var emp in Model.custEmployment)
+                            {
+                                if (@emp.IsSpouse == "N")
+                                {
+                                    isEmploymentExist = true;
+                                    <tr>
+                                        <td>@emp.BusinessType</td>
+                                        <td>@emp.EmployerName</td>
+                                        <td>@emp.NatureOfBusiness</td>
+                                        <td>@emp.Income</td>
+                                        <td>@emp.Contact_No</td>
+                                        <td>
+                                            @if (@emp.ToDate == null)
+                                            {
+                                                @emp.FromDate; <text> to Present</text>
+                                            }
+                                            else
+                                            {
+                                                @emp.FromDate; <text> to </text> @emp.ToDate;
+                                            }
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                            @if (isEmploymentExist == false)
+                            {
+                                <tr><td colspan="6">The customer have no Employment/Business Record and History</td></tr>
+                            }
+
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

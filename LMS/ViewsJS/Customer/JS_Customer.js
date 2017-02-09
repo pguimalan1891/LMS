@@ -59,6 +59,11 @@ function loadComponents(url) {
     });
 }
 
-function ViewCustomer(data) {
-    alert(data);
+function ViewCustomer(code) {
+    modalDispCustProf = $("#display-modal-body");
+    modalDispCustProfMain = $("#DisplayCustomerModal");
+    $.get("Customer/FetchCustomerRecordByID", { "Code": code }, function (data) {
+        modalDispCustProf.empty().html(data);
+        modalDispCustProfMain.modal();
+    });
 }

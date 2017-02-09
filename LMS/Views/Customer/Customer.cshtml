@@ -5,15 +5,10 @@
 }
 
 @section Scripts
-{
-    @*@Styles.Render("~/Content/DataTableCSS")
-    @Scripts.Render("~/Content/DataTableJS")*@
+{    
     @Helper.LoadCustomJS("ViewsJS/Customer/JS_Customer.js", Url)
 }
 
-<style type="text/css">
-    
-</style>
 <div class="container-fluid">
     <div class="row">
         <div class="panel panel-primary">
@@ -38,5 +33,33 @@
             </div>
 
         </div>
+    </div>
+</div>
+
+<div id="DisplayCustomerModal" class="modal fade" role="dialog">
+    <div class="modal-dialog" style="background-color:#ffffff;width:90%">
+        <div class="modal-header">
+            <button class="btn btn-info" id="dlgadd-add-btn">Update Customer Profile</button>
+            <button class="btn btn-info" id="dlgadd-close-btn">Print Customer Profile</button>    
+        </div>
+        <div class="modal-body" style="background-color:white">
+            <div id="display-modal-body">
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+<div id="UpdateCustomerModal" class="modal fade" role="dialog">
+    <div class="modal-dialog" style="background-color:#ffffff;width:90%">
+        <div class="modal-header">
+            <button class="btn btn-info" id="dlgadd-add-btn">Save Customer Profile</button>
+            <button class="btn btn-info" id="dlgadd-close-btn">Cancel Update</button>
+        </div>
+        <div class="modal-body" style="background-color:white">
+            <div id="display-modal-body">
+            </div>
+        </div>
+
     </div>
 </div>

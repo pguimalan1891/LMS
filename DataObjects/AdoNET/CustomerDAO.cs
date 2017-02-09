@@ -24,7 +24,199 @@ namespace DataObjects.AdoNET
             object[] parms = { };
             return db.ReadDictionary(sql, 0, parms);
         }
+        public IEnumerable<CustomerCharacter> getCustomerCharacterByID(string ID)
+        {
+            string sql = "SELECT [ID],[PIS_ID],[FIRST_NAME],[MIDDLE_NAME],[LAST_NAME],[RELATIONSHIP],[STREET_ADDRESS]," +
+            "[CITY_ID],[City],[CONTACT_NO] FROM[FINAL_TESTING].[dbo].[uvw_PISCharacter] where PIS_ID = @ID";
+            object[] parms = { "ID", ID };
+            return db.Read(sql, PISCharacter, 0, parms).ToList();
+        }
 
-        
+        static Func<IDataReader, CustomerCharacter> PISCharacter = reader =>
+           new CustomerCharacter
+           {
+               ID = reader["ID"].AsString(),
+               PISID = reader["PIS_ID"].AsString(),
+               FirstName = reader["First_Name"].AsString(),
+               MiddleName = reader["Middle_Name"].AsString(),
+               LastName = reader["Last_Name"].AsString(),
+               RelationShip = reader["RelationShip"].AsString(),
+               StreetAddress = reader["Street_Address"].AsString(),
+               CityID = reader["City_ID"].AsString(),
+               City = reader["City"].AsString(),
+               ContactNo = reader["Contact_No"].AsString()
+           };
+
+        public IEnumerable<CustomerEducation> getCustomerEducationByID(string ID)
+        {
+            string sql = "SELECT [ID],[PIS_ID],[EDUCATION_TYPE_ID],[EducationType],[SCHOOL_NAME]," +
+                "Convert(varchar,[GRADUATION_DATE],101) as [GRADUATION_DATE] FROM [FINAL_TESTING].[dbo].[uvw_PISEducation] where PIS_ID = @ID";
+            object[] parms = { "ID", ID };
+            return db.Read(sql, PISEducation, 0, parms).ToList();
+        }
+
+        static Func<IDataReader, CustomerEducation> PISEducation = reader =>
+           new CustomerEducation
+           {
+               ID = reader["ID"].AsString(),
+               PISID = reader["PIS_ID"].AsString(),
+               EducationTypeID = reader["Education_Type_ID"].AsString(),
+               EducationType = reader["EducationType"].AsString(),
+               SchoolName = reader["School_Name"].AsString(),
+               GraduationDate = reader["Graduation_Date"].AsString()
+           };
+
+
+        public IEnumerable<CustomerDependents> getCustomerDependentsByID(string ID)
+        {
+            string sql = "SELECT [ID],[PIS_ID],[FIRST_NAME],[MIDDLE_NAME],[LAST_NAME],[GENDER_ID],[Gender],[STREET_ADDRESS],[CITY_ID],[City],[Province],[RELATIONSHIP_TYPE_ID],[RelationshipType], " +
+        "Convert(varchar,[BIRTH_DATE], 101) as [BIRTH_DATE],[SCHOOL_ADDRESS],[CONTACT_NO] FROM[FINAL_TESTING].[dbo].[uvw_PISDependent] where PIS_ID = @ID";
+            object[] parms = { "ID", ID };
+            return db.Read(sql, PISDependents, 0, parms).ToList();
+        }
+
+        static Func<IDataReader, CustomerDependents> PISDependents = reader =>
+           new CustomerDependents
+           {
+               ID = reader["ID"].AsString(),
+               PISID = reader["PIS_ID"].AsString(),
+               FirstName = reader["First_Name"].AsString(),
+               MiddleName = reader["Middle_Name"].AsString(),
+               LastName = reader["Last_Name"].AsString(),
+               GenderID = reader["Gender_ID"].AsString(),
+               Gender = reader["Gender"].AsString(),
+               StreetAddress = reader["Street_Address"].AsString(),
+               CityID = reader["City_ID"].AsString(),
+               City = reader["City"].AsString(),
+               Province = reader["Province"].AsString(),
+               RelationshipTypeID = reader["Relationship_Type_ID"].AsString(),
+               RelationshipType = reader["RelationshipType"].AsString(),
+               BirthDate = reader["Birth_Date"].AsString(),
+               SchoolAddress = reader["School_Address"].AsString(),
+               ContactNo = reader["Contact_No"].AsString()
+           };
+
+        public IEnumerable<CustomerAddress> getCustomerAddressByID(string ID)
+        {
+            string sql = "SELECT [ID],[PIS_ID],[ADDRESS_TYPE_ID],[AddressType],[STREET_ADDRESS],[BARANGAY_NAME],[CITY_ID],CITY,PROVINCE,COUNTRY,[POSTAL_CODE],[PHONE_NUMBER] " +
+            ",[MOBILE_NUMBER], Convert(varchar,[RESIDENT_DATE], 101) as [RESIDENT_DATE],[HOME_OWNERSHIP_ID],[HomeOwnership] " +
+            "FROM[FINAL_TESTING].[dbo].[uvw_PISAddress] where PIS_ID = @ID";
+            object[] parms = { "ID",ID};
+            return db.Read(sql, PISAddress, 0, parms).ToList();
+        }
+
+        static Func<IDataReader, CustomerAddress> PISAddress = reader =>
+           new CustomerAddress
+           {
+               ID = reader["ID"].AsString(),
+               PISID = reader["PIS_ID"].AsString(),
+               AddressTypeID = reader["Address_Type_ID"].AsString(),
+               AddressType = reader["AddressType"].AsString(),
+               StreetAddress = reader["Street_Address"].AsString(),
+               BarangayName = reader["Barangay_Name"].AsString(),
+               CityID = reader["City_ID"].AsString(),
+               City = reader["City"].AsString(),
+               Province = reader["Province"].AsString(),
+               Country = reader["Country"].AsString(),
+               PostalCode = reader["Postal_Code"].AsString(),
+               PhoneNumber = reader["Phone_Number"].AsString(),
+               MobileNumber = reader["Mobile_Number"].AsString(),
+               ResidentDate = reader["Resident_Date"].AsString(),
+               HomeOwnershipID = reader["Home_Ownership_ID"].AsString(),
+               HomeOwnerShip = reader["HomeOwnership"].AsString()
+           };
+
+        public IEnumerable<CustomerEmployment> getCustomerEmploymentRecordByID (string ID)
+        {
+            string sql = "SELECT [ID],[PIS_ID],[BUSINESS_TYPE_ID],[BusinessType],[EMPLOYER_NAME],[INCOME],[CONTACT_NO]" +
+                ",[FromDate],[ToDate],[IS_ACTIVE],[IS_SPOUSE],[NATURE_OF_BUSINESS_ID],[NATUREOFBUSINESS]" +
+                "FROM[FINAL_TESTING].[dbo].[uvw_PISEmployment] where [PIS_ID] = @ID";
+            object[] parms = { "ID", ID };            
+            return db.Read(sql, PISEmployment, 0, parms).ToList();
+        }
+
+        static Func<IDataReader, CustomerEmployment> PISEmployment = reader =>
+           new CustomerEmployment
+           {
+               ID = reader["ID"].AsString(),
+               PISID = reader["PIS_ID"].AsString(),
+               BusinessTypeID = reader["Business_Type_ID"].AsString(),
+               BusinessType = reader["BusinessType"].AsString(),
+               EmployerName = reader["Employer_Name"].AsString(),
+               Income = reader["Income"].AsString(),
+               Contact_No = reader["Contact_No"].AsString(),
+               FromDate = reader["FromDate"].AsString(),
+               ToDate = reader["ToDate"].AsString(),
+               IsActive = reader["Is_Active"].AsString(),
+               IsSpouse = reader["Is_Spouse"].AsString(),
+               NatureOfBusinessID = reader["Nature_Of_Business_ID"].AsString(),
+               NatureOfBusiness = reader["NatureOfBusiness"].AsString()
+           };
+
+        public IEnumerable<CustomerRecord> getCustomerRecordByCode(string Code)
+        {
+            string sql = "Select [ID],[CODE],Convert(varchar,[DATETIME_CREATED],101) + '|' + Convert(varchar,[DATETIME_CREATED],108) as [DATETIME_CREATED],[ORGANIZATION_ID],[Organization] "+
+              ",[District],[FIRST_NAME],[LAST_NAME],[MIDDLE_NAME],[GENDER_ID],[Gender],[CIVIL_STATUS_ID],[CivilStatus], isnull(Convert(varchar,[DateOfMarriage], 101),'Not Applicable') as [DateOfMarriage] "+
+	          ",[CITIZENSHIP_ID],[Citizenship],Convert(varchar, [DateOfBirth],101) as [DateOfBirth],[GSIS_NUMBER],[SSS_NUMBER],[TIN_NUMBER],[RCN] "+
+              ",[RCN_PLACE_ISSUED],Convert(varchar, [RCN_DATE_ISSUED],101) as [RCN_DATE_ISSUED],[BORROWER_TYPE_ID],[BorrowerType],[BorrowerGroup],[LEAD_SOURCE_ID],[LeadSource],[AGENT_PROFILE_ID] "+
+              ",[AgentCode],[AgentType],[AGENTLastName],[AGENTFirstName],[AGENTMiddleName],[DocumentationStatus],[APPLICATION_TYPE_ID],[ApplicationType],Isnull([SPOUSE_FIRST_NAME],'Not Applicable') as [SPOUSE_FIRST_NAME],Isnull([SPOUSE_MIDDLE_NAME],'Not Applicable') as [SPOUSE_MIDDLE_NAME],isnull([SPOUSE_LAST_NAME],'Not Applicable') as [SPOUSE_LAST_NAME],isnull(Convert(varchar, [SPOUSE_DATE_OF_BIRTH],101),'Not Applicable') as [SPOUSE_DATE_OF_BIRTH] " +
+              ",isnull([SPOUSE_CONTACT_NUMBER],'Not Applicable') as [SPOUSE_CONTACT_NUMBER],[OWNER_CODE],[OWNER_ID],[PREPARED_BY_ID],Convert(varchar, [PREPARED_BY_DATETIME],101) + '|' + Convert(varchar, [PREPARED_BY_DATETIME],108) as [PREPARED_BY_DATETIME],[DOCUMENT_STATUS_CODE],[PERMISSION],[NOTES] " +
+              " from FINAL_TESTING.dbo.uvw_PISData where Code = @Code";
+            object[] parms = { "Code", Code };
+            return db.Read(sql, PISRecord, 0, parms).ToList();
+        }
+        static Func<IDataReader, CustomerRecord> PISRecord = reader =>
+           new CustomerRecord
+           {
+               ID = reader["ID"].AsString(),
+               Code = reader["Code"].AsString(),
+               DatetimeCreated = reader["DateTime_Created"].AsString(),
+               OrganizationID = reader["Organization_ID"].AsString(),
+               Organization = reader["Organization"].AsString(),
+               District = reader["District"].AsString(),
+               FirstName = reader["First_Name"].AsString(),
+               LastName = reader["Last_Name"].AsString(),
+               MiddleName = reader["Middle_Name"].AsString(),
+               GenderID = reader["Gender_ID"].AsString(),
+               Gender = reader["Gender"].AsString(),
+               CivilStatusID = reader["Civil_Status_ID"].AsString(),
+               CivilStatus = reader["CivilStatus"].AsString(),
+               DateOfMarriage = reader["DateOfMarriage"].AsString(),
+               CitizenshipID = reader["Citizenship_ID"].AsString(),
+               Citizenship = reader["Citizenship"].AsString(),
+               DateOfBirth = reader["DateofBirth"].AsString(),
+               GSISNumber = reader["GSIS_Number"].AsString(),
+               SSSNumber = reader["SSS_Number"].AsString(),
+               TinNumber = reader["TIN_Number"].AsString(),
+               RCN = reader["RCN"].AsString(),
+               RCNPlaceIssued = reader["RCN_Place_Issued"].AsString(),
+               RCNDateIssued = reader["RCN_Date_Issued"].AsString(),
+               BorrowerTypeID = reader["Borrower_Type_ID"].AsString(),
+               BorrowerType = reader["BorrowerType"].AsString(),
+               BorrowerGroup = reader["BorrowerGroup"].AsString(),
+               LeadSourceID = reader["Lead_Source_ID"].AsString(),
+               LeadSource = reader["LeadSource"].AsString(),
+               AgentProfileID = reader["Agent_Profile_ID"].AsString(),
+               AgentCode = reader["AgentCode"].AsString(),
+               AgentType = reader["AgentType"].AsString(),
+               AgentLastName = reader["AgentLastName"].AsString(),
+               AgentFirstName = reader["AgentFirstName"].AsString(),
+               AgentMiddleName = reader["AgentMiddleName"].AsString(),    
+               DocumentStatus = reader["DocumentationStatus"].AsString(),
+               ApplicationTypeID = reader["Application_Type_ID"].AsString(),
+               ApplicationType = reader["ApplicationType"].AsString(),
+               SpouseFirstName = reader["Spouse_First_Name"].AsString(),
+               SpouseMiddleName = reader["Spouse_Middle_Name"].AsString(),
+               SpouseLastName = reader["Spouse_Last_Name"].AsString(),
+               SpouseDateofBirth = reader["Spouse_Date_of_Birth"].AsString(),
+               SpouseContactNumber = reader["Spouse_Contact_Number"].AsString(),
+               OwnerCode = reader["Owner_Code"].AsString(),
+               OwnerID = reader["Owner_ID"].AsString(),
+               PreparedByID = reader["Prepared_By_ID"].AsString(),
+               PreparedByDatetime = reader["Prepared_By_Datetime"].AsString(),
+               DocumentStatusCode = reader["Document_Status_Code"].AsString(),
+               Permission = reader["Permission"].AsString(),
+               Notes = reader["Notes"].AsString()
+           };
     }
 }

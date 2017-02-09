@@ -1,11 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Web;
+using System.ComponentModel.DataAnnotations;
 
-namespace BusinessObjects
+namespace LMS.Models.Customer
 {
+    public class CustomerModel
+    {
+        public CustomerRecord custRecord { get; set; }
+        public List<CustomerEmployment> custEmployment { get; set; }
+        public List<CustomerAddress> custAddress { get; set; }
+        public List<CustomerDependents> custDependents { get; set; }
+        public List<CustomerEducation> custEducation { get; set; }
+        public List<CustomerCharacter> custCharacter { get; set; }
+
+    }
+
     public class CustomerRecord
     {
         public string ID { get; set; }
@@ -54,11 +65,10 @@ namespace BusinessObjects
         public string OwnerID { get; set; }
         public string PreparedByID { get; set; }
         public string PreparedByDatetime { get; set; }
-        public string DocumentStatusCode { get; set; }       
+        public string DocumentStatusCode { get; set; }
         public string Permission { get; set; }
         public string Notes { get; set; }
-
-    }    
+    }
 
     public class CustomerEmployment
     {
