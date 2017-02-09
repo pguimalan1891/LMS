@@ -13,9 +13,9 @@ namespace ServiceLayer
         static readonly IDAOFactory factory = DAOFactories.GetFactory();
         static readonly IBookingDAO booking = factory.BookingDAO;
 
-        public List<Dictionary<string, object>> getBookingRecords()
+        public List<Dictionary<string, object>> getBookingRecords(int status)
         {
-            return booking.getBookingRecords();
+            return booking.getBookingRecords(status);
         }
     }
 }

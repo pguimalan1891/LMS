@@ -13,11 +13,11 @@ namespace DataObjects.AdoNET
     {
         static DB db = new DB();
 
-        public List<Dictionary<string,object>> getBookingRecords()
+        public List<Dictionary<string,object>> getBookingRecords(int status)
         {
-            string sql = "exec RetrieveBookingRecord";
+            string sql = "exec RetrieveBookingRecords";
 
-            object[] parms = { };
+            object[] parms = { "@statuscode", status };
             return db.ReadDictionary(sql, 0, parms);
         }
     }
