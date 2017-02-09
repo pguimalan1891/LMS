@@ -31,15 +31,6 @@ namespace LMS.Controllers
         [Route("Customer")]
         public ActionResult Customer()
         {
-
-            //Models.Customer.CustomerModel custModel = new CustomerModel();
-            //custModel.custRecord = SetCustomerRecordModel(service.getCustomerRecordByCode("096-20150331000062"));
-            //var ID = custModel.custRecord.ID;
-            //custModel.custCharacter = setCustomerCharacterModel(service.getCustomerCharacterByID(ID));
-            //custModel.custEducation = setCustomerEducationModel(service.getCustomerEducationByID(ID));
-            //custModel.custDependents = setCustomerDependentModel(service.getCustomerDependentsByID(ID));
-            //custModel.custAddress = setCustomerAddressModel(service.getCustomerAddressByID(ID));
-            //custModel.custEmployment = setCustomerEmploymentModel(service.getCustomerEmploymentRecordByID(ID));
             return View();
         }        
 

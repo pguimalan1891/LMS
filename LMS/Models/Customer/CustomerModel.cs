@@ -14,7 +14,6 @@ namespace LMS.Models.Customer
         public List<CustomerDependents> custDependents { get; set; }
         public List<CustomerEducation> custEducation { get; set; }
         public List<CustomerCharacter> custCharacter { get; set; }
-
     }
 
     public class CustomerRecord
