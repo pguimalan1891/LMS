@@ -2,6 +2,8 @@
 var fntblComponent = $("#tbl-customer thead")
 $(document).ready(function () {    
     loadComponents("/Customer/FetchCustomerRecord");
+
+    $('.applyDatePicker').datepicker();
 });
 
 function loadComponents(url) {

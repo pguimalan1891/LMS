@@ -36,7 +36,7 @@
                         <div class="form-group">
                             <label class="col-lg-3 control-label">Date of Birth</label>
                             <div class="col-lg-5">
-                                @Html.TextBoxFor(model => model.custRecord.DateOfBirth, "{0:yyyy-MM-dd}", new { @class = "form-control" , @Type = "date" ,  @value = @Model.custRecord.DateOfBirth })
+                                @Html.TextBoxFor(model => model.custRecord.DateOfBirth, new { @class = "form-control applyDatePicker" ,  @value = @Model.custRecord.DateOfBirth })
                             </div>
                             <div class="col-lg-4">
                                 <span class="form-control">Years Old</span>
@@ -45,13 +45,13 @@
                         <div class="form-group">
                             <label class="col-lg-3 control-label">Gender</label>
                             <div class="col-lg-9">                                
-                                @*@Html.DropDownList("slcGender", new SelectList(Model.allComponents.Gender, "ID", "Description", Model.custRecord.GenderID), new { @class = "form-control" })*@
+                                @Html.DropDownList("slcGender", new SelectList(Model.allComponents.Gender, "ID", "Description", Model.custRecord.GenderID), new { @class = "form-control" })
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-lg-3 control-label">Citizenship</label>
                             <div class="col-lg-9">
-                                <span class="form-control">@Model.custRecord.Citizenship</span>
+                                @Html.DropDownList("slcGender", new SelectList(Model.allComponents.Citizenship, "ID", "Description", Model.custRecord.CitizenshipID), new { @class = "form-control" })                                
                             </div>
                         </div>
 

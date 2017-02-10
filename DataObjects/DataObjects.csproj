@@ -68,6 +68,8 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\Debug\DataObjects.dll" />
+    <Content Include="bin\Debug\DataObjects.pdb" />
     <Content Include="SPs\Account\usp_Login.sql" />
     <Content Include="SPs\Booking\RetrieveBookingRecords.sql" />
     <Content Include="SPs\Customer\Views\[uvw_PISAddress].sql" />
@@ -76,6 +78,9 @@
     <Content Include="SPs\Customer\Views\[uvw_PISDependent].sql" />
     <Content Include="SPs\Customer\Views\[uvw_PISEducation].sql" />
     <Content Include="SPs\Customer\Views\[uvw_PISEmployment].sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Release\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

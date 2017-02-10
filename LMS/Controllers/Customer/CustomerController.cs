@@ -42,7 +42,7 @@ namespace LMS.Controllers
             custModel.custDependents = setCustomerDependentModel(service.getCustomerDependentsByID(ID));
             custModel.custAddress = setCustomerAddressModel(service.getCustomerAddressByID(ID));
             custModel.custEmployment = setCustomerEmploymentModel(service.getCustomerEmploymentRecordByID(ID));
-            //custModel.allComponents = setComponents();
+            custModel.allComponents = setComponents();
             return View(custModel);
         }        
 
@@ -69,37 +69,56 @@ namespace LMS.Controllers
 
         public Models.Customer.getComponents setComponents()
         {
-            //Mapper.CreateMap<IEnumerable<BusinessObjects.Gender>, IEnumerable<Models.Customer.Gender>>();            
-           
+            Mapper.CreateMap<BusinessObjects.Gender, Models.Customer.Gender>();
+            Mapper.CreateMap<BusinessObjects.Citizenship, Models.Customer.Citizenship>();
+            Mapper.CreateMap<BusinessObjects.District, Models.Customer.District>();
+            Mapper.CreateMap<BusinessObjects.Organization, Models.Customer.Organization>();
+            Mapper.CreateMap<BusinessObjects.ApplicationType, Models.Customer.ApplicationType>();
+            Mapper.CreateMap<BusinessObjects.BorrowerType, Models.Customer.BorrowerType>();
+            Mapper.CreateMap<BusinessObjects.LeadSource, Models.Customer.LeadSource>();
+            Mapper.CreateMap<BusinessObjects.CivilStatus, Models.Customer.CivilStatus>();
+            Mapper.CreateMap<BusinessObjects.City, Models.Customer.City>();
+            Mapper.CreateMap<BusinessObjects.Province, Models.Customer.Province>();
+            Mapper.CreateMap<BusinessObjects.HomeOwnership, Models.Customer.HomeOwnership>();
+            Mapper.CreateMap<BusinessObjects.BusinessType, Models.Customer.BusinessType>();
+            Mapper.CreateMap<BusinessObjects.NatureofBusiness, Models.Customer.NatureofBusiness>();
+            Mapper.CreateMap<BusinessObjects.AddressType, Models.Customer.AddressType>();
+            Mapper.CreateMap<BusinessObjects.RelationshipType, Models.Customer.RelationshipType>();
+            Mapper.CreateMap<BusinessObjects.EducationType, Models.Customer.EducationType>();
+
+            Mapper.CreateMap<BusinessObjects.getComponents, Models.Customer.getComponents>();       
             Models.Customer.getComponents list = new Models.Customer.getComponents();
-            //list.Gender = Mapper.Map<IEnumerable<Models.Customer.Gender>>(allComponents.Gender);            
+            list = Mapper.Map<BusinessObjects.getComponents,Models.Customer.getComponents>(allComponents);            
             return list;
         }
 
 
         public List<Models.Customer.CustomerEmployment> setCustomerEmploymentModel(IEnumerable<BusinessObjects.CustomerEmployment> custEmployment)
         {
+
             List<Models.Customer.CustomerEmployment> list = new List<Models.Customer.CustomerEmployment>();
-            foreach (var rec in custEmployment)
-            {
-                Models.Customer.CustomerEmployment md = new Models.Customer.CustomerEmployment
-                {
-                    ID = rec.ID,
-                    PISID = rec.PISID,
-                    BusinessTypeID = rec.BusinessTypeID,
-                    BusinessType = rec.BusinessType,
-                    EmployerName = rec.EmployerName,
-                    Income = rec.Income,
-                    Contact_No = rec.Contact_No,
-                    FromDate = rec.FromDate,
-                    ToDate = rec.ToDate,
-                    IsActive = rec.IsActive,
-                    IsSpouse = rec.IsSpouse,
-                    NatureOfBusinessID = rec.NatureOfBusinessID,
-                    NatureOfBusiness = rec.NatureOfBusiness
-                };
-                list.Add(md);
-            }
+            Mapper.CreateMap<BusinessObjects.CustomerEmployment, Models.Customer.CustomerEmployment>();
+            list = Mapper.Map<IEnumerable<BusinessObjects.CustomerEmployment>, List<Models.Customer.CustomerEmployment>>(custEmployment);
+            //foreach (var rec in custEmployment)
+            //{
+            //    Models.Customer.CustomerEmployment md = new Models.Customer.CustomerEmployment
+            //    {
+            //        ID = rec.ID,
+            //        PISID = rec.PISID,
+            //        BusinessTypeID = rec.BusinessTypeID,
+            //        BusinessType = rec.BusinessType,
+            //        EmployerName = rec.EmployerName,
+            //        Income = rec.Income,
+            //        Contact_No = rec.Contact_No,
+            //        FromDate = rec.FromDate,
+            //        ToDate = rec.ToDate,
+            //        IsActive = rec.IsActive,
+            //        IsSpouse = rec.IsSpouse,
+            //        NatureOfBusinessID = rec.NatureOfBusinessID,
+            //        NatureOfBusiness = rec.NatureOfBusiness
+            //    };
+            //    list.Add(md);
+            //}
             return list;
         }
         public List<Models.Customer.CustomerAddress> setCustomerAddressModel(IEnumerable<BusinessObjects.CustomerAddress> custAddress)
@@ -219,7 +238,7 @@ namespace LMS.Controllers
             retRecord.CivilStatus = custRecord.CivilStatus;
             retRecord.CivilStatusID = custRecord.CivilStatusID;
             retRecord.Code = custRecord.Code;
-            retRecord.DateOfBirth = Convert.ToDateTime(custRecord.DateOfBirth);
+            retRecord.DateOfBirth = custRecord.DateOfBirth;
             retRecord.DateOfMarriage = custRecord.DateOfMarriage;
             retRecord.DatetimeCreated = custRecord.DatetimeCreated;
             retRecord.District = custRecord.District;

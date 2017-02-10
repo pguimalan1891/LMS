@@ -32,7 +32,8 @@ namespace LMS
 
             bundles.Add(new StyleBundle("~/Content/DataTableCSS").Include(
                     "~/Content/datatable/media/css/dataTables.bootstrap.min.css",
-                    "~/Content/datatable/media/css/responsive.dataTables.min.css"
+                    "~/Content/datatable/media/css/responsive.dataTables.min.css",
+                    "~/Content/bootstrap/css/bootstrap-datepicker3.min.css"
                     ));
 
             bundles.Add(new StyleBundle("~/Content/themeui/css").Include(
@@ -57,7 +58,8 @@ namespace LMS
                     "~/Content/datatable/media/js/jquery.dataTables.min.js",
                     "~/Content/datatable/media/js/dataTables.bootstrap.min.js",
                     "~/Content/datatable/media/js/dataTables.responsive.min.js",
-                    "~/Content/datatable/media/js/responsive.bootstrap.min.js"
+                    "~/Content/datatable/media/js/responsive.bootstrap.min.js",
+                    "~/Content/bootstrap/js/bootstrap-datepicker.min.js"
                     ));
         }
     }

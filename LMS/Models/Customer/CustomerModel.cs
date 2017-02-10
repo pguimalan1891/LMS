@@ -38,7 +38,7 @@ namespace LMS.Models.Customer
         public string DateOfMarriage { get; set; }
         public string CitizenshipID { get; set; }
         public string Citizenship { get; set; }
-        public DateTime DateOfBirth { get; set; }
+        public string DateOfBirth { get; set; }
         public string GSISNumber { get; set; }
         public string SSSNumber { get; set; }
         public string TinNumber { get; set; }
