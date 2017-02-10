@@ -1,16 +1,28 @@
 ﻿var tblComponent;
 var fntblComponent = $("#tbBooking thead")
 $(function () {
-    getBookingRecords('/Booking/RetrieveBookingRecords');
+    var statuscode = $("#selfindDLR option:first-child").val();
+    //$('#lblfindDLR').text($("#selfindDLR option:first-child").text());
+    getBookingRecords('/Booking/RetrieveBookingRecords', statuscode);
+
+    $("#selfindDLR").change(function () {
+        //getBookingRecords('/Booking/RetrieveBookingRecords', $(this).val());
+        //tblComponent.ajax.reload()
+        tblComponent.destroy();
+        $("#tbBooking thead tr").remove();
+        fntblComponent = $("#tbBooking thead")
+        $('#lblfindDLR').text($('#selfindDLR option:selected').text());
+        getBookingRecords('/Booking/RetrieveBookingRecords', $(this).val());
+    });
 });
 
-function getBookingRecords(url) {
+function getBookingRecords(url,statuscode) {
     var req = $.ajax({
         type: 'post',
         async: true,
         url: url,
         contentType: "application/json; charset=utf-8",
-        data: JSON.stringify({ 'status': 14 })
+        data: JSON.stringify({ 'status': statuscode })
     });
 
     req.error(function (request, status, error) {
@@ -42,6 +54,7 @@ function getBookingRecords(url) {
         tblComponent = $("#tbBooking").DataTable({
             "pageLength": 10,
             "bFilter": true,
+            processing:true,
             "bProcessing": true,
             "bServerside": true,
             "responsive": true,
@@ -52,7 +65,7 @@ function getBookingRecords(url) {
                 "type": "post",
                 //"data": JSON.stringify({ 'status': 14 })
                 "data": function (d) {
-                    d.status = 14;
+                    d.status = statuscode;
                     return d;
                 }
             },
@@ -61,33 +74,3 @@ function getBookingRecords(url) {
         tblComponent.columns(0).visible(false, false);
     });
 }
-
-/*
-function getBookingRecords() {
-    tblDirectLoanReceipt = $('#tbBooking').DataTable();
-    tblDirectLoanReceipt.destroy();
-    tblDirectLoanReceipt = $('#tbBooking').DataTable({
-        autoWidth: true,
-        initComplete: function () {
-        },
-        processing: true,
-        serverSide:true,
-        ajax: {
-            type: 'post',
-            contentType: 'application/json; charset=utf-8',
-            url: '/Booking/RetrieveBookingRecords',
-            dataSrc: function (json) {
-                //console.log(json);
-                var data = {
-                    'data':json
-                }
-                console.log(data);
-                return data;
-            },
-            columns: [
-                { data: 'dsm_description' },
-                { data: 'code' }
-            ]
-        }
-    });
-}*/

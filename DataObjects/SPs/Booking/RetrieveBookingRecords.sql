@@ -1,14 +1,14 @@
 ﻿USE [FINAL_TESTING]
 GO
-/****** Object:  StoredProcedure [dbo].[RetrieveBookingRecords]    Script Date: 2/8/2017 10:22:12 PM ******/
+/****** Object:  StoredProcedure [dbo].[RetrieveBookingRecords]    Script Date: 2/9/2017 8:31:44 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 
---exec RetrieveBookingRecords
+--exec RetrieveBookingRecords 14
 ALTER Procedure [dbo].[RetrieveBookingRecords]
-	@statuscode int = 0
+	@statuscode int
 as
 begin
 	select 
@@ -16,7 +16,7 @@ begin
 	--direct_loan_receipt.id,
 	document_status_map.description as Status,
 	direct_loan_receipt.code as [LMS DLR No], 
-	direct_loan_receipt.bis_code as [DLR No], 
+	isnull(direct_loan_receipt.bis_code,'') as [DLR No], 
 	convert(Varchar(10),direct_loan_receipt.datetime_created,101) as [Date],
 	organization.description as [Branch], 
 	loan_application.code as [Account No], 
@@ -24,10 +24,20 @@ begin
 	pis.first_name  +  ' '  + pis.middle_name  +  ' '  + pis.last_name  as [Customer], 
 	--cast('~/Transactions/RFC/PIS.aspx?state=4&id=' + pis.id as char(100)) as pis_hyperlink, 
 	loan_type.description as [Loan Type], loan_terms.description as [Loan Terms], 
-	loan_set.description as [Loan Set],direct_loan_receipt.approved_mlv as [MLV],direct_loan_receipt.prepared_by_datetime as prepared_by_datetime,
-	prepared_by.last_name  +  ', '  + prepared_by.first_name  as prepared_by_name 
+	loan_set.description as [Loan Set],
+	
+	--direct_loan_receipt.approved_mlv as [MLV],
+	REPLACE(CONVERT(varchar(20), (CAST(direct_loan_receipt.approved_mlv AS money)), 1), '.00', '') as [MLV]
+	--,
+	
+	--convert(varchar(10),direct_loan_receipt.prepared_by_datetime,101) as prepared_by_datetime,
+
+	--prepared_by.last_name  +  ', '  + prepared_by.first_name  as prepared_by_name 
 	--,
 	--row_number() OVER (INSERT ORDER BY HERE) as row_num  
+	,direct_loan_receipt.document_status_Code as [StatusCode]
+	into #TEMP
+
 	from Final_Testing.dbo.direct_loan_receipt  inner join Final_Testing.dbo.document_status_map   on(direct_loan_receipt.document_status_code = document_status_map.code) 
 	inner join Final_Testing.dbo.user_account prepared_by   on(direct_loan_receipt.prepared_by_id = prepared_by.id) 
 	inner join Final_Testing.dbo.loan_application   on(direct_loan_receipt.loan_application_id = loan_application.id) 
@@ -36,5 +46,18 @@ begin
 	inner join Final_Testing.dbo.loan_set   on(loan_application.loan_set_id = loan_set.id) 
 	inner join Final_Testing.dbo.organization   on(direct_loan_receipt.organization_id = organization.id)  where  1 = 1 
 	AND Final_Testing.dbo.organization.id IN ('c85e042d-9187-4b51-92bc-cc0d0d4e84f0','A9CCBB1C-D3CD-402A-9BEF-B73BCF545255','{187FFF20-BC01-4E11-9501-3526B9CA0DBE}')
-	and direct_loan_receipt.document_status_Code = @statuscode
+	--Select * from Final_Testing.dbo.organization
+	--and direct_loan_receipt.document_status_Code = @statuscode
+
+	if (Select Count(Seq) from #TEMP where StatusCode=@statuscode) > 0
+		begin
+			Select blank,Seq,Status,[LMS DLR No],[DLR No],Date,Branch,[Account No],Customer,[Loan Type],[Loan Terms],[Loan Set],MLV from #TEMP where StatusCode = @statuscode
+		end
+	else
+		begin
+			Select blank,Seq,Status,[LMS DLR No],[DLR No],Date,Branch,[Account No],Customer,[Loan Type],[Loan Terms],[Loan Set],MLV from #TEMP --where StatusCode = @statuscode
+		end
+
+	DROP TABLE #TEMP
+
 end
