@@ -11,6 +11,8 @@ using ServiceLayer.Interface;
 using CommonClasses;
 using BusinessObjects;
 using LMS.Models.Customer;
+using AutoMapper;
+using AutoMapper.Configuration;
 
 namespace LMS.Controllers
 {
@@ -26,8 +28,7 @@ namespace LMS.Controllers
         public CustomerController(ICustomerSvc service)
         {
             this.service = service;
-            allComponents = service.getAllComponents();
-            AutoMapper.Mapper.CreateMap<BusinessObjects.getComponents, Models.Customer.getComponents>();
+            allComponents = service.getAllComponents();            
         }
 
         [Route("Customer")]
@@ -68,8 +69,10 @@ namespace LMS.Controllers
 
         public Models.Customer.getComponents setComponents()
         {
+            //Mapper.CreateMap<IEnumerable<BusinessObjects.Gender>, IEnumerable<Models.Customer.Gender>>();            
+           
             Models.Customer.getComponents list = new Models.Customer.getComponents();
-            //list = AutoMapper.Mapper.Map<Models.Customer.getComponents>(allComponents);            
+            //list.Gender = Mapper.Map<IEnumerable<Models.Customer.Gender>>(allComponents.Gender);            
             return list;
         }
 

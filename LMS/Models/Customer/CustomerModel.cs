@@ -157,22 +157,22 @@ namespace LMS.Models.Customer
 
     public class getComponents
     {
-        public List<Gender> Gender { get; set; }
-        public List<Citizenship> Citizenship { get; set; }
-        public List<District> District { get; set; }
-        public List<Organization> Organization { get; set; }
-        public List<ApplicationType> ApplicationType { get; set; }
-        public List<BorrowerType> BorrowerType { get; set; }
-        public List<LeadSource> LeadSource { get; set; }
-        public List<CivilStatus> CivilStatus { get; set; }
-        public List<City> City { get; set; }
-        public List<Province> Province { get; set; }
-        public List<HomeOwnership> HomeOwnership { get; set; }
-        public List<BusinessType> BusinessType { get; set; }
-        public List<NatureofBusiness> NatureofBusiness { get; set; }
-        public List<AddressType> AddressType { get; set; }
-        public List<RelationshipType> RelationshipType { get; set; }
-        public List<EducationType> EducationType { get; set; }
+        public IEnumerable<Gender> Gender { get; set; }
+        public IEnumerable<Citizenship> Citizenship { get; set; }
+        public IEnumerable<District> District { get; set; }
+        public IEnumerable<Organization> Organization { get; set; }
+        public IEnumerable<ApplicationType> ApplicationType { get; set; }
+        public IEnumerable<BorrowerType> BorrowerType { get; set; }
+        public IEnumerable<LeadSource> LeadSource { get; set; }
+        public IEnumerable<CivilStatus> CivilStatus { get; set; }
+        public IEnumerable<City> City { get; set; }
+        public IEnumerable<Province> Province { get; set; }
+        public IEnumerable<HomeOwnership> HomeOwnership { get; set; }
+        public IEnumerable<BusinessType> BusinessType { get; set; }
+        public IEnumerable<NatureofBusiness> NatureofBusiness { get; set; }
+        public IEnumerable<AddressType> AddressType { get; set; }
+        public IEnumerable<RelationshipType> RelationshipType { get; set; }
+        public IEnumerable<EducationType> EducationType { get; set; }
 
     }
     public class Gender
