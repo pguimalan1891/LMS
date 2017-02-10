@@ -17,7 +17,7 @@ namespace LMS.Controllers
     public class CustomerController : Controller
     {
         private ICustomerSvc service;
-
+        private BusinessObjects.getComponents allComponents;
         // GET: Customer
         public CustomerController()
             : this(new CustomerSvc())
@@ -26,6 +26,8 @@ namespace LMS.Controllers
         public CustomerController(ICustomerSvc service)
         {
             this.service = service;
+            allComponents = service.getAllComponents();
+            AutoMapper.Mapper.CreateMap<BusinessObjects.getComponents, Models.Customer.getComponents>();
         }
 
         [Route("Customer")]
@@ -39,7 +41,7 @@ namespace LMS.Controllers
             custModel.custDependents = setCustomerDependentModel(service.getCustomerDependentsByID(ID));
             custModel.custAddress = setCustomerAddressModel(service.getCustomerAddressByID(ID));
             custModel.custEmployment = setCustomerEmploymentModel(service.getCustomerEmploymentRecordByID(ID));
-            custModel.Gender = setGender(service.getGender());
+            //custModel.allComponents = setComponents();
             return View(custModel);
         }        
 
@@ -64,19 +66,10 @@ namespace LMS.Controllers
             return pvr;
         }
 
-        public List<Models.Customer.Gender> setGender(IEnumerable<BusinessObjects.Gender> selectModel)
+        public Models.Customer.getComponents setComponents()
         {
-            List<Models.Customer.Gender> list = new List<Models.Customer.Gender>();
-            foreach (var rec in selectModel)
-            {
-                Models.Customer.Gender md = new Models.Customer.Gender
-                {
-                    ID = rec.ID,
-                    Code = rec.Code,
-                    Description = rec.Description                    
-                };
-                list.Add(md);
-            }
+            Models.Customer.getComponents list = new Models.Customer.getComponents();
+            //list = AutoMapper.Mapper.Map<Models.Customer.getComponents>(allComponents);            
             return list;
         }
 

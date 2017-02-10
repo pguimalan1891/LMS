@@ -17,7 +17,7 @@ namespace DataObjects
         IEnumerable<CustomerAddress> getCustomerAddressByID(string ID);
         IEnumerable<CustomerEmployment> getCustomerEmploymentRecordByID(string ID);
         IEnumerable<CustomerRecord> getCustomerRecordByCode(string Code);
-        IEnumerable<Gender> getGender();
+        getComponents getAllComponents();
 
     }
 }

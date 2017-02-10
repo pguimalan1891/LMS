@@ -16,7 +16,7 @@ namespace LMS.Models.Customer
         public List<CustomerCharacter> custCharacter { get; set; }
         public List<Gender> Gender { get; set; }
         public List<Citizenship> Citizenship { get; set; }
-
+        public getComponents allComponents { get; set; }
 
     }
 
@@ -155,14 +155,124 @@ namespace LMS.Models.Customer
         public string ContactNo { get; set; }
     }
 
+    public class getComponents
+    {
+        public List<Gender> Gender { get; set; }
+        public List<Citizenship> Citizenship { get; set; }
+        public List<District> District { get; set; }
+        public List<Organization> Organization { get; set; }
+        public List<ApplicationType> ApplicationType { get; set; }
+        public List<BorrowerType> BorrowerType { get; set; }
+        public List<LeadSource> LeadSource { get; set; }
+        public List<CivilStatus> CivilStatus { get; set; }
+        public List<City> City { get; set; }
+        public List<Province> Province { get; set; }
+        public List<HomeOwnership> HomeOwnership { get; set; }
+        public List<BusinessType> BusinessType { get; set; }
+        public List<NatureofBusiness> NatureofBusiness { get; set; }
+        public List<AddressType> AddressType { get; set; }
+        public List<RelationshipType> RelationshipType { get; set; }
+        public List<EducationType> EducationType { get; set; }
+
+    }
     public class Gender
     {
         public string ID { get; set; }
         public string Code { get; set; }
-        public string Description { get; set; }        
+        public string Description { get; set; }
     }
-
     public class Citizenship
+    {
+        public string ID { get; set; }
+        public string Code { get; set; }
+        public string Description { get; set; }
+    }
+    public class District
+    {
+        public string ID { get; set; }
+        public string Code { get; set; }
+        public string Description { get; set; }
+        public string DistrictGroupID { get; set; }
+        public string RegionalOfficeID { get; set; }
+    }
+    public class Organization
+    {
+        public string ID { get; set; }
+        public string Code { get; set; }
+        public string Description { get; set; }
+        public string DistrictID { get; set; }
+        public string MotherBranchID { get; set; }
+    }
+    public class ApplicationType
+    {
+        public string ID { get; set; }
+        public string Code { get; set; }
+        public string Description { get; set; }
+    }
+    public class BorrowerType
+    {
+        public string ID { get; set; }
+        public string Code { get; set; }
+        public string Description { get; set; }
+        public string BorrowerGroupID { get; set; }
+    }
+    public class LeadSource
+    {
+        public string ID { get; set; }
+        public string Code { get; set; }
+        public string Description { get; set; }
+    }
+    public class CivilStatus
+    {
+        public string ID { get; set; }
+        public string Code { get; set; }
+        public string Description { get; set; }
+    }
+    public class City
+    {
+        public string ID { get; set; }
+        public string Code { get; set; }
+        public string Description { get; set; }
+        public string ProvinceID { get; set; }
+    }
+    public class Province
+    {
+        public string ID { get; set; }
+        public string Code { get; set; }
+        public string Description { get; set; }
+        public string CountryID { get; set; }
+    }
+    public class HomeOwnership
+    {
+        public string ID { get; set; }
+        public string Code { get; set; }
+        public string Description { get; set; }
+    }
+    public class BusinessType
+    {
+        public string ID { get; set; }
+        public string Code { get; set; }
+        public string Description { get; set; }
+    }
+    public class NatureofBusiness
+    {
+        public string ID { get; set; }
+        public string Code { get; set; }
+        public string Description { get; set; }
+    }
+    public class AddressType
+    {
+        public string ID { get; set; }
+        public string Code { get; set; }
+        public string Description { get; set; }
+    }
+    public class RelationshipType
+    {
+        public string ID { get; set; }
+        public string Code { get; set; }
+        public string Description { get; set; }
+    }
+    public class EducationType
     {
         public string ID { get; set; }
         public string Code { get; set; }

@@ -242,7 +242,6 @@ namespace DataObjects.AdoNET
 
             return retComponent;
         }
-
         #region Gender
         public IEnumerable<Gender> getGender()
         {

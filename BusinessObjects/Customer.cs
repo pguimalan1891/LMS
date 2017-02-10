@@ -141,6 +141,7 @@ namespace BusinessObjects
         public string City { get; set; }
         public string ContactNo { get; set; }
     }
+
     public class getComponents
     {
         public IEnumerable<Gender> Gender { get; set; }
@@ -265,4 +266,5 @@ namespace BusinessObjects
         public string Code { get; set; }
         public string Description { get; set; }
     }    
+
 }
