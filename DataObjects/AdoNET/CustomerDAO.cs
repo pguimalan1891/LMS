@@ -156,7 +156,7 @@ namespace DataObjects.AdoNET
 
         public IEnumerable<CustomerRecord> getCustomerRecordByCode(string Code)
         {
-            string sql = "Select [ID],[CODE],Convert(varchar,[DATETIME_CREATED],101) + '|' + Convert(varchar,[DATETIME_CREATED],108) as [DATETIME_CREATED],[ORGANIZATION_ID],[Organization] "+
+            string sql = "Select [ID],[CODE],Convert(varchar,[DATETIME_CREATED],101) + '|' + Convert(varchar,[DATETIME_CREATED],108) as [DATETIME_CREATED],[ORGANIZATION_ID],[Organization],[DistrictID] "+
               ",[District],[FIRST_NAME],[LAST_NAME],[MIDDLE_NAME],[GENDER_ID],[Gender],[CIVIL_STATUS_ID],[CivilStatus], isnull(Convert(varchar,[DateOfMarriage], 101),'Not Applicable') as [DateOfMarriage] "+
 	          ",[CITIZENSHIP_ID],[Citizenship],Convert(varchar, [DateOfBirth],101) as [DateOfBirth],[GSIS_NUMBER],[SSS_NUMBER],[TIN_NUMBER],[RCN] "+
               ",[RCN_PLACE_ISSUED],Convert(varchar, [RCN_DATE_ISSUED],101) as [RCN_DATE_ISSUED],[BORROWER_TYPE_ID],[BorrowerType],[BorrowerGroup],[LEAD_SOURCE_ID],[LeadSource],[AGENT_PROFILE_ID] "+
@@ -174,6 +174,7 @@ namespace DataObjects.AdoNET
                DatetimeCreated = reader["DateTime_Created"].AsString(),
                OrganizationID = reader["Organization_ID"].AsString(),
                Organization = reader["Organization"].AsString(),
+               DistrictID = reader["DistrictID"].AsString(),
                District = reader["District"].AsString(),
                FirstName = reader["First_Name"].AsString(),
                LastName = reader["Last_Name"].AsString(),
@@ -239,7 +240,7 @@ namespace DataObjects.AdoNET
             retComponent.AddressType = getAddressType();
             retComponent.RelationshipType = getRelationshipType();
             retComponent.EducationType = getEducationType();
-
+            retComponent.Agent = getAgent();
             return retComponent;
         }
         #region Gender
@@ -498,6 +499,22 @@ namespace DataObjects.AdoNET
 
         static Func<IDataReader, EducationType> selectEducationType = reader =>
            new EducationType
+           {
+               ID = reader["ID"].AsString(),
+               Code = reader["Code"].AsString(),
+               Description = reader["Description"].AsString()
+           };
+        #endregion
+        #region Agent
+        public IEnumerable<Agent> getAgent()
+        {
+            string sql = "Select ID,Code,LAST_NAME + ', ' + FIRST_NAME + ' ' + MIDDLE_NAME as Description from agent_profile";
+            object[] parms = { };
+            return db.Read(sql, selectAgent, 0, parms);
+        }
+
+        static Func<IDataReader, Agent> selectAgent = reader =>
+           new Agent
            {
                ID = reader["ID"].AsString(),
                Code = reader["Code"].AsString(),

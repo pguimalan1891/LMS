@@ -328,6 +328,7 @@
     <Content Include="Content\Scripts\_references.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <None Include="Properties\PublishProfiles\LMSPublish.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\extra\jquery.qtip.min.js" />
     <Content Include="Scripts\Highcharts-4.0.1\js\adapters\standalone-framework.js" />

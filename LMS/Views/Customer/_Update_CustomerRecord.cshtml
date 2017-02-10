@@ -51,7 +51,7 @@
                         <div class="form-group">
                             <label class="col-lg-3 control-label">Citizenship</label>
                             <div class="col-lg-9">
-                                @Html.DropDownList("slcGender", new SelectList(Model.allComponents.Citizenship, "ID", "Description", Model.custRecord.CitizenshipID), new { @class = "form-control" })                                
+                                @Html.DropDownList("slcCitizenship", new SelectList(Model.allComponents.Citizenship, "ID", "Description", Model.custRecord.CitizenshipID), new { @class = "form-control" })                                
                             </div>
                         </div>
 
@@ -65,38 +65,32 @@
                     <h5>Account Information</h5>
                 </div>
                 <div class="ibox-content">
-                    <div class="form-horizontal">
-                        <div class="form-group">
-                            <label class="col-lg-3 control-label">Date as Of</label>
-                            <div class="col-lg-9">
-                                <span class="form-control">@Model.custRecord.DatetimeCreated.Replace("|", "")</span>
-                            </div>
-                        </div>
+                    <div class="form-horizontal">                        
                         <div class="form-group">
                             <label class="col-lg-3 control-label">District/Branch</label>
-                            <div class="col-lg-5">
-                                <span class="form-control">@Model.custRecord.District</span>
+                            <div class="col-lg-5">                                
+                                @Html.DropDownList("slcDistrict", new SelectList(Model.allComponents.District, "ID", "Description", Model.custRecord.DistrictID), new { @class = "form-control" })                                
                             </div>
-                            <div class="col-lg-4">
-                                <span class="form-control">@Model.custRecord.Organization</span>
+                            <div class="col-lg-4">                                
+                                @Html.DropDownList("slcOrganization", new SelectList(Model.allComponents.Organization, "ID", "Description", Model.custRecord.OrganizationID), new { @class = "form-control" })
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-lg-3 control-label">Application Type</label>
                             <div class="col-lg-9">
-                                <span class="form-control">@Model.custRecord.ApplicationType</span>
+                                @Html.DropDownList("slcApplicationType", new SelectList(Model.allComponents.ApplicationType, "ID", "Description", Model.custRecord.ApplicationType), new { @class = "form-control" })
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-lg-3 control-label">Agent</label>
-                            <div class="col-lg-9">
-                                <span class="form-control">@Model.custRecord.AgentLastName @Model.custRecord.AgentFirstName @Model.custRecord.AgentMiddleName</span>
+                            <div class="col-lg-9">                                
+                                @Html.DropDownList("slcAgent", new SelectList(Model.allComponents.Agent, "Code", "Description", Model.custRecord.AgentCode), new { @class = "form-control" })
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-lg-3 control-label">Borrower Type</label>
-                            <div class="col-lg-9">
-                                <span class="form-control">@Model.custRecord.BorrowerType</span>
+                            <div class="col-lg-9">                                
+                                @Html.DropDownList("slcBorrowerType", new SelectList(Model.allComponents.BorrowerType, "ID", "Description", Model.custRecord.BorrowerType), new { @class = "form-control" })
                             </div>
                         </div>
                         <div class="form-group">

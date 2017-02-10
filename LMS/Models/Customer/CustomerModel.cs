@@ -27,6 +27,7 @@ namespace LMS.Models.Customer
         public string DatetimeCreated { get; set; }
         public string OrganizationID { get; set; }
         public string Organization { get; set; }
+        public string DistrictID { get; set; }
         public string District { get; set; }        
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -173,6 +174,7 @@ namespace LMS.Models.Customer
         public IEnumerable<AddressType> AddressType { get; set; }
         public IEnumerable<RelationshipType> RelationshipType { get; set; }
         public IEnumerable<EducationType> EducationType { get; set; }
+        public IEnumerable<Agent> Agent { get; set; }
 
     }
     public class Gender
@@ -278,5 +280,10 @@ namespace LMS.Models.Customer
         public string Code { get; set; }
         public string Description { get; set; }
     }
-
+    public class Agent
+    {
+        public string ID { get; set; }
+        public string Code { get; set; }
+        public string Description { get; set; }
+    }
 }
