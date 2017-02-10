@@ -31,7 +31,16 @@ namespace LMS.Controllers
         [Route("Customer")]
         public ActionResult Customer()
         {
-            return View();
+            Models.Customer.CustomerModel custModel = new CustomerModel();
+            custModel.custRecord = SetCustomerRecordModel(service.getCustomerRecordByCode("096-20150604000022"));
+            var ID = custModel.custRecord.ID;
+            custModel.custCharacter = setCustomerCharacterModel(service.getCustomerCharacterByID(ID));
+            custModel.custEducation = setCustomerEducationModel(service.getCustomerEducationByID(ID));
+            custModel.custDependents = setCustomerDependentModel(service.getCustomerDependentsByID(ID));
+            custModel.custAddress = setCustomerAddressModel(service.getCustomerAddressByID(ID));
+            custModel.custEmployment = setCustomerEmploymentModel(service.getCustomerEmploymentRecordByID(ID));
+            custModel.Gender = setGender(service.getGender());
+            return View(custModel);
         }        
 
         [HttpGet]
@@ -49,11 +58,28 @@ namespace LMS.Controllers
             custModel.custEducation = setCustomerEducationModel(service.getCustomerEducationByID(ID));
             custModel.custDependents = setCustomerDependentModel(service.getCustomerDependentsByID(ID));
             custModel.custAddress = setCustomerAddressModel(service.getCustomerAddressByID(ID));
-            custModel.custEmployment = setCustomerEmploymentModel(service.getCustomerEmploymentRecordByID(ID));
+            custModel.custEmployment = setCustomerEmploymentModel(service.getCustomerEmploymentRecordByID(ID));            
             var pvr = new PartialViewResult();
             pvr = PartialView("_Display_CustomerRecord", custModel);
             return pvr;
         }
+
+        public List<Models.Customer.Gender> setGender(IEnumerable<BusinessObjects.Gender> selectModel)
+        {
+            List<Models.Customer.Gender> list = new List<Models.Customer.Gender>();
+            foreach (var rec in selectModel)
+            {
+                Models.Customer.Gender md = new Models.Customer.Gender
+                {
+                    ID = rec.ID,
+                    Code = rec.Code,
+                    Description = rec.Description                    
+                };
+                list.Add(md);
+            }
+            return list;
+        }
+
 
         public List<Models.Customer.CustomerEmployment> setCustomerEmploymentModel(IEnumerable<BusinessObjects.CustomerEmployment> custEmployment)
         {
@@ -80,7 +106,6 @@ namespace LMS.Controllers
             }
             return list;
         }
-
         public List<Models.Customer.CustomerAddress> setCustomerAddressModel(IEnumerable<BusinessObjects.CustomerAddress> custAddress)
         {
             List<Models.Customer.CustomerAddress> list = new List<Models.Customer.CustomerAddress>();
@@ -109,7 +134,6 @@ namespace LMS.Controllers
             }
             return list;
         }
-
         public List<Models.Customer.CustomerDependents> setCustomerDependentModel(IEnumerable<BusinessObjects.CustomerDependents> custDependent)
         {
             List<Models.Customer.CustomerDependents> list = new List<Models.Customer.CustomerDependents>();
@@ -138,7 +162,6 @@ namespace LMS.Controllers
             }
             return list;
         }
-
         public List<Models.Customer.CustomerEducation> setCustomerEducationModel(IEnumerable<BusinessObjects.CustomerEducation> custCharacter)
         {
             List<Models.Customer.CustomerEducation> list = new List<Models.Customer.CustomerEducation>();
@@ -157,8 +180,7 @@ namespace LMS.Controllers
 
             }
             return list;
-        }
-
+        }    
         public List<Models.Customer.CustomerCharacter> setCustomerCharacterModel(IEnumerable<BusinessObjects.CustomerCharacter> custCharacter)
         {
             List<Models.Customer.CustomerCharacter> list = new List<Models.Customer.CustomerCharacter>();
@@ -182,7 +204,6 @@ namespace LMS.Controllers
             }
             return list;
         }
-
         public Models.Customer.CustomerRecord SetCustomerRecordModel(BusinessObjects.CustomerRecord custRecord)
         {            
             Models.Customer.CustomerRecord retRecord = new Models.Customer.CustomerRecord();
@@ -202,7 +223,7 @@ namespace LMS.Controllers
             retRecord.CivilStatus = custRecord.CivilStatus;
             retRecord.CivilStatusID = custRecord.CivilStatusID;
             retRecord.Code = custRecord.Code;
-            retRecord.DateOfBirth = custRecord.DateOfBirth;
+            retRecord.DateOfBirth = Convert.ToDateTime(custRecord.DateOfBirth);
             retRecord.DateOfMarriage = custRecord.DateOfMarriage;
             retRecord.DatetimeCreated = custRecord.DatetimeCreated;
             retRecord.District = custRecord.District;

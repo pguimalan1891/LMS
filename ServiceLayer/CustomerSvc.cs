@@ -49,6 +49,9 @@ namespace ServiceLayer
         {
             return customer.getCustomerEmploymentRecordByID(ID);
         }
-
+        public IEnumerable<Gender> getGender()
+        {
+            return customer.getGender();
+        }
     }
 }

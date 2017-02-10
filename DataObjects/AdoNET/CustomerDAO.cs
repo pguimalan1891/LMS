@@ -23,7 +23,8 @@ namespace DataObjects.AdoNET
             "from Final_Testing.dbo.pis inner join Final_Testing.dbo.document_status_map   on (pis.document_status_code = document_status_map.code)  inner join Final_Testing.dbo.user_account prepared_by   on (pis.prepared_by_id = prepared_by.id)  inner join Final_Testing.dbo.gender   on (pis.gender_id = gender.id)  inner join Final_Testing.dbo.civil_status   on (pis.civil_status_id = civil_status.id)  left join Final_Testing.dbo.pis_address   on (pis_address.pis_id = pis.id and pis_address.address_type_id = '0')  inner join Final_Testing.dbo.city on(pis_address.city_id = city.id)  inner join Final_Testing.dbo.province   on(city.province_id = province.id)  inner join Final_Testing.dbo.organization   on(pis.organization_id = organization.id)  where pis.permission > 0 ";            
             object[] parms = { };
             return db.ReadDictionary(sql, 0, parms);
-        }
+        }        
+
         public IEnumerable<CustomerCharacter> getCustomerCharacterByID(string ID)
         {
             string sql = "SELECT [ID],[PIS_ID],[FIRST_NAME],[MIDDLE_NAME],[LAST_NAME],[RELATIONSHIP],[STREET_ADDRESS]," +
@@ -218,5 +219,292 @@ namespace DataObjects.AdoNET
                Permission = reader["Permission"].AsString(),
                Notes = reader["Notes"].AsString()
            };
+
+        public getComponents getAllComponents()
+        {
+            getComponents retComponent = new getComponents();
+            retComponent.Gender = getGender();
+            retComponent.Citizenship = getCitizenship();
+            retComponent.District = getDistrict();
+            retComponent.Organization = getOrganization();
+            retComponent.ApplicationType = getApplicationType();
+            retComponent.BorrowerType = getBorrowerType();
+            retComponent.LeadSource = getLeadSource();
+            retComponent.CivilStatus = getCivilStatus();
+            retComponent.City = getCity();
+            retComponent.Province = getProvince();
+            retComponent.HomeOwnership = getHomeOwnership();
+            retComponent.BusinessType = getBusinessType();
+            retComponent.NatureofBusiness = getNatureofBusiness();
+            retComponent.AddressType = getAddressType();
+            retComponent.RelationshipType = getRelationshipType();
+            retComponent.EducationType = getEducationType();
+
+            return retComponent;
+        }
+
+        #region Gender
+        public IEnumerable<Gender> getGender()
+        {
+            string sql = "Select ID,Code,Description from Gender";
+            object[] parms = { };
+            return db.Read(sql, selectGender, 0, parms);
+        }
+
+        static Func<IDataReader, Gender> selectGender = reader =>
+           new Gender
+           {
+               ID = reader["ID"].AsString(),
+               Code = reader["Code"].AsString(),
+               Description = reader["Description"].AsString()
+           };
+        #endregion        
+        #region Citizenship
+        public IEnumerable<Citizenship> getCitizenship()
+        {
+            string sql = "Select ID,Code,Description from citizenship";
+            object[] parms = { };
+            return db.Read(sql, selectCitizenship, 0, parms);
+        }
+
+        static Func<IDataReader, Citizenship> selectCitizenship = reader =>
+           new Citizenship
+           {
+               ID = reader["ID"].AsString(),
+               Code = reader["Code"].AsString(),
+               Description = reader["Description"].AsString()
+           };
+        #endregion
+        #region District
+        public IEnumerable<District> getDistrict()
+        {
+            string sql = "Select ID,CODE,DESCRIPTION,DISTRICT_GROUP_ID,REGIONAL_OFFICE_ID from district";
+            object[] parms = { };
+            return db.Read(sql, selectDistrict, 0, parms);
+        }
+
+        static Func<IDataReader, District> selectDistrict = reader =>
+           new District
+           {
+               ID = reader["ID"].AsString(),
+               Code = reader["Code"].AsString(),
+               Description = reader["Description"].AsString(),
+               DistrictGroupID = reader["DISTRICT_GROUP_ID"].AsString(),
+               RegionalOfficeID = reader["REGIONAL_OFFICE_ID"].AsString()
+           };
+        #endregion
+        #region Organization
+        public IEnumerable<Organization> getOrganization()
+        {
+            string sql = "Select ID,CODE,DESCRIPTION,DISTRICT_ID,MOTHER_BRANCH_ID from organization";
+            object[] parms = { };
+            return db.Read(sql, selectOrganization, 0, parms);
+        }
+
+        static Func<IDataReader, Organization> selectOrganization = reader =>
+           new Organization
+           {
+               ID = reader["ID"].AsString(),
+               Code = reader["Code"].AsString(),
+               Description = reader["Description"].AsString(),
+               MotherBranchID = reader["MOTHER_BRANCH_ID"].AsString()
+           };
+        #endregion
+        #region ApplicationType
+        public IEnumerable<ApplicationType> getApplicationType()
+        {
+            string sql = "Select ID,Code,Description from application_type";
+            object[] parms = { };
+            return db.Read(sql, selectApplicationType, 0, parms);
+        }
+
+        static Func<IDataReader, ApplicationType> selectApplicationType = reader =>
+           new ApplicationType
+           {
+               ID = reader["ID"].AsString(),
+               Code = reader["Code"].AsString(),
+               Description = reader["Description"].AsString()
+           };
+        #endregion
+        #region BorrowerType
+        public IEnumerable<BorrowerType> getBorrowerType()
+        {
+            string sql = "Select ID,CODE,DESCRIPTION,BORROWER_GROUP_ID from borrower_type";
+            object[] parms = { };
+            return db.Read(sql, selectBorrowerType, 0, parms);
+        }
+
+        static Func<IDataReader, BorrowerType> selectBorrowerType = reader =>
+           new BorrowerType
+           {
+               ID = reader["ID"].AsString(),
+               Code = reader["Code"].AsString(),
+               Description = reader["Description"].AsString(),
+               BorrowerGroupID = reader["BORROWER_GROUP_ID"].AsString()
+           };
+        #endregion
+        #region LeadSource
+        public IEnumerable<LeadSource> getLeadSource()
+        {
+            string sql = "Select ID,Code,Description from lead_source";
+            object[] parms = { };
+            return db.Read(sql, selectLeadSource, 0, parms);
+        }
+
+        static Func<IDataReader, LeadSource> selectLeadSource = reader =>
+           new LeadSource
+           {
+               ID = reader["ID"].AsString(),
+               Code = reader["Code"].AsString(),
+               Description = reader["Description"].AsString()
+           };
+        #endregion
+        #region CivilStatus
+        public IEnumerable<CivilStatus> getCivilStatus()
+        {
+            string sql = "Select ID,Code,Description from civil_status";
+            object[] parms = { };
+            return db.Read(sql, selectCivilStatus, 0, parms);
+        }
+
+        static Func<IDataReader, CivilStatus> selectCivilStatus = reader =>
+           new CivilStatus
+           {
+               ID = reader["ID"].AsString(),
+               Code = reader["Code"].AsString(),
+               Description = reader["Description"].AsString()
+           };
+        #endregion
+        #region City
+        public IEnumerable<City> getCity()
+        {
+            string sql = "Select ID,CODE,DESCRIPTION,PROVINCE_ID from city";
+            object[] parms = { };
+            return db.Read(sql, selectCity, 0, parms);
+        }
+
+        static Func<IDataReader, City> selectCity = reader =>
+           new City
+           {
+               ID = reader["ID"].AsString(),
+               Code = reader["Code"].AsString(),
+               Description = reader["Description"].AsString(),
+               ProvinceID = reader["PROVINCE_ID"].AsString()
+           };
+        #endregion
+        #region Province
+        public IEnumerable<Province> getProvince()
+        {
+            string sql = "Select ID,CODE,DESCRIPTION,COUNTRY_ID from province";
+            object[] parms = { };
+            return db.Read(sql, selectProvince, 0, parms);
+        }
+
+        static Func<IDataReader, Province> selectProvince = reader =>
+           new Province
+           {
+               ID = reader["ID"].AsString(),
+               Code = reader["Code"].AsString(),
+               Description = reader["Description"].AsString(),
+               CountryID = reader["COUNTRY_ID"].AsString()
+           };
+        #endregion
+        #region HomeOwnership
+        public IEnumerable<HomeOwnership> getHomeOwnership()
+        {
+            string sql = "Select ID,Code,Description from home_ownership";
+            object[] parms = { };
+            return db.Read(sql, selectHomeOwnership, 0, parms);
+        }
+
+        static Func<IDataReader, HomeOwnership> selectHomeOwnership = reader =>
+           new HomeOwnership
+           {
+               ID = reader["ID"].AsString(),
+               Code = reader["Code"].AsString(),
+               Description = reader["Description"].AsString()
+           };
+        #endregion
+        #region BusinessType
+        public IEnumerable<BusinessType> getBusinessType()
+        {
+            string sql = "Select ID,Code,Description from business_type";
+            object[] parms = { };
+            return db.Read(sql, selectBusinessType, 0, parms);
+        }
+
+        static Func<IDataReader, BusinessType> selectBusinessType = reader =>
+           new BusinessType
+           {
+               ID = reader["ID"].AsString(),
+               Code = reader["Code"].AsString(),
+               Description = reader["Description"].AsString()
+           };
+        #endregion
+        #region NatureofBusiness
+        public IEnumerable<NatureofBusiness> getNatureofBusiness()
+        {
+            string sql = "Select ID,Code,Description from nature_of_business";
+            object[] parms = { };
+            return db.Read(sql, selectNatureofBusiness, 0, parms);
+        }
+
+        static Func<IDataReader, NatureofBusiness> selectNatureofBusiness = reader =>
+           new NatureofBusiness
+           {
+               ID = reader["ID"].AsString(),
+               Code = reader["Code"].AsString(),
+               Description = reader["Description"].AsString()
+           };
+        #endregion
+        #region AddressType
+        public IEnumerable<AddressType> getAddressType()
+        {
+            string sql = "Select ID,Code,Description from address_type";
+            object[] parms = { };
+            return db.Read(sql, selectAddressType, 0, parms);
+        }
+
+        static Func<IDataReader, AddressType> selectAddressType = reader =>
+           new AddressType
+           {
+               ID = reader["ID"].AsString(),
+               Code = reader["Code"].AsString(),
+               Description = reader["Description"].AsString()
+           };
+        #endregion
+        #region RelationshipType
+        public IEnumerable<RelationshipType> getRelationshipType()
+        {
+            string sql = "Select ID,Code,Description from relationship_type";
+            object[] parms = { };
+            return db.Read(sql, selectRelationshipType, 0, parms);
+        }
+
+        static Func<IDataReader, RelationshipType> selectRelationshipType = reader =>
+           new RelationshipType
+           {
+               ID = reader["ID"].AsString(),
+               Code = reader["Code"].AsString(),
+               Description = reader["Description"].AsString()
+           };
+        #endregion
+        #region EducationType
+        public IEnumerable<EducationType> getEducationType()
+        {
+            string sql = "Select ID,Code,Description from education_type";
+            object[] parms = { };
+            return db.Read(sql, selectEducationType, 0, parms);
+        }
+
+        static Func<IDataReader, EducationType> selectEducationType = reader =>
+           new EducationType
+           {
+               ID = reader["ID"].AsString(),
+               Code = reader["Code"].AsString(),
+               Description = reader["Description"].AsString()
+           };
+        #endregion
+
     }
 }

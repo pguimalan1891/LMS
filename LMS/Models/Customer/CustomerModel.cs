@@ -14,6 +14,10 @@ namespace LMS.Models.Customer
         public List<CustomerDependents> custDependents { get; set; }
         public List<CustomerEducation> custEducation { get; set; }
         public List<CustomerCharacter> custCharacter { get; set; }
+        public List<Gender> Gender { get; set; }
+        public List<Citizenship> Citizenship { get; set; }
+
+
     }
 
     public class CustomerRecord
@@ -23,7 +27,7 @@ namespace LMS.Models.Customer
         public string DatetimeCreated { get; set; }
         public string OrganizationID { get; set; }
         public string Organization { get; set; }
-        public string District { get; set; }
+        public string District { get; set; }        
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string MiddleName { get; set; }
@@ -34,7 +38,7 @@ namespace LMS.Models.Customer
         public string DateOfMarriage { get; set; }
         public string CitizenshipID { get; set; }
         public string Citizenship { get; set; }
-        public string DateOfBirth { get; set; }
+        public DateTime DateOfBirth { get; set; }
         public string GSISNumber { get; set; }
         public string SSSNumber { get; set; }
         public string TinNumber { get; set; }
@@ -150,4 +154,19 @@ namespace LMS.Models.Customer
         public string City { get; set; }
         public string ContactNo { get; set; }
     }
+
+    public class Gender
+    {
+        public string ID { get; set; }
+        public string Code { get; set; }
+        public string Description { get; set; }        
+    }
+
+    public class Citizenship
+    {
+        public string ID { get; set; }
+        public string Code { get; set; }
+        public string Description { get; set; }
+    }
+
 }

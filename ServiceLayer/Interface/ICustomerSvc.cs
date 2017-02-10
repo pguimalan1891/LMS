@@ -16,6 +16,7 @@ namespace ServiceLayer.Interface
         IEnumerable<CustomerDependents> getCustomerDependentsByID(string ID);
         IEnumerable<CustomerAddress> getCustomerAddressByID(string ID);
         IEnumerable<CustomerEmployment> getCustomerEmploymentRecordByID(string ID);
+        IEnumerable<Gender> getGender();
 
     }
 }
