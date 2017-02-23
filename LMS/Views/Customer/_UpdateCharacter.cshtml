@@ -1,0 +1,65 @@
+﻿@using LMS.Models
+@model LMS.Models.Customer.CustomerCharacterModel
+
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "updateCharacter" }))
+{
+    <div style="background-color:white;">
+        <div class="row">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Spouse Employment</h5>
+                </div>
+                <div class="ibox-content">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">First Name</label>
+                            <div class="col-lg-9">
+                                @Html.TextBoxFor(model => model.custCharacter.FirstName, new { @class = "form-control", @value = @Model.custCharacter.FirstName })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Middle Name</label>
+                            <div class="col-lg-9">
+                                @Html.TextBoxFor(model => model.custCharacter.MiddleName, new { @class = "form-control", @value = @Model.custCharacter.MiddleName })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Last Name</label>
+                            <div class="col-lg-9">
+                                @Html.TextBoxFor(model => model.custCharacter.LastName, new { @class = "form-control", @value = @Model.custCharacter.LastName })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Relationship</label>
+                            <div class="col-lg-9">
+                                @Html.TextBoxFor(model => model.custCharacter.RelationShip, new { @class = "form-control", @value = @Model.custCharacter.RelationShip })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Street Address</label>
+                            <div class="col-lg-9">
+                                @Html.TextBoxFor(model => model.custCharacter.StreetAddress, new { @class = "form-control", @value = @Model.custCharacter.StreetAddress })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Province/City</label>
+                            <div class="col-lg-4">
+                                @Html.DropDownListFor(model => model.custCharacter.ProvinceID, new SelectList(Model.Province, "ProvinceID", "Description", @Model.custCharacter.ProvinceID), new { @class = "form-control provinceUpdateBox" })
+                            </div>
+                            <div class="col-lg-5">
+                                @Html.DropDownListFor(model => model.custCharacter.CityID, new SelectList(Model.City, "CityID", "Description", @Model.custCharacter.CityID), new { @class = "form-control cityUpdateBox" })
+                            </div>
+                        </div>                        
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Contact Number</label>
+                            <div class="col-lg-9">
+                                @Html.TextBoxFor(model => model.custCharacter.ContactNo, new { @class = "form-control", @value = @Model.custCharacter.ContactNo })
+                            </div>
+                        </div>                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

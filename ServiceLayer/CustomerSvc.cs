@@ -15,14 +15,14 @@ namespace ServiceLayer
         static readonly ICustomerDAO customer = factory.CustomerDAO;
 
         public List<Dictionary<string, object>> getCustomerRecord()
-        {            
+        {
             return customer.getCustomerRecord();
         }
 
         public BusinessObjects.CustomerRecord getCustomerRecordByCode(string Code)
         {
             var CustRecord = customer.getCustomerRecordByCode(Code);
-               
+
             return (BusinessObjects.CustomerRecord)CustRecord.First();
         }
 
@@ -49,9 +49,79 @@ namespace ServiceLayer
         {
             return customer.getCustomerEmploymentRecordByID(ID);
         }
-        public getComponents getAllComponents()
+        public getComponents getAllComponents(BusinessObjects.CustomerRecord custRecord)
         {
-            return customer.getAllComponents();
+            return customer.getAllComponents(custRecord);
         }
+        public IEnumerable<Gender> getGender()
+        {
+            return customer.getGender();
+        }
+        public IEnumerable<Citizenship> getCitizenship()
+        {
+            return customer.getCitizenship();
+        }
+        public IEnumerable<District> getDistrict()
+        {
+            return customer.getDistrict();
+        }
+        public IEnumerable<Organization> getOrganization()
+        {
+            return customer.getOrganization();
+        }
+        public IEnumerable<ApplicationType> getApplicationType()
+        {
+            return customer.getApplicationType();
+        }
+        public IEnumerable<BorrowerType> getBorrowerType()
+        {
+            return customer.getBorrowerType();
+        }
+        public IEnumerable<LeadSource> getLeadSource()
+        {
+            return customer.getLeadSource();
+        }
+        public IEnumerable<CivilStatus> getCivilStatus()
+        {
+            return customer.getCivilStatus();
+        }
+        public IEnumerable<City> getCity(string PISID)
+        {
+            return customer.getCity(PISID);
+        }
+        public IEnumerable<City> updateCity(string ProvinceID)
+        {
+            return customer.updateCity(ProvinceID);
+        }
+
+        public IEnumerable<Province> getProvince()
+        {
+            return customer.getProvince();
+        }
+        public IEnumerable<HomeOwnership> getHomeOwnership()
+        {
+            return customer.getHomeOwnership();
+        }
+        public IEnumerable<BusinessType> getBusinessType()
+        {
+            return customer.getBusinessType();
+        }
+        public IEnumerable<NatureofBusiness> getNatureofBusiness()
+        {
+            return customer.getNatureofBusiness();
+        }
+        public IEnumerable<AddressType> getAddressType(bool includecurrentAddress)
+        {
+            return customer.getAddressType(includecurrentAddress);
+        }
+        public IEnumerable<RelationshipType> getRelationshipType()
+        {
+            return customer.getRelationshipType();
+        }
+        public IEnumerable<EducationType> getEducationType()
+        {
+            return customer.getEducationType();
+        }
+
     }
 }

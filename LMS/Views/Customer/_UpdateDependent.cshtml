@@ -1,0 +1,82 @@
+﻿@using LMS.Models
+@model LMS.Models.Customer.CustomerDependentsModel
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "updateDependents" }))
+{
+    <div style="background-color:white;">
+        <div class="row">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Contacts And Addresses</h5>
+                </div>
+                <div class="ibox-content">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">First Name</label>
+                            <div class="col-lg-9">
+                                @Html.TextBoxFor(model => model.custDependents.FirstName, new { @class = "form-control", @value = @Model.custDependents.FirstName })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Middle Name</label>
+                            <div class="col-lg-9">
+                                @Html.TextBoxFor(model => model.custDependents.MiddleName, new { @class = "form-control", @value = @Model.custDependents.MiddleName })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Last Name</label>
+                            <div class="col-lg-9">
+                                @Html.TextBoxFor(model => model.custDependents.LastName, new { @class = "form-control", @value = @Model.custDependents.LastName })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Gender</label>
+                            <div class="col-lg-9">
+                                @Html.DropDownListFor(model => model.custDependents.GenderID, new SelectList(Model.Gender, "GenderID", "Description", @Model.custDependents.GenderID), new { @class = "form-control genderUpdateBox" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Date of Birth</label>
+                            <div class="col-lg-9">
+                                @Html.TextBoxFor(model => model.custDependents.BirthDate, new { @class = "form-control applyDatePicker", @value = @Model.custDependents.BirthDate })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Relationship</label>
+                            <div class="col-lg-9">
+                                @Html.DropDownListFor(model => model.custDependents.RelationshipTypeID, new SelectList(Model.RelationshipType, "RelationshipTypeID", "Description", @Model.custDependents.RelationshipTypeID), new { @class = "form-control relationshipTypeUpdateBox" })
+                            </div>
+                        </div>                        
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Street Address</label>
+                            <div class="col-lg-9">
+                                @Html.TextBoxFor(model => model.custDependents.StreetAddress, new { @class = "form-control", @value = @Model.custDependents.StreetAddress })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Province/City</label>
+                            <div class="col-lg-4">
+                                @Html.DropDownListFor(model => model.custDependents.ProvinceID, new SelectList(Model.Province, "ProvinceID", "Description", @Model.custDependents.ProvinceID), new { @onChange = "UpdateCity('updateBox')", @class = "form-control provinceUpdateBox" })
+                            </div>
+                            <div class="col-lg-5">
+                                @Html.DropDownListFor(model => model.custDependents.CityID, new SelectList(Model.City, "CityID", "Description", @Model.custDependents.CityID), new { @class = "form-control cityUpdateBox" })
+                            </div>
+                        </div>                        
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">School Address</label>
+                            <div class="col-lg-9">
+                                @Html.TextBoxFor(model => model.custDependents.SchoolAddress, new { @class = "form-control", @value = @Model.custDependents.SchoolAddress })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Contact No</label>
+                            <div class="col-lg-9">
+                                @Html.TextBoxFor(model => model.custDependents.ContactNo, new { @class = "form-control", @value = @Model.custDependents.ContactNo })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

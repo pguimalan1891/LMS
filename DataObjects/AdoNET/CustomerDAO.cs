@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace DataObjects.AdoNET
 {
-    public class CustomerDAO: ICustomerDAO
+    public class CustomerDAO : ICustomerDAO
     {
 
         static DB db = new DB();
@@ -20,14 +20,14 @@ namespace DataObjects.AdoNET
             string sql = "" +
             "select pis.id,document_status_map.description as [Status], pis.code as [Code], pis.last_name as [Last Name], pis.first_name as [First Name], pis.middle_name as [Middle Name], Convert(varchar,pis.date_of_birth,101) as [Date of Birth], " +
             "gender.description as [Gender], civil_status.description as [Civil Status], pis_address.street_address as [Address], city.description as [City] " +
-            "from Final_Testing.dbo.pis inner join Final_Testing.dbo.document_status_map   on (pis.document_status_code = document_status_map.code)  inner join Final_Testing.dbo.user_account prepared_by   on (pis.prepared_by_id = prepared_by.id)  inner join Final_Testing.dbo.gender   on (pis.gender_id = gender.id)  inner join Final_Testing.dbo.civil_status   on (pis.civil_status_id = civil_status.id)  left join Final_Testing.dbo.pis_address   on (pis_address.pis_id = pis.id and pis_address.address_type_id = '0')  inner join Final_Testing.dbo.city on(pis_address.city_id = city.id)  inner join Final_Testing.dbo.province   on(city.province_id = province.id)  inner join Final_Testing.dbo.organization   on(pis.organization_id = organization.id)  where pis.permission > 0 ";            
+            "from Final_Testing.dbo.pis inner join Final_Testing.dbo.document_status_map   on (pis.document_status_code = document_status_map.code)  inner join Final_Testing.dbo.user_account prepared_by   on (pis.prepared_by_id = prepared_by.id)  inner join Final_Testing.dbo.gender   on (pis.gender_id = gender.id)  inner join Final_Testing.dbo.civil_status   on (pis.civil_status_id = civil_status.id)  left join Final_Testing.dbo.pis_address   on (pis_address.pis_id = pis.id and pis_address.address_type_id = '0')  inner join Final_Testing.dbo.city on(pis_address.city_id = city.id)  inner join Final_Testing.dbo.province   on(city.province_id = province.id)  inner join Final_Testing.dbo.organization   on(pis.organization_id = organization.id)  where pis.permission > 0 ";
             object[] parms = { };
             return db.ReadDictionary(sql, 0, parms);
-        }        
+        }
 
         public IEnumerable<CustomerCharacter> getCustomerCharacterByID(string ID)
         {
-            string sql = "SELECT [ID],[PIS_ID],[FIRST_NAME],[MIDDLE_NAME],[LAST_NAME],[RELATIONSHIP],[STREET_ADDRESS]," +
+            string sql = "SELECT [ID],[PIS_ID],[FIRST_NAME],[MIDDLE_NAME],[LAST_NAME],[RELATIONSHIP],[STREET_ADDRESS],[PROVINCEID],[PROVINCE]," +
             "[CITY_ID],[City],[CONTACT_NO] FROM[FINAL_TESTING].[dbo].[uvw_PISCharacter] where PIS_ID = @ID";
             object[] parms = { "ID", ID };
             return db.Read(sql, PISCharacter, 0, parms).ToList();
@@ -43,6 +43,8 @@ namespace DataObjects.AdoNET
                LastName = reader["Last_Name"].AsString(),
                RelationShip = reader["RelationShip"].AsString(),
                StreetAddress = reader["Street_Address"].AsString(),
+               ProvinceID = reader["ProvinceID"].AsString(),
+               Province = reader["Province"].AsString(),
                CityID = reader["City_ID"].AsString(),
                City = reader["City"].AsString(),
                ContactNo = reader["Contact_No"].AsString()
@@ -70,7 +72,7 @@ namespace DataObjects.AdoNET
 
         public IEnumerable<CustomerDependents> getCustomerDependentsByID(string ID)
         {
-            string sql = "SELECT [ID],[PIS_ID],[FIRST_NAME],[MIDDLE_NAME],[LAST_NAME],[GENDER_ID],[Gender],[STREET_ADDRESS],[CITY_ID],[City],[Province],[RELATIONSHIP_TYPE_ID],[RelationshipType], " +
+            string sql = "SELECT [ID],[PIS_ID],[FIRST_NAME],[MIDDLE_NAME],[LAST_NAME],[GENDER_ID],[Gender],[STREET_ADDRESS],[CITY_ID],[City],[ProvinceID],[Province],[RELATIONSHIP_TYPE_ID],[RelationshipType], " +
         "Convert(varchar,[BIRTH_DATE], 101) as [BIRTH_DATE],[SCHOOL_ADDRESS],[CONTACT_NO] FROM[FINAL_TESTING].[dbo].[uvw_PISDependent] where PIS_ID = @ID";
             object[] parms = { "ID", ID };
             return db.Read(sql, PISDependents, 0, parms).ToList();
@@ -89,6 +91,7 @@ namespace DataObjects.AdoNET
                StreetAddress = reader["Street_Address"].AsString(),
                CityID = reader["City_ID"].AsString(),
                City = reader["City"].AsString(),
+               ProvinceID = reader["ProvinceID"].AsString(),
                Province = reader["Province"].AsString(),
                RelationshipTypeID = reader["Relationship_Type_ID"].AsString(),
                RelationshipType = reader["RelationshipType"].AsString(),
@@ -99,10 +102,10 @@ namespace DataObjects.AdoNET
 
         public IEnumerable<CustomerAddress> getCustomerAddressByID(string ID)
         {
-            string sql = "SELECT [ID],[PIS_ID],[ADDRESS_TYPE_ID],[AddressType],[STREET_ADDRESS],[BARANGAY_NAME],[CITY_ID],CITY,PROVINCE,COUNTRY,[POSTAL_CODE],[PHONE_NUMBER] " +
+            string sql = "SELECT [ID],[PIS_ID],[ADDRESS_TYPE_ID],[AddressType],[STREET_ADDRESS],[BARANGAY_NAME],[CITY_ID],CITY,PROVINCEID,PROVINCE,COUNTRY,[POSTAL_CODE],[PHONE_NUMBER] " +
             ",[MOBILE_NUMBER], Convert(varchar,[RESIDENT_DATE], 101) as [RESIDENT_DATE],[HOME_OWNERSHIP_ID],[HomeOwnership] " +
             "FROM[FINAL_TESTING].[dbo].[uvw_PISAddress] where PIS_ID = @ID";
-            object[] parms = { "ID",ID};
+            object[] parms = { "ID", ID };
             return db.Read(sql, PISAddress, 0, parms).ToList();
         }
 
@@ -117,6 +120,7 @@ namespace DataObjects.AdoNET
                BarangayName = reader["Barangay_Name"].AsString(),
                CityID = reader["City_ID"].AsString(),
                City = reader["City"].AsString(),
+               ProvinceID = reader["ProvinceID"].AsString(),
                Province = reader["Province"].AsString(),
                Country = reader["Country"].AsString(),
                PostalCode = reader["Postal_Code"].AsString(),
@@ -127,12 +131,12 @@ namespace DataObjects.AdoNET
                HomeOwnerShip = reader["HomeOwnership"].AsString()
            };
 
-        public IEnumerable<CustomerEmployment> getCustomerEmploymentRecordByID (string ID)
+        public IEnumerable<CustomerEmployment> getCustomerEmploymentRecordByID(string ID)
         {
             string sql = "SELECT [ID],[PIS_ID],[BUSINESS_TYPE_ID],[BusinessType],[EMPLOYER_NAME],[INCOME],[CONTACT_NO]" +
                 ",[FromDate],[ToDate],[IS_ACTIVE],[IS_SPOUSE],[NATURE_OF_BUSINESS_ID],[NATUREOFBUSINESS]" +
                 "FROM[FINAL_TESTING].[dbo].[uvw_PISEmployment] where [PIS_ID] = @ID";
-            object[] parms = { "ID", ID };            
+            object[] parms = { "ID", ID };
             return db.Read(sql, PISEmployment, 0, parms).ToList();
         }
 
@@ -156,12 +160,12 @@ namespace DataObjects.AdoNET
 
         public IEnumerable<CustomerRecord> getCustomerRecordByCode(string Code)
         {
-            string sql = "Select [ID],[CODE],Convert(varchar,[DATETIME_CREATED],101) + '|' + Convert(varchar,[DATETIME_CREATED],108) as [DATETIME_CREATED],[ORGANIZATION_ID],[Organization],[DistrictID] "+
-              ",[District],[FIRST_NAME],[LAST_NAME],[MIDDLE_NAME],[GENDER_ID],[Gender],[CIVIL_STATUS_ID],[CivilStatus], isnull(Convert(varchar,[DateOfMarriage], 101),'Not Applicable') as [DateOfMarriage] "+
-	          ",[CITIZENSHIP_ID],[Citizenship],Convert(varchar, [DateOfBirth],101) as [DateOfBirth],[GSIS_NUMBER],[SSS_NUMBER],[TIN_NUMBER],[RCN] "+
-              ",[RCN_PLACE_ISSUED],Convert(varchar, [RCN_DATE_ISSUED],101) as [RCN_DATE_ISSUED],[BORROWER_TYPE_ID],[BorrowerType],[BorrowerGroup],[LEAD_SOURCE_ID],[LeadSource],[AGENT_PROFILE_ID] "+
-              ",[AgentCode],[AgentType],[AGENTLastName],[AGENTFirstName],[AGENTMiddleName],[DocumentationStatus],[APPLICATION_TYPE_ID],[ApplicationType],Isnull([SPOUSE_FIRST_NAME],'Not Applicable') as [SPOUSE_FIRST_NAME],Isnull([SPOUSE_MIDDLE_NAME],'Not Applicable') as [SPOUSE_MIDDLE_NAME],isnull([SPOUSE_LAST_NAME],'Not Applicable') as [SPOUSE_LAST_NAME],isnull(Convert(varchar, [SPOUSE_DATE_OF_BIRTH],101),'Not Applicable') as [SPOUSE_DATE_OF_BIRTH] " +
-              ",isnull([SPOUSE_CONTACT_NUMBER],'Not Applicable') as [SPOUSE_CONTACT_NUMBER],[OWNER_CODE],[OWNER_ID],[PREPARED_BY_ID],Convert(varchar, [PREPARED_BY_DATETIME],101) + '|' + Convert(varchar, [PREPARED_BY_DATETIME],108) as [PREPARED_BY_DATETIME],[DOCUMENT_STATUS_CODE],[PERMISSION],[NOTES] " +
+            string sql = "Select [ID],[CODE],Convert(varchar,[DATETIME_CREATED],101) + '|' + Convert(varchar,[DATETIME_CREATED],108) as [DATETIME_CREATED],[ORGANIZATION_ID],[Organization],[DistrictID] " +
+              ",[District],[FIRST_NAME],[LAST_NAME],[MIDDLE_NAME],[GENDER_ID],[Gender],[CIVIL_STATUS_ID],[CivilStatus], isnull(Convert(varchar,[DateOfMarriage], 101),'') as [DateOfMarriage] " +
+              ",[CITIZENSHIP_ID],[Citizenship],Convert(varchar, [DateOfBirth],101) as [DateOfBirth],[GSIS_NUMBER],[SSS_NUMBER],[TIN_NUMBER],[RCN] " +
+              ",[RCN_PLACE_ISSUED],Convert(varchar, [RCN_DATE_ISSUED],101) as [RCN_DATE_ISSUED],[BORROWER_TYPE_ID],[BorrowerType],[BorrowerGroup],[LEAD_SOURCE_ID],[LeadSource],[AGENT_PROFILE_ID] " +
+              ",[AgentCode],[AgentType],[AGENTLastName],[AGENTFirstName],[AGENTMiddleName],[DocumentationStatus],[APPLICATION_TYPE_ID],[ApplicationType],Isnull([SPOUSE_FIRST_NAME],'') as [SPOUSE_FIRST_NAME],Isnull([SPOUSE_MIDDLE_NAME],'') as [SPOUSE_MIDDLE_NAME],isnull([SPOUSE_LAST_NAME],'') as [SPOUSE_LAST_NAME],isnull(Convert(varchar, [SPOUSE_DATE_OF_BIRTH],101),'') as [SPOUSE_DATE_OF_BIRTH] " +
+              ",isnull([SPOUSE_CONTACT_NUMBER],'') as [SPOUSE_CONTACT_NUMBER],[OWNER_CODE],[OWNER_ID],[PREPARED_BY_ID],Convert(varchar, [PREPARED_BY_DATETIME],101) + '|' + Convert(varchar, [PREPARED_BY_DATETIME],108) as [PREPARED_BY_DATETIME],[DOCUMENT_STATUS_CODE],[PERMISSION],[NOTES] " +
               " from FINAL_TESTING.dbo.uvw_PISData where Code = @Code";
             object[] parms = { "Code", Code };
             return db.Read(sql, PISRecord, 0, parms).ToList();
@@ -203,7 +207,7 @@ namespace DataObjects.AdoNET
                AgentType = reader["AgentType"].AsString(),
                AgentLastName = reader["AgentLastName"].AsString(),
                AgentFirstName = reader["AgentFirstName"].AsString(),
-               AgentMiddleName = reader["AgentMiddleName"].AsString(),    
+               AgentMiddleName = reader["AgentMiddleName"].AsString(),
                DocumentStatus = reader["DocumentationStatus"].AsString(),
                ApplicationTypeID = reader["Application_Type_ID"].AsString(),
                ApplicationType = reader["ApplicationType"].AsString(),
@@ -221,7 +225,7 @@ namespace DataObjects.AdoNET
                Notes = reader["Notes"].AsString()
            };
 
-        public getComponents getAllComponents()
+        public getComponents getAllComponents(BusinessObjects.CustomerRecord custRecord)
         {
             getComponents retComponent = new getComponents();
             retComponent.Gender = getGender();
@@ -232,17 +236,18 @@ namespace DataObjects.AdoNET
             retComponent.BorrowerType = getBorrowerType();
             retComponent.LeadSource = getLeadSource();
             retComponent.CivilStatus = getCivilStatus();
-            retComponent.City = getCity();
+            retComponent.City = getCity(custRecord.ID);
             retComponent.Province = getProvince();
             retComponent.HomeOwnership = getHomeOwnership();
             retComponent.BusinessType = getBusinessType();
             retComponent.NatureofBusiness = getNatureofBusiness();
-            retComponent.AddressType = getAddressType();
+            retComponent.AddressType = getAddressType(false);
             retComponent.RelationshipType = getRelationshipType();
             retComponent.EducationType = getEducationType();
             retComponent.Agent = getAgent();
             return retComponent;
         }
+
         #region Gender
         public IEnumerable<Gender> getGender()
         {
@@ -254,7 +259,7 @@ namespace DataObjects.AdoNET
         static Func<IDataReader, Gender> selectGender = reader =>
            new Gender
            {
-               ID = reader["ID"].AsString(),
+               GenderID = reader["ID"].AsString(),
                Code = reader["Code"].AsString(),
                Description = reader["Description"].AsString()
            };
@@ -270,7 +275,7 @@ namespace DataObjects.AdoNET
         static Func<IDataReader, Citizenship> selectCitizenship = reader =>
            new Citizenship
            {
-               ID = reader["ID"].AsString(),
+               CitizenshipID = reader["ID"].AsString(),
                Code = reader["Code"].AsString(),
                Description = reader["Description"].AsString()
            };
@@ -286,7 +291,7 @@ namespace DataObjects.AdoNET
         static Func<IDataReader, District> selectDistrict = reader =>
            new District
            {
-               ID = reader["ID"].AsString(),
+               DistrictID = reader["ID"].AsString(),
                Code = reader["Code"].AsString(),
                Description = reader["Description"].AsString(),
                DistrictGroupID = reader["DISTRICT_GROUP_ID"].AsString(),
@@ -304,7 +309,7 @@ namespace DataObjects.AdoNET
         static Func<IDataReader, Organization> selectOrganization = reader =>
            new Organization
            {
-               ID = reader["ID"].AsString(),
+               OrganizationID = reader["ID"].AsString(),
                Code = reader["Code"].AsString(),
                Description = reader["Description"].AsString(),
                MotherBranchID = reader["MOTHER_BRANCH_ID"].AsString()
@@ -321,7 +326,7 @@ namespace DataObjects.AdoNET
         static Func<IDataReader, ApplicationType> selectApplicationType = reader =>
            new ApplicationType
            {
-               ID = reader["ID"].AsString(),
+               ApplicationTypeID = reader["ID"].AsString(),
                Code = reader["Code"].AsString(),
                Description = reader["Description"].AsString()
            };
@@ -337,7 +342,7 @@ namespace DataObjects.AdoNET
         static Func<IDataReader, BorrowerType> selectBorrowerType = reader =>
            new BorrowerType
            {
-               ID = reader["ID"].AsString(),
+               BorrowerTypeID = reader["ID"].AsString(),
                Code = reader["Code"].AsString(),
                Description = reader["Description"].AsString(),
                BorrowerGroupID = reader["BORROWER_GROUP_ID"].AsString()
@@ -354,7 +359,7 @@ namespace DataObjects.AdoNET
         static Func<IDataReader, LeadSource> selectLeadSource = reader =>
            new LeadSource
            {
-               ID = reader["ID"].AsString(),
+               LeadSourceID = reader["ID"].AsString(),
                Code = reader["Code"].AsString(),
                Description = reader["Description"].AsString()
            };
@@ -370,15 +375,15 @@ namespace DataObjects.AdoNET
         static Func<IDataReader, CivilStatus> selectCivilStatus = reader =>
            new CivilStatus
            {
-               ID = reader["ID"].AsString(),
+               CivilStatusID = reader["ID"].AsString(),
                Code = reader["Code"].AsString(),
                Description = reader["Description"].AsString()
            };
         #endregion
         #region City
-        public IEnumerable<City> getCity()
+        public IEnumerable<City> getCity(string PISID)
         {
-            string sql = "Select ID,CODE,DESCRIPTION,PROVINCE_ID from city";
+            string sql = "Select ID,CODE,DESCRIPTION,PROVINCE_ID from city where Province_ID in (Select PROVINCEID from uvw_PISAddress where ADDRESS_TYPE_ID = 0 and PIS_ID = '" + PISID + "')";
             object[] parms = { };
             return db.Read(sql, selectCity, 0, parms);
         }
@@ -386,7 +391,22 @@ namespace DataObjects.AdoNET
         static Func<IDataReader, City> selectCity = reader =>
            new City
            {
-               ID = reader["ID"].AsString(),
+               CityID = reader["ID"].AsString(),
+               Code = reader["Code"].AsString(),
+               Description = reader["Description"].AsString(),
+               ProvinceID = reader["PROVINCE_ID"].AsString()
+           };
+        public IEnumerable<City> updateCity(string ProvinceID)
+        {
+            string sql = "Select ID,CODE,DESCRIPTION,PROVINCE_ID from city where Province_ID = '" + ProvinceID + "'";
+            object[] parms = { };
+            return db.Read(sql, selectUpdateCity, 0, parms);
+        }
+
+        static Func<IDataReader, City> selectUpdateCity = reader =>
+           new City
+           {
+               CityID = reader["ID"].AsString(),
                Code = reader["Code"].AsString(),
                Description = reader["Description"].AsString(),
                ProvinceID = reader["PROVINCE_ID"].AsString()
@@ -395,7 +415,7 @@ namespace DataObjects.AdoNET
         #region Province
         public IEnumerable<Province> getProvince()
         {
-            string sql = "Select ID,CODE,DESCRIPTION,COUNTRY_ID from province";
+            string sql = "Select ID,CODE,DESCRIPTION,COUNTRY_ID from province where COUNTRY_ID = 'PH'";
             object[] parms = { };
             return db.Read(sql, selectProvince, 0, parms);
         }
@@ -403,7 +423,7 @@ namespace DataObjects.AdoNET
         static Func<IDataReader, Province> selectProvince = reader =>
            new Province
            {
-               ID = reader["ID"].AsString(),
+               ProvinceID = reader["ID"].AsString(),
                Code = reader["Code"].AsString(),
                Description = reader["Description"].AsString(),
                CountryID = reader["COUNTRY_ID"].AsString()
@@ -420,7 +440,7 @@ namespace DataObjects.AdoNET
         static Func<IDataReader, HomeOwnership> selectHomeOwnership = reader =>
            new HomeOwnership
            {
-               ID = reader["ID"].AsString(),
+               HomeOwnershipID = reader["ID"].AsString(),
                Code = reader["Code"].AsString(),
                Description = reader["Description"].AsString()
            };
@@ -436,7 +456,7 @@ namespace DataObjects.AdoNET
         static Func<IDataReader, BusinessType> selectBusinessType = reader =>
            new BusinessType
            {
-               ID = reader["ID"].AsString(),
+               BusinessTypeID = reader["ID"].AsString(),
                Code = reader["Code"].AsString(),
                Description = reader["Description"].AsString()
            };
@@ -452,15 +472,23 @@ namespace DataObjects.AdoNET
         static Func<IDataReader, NatureofBusiness> selectNatureofBusiness = reader =>
            new NatureofBusiness
            {
-               ID = reader["ID"].AsString(),
+               NatureofBusinessID = reader["ID"].AsString(),
                Code = reader["Code"].AsString(),
                Description = reader["Description"].AsString()
            };
         #endregion
         #region AddressType
-        public IEnumerable<AddressType> getAddressType()
+        public IEnumerable<AddressType> getAddressType(bool includecurrentAddress)
         {
-            string sql = "Select ID,Code,Description from address_type";
+            string sql = "";
+            if (includecurrentAddress == true)
+            {
+                sql = "Select ID,Code,Description from address_type";
+            }
+            else
+            {
+                sql = "Select ID,Code,Description from address_type where ID <> 0";
+            }
             object[] parms = { };
             return db.Read(sql, selectAddressType, 0, parms);
         }
@@ -468,7 +496,7 @@ namespace DataObjects.AdoNET
         static Func<IDataReader, AddressType> selectAddressType = reader =>
            new AddressType
            {
-               ID = reader["ID"].AsString(),
+               AddressTypeID = reader["ID"].AsString(),
                Code = reader["Code"].AsString(),
                Description = reader["Description"].AsString()
            };
@@ -484,7 +512,7 @@ namespace DataObjects.AdoNET
         static Func<IDataReader, RelationshipType> selectRelationshipType = reader =>
            new RelationshipType
            {
-               ID = reader["ID"].AsString(),
+               RelationshipTypeID = reader["ID"].AsString(),
                Code = reader["Code"].AsString(),
                Description = reader["Description"].AsString()
            };
@@ -500,7 +528,7 @@ namespace DataObjects.AdoNET
         static Func<IDataReader, EducationType> selectEducationType = reader =>
            new EducationType
            {
-               ID = reader["ID"].AsString(),
+               EducationTypeID = reader["ID"].AsString(),
                Code = reader["Code"].AsString(),
                Description = reader["Description"].AsString()
            };
@@ -516,7 +544,7 @@ namespace DataObjects.AdoNET
         static Func<IDataReader, Agent> selectAgent = reader =>
            new Agent
            {
-               ID = reader["ID"].AsString(),
+               AgentProfileID = reader["ID"].AsString(),
                Code = reader["Code"].AsString(),
                Description = reader["Description"].AsString()
            };

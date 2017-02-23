@@ -1,5 +1,15 @@
 ﻿@using LMS.Models
 @model LMS.Models.Customer.CustomerModel
+
+<div class="row" style="padding-bottom:10px">
+    <div class="col-md-2">
+        @*<button class="btn btn-info">@Html.ActionLink("Update Customer Profile", "Update_CustomerRecord", "Customer", new { Code = Model.custRecord.Code }, null)</button>*@        
+        <button class="btn btn-info" onclick="@("window.location.href='" + @Url.Action("Update_CustomerRecord", "Customer", new { Code = Model.custRecord.Code }) + "'")">Update Customer Profile</button>
+    </div>
+    <div class="col-md-2">
+        <button class="btn btn-info" id="dlgadd-close-btn">Print Customer Profile</button>
+    </div>
+</div>
 <div style="background-color:white;">
     <div class="row">
         <div class="col-md-6">
@@ -175,7 +185,7 @@
                                 <tbody>
                                     @{bool spouseEmpExist = false;}
                                     @foreach (var emp in Model.custEmployment)
-                                    {                                        
+                                    {
                                         if (@emp.IsSpouse == "Y")
                                         {
                                             spouseEmpExist = true;
@@ -187,13 +197,13 @@
                                                 <td>@emp.Contact_No</td>
                                                 <td>
                                                     @if (@emp.ToDate == null)
-                                                {
+                                                    {
                                                         @emp.FromDate; <text> to Present</text>
                                                     }
                                                     else
                                                     {
                                                         @emp.FromDate; <text> to </text> @emp.ToDate;
-}
+                                                    }
                                                 </td>
                                             </tr>
                                         }
@@ -322,7 +332,7 @@
                                     <th>Ownership</th>
                                 </tr>
                             </thead>
-                            <tbody>                                
+                            <tbody>
                                 @{ bool isSendAddressExist = false;}
                                 @foreach (var addr in Model.custAddress)
                                 {
@@ -373,7 +383,7 @@
                         <tbody>
                             @{ bool isSendDependentExist = false;}
                             @foreach (var dep in Model.custDependents)
-                            {                                
+                            {
                                 isSendDependentExist = true;
                                 <tr>
                                     <td>@dep.LastName, @dep.FirstName @dep.MiddleName</td>
@@ -383,7 +393,7 @@
                                     <td>@dep.StreetAddress, @dep.Province, @dep.City</td>
                                     <td>@dep.SchoolAddress</td>
                                     <td>@dep.ContactNo</td>
-                                </tr>                               
+                                </tr>
                             }
                             @if (isSendDependentExist == false)
                             {
@@ -409,7 +419,7 @@
                             <tr>
                                 <th>Education Type</th>
                                 <th>School Attended</th>
-                                <th>Date Graduated</th>                                
+                                <th>Date Graduated</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -420,7 +430,7 @@
                                 <tr>
                                     <td>@edu.EducationType</td>
                                     <td>@edu.SchoolName</td>
-                                    <td>@edu.GraduationDate</td>                                    
+                                    <td>@edu.GraduationDate</td>
                                 </tr>
                             }
                             @if (isSendEducationExist == false)

@@ -1,0 +1,73 @@
+﻿@using LMS.Models
+@model LMS.Models.Customer.CustomerAddressModel
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "updateAddress" }))
+{
+    <div style="background-color:white;">
+        <div class="row">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Contacts And Addresses</h5>
+                </div>
+                <div class="ibox-content">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Address Type</label>
+                            <div class="col-lg-9">
+                                @Html.DropDownListFor(model => model.custAddress.AddressTypeID, new SelectList(Model.AddressType, "AddressTypeID", "Description", @Model.custAddress.AddressTypeID), new { @class = "form-control addressTypeUpdateBox" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Province/City</label>
+                            <div class="col-lg-4">
+                                @Html.DropDownListFor(model => model.custAddress.ProvinceID, new SelectList(Model.Province, "ProvinceID", "Description", @Model.custAddress.ProvinceID), new { @onChange = "UpdateCity('updateBox')", @class = "form-control provinceUpdateBox" })
+                            </div>
+                            <div class="col-lg-5">
+                                @Html.DropDownListFor(model => model.custAddress.CityID, new SelectList(Model.City, "CityID", "Description", @Model.custAddress.CityID), new { @class = "form-control cityUpdateBox" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Barangay</label>
+                            <div class="col-lg-9">
+                                @Html.TextBoxFor(model => model.custAddress.BarangayName, new { @class = "form-control", @value = @Model.custAddress.BarangayName })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Street Address</label>
+                            <div class="col-lg-9">
+                                @Html.TextBoxFor(model => model.custAddress.StreetAddress, new { @class = "form-control", @value = @Model.custAddress.StreetAddress })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Postal Code</label>
+                            <div class="col-lg-9">
+                                @Html.TextBoxFor(model => model.custAddress.PostalCode, new { @class = "form-control", @value = @Model.custAddress.PostalCode })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Landline / Mobile No.</label>
+                            <div class="col-lg-4">
+                                @Html.TextBoxFor(model => model.custAddress.PhoneNumber, new { @class = "form-control", @value = @Model.custAddress.PhoneNumber })
+                            </div>
+                            <div class="col-lg-5">
+                                @Html.TextBoxFor(model => model.custAddress.MobileNumber, new { @class = "form-control", @value = @Model.custAddress.MobileNumber })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Date of Residence</label>
+                            <div class="col-lg-9">
+                                @Html.TextBoxFor(model => model.custAddress.ResidentDate, new { @class = "form-control applyDatePicker", @value = @Model.custAddress.ResidentDate })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Home Ownership</label>
+                            <div class="col-lg-9">
+                                @Html.DropDownListFor(model => model.custAddress.HomeOwnershipID, new SelectList(Model.HomeOwnership, "HomeOwnershipID", "Description", @Model.custAddress.HomeOwnershipID), new { @class = "form-control HomeOwnUpdateBox" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

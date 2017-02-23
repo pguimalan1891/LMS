@@ -1,0 +1,38 @@
+﻿@using LMS.Models
+@model LMS.Models.Customer.CustomerEducationModel
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "updateEducation" }))
+{
+    <div style="background-color:white;">
+        <div class="row">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Contacts And Addresses</h5>
+                </div>
+                <div class="ibox-content">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Education Type</label>
+                            <div class="col-lg-9">
+                                @Html.DropDownListFor(model => model.custEducation.EducationTypeID, new SelectList(Model.EducationType, "EducationTypeID", "Description", @Model.custEducation.EducationTypeID), new { @class = "form-control educationUpdateBox" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">School Attended</label>
+                            <div class="col-lg-9">
+                                @Html.TextBoxFor(model => model.custEducation.SchoolName, new { @class = "form-control", @value = @Model.custEducation.SchoolName })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Date Graduated</label>
+                            <div class="col-lg-9">
+                                @Html.TextBoxFor(model => model.custEducation.GraduationDate, new { @class = "form-control applyDatePicker", @value = @Model.custEducation.GraduationDate })
+                            </div>
+                        </div>                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
