@@ -10,5 +10,8 @@ namespace DataObjects
     {
         List<Dictionary<string, object>> getBookingRecords(int status);
 
+        List<Dictionary<string, object>> getCheckVoucher(int status);
+        List<Dictionary<string, object>> getCIRForm(int status);
+
     }
 }

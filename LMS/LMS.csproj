@@ -328,6 +328,13 @@
     <Content Include="Content\Scripts\_references.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Models\Booking\BankAssignment.cshtml" />
+    <Content Include="Models\Booking\ChangeCCI.cshtml" />
+    <Content Include="Models\Booking\CheckVoucher.cshtml" />
+    <Content Include="Models\Booking\CIRForm.cshtml" />
+    <Content Include="Models\Booking\DirectLoanReceipt.cshtml" />
+    <Content Include="Models\Booking\DisbursementVoucher.cshtml" />
+    <Content Include="Models\Booking\PromissoryNoteAllocation.cshtml" />
     <None Include="Properties\PublishProfiles\LMSPublish.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\extra\jquery.qtip.min.js" />
@@ -378,6 +385,8 @@
     <Content Include="Scripts\respond.min.js" />
     <None Include="Scripts\_references.js" />
     <Content Include="ViewsJS\Booking\JS_Booking.js" />
+    <Content Include="ViewsJS\Booking\JS_Booking_CIR.js" />
+    <Content Include="ViewsJS\Booking\JS_Booking_CV.js" />
     <Content Include="ViewsJS\Customer\JS_Customer.js" />
     <Content Include="ViewsJS\Library\JS_LibraryComponent.js" />
     <Content Include="Views\Web.config" />

@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewBag.Title = "DirectLoanReceipt";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Scripts
+{
+    @Helper.LoadCustomJS("ViewsJS/Booking/JS_Booking.js", Url)
+}
+    
+    <div class="row">
+        <div class="col-md-12">
+            <div class="page-header"><h1>Workdesk <small>Direct Loan Receipt</small></h1></div>
+        </div>     
+    </div>   
+    <div class="row">
+        <div class="col-md-3">
+            <form>
+                <div class="form-group">
+                    <label for="selfindDLR">Find DLR:</label>
+                    <select class="form-control" id="selfindDLR">
+                        <option value="14">For Submission</option>
+                        <option value="60">Under CV Process</option>
+                        <option value="7">Active List</option>
+                        <option value="64">Unexpired Restructured List</option>
+                        <option value="67">Matured Restructured List</option>
+                        <option value="63">Repossessed List</option>
+                        <option value="65">Renewed List</option>
+                        <option value="66">Unrenewed List</option>
+                        <option value="68">Legal List</option>
+                        <option value="69">Written-Off List</option>
+                        <option value="71">Forced Closure List</option>
+                        <option value="99">All Listing</option>
+                    </select>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 id="lblfindDLR" class="panel-title">For Submission</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table id="tbBooking" class="table table-striped table-bordered dt-responsive no-wrap" cellspacing="0" width="100%">
+                            <thead></thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
