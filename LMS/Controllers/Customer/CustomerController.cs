@@ -51,10 +51,48 @@ namespace LMS.Controllers
             return Json(this.service.getCustomerRecord(), JsonRequestBehavior.AllowGet);
         }
 
+        [HttpPost]
+        public ActionResult UpdateCustomerData(Models.Customer.CustomerModel custModel, List<Models.Customer.CustomerAddress> custAddress, List<Models.Customer.CustomerDependents> custDependents, List<Models.Customer.CustomerEmployment> custEmployment, List<Models.Customer.CustomerEducation> custEducation, List<Models.Customer.CustomerCharacter> custCharacter,string PISID)
+        {
+            if (custEmployment == null)
+                custEmployment = new List<Models.Customer.CustomerEmployment>();
+            if (custCharacter == null)
+                custCharacter = new List<Models.Customer.CustomerCharacter>();
+            if (custDependents == null)
+                custDependents = new List<Models.Customer.CustomerDependents>();
+            if (custEducation == null)
+                custEducation = new List<Models.Customer.CustomerEducation>();
+            if (custAddress == null)
+                custAddress = new List<Models.Customer.CustomerAddress>();
+            custModel.custEmployment = custEmployment;
+            custModel.custCharacter = custCharacter;
+            custModel.custDependents = custDependents;
+            custModel.custEducation = custEducation;            
+            foreach (Models.Customer.CustomerAddress address in custAddress)
+            {
+                custModel.custAddress.Add(address);
+            }
+            Mapper.CreateMap<Models.Customer.CustomerAddress, BusinessObjects.CustomerAddress>();
+            Mapper.CreateMap<Models.Customer.CustomerCharacter, BusinessObjects.CustomerCharacter>();
+            Mapper.CreateMap<Models.Customer.CustomerDependents, BusinessObjects.CustomerDependents>();
+            Mapper.CreateMap<Models.Customer.CustomerEducation, BusinessObjects.CustomerEducation>();
+            Mapper.CreateMap<Models.Customer.CustomerEmployment, BusinessObjects.CustomerEmployment>();
+            Mapper.CreateMap<Models.Customer.CustomerRecord, BusinessObjects.CustomerRecord>();
+            Mapper.CreateMap<Models.Customer.CustomerModel, BusinessObjects.CustomerModel>();
+            BusinessObjects.CustomerModel cModel = Mapper.Map<Models.Customer.CustomerModel, BusinessObjects.CustomerModel>(custModel);            
+            return Content(service.UpdateCustomerData("Update", cModel, PISID).ToString());
+        }
+
+        [HttpGet]
+        public ActionResult getGUID()
+        {
+            return Content(System.Guid.NewGuid().ToString());
+        }
+
         [HttpGet]
         public ActionResult FetchCustomerRecordByID(string Code)
         {
-            Models.Customer.CustomerModel custModel = new CustomerModel();
+            Models.Customer.CustomerModel custModel = new Models.Customer.CustomerModel();
             custModel.custRecord = SetCustomerRecordModel(service.getCustomerRecordByCode(Code));
             var ID = custModel.custRecord.ID;
             custModel.custCharacter = setCustomerCharacterModel(service.getCustomerCharacterByID(ID));
@@ -68,10 +106,20 @@ namespace LMS.Controllers
         }
 
         [HttpGet]
+        [Route("CustomerAdd")]
+        public ActionResult Add_CustomerRecord(string Code)
+        {
+            Models.Customer.CustomerModel custModel = new Models.Customer.CustomerModel();
+            BusinessObjects.CustomerRecord custRecord = new BusinessObjects.CustomerRecord();
+            custModel.allComponents = setComponents(custRecord);
+            return View(custModel);
+        }
+
+        [HttpGet]
         [Route("CustomerUpdate")]
         public ActionResult Update_CustomerRecord(string Code)
         {
-            Models.Customer.CustomerModel custModel = new CustomerModel();
+            Models.Customer.CustomerModel custModel = new Models.Customer.CustomerModel();
             var custRecord = service.getCustomerRecordByCode(Code);
             custModel.custRecord = SetCustomerRecordModel(custRecord);
             var ID = custModel.custRecord.ID;
@@ -87,7 +135,7 @@ namespace LMS.Controllers
         [HttpPost]
         public ActionResult GetCustomerFullData(string Code, string Type)
         {
-            Models.Customer.CustomerModel custModel = new CustomerModel();
+            Models.Customer.CustomerModel custModel = new Models.Customer.CustomerModel();
             custModel.custRecord = SetCustomerRecordModel(service.getCustomerRecordByCode(Code));
             var ID = custModel.custRecord.ID;
             if (Type == "Character")
@@ -242,7 +290,7 @@ namespace LMS.Controllers
             Mapper.CreateMap<BusinessObjects.Province, Models.Customer.Province>();
             Mapper.CreateMap<BusinessObjects.City, Models.Customer.City>();
             IEnumerable<Models.Customer.Province> Province = Mapper.Map<IEnumerable<BusinessObjects.Province>, IEnumerable<Models.Customer.Province>>(service.getProvince());
-            IEnumerable<Models.Customer.City> City = Mapper.Map<IEnumerable<BusinessObjects.City>, IEnumerable<Models.Customer.City>>(service.getCity(custCharacter.ProvinceID));
+            IEnumerable<Models.Customer.City> City = Mapper.Map<IEnumerable<BusinessObjects.City>, IEnumerable<Models.Customer.City>>(service.updateCity(custCharacter.ProvinceID));
             md.custCharacter = custCharacter;
             md.Province = Province;
             md.City = City;

@@ -2,13 +2,11 @@
 @model LMS.Models.Customer.CustomerModel
 
 <div class="row" style="padding-bottom:10px">
-    <div class="col-md-2">
-        @*<button class="btn btn-info">@Html.ActionLink("Update Customer Profile", "Update_CustomerRecord", "Customer", new { Code = Model.custRecord.Code }, null)</button>*@        
-        <button class="btn btn-info" onclick="@("window.location.href='" + @Url.Action("Update_CustomerRecord", "Customer", new { Code = Model.custRecord.Code }) + "'")">Update Customer Profile</button>
+    <div class="col-md-12">
+        <a class="btn btn-info" onclick="@("window.location.href='" + @Url.Action("Update_CustomerRecord", "Customer", new { Code = Model.custRecord.Code }) + "'")">Update Customer Profile</a>
+        &nbsp;<a class="btn btn-info" id="dlgadd-close-btn">Print Customer Profile</a>
     </div>
-    <div class="col-md-2">
-        <button class="btn btn-info" id="dlgadd-close-btn">Print Customer Profile</button>
-    </div>
+    
 </div>
 <div style="background-color:white;">
     <div class="row">

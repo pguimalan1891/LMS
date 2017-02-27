@@ -16,6 +16,7 @@ namespace ServiceLayer.Interface
         IEnumerable<CustomerDependents> getCustomerDependentsByID(string ID);
         IEnumerable<CustomerAddress> getCustomerAddressByID(string ID);
         IEnumerable<CustomerEmployment> getCustomerEmploymentRecordByID(string ID);
+        int UpdateCustomerData(string ProcessType, CustomerModel custModel, string PISID);
         getComponents getAllComponents(BusinessObjects.CustomerRecord custRecord);    
         IEnumerable<Gender> getGender();
         IEnumerable<Citizenship> getCitizenship();

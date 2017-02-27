@@ -18,6 +18,7 @@ namespace DataObjects
         IEnumerable<CustomerEmployment> getCustomerEmploymentRecordByID(string ID);
         IEnumerable<CustomerRecord> getCustomerRecordByCode(string Code);
         getComponents getAllComponents(BusinessObjects.CustomerRecord custRecord);
+        int UpdateCustomerData(string ProcessType, CustomerModel custModel, string PISID);
         IEnumerable<Gender> getGender();
         IEnumerable<Citizenship> getCitizenship();
         IEnumerable<District> getDistrict();

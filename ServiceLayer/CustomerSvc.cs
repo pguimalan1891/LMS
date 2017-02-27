@@ -14,6 +14,10 @@ namespace ServiceLayer
         static readonly IDAOFactory factory = DAOFactories.GetFactory();
         static readonly ICustomerDAO customer = factory.CustomerDAO;
 
+        public int UpdateCustomerData(string ProcessType, CustomerModel custModel, string PISID)
+        {
+            return customer.UpdateCustomerData(ProcessType, custModel, PISID);
+        }
         public List<Dictionary<string, object>> getCustomerRecord()
         {
             return customer.getCustomerRecord();

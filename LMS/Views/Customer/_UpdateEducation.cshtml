@@ -21,12 +21,14 @@
                             <label class="col-lg-3 control-label">School Attended</label>
                             <div class="col-lg-9">
                                 @Html.TextBoxFor(model => model.custEducation.SchoolName, new { @class = "form-control", @value = @Model.custEducation.SchoolName })
+                                <br />@Html.ValidationMessageFor(model => model.custEducation.SchoolName, "", new { @class = "validation" })
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-lg-3 control-label">Date Graduated</label>
                             <div class="col-lg-9">
                                 @Html.TextBoxFor(model => model.custEducation.GraduationDate, new { @class = "form-control applyDatePicker", @value = @Model.custEducation.GraduationDate })
+                                <br />@Html.ValidationMessageFor(model => model.custEducation.GraduationDate, "", new { @class = "validation" })
                             </div>
                         </div>                        
                     </div>
