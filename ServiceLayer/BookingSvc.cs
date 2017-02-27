@@ -17,5 +17,15 @@ namespace ServiceLayer
         {
             return booking.getBookingRecords(status);
         }
+
+        public List<Dictionary<string, object>> getCheckVoucher(int status)
+        {
+            return booking.getCheckVoucher(status);
+        }
+
+        public List<Dictionary<string, object>> getCIRForm(int status)
+        {
+            return booking.getCIRForm(status);
+        }
     }
 }

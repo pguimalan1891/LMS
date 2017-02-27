@@ -20,7 +20,7 @@ namespace LMS.Controllers
         public BookingController()
             : this(new BookingSvc())
         {
-            
+
         }
 
         public BookingController(IBookingSvc service)
@@ -39,10 +39,64 @@ namespace LMS.Controllers
             return View();
         }
 
+        public ActionResult CheckVoucher()
+        {
+            return View();
+        }
+
+        public ActionResult CIRForm()
+        {
+            return View();
+        }
+
+        public ActionResult DisbursementVoucher()
+        {
+            return View();
+        }
+
+        public ActionResult ChangeCCI()
+        {
+            return View();
+        }
+
+        public ActionResult BankAssignment()
+        {
+            return View();
+        }
+
+        public ActionResult PromissoryNoteAllocation()
+        {
+            return View();
+        }
+
         [HttpPost]
         public ActionResult RetrieveBookingRecords(int status)
         {
             return Json(this.service.getBookingRecords(status));
+        }
+
+        [HttpPost]
+        public ActionResult RetrieveCheckVoucher(int status)
+        {
+            return Json(this.service.getCheckVoucher(status));
+        }
+
+        [HttpPost]
+        public ActionResult RetrieveCIRForm(int status)
+        {
+            return Json(this.service.getCIRForm(status));
+        }
+
+        protected override JsonResult Json(object data, string contentType, System.Text.Encoding contentEncoding, JsonRequestBehavior behavior)
+        {
+            return new JsonResult()
+            {
+                Data = data,
+                ContentType = contentType,
+                ContentEncoding = contentEncoding,
+                JsonRequestBehavior = behavior,
+                MaxJsonLength = Int32.MaxValue
+            };
         }
     }
 }

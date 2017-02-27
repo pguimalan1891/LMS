@@ -57,6 +57,7 @@
     <Compile Include="IDAOFactory.cs" />
     <Compile Include="ILibraryDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="SPs\Booking\usp_getCheckVoucher.sql" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BusinessObjects\BusinessObjects.csproj">
@@ -72,6 +73,7 @@
     <Content Include="bin\Debug\DataObjects.pdb" />
     <Content Include="SPs\Account\usp_Login.sql" />
     <Content Include="SPs\Booking\RetrieveBookingRecords.sql" />
+    <Content Include="SPs\Booking\usp_getCIRForm.sql" />
     <Content Include="SPs\Customer\Views\[uvw_PISAddress].sql" />
     <Content Include="SPs\Customer\Views\[uvw_PISCharacter].sql" />
     <Content Include="SPs\Customer\Views\[uvw_PISData].sql" />
