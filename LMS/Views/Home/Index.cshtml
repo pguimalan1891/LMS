@@ -2,8 +2,143 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h1>Radiowealth Finance Corporation</h1>
-    <p class="lead">Loans Management System</p>
-    <p><a href="" class="btn btn-primary btn-lg">View Users Manual &raquo;</a></p>
+<div class="row">
+    <div class="col-lg-6">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>Loan Application List</h5>
+                <div class="ibox-tools">
+                    <a class="collapse-link">
+                        <i class="fa fa-chevron-up"></i>
+                    </a>
+                    <a class="close-link">
+                        <i class="fa fa-times"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="ibox-content">
+                <table class="table table-hover no-margins">
+                    <thead>
+                        <tr>
+                            <th>Status</th>
+                            <th>Date</th>
+                            <th>Borrower</th>
+                            <th>Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><small>Pending...</small></td>
+                            <td><i class="fa fa-clock-o"></i> 02/01/2017 11:20pm</td>
+                            <td>Samantha</td>
+                            <td class="text-navy">1,000,000</td>
+                        </tr>
+                        <tr>
+                            <td><span class="label label-warning">For Booking</span> </td>
+                            <td><i class="fa fa-clock-o"></i> 02/01/2017  10:40am</td>
+                            <td>Monica</td>
+                            <td class="text-navy"> 1,000,000</td>
+                        </tr>
+                        <tr>
+                            <td><small>Pending...</small> </td>
+                            <td><i class="fa fa-clock-o"></i> 02/01/2017  01:30pm</td>
+                            <td>John</td>
+                            <td class="text-navy"> 1,000,000 </td>
+                        </tr>
+                        <tr>
+                            <td><small>Pending...</small> </td>
+                            <td><i class="fa fa-clock-o"></i> 02/01/2017 02:20pm</td>
+                            <td>Agnes</td>
+                            <td class="text-navy"> 1,000,000 </td>
+                        </tr>
+                        <tr>
+                            <td><small>Pending...</small> </td>
+                            <td><i class="fa fa-clock-o"></i> 02/01/2017  09:40pm</td>
+                            <td>Janet</td>
+                            <td class="text-navy"> 1,000,000 </td>
+                        </tr>
+                        <tr>
+                            <td><span class="label label-primary">For Release</span> </td>
+                            <td><i class="fa fa-clock-o"></i>  02/01/2017 04:10am</td>
+                            <td>Amelia</td>
+                            <td class="text-navy"> 1,000,000 </td>
+                        </tr>
+                        <tr>
+                            <td><small>Pending...</small> </td>
+                            <td><i class="fa fa-clock-o"></i>  02/01/2017 12:08am</td>
+                            <td>Damian</td>
+                            <td class="text-navy">1,000,000</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>Borrower List</h5>
+                <div class="ibox-tools">
+                    <a class="collapse-link">
+                        <i class="fa fa-chevron-up"></i>
+                    </a>
+                    <a class="close-link">
+                        <i class="fa fa-times"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="ibox-content">
+                <div class="form-group">
+                    <label class="col-lg-2 control-label">Search</label>
+
+                    <div class="col-lg-8"><input type="text" placeholder="Name of Borrower" class="form-control"></div>
+                        <button class="btn btn-sm btn-primary col-lg-2" type="submit"><strong>Search</strong></button>
+                    </div>
+                <hr/>
+                <table class="table table-hover no-margins">
+                    <thead>
+                        <tr>
+                           
+                            <th>Borrower</th>
+                            <th>Options</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                           
+                            <td>Samantha</td>
+                            <td class="text-navy"><a href="#"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> New Loan </a> | <a href="#"><i class="fa fa-bars" aria-hidden="true"></i> List of Transactions</a></td>
+                        </tr>
+                        <tr>
+                             <td>Monica</td>
+                            <td class="text-navy"><a href="#"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> New Loan </a> | <a href="#"><i class="fa fa-bars" aria-hidden="true"></i> List of Transactions</a></td>
+ </tr>
+                        <tr>
+                            <td>John</td>
+                            <td class="text-navy"><a href="#"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> New Loan </a> | <a href="#"><i class="fa fa-bars" aria-hidden="true"></i> List of Transactions</a></td>
+</tr>
+                        <tr>
+                             <td>Agnes</td>
+                            <td class="text-navy"><a href="#"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> New Loan </a> | <a href="#"><i class="fa fa-bars" aria-hidden="true"></i> List of Transactions</a></td>
+ </tr>
+                        <tr>
+                            <td>Janet</td>
+                            <td class="text-navy"><a href="#"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> New Loan </a> | <a href="#"><i class="fa fa-bars" aria-hidden="true"></i> List of Transactions</a></td>
+</tr>
+                        <tr>
+                            <td>Amelia</td>
+                            <td class="text-navy"><a href="#"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> New Loan </a> | <a href="#"><i class="fa fa-bars" aria-hidden="true"></i> List of Transactions</a></td>
+ </tr>
+                        <tr>
+                            <td>Damian</td>
+                            <td class="text-navy"><a href="#"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> New Loan </a> | <a href="#"><i class="fa fa-bars" aria-hidden="true"></i> List of Transactions</a></td>
+</tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
 </div>

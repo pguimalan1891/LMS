@@ -18,8 +18,6 @@ namespace LMS.Controllers.Collections
             return View("OfficialReceipt", mdl);
             
         }
-
         
-
     }
 }

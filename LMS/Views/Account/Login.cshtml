@@ -4,48 +4,54 @@
     ViewBag.Title = "Log in";
 }
 
-<h2>@ViewBag.Title.</h2>
-<div class="row">
-    <div class="col-md-5">
-        <section id="loginForm">
-            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-            {
-                @Html.AntiForgeryToken()
-                <h4>Use a local account to log in.</h4>
-                <hr />
+<center>
+
+<div class="text-center loginscreen  animated fadeInDown" style="color: white; width: 350px; ">
+    <div>
+        <div>
+            <h1 class="logo-name">RFC</h1>
+        </div>
+        <h3>Radio Wealth Finance Corporation</h3>
+        <p>
+            Loans Management &amp; Processing System
+        </p>
+        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal m-t", @role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+            <h4>Use a local account to log in.</h4>
+            <hr />
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-10">
-                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
-                    </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @style = "color: black;" })
                 </div>
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-10">
-                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
-                    </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", @style = "color: black;" })
+                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
                 </div>
-                
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Log in" class="btn btn-default" />
-                    </div>
-                </div>
-                <p>
+            </div>
+            <button type="submit" class="btn btn-primary block full-width m-b">Log in</button>
+            <a href="#"><small>Forgot password?</small></a>
+                        <p class="text-muted text-center"><small>Do not have an account?</small></p>
+
+
+                        <p class="m-t"> <small>All Content is protected by Copyright &copy; 2014</small> </p>
+        }
+           
                     
-                </p>
-                @* Enable this once you have account confirmation enabled for password reset functionality
-                    <p>
-                        @Html.ActionLink("Forgot your password?", "ForgotPassword")
-                    </p>*@
-            }
-        </section>
-    </div>
-    
-</div>
+
+                           
+                        
+                     
+                    </div>
+                </div>
+
+</center>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

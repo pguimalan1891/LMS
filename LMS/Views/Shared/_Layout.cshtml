@@ -34,23 +34,26 @@
 </head>
 <body>
     <div id="wrapper">
+        @if(ViewBag.isEnabled == true)
+        {
         <nav class="navbar-default navbar-static-side" role="navigation">
             <div class="sidebar-collapse">
                 <ul class="nav" id="side-menu">
                     <li class="nav-header">
-                        @if (ViewBag.isEnabled == true)
-                        {
-                            <div class="dropdown profile-element">
-                                <span>
-                                    <img alt="image" width="35px" height="35px" class="img-circle" src="~/Content/uiPlugins/theme/img/profile_small.png" />
-                                </span>
+                          <div class="dropdown profile-ele  ment">
+                               
                                 <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                                     <span class="clear">
-                                        <span class="block m-t-xs">
-                                            <strong class="font-bold">@Html.Label("position", (string)ViewBag.ApplicationUserAccount[0]["NAME"])</strong>
+                                        <br/>
+                                        <br/>
+                                        <span>Logged in as:</span>
+                                        <span class="block m-t-xs" style="font-weight: normal;">
+                                            @Html.Label("position", (string)ViewBag.ApplicationUserAccount[0]["NAME"])
                                         </span>
-                                        <span class="text-muted text-xs block">@Html.Label("position", (string)ViewBag.ApplicationUserAccount[0]["DESCRIPTION"])<b class="caret"></b></span>
+                                        <span class="text-muted text-xs block">@Html.Label("position", (string)ViewBag.ApplicationUserAccount[0]["DESCRIPTION"]) <b class="caret"></b></span>
+                                        
                                     </span>
+                                    <hr />
                                 </a>
                                 <ul class="dropdown-menu animated fadeInRight m-t-xs">
                                     <li><a href="#profile.html">Profile</a></li>
@@ -61,32 +64,17 @@
                                 </ul>
                             </div>
 
-                        }
-                        else
-                        {
-                            <div class="dropdown profile-element">
-                                <span>
-                                    <img alt="image" width="35px" height="35px" class="img-circle" src="~/Content/uiPlugins/theme/img/profile_small.png" />
-                                </span>
-                                <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                                    <span class="clear">
-                                      RFC - Loans Management System
-                                    </span>
-                                </a>
-                          
-                            </div>
-                        }
-                        
+                      
                         <div class="logo-element">
                             RFC
                         </div>
                     </li>
-                    @if (ViewBag.isEnabled == true)
-                    {
-                        <li class="active">
+                       <li class="active">
                             <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">Application</span> <span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
-                                <li>@Html.ActionLink("BorrowerProfile", "Customer", "Customer")</li>                                
+                                <li>@Html.ActionLink("BorrowerProfile", "Customer", "Customer")</li>       
+                                <li>@Html.ActionLink("Loan Application", "Customer", "Customer")</li>                     
+                                <li>@Html.ActionLink("Credit Investigation", "Customer", "Customer")</li>                                              
                             </ul>
                         </li>
                         <li>
@@ -111,7 +99,7 @@
                                 <li>@Html.ActionLink("Deposit Slip", "Contact", "Home")</li>
                             </ul>
                         </li>
-                    }
+                    
 
                 </ul>
             </div>
@@ -119,13 +107,16 @@
         <div id="page-wrapper" class="gray-bg">
             <div class="row border-bottom">
                
-                @if (ViewBag.isEnabled == true)
-                {
                     <nav class="navbar navbar-static-top white-bg" role="navigation" style="margin-bottom: 0">
                         <div class="navbar-header">
-                            <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
-
+                            <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i></a>
                         </div>
+                        <ul class="nav navbar-top-links navbar-left" style="padding-left: 15px;">
+                            <li>
+                              <h2>RFC- Loans Management System</h2> 
+                            </li>
+
+                        </ul>
                         <ul class="nav navbar-top-links navbar-right">
                             <li>
                                 <a href="@Url.Action("Logout", "Account")"><i class="fa fa-sign-out"></i> Logout</a>
@@ -133,9 +124,9 @@
 
                         </ul>
                     </nav>
-                }
-                
+               
             </div>
+            
             <div class="wrapper wrapper-content">
                 @RenderBody()
             </div>
@@ -148,6 +139,12 @@
                 </div>
             </div>
         </div>
+        }else
+        {
+        <div class="wrapper wrapper-content">
+            @RenderBody()
+        </div>
+        }
     </div>
 
     

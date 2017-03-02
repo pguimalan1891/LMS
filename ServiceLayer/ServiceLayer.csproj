@@ -48,7 +48,9 @@
     <Compile Include="Interface\IBookingSvc.cs" />
     <Compile Include="Interface\ICustomerSvc.cs" />
     <Compile Include="Interface\ILibrarySvc.cs" />
+    <Compile Include="Interface\ILoanApplicationSvc.cs" />
     <Compile Include="LibrarySvc.cs" />
+    <Compile Include="LoanApplicationSvc.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
