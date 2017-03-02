@@ -172,8 +172,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\Application\ApplicationController.cs" />
     <Compile Include="Controllers\Booking\BookingController.cs" />
     <Compile Include="Controllers\Collections\OfficialReceiptController.cs" />
+    <Compile Include="Controllers\CreditInvestigation\CreditInvestigationController.cs" />
     <Compile Include="Controllers\Customer\CustomerController.cs" />
     <Compile Include="Controllers\DevelopmentTools\DevelopmentToolsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -185,6 +187,7 @@
     <Compile Include="Models\Customer\CustomerModel.cs" />
     <Compile Include="Models\DevelopmentTools\LibraryComponentModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\LoanApplication\LoanApplicationModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\OfficialReceiptViewModel.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
@@ -441,7 +444,9 @@
     <Folder Include="Content\uiPlugins\theme\css\patterns\" />
     <Folder Include="Content\uiPlugins\theme\css\plugins\" />
     <Folder Include="Content\uiPlugins\theme\js\demo\" />
+    <Folder Include="Views\Application\" />
     <Folder Include="Views\Collections\" />
+    <Folder Include="Views\CreditInvestigation\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />

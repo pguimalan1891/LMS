@@ -56,6 +56,7 @@
     <Compile Include="ICustomerDAO.cs" />
     <Compile Include="IDAOFactory.cs" />
     <Compile Include="ILibraryDAO.cs" />
+    <Compile Include="ILoanApplicationDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
