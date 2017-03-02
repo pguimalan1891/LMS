@@ -1,0 +1,78 @@
+﻿@using LMS.Models
+@model LMS.Models.Customer.CustomerAddressModel
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "addAddress" }))
+{
+    <div style="background-color:white;">
+        <div class="row">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Contacts And Addresses</h5>
+                </div>
+                <div class="ibox-content">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Address Type</label>
+                            <div class="col-lg-9">
+                                @Html.DropDownListFor(model => model.custAddress.AddressTypeID, new SelectList(Model.AddressType, "AddressTypeID", "Description"), new { @class = "form-control addressTypeAddBox" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Province/City</label>
+                            <div class="col-lg-4">
+                                @Html.DropDownListFor(model => model.custAddress.ProvinceID, new SelectList(Model.Province, "ProvinceID", "Description"), new { @onChange = "UpdateCity('addBox')", @class = "form-control provinceAddBox" })
+                            </div>
+                            <div class="col-lg-5">
+                                @Html.DropDownListFor(model => model.custAddress.CityID, new SelectList(Model.City, "CityID", "Description"), new { @class = "form-control cityAddBox" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Barangay</label>
+                            <div class="col-lg-9">
+                                @Html.TextBoxFor(model => model.custAddress.BarangayName, new { @class = "form-control" })
+                                <br />@Html.ValidationMessageFor(model => model.custAddress.BarangayName, "", new { @class = "validation" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Street Address</label>
+                            <div class="col-lg-9">
+                                @Html.TextBoxFor(model => model.custAddress.StreetAddress, new { @class = "form-control" })
+                                <br />@Html.ValidationMessageFor(model => model.custAddress.StreetAddress, "", new { @class = "validation" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Postal Code</label>
+                            <div class="col-lg-9">
+                                @Html.TextBoxFor(model => model.custAddress.PostalCode, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Landline / Mobile No.</label>
+                            <div class="col-lg-4">
+                                @Html.TextBoxFor(model => model.custAddress.PhoneNumber, new { @class = "form-control" })
+                                <br />@Html.ValidationMessageFor(model => model.custAddress.PhoneNumber, "", new { @class = "validation" })
+                            </div>
+                            <div class="col-lg-5">
+                                @Html.TextBoxFor(model => model.custAddress.MobileNumber, new { @class = "form-control" })
+                                <br />@Html.ValidationMessageFor(model => model.custAddress.MobileNumber, "", new { @class = "validation" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Date of Residence</label>
+                            <div class="col-lg-9">
+                                @Html.TextBoxFor(model => model.custAddress.ResidentDate, new { @class = "form-control applyDatePicker" })
+                                <br />@Html.ValidationMessageFor(model => model.custAddress.ResidentDate, "", new { @class = "validation" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Home Ownership</label>
+                            <div class="col-lg-9">
+                                @Html.DropDownListFor(model => model.custAddress.HomeOwnershipID, new SelectList(Model.HomeOwnership, "HomeOwnershipID", "Description"), new { @class = "form-control HomeOwnAddBox" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

@@ -20,6 +20,44 @@ namespace LMS.Models.Customer
 
     }
 
+    public class CustomerEmploymentModel
+    {
+        public CustomerEmployment custEmployment { get; set; }
+        public IEnumerable<BusinessType> BusinessType { get; set; }
+        public IEnumerable<NatureofBusiness> NatureofBusiness { get; set; }
+    }
+
+    public class CustomerAddressModel
+    {
+        public CustomerAddress custAddress { get; set; }
+        public IEnumerable<Province> Province { get; set; }
+        public IEnumerable<City> City { get; set; }
+        public IEnumerable<HomeOwnership> HomeOwnership { get; set; }
+        public IEnumerable<AddressType> AddressType { get; set; }
+    }
+
+    public class CustomerDependentsModel
+    {
+        public CustomerDependents custDependents { get; set; }
+        public IEnumerable<Gender> Gender { get; set; }
+        public IEnumerable<RelationshipType> RelationshipType { get; set; }
+        public IEnumerable<Province> Province { get; set; }
+        public IEnumerable<City> City { get; set; }
+    }
+
+    public class CustomerEducationModel
+    {
+        public CustomerEducation custEducation { get; set; }
+        public IEnumerable<EducationType> EducationType { get; set; }
+    }
+
+    public class CustomerCharacterModel
+    {
+        public CustomerCharacter custCharacter { get; set; }
+        public IEnumerable<Province> Province { get; set; }
+        public IEnumerable<City> City { get; set; }
+    }
+
     public class CustomerRecord
     {
         public string ID { get; set; }
@@ -28,17 +66,21 @@ namespace LMS.Models.Customer
         public string OrganizationID { get; set; }
         public string Organization { get; set; }
         public string DistrictID { get; set; }
-        public string District { get; set; }        
+        public string District { get; set; }
+        [Required(ErrorMessage ="First Name is required.")]
         public string FirstName { get; set; }
+        [Required(ErrorMessage = "Last Name is required.")]
         public string LastName { get; set; }
+        [Required(ErrorMessage = "Middle Name is required.")]
         public string MiddleName { get; set; }
         public string GenderID { get; set; }
         public string Gender { get; set; }
         public string CivilStatusID { get; set; }
-        public string CivilStatus { get; set; }
+        public string CivilStatus { get; set; }        
         public string DateOfMarriage { get; set; }
         public string CitizenshipID { get; set; }
-        public string Citizenship { get; set; }
+        public string Citizenship { get; set; }        
+        [Required(ErrorMessage = "Date of Birth is required.")]
         public string DateOfBirth { get; set; }
         public string GSISNumber { get; set; }
         public string SSSNumber { get; set; }
@@ -80,9 +122,13 @@ namespace LMS.Models.Customer
         public string PISID { get; set; }
         public string BusinessTypeID { get; set; }
         public string BusinessType { get; set; }
+        [Required(ErrorMessage = "Employer Name is required.")]
         public string EmployerName { get; set; }
+        [Required(ErrorMessage = "Income is required.")]
         public string Income { get; set; }
+        [Required(ErrorMessage = "Contact Number is required.")]
         public string Contact_No { get; set; }
+        [Required(ErrorMessage = "Active From Date is required.")]
         public string FromDate { get; set; }
         public string ToDate { get; set; }
         public string IsActive { get; set; }
@@ -98,15 +144,21 @@ namespace LMS.Models.Customer
         public string PISID { get; set; }
         public string AddressTypeID { get; set; }
         public string AddressType { get; set; }
+        [Required(ErrorMessage = "Street Address is required.")]
         public string StreetAddress { get; set; }
+        [Required(ErrorMessage = "Barangay Name is required.")]
         public string BarangayName { get; set; }
         public string CityID { get; set; }
         public string City { get; set; }
+        public string ProvinceID { get; set; }
         public string Province { get; set; }
         public string Country { get; set; }
         public string PostalCode { get; set; }
+        [Required(ErrorMessage = "Phone Number is required.")]
         public string PhoneNumber { get; set; }
+        [Required(ErrorMessage = "Mobile Number is required.")]
         public string MobileNumber { get; set; }
+        [Required(ErrorMessage = "Date of Residence is required.")]
         public string ResidentDate { get; set; }
         public string HomeOwnershipID { get; set; }
         public string HomeOwnerShip { get; set; }
@@ -116,19 +168,27 @@ namespace LMS.Models.Customer
     {
         public string ID { get; set; }
         public string PISID { get; set; }
+        [Required(ErrorMessage = "First Name is required.")]
         public string FirstName { get; set; }
+        [Required(ErrorMessage = "Middle Name is required.")]
         public string MiddleName { get; set; }
+        [Required(ErrorMessage = "Last Name is required.")]
         public string LastName { get; set; }
         public string GenderID { get; set; }
         public string Gender { get; set; }
+        [Required(ErrorMessage = "Street Address is required.")]
         public string StreetAddress { get; set; }
         public string CityID { get; set; }
         public string City { get; set; }
+        public string ProvinceID { get; set; }
         public string Province { get; set; }
         public string RelationshipTypeID { get; set; }
         public string RelationshipType { get; set; }
+        [Required(ErrorMessage = "Date of Birth is required.")]
         public string BirthDate { get; set; }
+        [Required(ErrorMessage = "School Address is required.")]
         public string SchoolAddress { get; set; }
+        [Required(ErrorMessage = "Contact Number is required.")]
         public string ContactNo { get; set; }
     }
 
@@ -138,7 +198,9 @@ namespace LMS.Models.Customer
         public string PISID { get; set; }
         public string EducationTypeID { get; set; }
         public string EducationType { get; set; }
+        [Required(ErrorMessage = "School Name is required.")]
         public string SchoolName { get; set; }
+        [Required(ErrorMessage = "Graduation Date is required.")]
         public string GraduationDate { get; set; }
     }
 
@@ -146,13 +208,21 @@ namespace LMS.Models.Customer
     {
         public string ID { get; set; }
         public string PISID { get; set; }
+        [Required(ErrorMessage = "First Name is required.")]
         public string FirstName { get; set; }
+        [Required(ErrorMessage = "Middle Name is required.")]
         public string MiddleName { get; set; }
+        [Required(ErrorMessage = "Last Name is required.")]
         public string LastName { get; set; }
+        [Required(ErrorMessage = "Relationship is required.")]
         public string RelationShip { get; set; }
+        [Required(ErrorMessage = "Street Address is required.")]
         public string StreetAddress { get; set; }
+        public string ProvinceID { get; set; }
+        public string Province { get; set; }
         public string CityID { get; set; }
         public string City { get; set; }
+        [Required(ErrorMessage = "Contact Number is required.")]
         public string ContactNo { get; set; }
     }
 
@@ -179,19 +249,19 @@ namespace LMS.Models.Customer
     }
     public class Gender
     {
-        public string ID { get; set; }
+        public string GenderID { get; set; }
         public string Code { get; set; }
         public string Description { get; set; }
     }
     public class Citizenship
     {
-        public string ID { get; set; }
+        public string CitizenshipID { get; set; }
         public string Code { get; set; }
         public string Description { get; set; }
     }
     public class District
     {
-        public string ID { get; set; }
+        public string DistrictID { get; set; }
         public string Code { get; set; }
         public string Description { get; set; }
         public string DistrictGroupID { get; set; }
@@ -199,7 +269,7 @@ namespace LMS.Models.Customer
     }
     public class Organization
     {
-        public string ID { get; set; }
+        public string OrganizationID { get; set; }
         public string Code { get; set; }
         public string Description { get; set; }
         public string DistrictID { get; set; }
@@ -207,82 +277,82 @@ namespace LMS.Models.Customer
     }
     public class ApplicationType
     {
-        public string ID { get; set; }
+        public string ApplicationTypeID { get; set; }
         public string Code { get; set; }
         public string Description { get; set; }
     }
     public class BorrowerType
     {
-        public string ID { get; set; }
+        public string BorrowerTypeID { get; set; }
         public string Code { get; set; }
         public string Description { get; set; }
         public string BorrowerGroupID { get; set; }
     }
     public class LeadSource
     {
-        public string ID { get; set; }
+        public string LeadSourceID { get; set; }
         public string Code { get; set; }
         public string Description { get; set; }
     }
     public class CivilStatus
     {
-        public string ID { get; set; }
+        public string CivilStatusID { get; set; }
         public string Code { get; set; }
         public string Description { get; set; }
     }
     public class City
     {
-        public string ID { get; set; }
+        public string CityID { get; set; }
         public string Code { get; set; }
         public string Description { get; set; }
         public string ProvinceID { get; set; }
     }
     public class Province
     {
-        public string ID { get; set; }
+        public string ProvinceID { get; set; }
         public string Code { get; set; }
         public string Description { get; set; }
         public string CountryID { get; set; }
     }
     public class HomeOwnership
     {
-        public string ID { get; set; }
+        public string HomeOwnershipID { get; set; }
         public string Code { get; set; }
         public string Description { get; set; }
     }
     public class BusinessType
     {
-        public string ID { get; set; }
+        public string BusinessTypeID { get; set; }
         public string Code { get; set; }
         public string Description { get; set; }
     }
     public class NatureofBusiness
     {
-        public string ID { get; set; }
+        public string NatureofBusinessID { get; set; }
         public string Code { get; set; }
         public string Description { get; set; }
     }
     public class AddressType
     {
-        public string ID { get; set; }
+        public string AddressTypeID { get; set; }
         public string Code { get; set; }
         public string Description { get; set; }
     }
     public class RelationshipType
     {
-        public string ID { get; set; }
+        public string RelationshipTypeID { get; set; }
         public string Code { get; set; }
         public string Description { get; set; }
     }
     public class EducationType
     {
-        public string ID { get; set; }
+        public string EducationTypeID { get; set; }
         public string Code { get; set; }
         public string Description { get; set; }
     }
     public class Agent
     {
-        public string ID { get; set; }
+        public string AgentProfileID { get; set; }
         public string Code { get; set; }
         public string Description { get; set; }
     }

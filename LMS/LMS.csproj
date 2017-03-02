@@ -280,6 +280,8 @@
     <Content Include="Content\jquery\jquery-ui-1.12.1\jquery-ui.theme.css" />
     <Content Include="Content\jquery\jquery-ui-1.12.1\jquery-ui.theme.min.css" />
     <Content Include="Content\jquery\jquery-ui-1.12.1\LICENSE.txt" />
+    <Content Include="Content\jquery\jquery.validate.js" />
+    <Content Include="Content\jquery\jquery.validate.unobtrusive.min.js" />
     <Content Include="Content\uiPlugins\theme\css\animate.css" />
     <Content Include="Content\uiPlugins\theme\css\bootstrap.css" />
     <Content Include="Content\uiPlugins\theme\css\bootstrap.min.css" />
@@ -331,6 +333,13 @@
     <Content Include="Content\Scripts\_references.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Models\Booking\BankAssignment.cshtml" />
+    <Content Include="Models\Booking\ChangeCCI.cshtml" />
+    <Content Include="Models\Booking\CheckVoucher.cshtml" />
+    <Content Include="Models\Booking\CIRForm.cshtml" />
+    <Content Include="Models\Booking\DirectLoanReceipt.cshtml" />
+    <Content Include="Models\Booking\DisbursementVoucher.cshtml" />
+    <Content Include="Models\Booking\PromissoryNoteAllocation.cshtml" />
     <None Include="Properties\PublishProfiles\LMSPublish.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\extra\jquery.qtip.min.js" />
@@ -381,8 +390,23 @@
     <Content Include="Scripts\respond.min.js" />
     <None Include="Scripts\_references.js" />
     <Content Include="ViewsJS\Booking\JS_Booking.js" />
+    <Content Include="ViewsJS\Booking\JS_Booking_CIR.js" />
+    <Content Include="ViewsJS\Booking\JS_Booking_CV.js" />
     <Content Include="ViewsJS\Customer\JS_Customer.js" />
+    <Content Include="ViewsJS\Customer\JS_CustomerAdd.js" />
+    <Content Include="ViewsJS\Customer\JS_CustomerUpdate.js" />
     <Content Include="ViewsJS\Library\JS_LibraryComponent.js" />
+    <Content Include="Views\Customer\Update_CustomerRecord.cshtml" />
+    <Content Include="Views\Customer\_AddAddress.cshtml" />
+    <Content Include="Views\Customer\_AddCharacter.cshtml" />
+    <Content Include="Views\Customer\_AddDependent.cshtml" />
+    <Content Include="Views\Customer\_AddEducation.cshtml" />
+    <Content Include="Views\Customer\_AddEmployment.cshtml" />
+    <Content Include="Views\Customer\_UpdateAddress.cshtml" />
+    <Content Include="Views\Customer\_UpdateCharacter.cshtml" />
+    <Content Include="Views\Customer\_UpdateDependent.cshtml" />
+    <Content Include="Views\Customer\_UpdateEducation.cshtml" />
+    <Content Include="Views\Customer\_UpdateEmployment.cshtml" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
@@ -428,6 +452,7 @@
     <Content Include="Views\Booking\DirectLoanReceipt.cshtml" />
     <Content Include="Views\Booking\DisbursementVoucher.cshtml" />
     <Content Include="Views\Booking\PromissoryNoteAllocation.cshtml" />
+    <Content Include="Views\Customer\Add_CustomerRecord.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

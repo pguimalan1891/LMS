@@ -17,7 +17,26 @@ namespace DataObjects
         IEnumerable<CustomerAddress> getCustomerAddressByID(string ID);
         IEnumerable<CustomerEmployment> getCustomerEmploymentRecordByID(string ID);
         IEnumerable<CustomerRecord> getCustomerRecordByCode(string Code);
-        getComponents getAllComponents();
+        getComponents getAllComponents(BusinessObjects.CustomerRecord custRecord);
+        int UpdateCustomerData(string ProcessType, CustomerModel custModel, string PISID);
+        IEnumerable<Gender> getGender();
+        IEnumerable<Citizenship> getCitizenship();
+        IEnumerable<District> getDistrict();
+        IEnumerable<Organization> getOrganization();
+        IEnumerable<ApplicationType> getApplicationType();
+        IEnumerable<BorrowerType> getBorrowerType();
+        IEnumerable<LeadSource> getLeadSource();
+        IEnumerable<CivilStatus> getCivilStatus();
+        IEnumerable<City> getCity(string PISID);
+        IEnumerable<City> updateCity(string ProvinceID);
+        IEnumerable<Province> getProvince();
+        IEnumerable<HomeOwnership> getHomeOwnership();
+        IEnumerable<BusinessType> getBusinessType();
+        IEnumerable<NatureofBusiness> getNatureofBusiness();
+        IEnumerable<AddressType> getAddressType(bool includecurrentAddress);
+        IEnumerable<RelationshipType> getRelationshipType();
+        IEnumerable<EducationType> getEducationType();
+
 
     }
 }

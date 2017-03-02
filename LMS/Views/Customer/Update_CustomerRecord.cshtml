@@ -1,13 +1,37 @@
 ﻿@using LMS.Models
 @model LMS.Models.Customer.CustomerModel
+
+@{
+    ViewBag.Title = "Update_CustomerRecord";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Scripts
+{
+    @Helper.LoadCustomJS("ViewsJS/Customer/JS_CustomerUpdate.js", Url)
+}
+
+
 @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "updateForm" }))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
     <div style="background-color:white;">
         <div class="row">
-            <div class="col-md-3">
-                <button class="btn btn-info" id="btnUpdate">Update Customer</button>
+            <div class="col-md-3" style="padding-bottom:10px;padding-top:10px;padding-left:30px;">                
+                <div class="btn btn-info" onclick="updateCustomerData()" title="Update Customer Data" id="btnUpdate"><b>Update Customer</b></div>                                
+            </div>
+            <div class="col-md-1">
+                @Html.TextBoxFor(model => model.custRecord.ID, new { @id = "CustRecord_ID", @disabled = "disabled", @style = "visibility:hidden", @class = "form-control", @value = @Model.custRecord.Code })
+            </div>
+            <div class="col-md-1">
+                @Html.TextBoxFor(model => model.custAddress[0].ID, new { @disabled = "disabled", @style = "visibility:hidden", @class = "form-control", @value = @Model.custAddress[0].ID })
+            </div>
+            <div class="col-md-1">
+                @Html.TextBoxFor(model => model.custAddress[0].PISID, new { @disabled = "disabled", @style = "visibility:hidden", @class = "form-control", @value = @Model.custAddress[0].PISID })
+            </div>
+            <div class="col-md-1">
+                @Html.TextBoxFor(model => model.custAddress[0].AddressTypeID, new { @disabled = "disabled", @style = "visibility:hidden", @class = "form-control", @value = @Model.custAddress[0].AddressTypeID })
             </div>
         </div>
         <div class="row">
@@ -17,35 +41,39 @@
                         <h5>Personal Information</h5>
                     </div>
                     <div class="ibox-content">
-                        <div class="form-horizontal">
+                        <div class="form-horizontal">                            
                             <div class="form-group">
                                 <label class="col-lg-3 control-label">Borrower Code</label>
                                 <div class="col-lg-9">
-                                    @Html.TextBoxFor(model => model.custRecord.Code, new { disabled = "disabled", @class = "form-control", @value = @Model.custRecord.Code })
+                                    @Html.TextBoxFor(model => model.custRecord.Code, new { @id = "CustRecord_Code", @disabled = "disabled", @class = "form-control", @value = @Model.custRecord.Code })
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-lg-3 control-label">First Name</label>
                                 <div class="col-lg-9">
                                     @Html.TextBoxFor(model => model.custRecord.FirstName, new { @class = "form-control", @value = @Model.custRecord.FirstName })
+                                    <br />@Html.ValidationMessageFor(model => model.custRecord.FirstName, "", new { @class = "validation" })
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-lg-3 control-label">Middle Name</label>
                                 <div class="col-lg-9">
                                     @Html.TextBoxFor(model => model.custRecord.MiddleName, new { @class = "form-control", @value = @Model.custRecord.MiddleName })
+                                    <br />@Html.ValidationMessageFor(model => model.custRecord.MiddleName, "", new { @class = "validation" })
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-lg-3 control-label">Last Name</label>
                                 <div class="col-lg-9">
                                     @Html.TextBoxFor(model => model.custRecord.LastName, new { @class = "form-control", @value = @Model.custRecord.LastName })
+                                    <br />@Html.ValidationMessageFor(model => model.custRecord.LastName, "", new { @class = "validation" })
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-lg-3 control-label">Date of Birth</label>
                                 <div class="col-lg-5">
                                     @Html.TextBoxFor(model => model.custRecord.DateOfBirth, new { @class = "form-control applyDatePicker", @value = @Model.custRecord.DateOfBirth })
+                                    <br />@Html.ValidationMessageFor(model => model.custRecord.DateOfBirth, "", new { @class = "validation" })
                                 </div>
                                 <div class="col-lg-4">
                                     <span class="form-control">Years Old</span>
@@ -130,7 +158,7 @@
                             <div class="form-group">
                                 <label class="col-lg-3 control-label">Date of Marriage</label>
                                 <div class="col-lg-9">
-                                    @Html.TextBoxFor(model => model.custRecord.DateOfMarriage, new { @class = "form-control", @value = @Model.custRecord.DateOfMarriage })
+                                    @Html.TextBoxFor(model => model.custRecord.DateOfMarriage, new { @class = "form-control applyDatePicker", @value = @Model.custRecord.DateOfMarriage })
                                 </div>
                             </div>
                             <div class="form-group">
@@ -154,7 +182,7 @@
                             <div class="form-group">
                                 <label class="col-lg-3 control-label">Spouse Birth Date</label>
                                 <div class="col-lg-9">
-                                    @Html.TextBoxFor(model => model.custRecord.SpouseDateofBirth, new { @class = "form-control", @value = @Model.custRecord.SpouseDateofBirth })
+                                    @Html.TextBoxFor(model => model.custRecord.SpouseDateofBirth, new { @class = "form-control applyDatePicker", @value = @Model.custRecord.SpouseDateofBirth })
                                 </div>
                             </div>
                             <div class="form-group">
@@ -162,13 +190,12 @@
                                 <div class="col-lg-9">
                                     @Html.TextBoxFor(model => model.custRecord.SpouseContactNumber, new { @class = "form-control", @value = @Model.custRecord.SpouseContactNumber })
                                 </div>
-                            </div>
-                            @{
-                                <table class="table table-bordered" width="100%" cellspacing="0" style="font-size:smaller;">
+                            </div>                            
+                            @{                                
+                                <table id="tblSpouse" class="table table-bordered" width="100%" cellspacing="0" style="font-size:smaller;">
                                     <thead>
                                         <tr>
-                                            <th></th>
-                                            <th>ID</th>
+                                            <th><div class="text-center"><div class="btn btn-info btn-xs" title='Add' onclick="addData('spouse')"><span class='glyphicon glyphicon-plus' aria-hidden='true'></span></div></div></th>                                            
                                             <th>Type</th>
                                             <th>Employer / Business</th>
                                             <th>Nature</th>
@@ -179,7 +206,6 @@
                                     </thead>
                                     <tbody></tbody>
                                 </table>
-
                             }
                         </div>
                     </div>
@@ -194,38 +220,38 @@
                         <div class="form-horizontal">
                             <div class="form-group">
                                 <label class="col-lg-4 control-label">SSS No.</label>
-                                <div class="col-lg-8">
-                                    <span class="form-control">@Model.custRecord.SSSNumber</span>
+                                <div class="col-lg-8">                                    
+                                    @Html.TextBoxFor(model => model.custRecord.SSSNumber, new { @class = "form-control", @value = @Model.custRecord.SSSNumber })
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-lg-4 control-label">GSIS No.</label>
-                                <div class="col-lg-8">
-                                    <span class="form-control">@Model.custRecord.GSISNumber</span>
+                                <div class="col-lg-8">                                    
+                                    @Html.TextBoxFor(model => model.custRecord.GSISNumber, new { @class = "form-control", @value = @Model.custRecord.GSISNumber })
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-lg-4 control-label">Tax ID No.</label>
-                                <div class="col-lg-8">
-                                    <span class="form-control">@Model.custRecord.TinNumber</span>
+                                <div class="col-lg-8">                                    
+                                    @Html.TextBoxFor(model => model.custRecord.TinNumber, new { @class = "form-control", @value = @Model.custRecord.TinNumber })
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-lg-4 control-label">RCN</label>
-                                <div class="col-lg-8">
-                                    <span class="form-control">@Model.custRecord.RCN</span>
+                                <div class="col-lg-8">                                    
+                                    @Html.TextBoxFor(model => model.custRecord.RCN, new { @class = "form-control", @value = @Model.custRecord.RCN })
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-lg-4 control-label">RCN Place Issued</label>
-                                <div class="col-lg-8">
-                                    <span class="form-control">@Model.custRecord.RCNPlaceIssued</span>
+                                <div class="col-lg-8">                                    
+                                    @Html.TextBoxFor(model => model.custRecord.RCNPlaceIssued, new { @class = "form-control", @value = @Model.custRecord.RCNPlaceIssued })
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-lg-4 control-label">RCN Date Issued</label>
-                                <div class="col-lg-8">
-                                    <span class="form-control">@Model.custRecord.RCNDateIssued</span>
+                                <div class="col-lg-8">                                    
+                                    @Html.TextBoxFor(model => model.custRecord.RCNDateIssued, new { @class = "form-control applyDatePicker", @value = @Model.custRecord.RCNDateIssued })
                                 </div>
                             </div>
                         </div>
@@ -234,91 +260,82 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-7">
+            <div class="col-md-10">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
                         <h5>Contacts And Addresses</h5>
                     </div>
                     <div class="ibox-content">
                         <div class="form-horizontal">
-                            @foreach (var addr in Model.custAddress)
-                            {
-                                if (@addr.AddressTypeID == "0")
-                                {
-                                    <div class="form-group">
-                                        <label class="col-lg-3 control-label">Province/City</label>
-                                        <div class="col-lg-5">
-                                            <span class="form-control">@addr.City</span>
-                                        </div>
-                                        <div class="col-lg-4">
-                                            <span class="form-control">@addr.Province</span>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-lg-3 control-label">Barangay</label>
-                                        <div class="col-lg-9">
-                                            <span class="form-control">@addr.BarangayName</span>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-lg-3 control-label">Street Address</label>
-                                        <div class="col-lg-9">
-                                            <span class="form-control">@addr.StreetAddress</span>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-lg-3 control-label">Postal Code</label>
-                                        <div class="col-lg-9">
-                                            <span class="form-control">@addr.PostalCode</span>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-lg-3 control-label">Date of Residence</label>
-                                        <div class="col-lg-9">
-                                            <span class="form-control">@addr.ResidentDate</span>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-lg-3 control-label">Home Ownership</label>
-                                        <div class="col-lg-9">
-                                            <span class="form-control">@addr.HomeOwnerShip</span>
-                                        </div>
-                                    </div>
-                                }
-                            }
-                            <table class="table table-bordered" width="100%" cellspacing="0" style="font-size:smaller;">
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label">Province/City</label>
+                                <div class="col-lg-4">
+                                    @Html.DropDownListFor(model => model.custAddress[0].ProvinceID, new SelectList(Model.allComponents.Province, "ProvinceID", "Description", @Model.custAddress[0].ProvinceID), new { @onChange= "UpdateCity('Main')", @class = "form-control provinceMainBox" })
+                                </div>
+                                <div class="col-lg-4">
+                                    @Html.DropDownListFor(model => model.custAddress[0].CityID, new SelectList(Model.allComponents.City, "CityID", "Description", @Model.custAddress[0].CityID), new { @class = "form-control cityMainBox" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label">Barangay</label>
+                                <div class="col-lg-8">                                        
+                                    @Html.TextBoxFor(model => model.custAddress[0].BarangayName, new { @class = "form-control", @value = @Model.custAddress[0].BarangayName })
+                                    <br />@Html.ValidationMessageFor(model => model.custAddress[0].BarangayName, "", new { @class = "validation" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label">Street Address</label>
+                                <div class="col-lg-8">                                        
+                                    @Html.TextBoxFor(model => model.custAddress[0].StreetAddress, new { @class = "form-control", @value = @Model.custAddress[0].StreetAddress })
+                                    <br />@Html.ValidationMessageFor(model => model.custAddress[0].StreetAddress, "", new { @class = "validation" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label">Postal Code</label>
+                                <div class="col-lg-8">                                        
+                                    @Html.TextBoxFor(model => model.custAddress[0].PostalCode, new { @class = "form-control", @value = @Model.custAddress[0].PostalCode })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label">Landline / Mobile No.</label>
+                                <div class="col-lg-4">
+                                    @Html.TextBoxFor(model => model.custAddress[0].PhoneNumber, new { @class = "form-control", @value = @Model.custAddress[0].PhoneNumber })
+                                    <br />@Html.ValidationMessageFor(model => model.custAddress[0].PhoneNumber, "", new { @class = "validation" })
+                                </div>
+                                <div class="col-lg-4">
+                                    @Html.TextBoxFor(model => model.custAddress[0].MobileNumber, new { @class = "form-control", @value = @Model.custAddress[0].MobileNumber })
+                                    <br />@Html.ValidationMessageFor(model => model.custAddress[0].MobileNumber, "", new { @class = "validation" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label">Date of Residence</label>
+                                <div class="col-lg-8">                                        
+                                    @Html.TextBoxFor(model => model.custAddress[0].ResidentDate, new { @class = "form-control applyDatePicker", @value = @Model.custAddress[0].ResidentDate })
+                                    <br />@Html.ValidationMessageFor(model => model.custAddress[0].ResidentDate, "", new { @class = "validation" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label">Home Ownership</label>
+                                <div class="col-lg-8">
+                                    @Html.DropDownListFor(model => model.custAddress[0].HomeOwnershipID, new SelectList(Model.allComponents.HomeOwnership, "HomeOwnershipID", "Description", @Model.custAddress[0].HomeOwnershipID), new { @class = "form-control" })
+                                </div>
+                            </div>                            
+                            <table id="tblAddress" class="table table-bordered" width="100%" cellspacing="0" style="font-size:smaller;">
                                 <thead>
                                     <tr>
+                                        <th><div class="text-center"><div class="btn btn-info btn-xs" title='Add' onclick="addData('address')"><span class='glyphicon glyphicon-plus' aria-hidden='true'></span></div></div></th>
                                         <th>Address Type</th>
-                                        <th>Full Address</th>
-                                        <th>Contact Number/s</th>
+                                        <th>Barangay</th>
+                                        <th>Street Address</th>
+                                        <th>Postal Code</th>
+                                        <th>City</th>
+                                        <th>Province</th>
+                                        <th>Contact No/s</th>
                                         <th>Residence Date</th>
                                         <th>Ownership</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    @{ bool isSendAddressExist = false;}
-                                    @foreach (var addr in Model.custAddress)
-                                    {
-                                        if (@addr.AddressTypeID != "0")
-                                        {
-                                            isSendAddressExist = true;
-                                            <tr>
-                                                <td>@addr.AddressType</td>
-                                                <td>@addr.StreetAddress, @addr.BarangayName, @addr.City, @addr.PostalCode, @addr.Province</td>
-                                                <td>@addr.PhoneNumber, @addr.MobileNumber</td>
-                                                <td>@addr.ResidentDate</td>
-                                                <td>@addr.HomeOwnerShip</td>
-                                            </tr>
-                                        }
-                                    }
-                                    @if (isSendAddressExist == false)
-                                    {
-                                        <tr>
-                                            <td colspan="5">No Other Addresses.</td>
-                                        </tr>
-                                    }
-                                </tbody>
+                                <tbody></tbody>
                             </table>
                         </div>
                     </div>
@@ -326,15 +343,16 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-10">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
                         <h5>Dependents Information</h5>
                     </div>
                     <div class="ibox-content">
-                        <table class="table table-bordered" width="100%" cellspacing="0" style="font-size:smaller;">
+                        <table id="tblDependents" class="table table-bordered" width="100%" cellspacing="0" style="font-size:smaller;">
                             <thead>
                                 <tr>
+                                    <th><div class="text-center"><div class="btn btn-info btn-xs" title='Add' onclick="addData('dependents')"><span class='glyphicon glyphicon-plus' aria-hidden='true'></span></div></div></th>
                                     <th>Fullname</th>
                                     <th>Gender</th>
                                     <th>Date of Birth</th>
@@ -344,28 +362,7 @@
                                     <th>Contact No.</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                @{ bool isSendDependentExist = false;}
-                                @foreach (var dep in Model.custDependents)
-                                {
-                                    isSendDependentExist = true;
-                                    <tr>
-                                        <td>@dep.LastName, @dep.FirstName @dep.MiddleName</td>
-                                        <td>@dep.Gender</td>
-                                        <td>@dep.BirthDate</td>
-                                        <td>@dep.RelationshipType</td>
-                                        <td>@dep.StreetAddress, @dep.Province, @dep.City</td>
-                                        <td>@dep.SchoolAddress</td>
-                                        <td>@dep.ContactNo</td>
-                                    </tr>
-                                }
-                                @if (isSendDependentExist == false)
-                                {
-                                    <tr>
-                                        <td colspan="7">This customer have no dependents.</td>
-                                    </tr>
-                                }
-                            </tbody>
+                            <tbody></tbody>
                         </table>
                     </div>
                 </div>
@@ -378,31 +375,16 @@
                         <h5>Acquired Education</h5>
                     </div>
                     <div class="ibox-content">
-                        <table class="table table-bordered" width="100%" cellspacing="0" style="font-size:smaller;">
+                        <table id="tblEducation" class="table table-bordered" width="100%" cellspacing="0" style="font-size:smaller;">
                             <thead>
                                 <tr>
+                                    <th><div class="text-center"><div class="btn btn-info btn-xs" title='Add' onclick="addData('education')"><span class='glyphicon glyphicon-plus' aria-hidden='true'></span></div></div></th>
                                     <th>Education Type</th>
                                     <th>School Attended</th>
                                     <th>Date Graduated</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                @{ bool isSendEducationExist = false;}
-                                @foreach (var edu in Model.custEducation)
-                                {
-                                    isSendEducationExist = true;
-                                    <tr>
-                                        <td>@edu.EducationType</td>
-                                        <td>@edu.SchoolName</td>
-                                        <td>@edu.GraduationDate</td>
-                                    </tr>
-                                }
-                                @if (isSendEducationExist == false)
-                                {
-                                    <tr>
-                                        <td colspan="3">This customer do not have any acquired education.</td>
-                                    </tr>
-                                }
+                            <tbody>                               
                             </tbody>
                         </table>
                     </div>
@@ -416,33 +398,17 @@
                         <h5>Character References</h5>
                     </div>
                     <div class="ibox-content">
-                        <table class="table table-bordered" width="100%" cellspacing="0" style="font-size:smaller;">
+                        <table id="tblCharacter" class="table table-bordered" width="100%" cellspacing="0" style="font-size:smaller;">
                             <thead>
                                 <tr>
+                                    <th><div class="text-center"><div class="btn btn-info btn-xs" title='Add' onclick="addData('character')"><span class='glyphicon glyphicon-plus' aria-hidden='true'></span></div></div></th>
                                     <th>Full Name</th>
                                     <th>Relationship</th>
                                     <th>Full Address</th>
                                     <th>Contact No.</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                @{ bool isSendCharacterExist = false;}
-                                @foreach (var cha in Model.custCharacter)
-                                {
-                                    isSendCharacterExist = true;
-                                    <tr>
-                                        <td>@cha.LastName, @cha.FirstName @cha.MiddleName</td>
-                                        <td>@cha.RelationShip</td>
-                                        <td>@cha.StreetAddress, @cha.City</td>
-                                        <td>@cha.ContactNo</td>
-                                    </tr>
-                                }
-                                @if (isSendCharacterExist == false)
-                                {
-                                    <tr>
-                                        <td colspan="4">This customer have no character reference available.</td>
-                                    </tr>
-                                }
+                            <tbody>                                
                             </tbody>
                         </table>
                     </div>
@@ -450,15 +416,16 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-10">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
                         <h5>Employment/Business Record and History</h5>
                     </div>
                     <div class="ibox-content">
-                        <table class="table table-bordered" width="100%" cellspacing="0" style="font-size:smaller;">
+                        <table id="tblEmployment" class="table table-bordered" width="100%" cellspacing="0" style="font-size:smaller;">
                             <thead>
                                 <tr>
+                                    <th><div class="text-center"><div class="btn btn-info btn-xs" title='Add' onclick="addData('employment')"><span class='glyphicon glyphicon-plus' aria-hidden='true'></span></div></div></th>
                                     <th>Type</th>
                                     <th>Employer / Business</th>
                                     <th>Nature</th>
@@ -467,43 +434,37 @@
                                     <th>Active Date</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                @{bool isEmploymentExist = false;}
-                                @foreach (var emp in Model.custEmployment)
-                                {
-                                    if (@emp.IsSpouse == "N")
-                                    {
-                                        isEmploymentExist = true;
-                                        <tr>
-                                            <td>@emp.BusinessType</td>
-                                            <td>@emp.EmployerName</td>
-                                            <td>@emp.NatureOfBusiness</td>
-                                            <td>@emp.Income</td>
-                                            <td>@emp.Contact_No</td>
-                                            <td>
-                                                @if (@emp.ToDate == null)
-                                                {
-                                                    @emp.FromDate; <text> to Present</text>
-                                                }
-                                                else
-                                                {
-                                                    @emp.FromDate; <text> to </text> @emp.ToDate;
-                                                }
-                                            </td>
-                                        </tr>
-                                    }
-                                }
-                                @if (isEmploymentExist == false)
-                                {
-                                    <tr><td colspan="6">The customer have no Employment/Business Record and History</td></tr>
-                                }
-
-                            </tbody>
+                            <tbody></tbody>
                         </table>
-
                     </div>
                 </div>
             </div>
         </div>
     </div>
-                                    }
+                                    }   
+
+<div id="UpdateTableData" class="modal fade" role="dialog">
+    <div class="modal-dialog" style="background-color:#ffffff;">
+        <div class="modal-body" style="background-color:white;">
+            <div id="update-display-modal-body">                
+            </div>
+        </div>
+        <div class="modal-footer" style="background-color:white;">
+            <div id="update-display-modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="AddTableData" class="modal fade" role="dialog">
+    <div class="modal-dialog" style="background-color:#ffffff;">
+        <div class="modal-body" style="background-color:white">
+            <div id="add-display-modal-body">
+            </div>
+        </div>
+        <div class="modal-footer" style="background-color:white">
+            <div id="add-display-modal-footer">
+            </div>
+        </div>
+    </div>
+</div>

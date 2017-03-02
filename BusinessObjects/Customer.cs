@@ -6,6 +6,20 @@ using System.Threading.Tasks;
 
 namespace BusinessObjects
 {
+
+    public class CustomerModel
+    {
+        public CustomerRecord custRecord { get; set; }
+        public List<CustomerEmployment> custEmployment { get; set; }
+        public List<CustomerAddress> custAddress { get; set; }
+        public List<CustomerDependents> custDependents { get; set; }
+        public List<CustomerEducation> custEducation { get; set; }
+        public List<CustomerCharacter> custCharacter { get; set; }
+        public List<Gender> Gender { get; set; }
+        public List<Citizenship> Citizenship { get; set; }
+        public getComponents allComponents { get; set; }
+
+    }
     public class CustomerRecord
     {
         public string ID { get; set; }
@@ -55,11 +69,11 @@ namespace BusinessObjects
         public string OwnerID { get; set; }
         public string PreparedByID { get; set; }
         public string PreparedByDatetime { get; set; }
-        public string DocumentStatusCode { get; set; }       
+        public string DocumentStatusCode { get; set; }
         public string Permission { get; set; }
         public string Notes { get; set; }
 
-    }    
+    }
 
     public class CustomerEmployment
     {
@@ -89,6 +103,7 @@ namespace BusinessObjects
         public string BarangayName { get; set; }
         public string CityID { get; set; }
         public string City { get; set; }
+        public string ProvinceID { get; set; }
         public string Province { get; set; }
         public string Country { get; set; }
         public string PostalCode { get; set; }
@@ -111,6 +126,7 @@ namespace BusinessObjects
         public string StreetAddress { get; set; }
         public string CityID { get; set; }
         public string City { get; set; }
+        public string ProvinceID { get; set; }
         public string Province { get; set; }
         public string RelationshipTypeID { get; set; }
         public string RelationshipType { get; set; }
@@ -138,6 +154,8 @@ namespace BusinessObjects
         public string LastName { get; set; }
         public string RelationShip { get; set; }
         public string StreetAddress { get; set; }
+        public string ProvinceID { get; set; }
+        public string Province { get; set; }
         public string CityID { get; set; }
         public string City { get; set; }
         public string ContactNo { get; set; }
@@ -166,19 +184,19 @@ namespace BusinessObjects
 
     public class Gender
     {
-        public string ID { get; set; }
+        public string GenderID { get; set; }
         public string Code { get; set; }
-        public string Description { get; set; }       
+        public string Description { get; set; }
     }
     public class Citizenship
     {
-        public string ID { get; set; }
+        public string CitizenshipID { get; set; }
         public string Code { get; set; }
         public string Description { get; set; }
     }
     public class District
     {
-        public string ID { get; set; }
+        public string DistrictID { get; set; }
         public string Code { get; set; }
         public string Description { get; set; }
         public string DistrictGroupID { get; set; }
@@ -186,7 +204,7 @@ namespace BusinessObjects
     }
     public class Organization
     {
-        public string ID { get; set; }
+        public string OrganizationID { get; set; }
         public string Code { get; set; }
         public string Description { get; set; }
         public string DistrictID { get; set; }
@@ -194,82 +212,82 @@ namespace BusinessObjects
     }
     public class ApplicationType
     {
-        public string ID { get; set; }
+        public string ApplicationTypeID { get; set; }
         public string Code { get; set; }
         public string Description { get; set; }
     }
     public class BorrowerType
     {
-        public string ID { get; set; }
+        public string BorrowerTypeID { get; set; }
         public string Code { get; set; }
         public string Description { get; set; }
         public string BorrowerGroupID { get; set; }
     }
     public class LeadSource
     {
-        public string ID { get; set; }
+        public string LeadSourceID { get; set; }
         public string Code { get; set; }
-        public string Description { get; set; }        
+        public string Description { get; set; }
     }
     public class CivilStatus
     {
-        public string ID { get; set; }
+        public string CivilStatusID { get; set; }
         public string Code { get; set; }
         public string Description { get; set; }
     }
     public class City
     {
-        public string ID { get; set; }
+        public string CityID { get; set; }
         public string Code { get; set; }
         public string Description { get; set; }
         public string ProvinceID { get; set; }
     }
     public class Province
     {
-        public string ID { get; set; }
+        public string ProvinceID { get; set; }
         public string Code { get; set; }
         public string Description { get; set; }
         public string CountryID { get; set; }
     }
     public class HomeOwnership
     {
-        public string ID { get; set; }
+        public string HomeOwnershipID { get; set; }
         public string Code { get; set; }
         public string Description { get; set; }
     }
     public class BusinessType
     {
-        public string ID { get; set; }
+        public string BusinessTypeID { get; set; }
         public string Code { get; set; }
         public string Description { get; set; }
     }
     public class NatureofBusiness
     {
-        public string ID { get; set; }
+        public string NatureofBusinessID { get; set; }
         public string Code { get; set; }
         public string Description { get; set; }
     }
     public class AddressType
     {
-        public string ID { get; set; }
+        public string AddressTypeID { get; set; }
         public string Code { get; set; }
         public string Description { get; set; }
     }
     public class RelationshipType
     {
-        public string ID { get; set; }
+        public string RelationshipTypeID { get; set; }
         public string Code { get; set; }
         public string Description { get; set; }
     }
     public class EducationType
     {
-        public string ID { get; set; }
+        public string EducationTypeID { get; set; }
         public string Code { get; set; }
         public string Description { get; set; }
     }
     public class Agent
     {
-        public string ID { get; set; }
+        public string AgentProfileID { get; set; }
         public string Code { get; set; }
         public string Description { get; set; }
     }

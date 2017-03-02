@@ -5,24 +5,31 @@
 }
 
 @section Scripts
-{    
+{
     @Helper.LoadCustomJS("ViewsJS/Customer/JS_Customer.js", Url)
 }
 
-@{ Html.RenderPartial("_Update_CustomerRecord");}
+@*@{ Html.RenderPartial("_Update_CustomerRecord");}*@
 
 <div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2">
+            <div class="form-group">
+                <a class="btn btn-info" onclick="@("window.location.href='" + @Url.Action("Add_CustomerRecord", "Customer") + "'")">Add New Customer</a>
+            </div>
+        </div>
+    </div>
     <div class="row">
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <div class="row">
                     <div class="col-md-3">
                         <h3>Borrower Information Sheet</h3>
-                    </div>                    
+                    </div>
                 </div>
             </div>
             <div class="panel-body">
-                <div class="row">                    
+                <div class="row">
                     <div class="col-md-12">
                         <div class="table-responsive">
                             <table id="tbl-customer" class="table table-striped table-bordered dt-responsive no-wrap" cellspacing="0" width="100%">
@@ -40,15 +47,11 @@
 
 <div id="DisplayCustomerModal" class="modal fade" role="dialog">
     <div class="modal-dialog" style="background-color:#ffffff;width:90%">
-        <div class="modal-header">
-            <button class="btn btn-info" id="dlgadd-add-btn">Update Customer Profile</button>
-            <button class="btn btn-info" id="dlgadd-close-btn">Print Customer Profile</button>    
-        </div>
         <div class="modal-body" style="background-color:white">
             <div id="display-modal-body">
             </div>
         </div>
-        
+
     </div>
 </div>
 
@@ -61,7 +64,6 @@
         <div class="modal-body" style="background-color:white">
             <div id="display-modal-body">
             </div>
-        </div>
-
+        </div>                
     </div>
 </div>

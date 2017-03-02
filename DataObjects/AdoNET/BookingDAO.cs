@@ -20,5 +20,21 @@ namespace DataObjects.AdoNET
             object[] parms = { "@statuscode", status };
             return db.ReadDictionary(sql, 1, parms);
         }
+
+        public List<Dictionary<string, object>> getCheckVoucher(int status)
+        {
+            string sql = "usp_getCheckVoucher";
+
+            object[] parms = { "@statuscode", status };
+            return db.ReadDictionary(sql, 1, parms);
+        }
+
+        public List<Dictionary<string, object>> getCIRForm(int status)
+        {
+            string sql = "usp_getCIRForm";
+
+            object[] parms = { "@statuscode", status };
+            return db.ReadDictionary(sql, 1, parms);
+        }
     }
 }

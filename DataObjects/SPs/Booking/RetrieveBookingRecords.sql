@@ -1,6 +1,6 @@
 ﻿USE [FINAL_TESTING]
 GO
-/****** Object:  StoredProcedure [dbo].[RetrieveBookingRecords]    Script Date: 2/9/2017 8:31:44 PM ******/
+/****** Object:  StoredProcedure [dbo].[RetrieveBookingRecords]    Script Date: 2/23/2017 4:08:03 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
