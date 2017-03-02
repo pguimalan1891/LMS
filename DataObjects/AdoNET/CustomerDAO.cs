@@ -80,7 +80,7 @@ namespace DataObjects.AdoNET
             {
                 string sql = "[usp_UpdatePIS]";
                 object[] parms = {
-                    "ID" , "",
+                    "ID" , custRecord.ID.AsString(),
                     "Code", custRecord.Code.AsString(),
                     "OrganizationID", custRecord.OrganizationID.AsString(),
                     "FirstName", custRecord.FirstName.AsString(),
@@ -100,6 +100,7 @@ namespace DataObjects.AdoNET
                     "BorrowerTypeID", custRecord.BorrowerTypeID.AsString(),
                     "LeadSourceID", custRecord.LeadSourceID.AsString(),
                     "ApplicationTypeID", custRecord.ApplicationTypeID.AsString(),
+                    "AgentProfileID", custRecord.AgentProfileID.AsString(),
                     "SpouseFirstName", custRecord.SpouseFirstName.AsString(),
                     "SpouseMiddleName", custRecord.SpouseMiddleName.AsString(),
                     "SpouseLastName", custRecord.SpouseLastName.AsString(),
@@ -117,7 +118,43 @@ namespace DataObjects.AdoNET
             }
             else
             {
-
+                string sql = "[usp_UpdatePIS]";
+                object[] parms = {
+                    "ID" , custRecord.ID.AsString(),
+                    "Code", custRecord.Code.AsString(),
+                    "OrganizationID", custRecord.OrganizationID.AsString(),
+                    "FirstName", custRecord.FirstName.AsString(),
+                    "MiddleName", custRecord.MiddleName.AsString(),
+                    "LastName", custRecord.LastName.AsString(),
+                    "GenderID", custRecord.GenderID.AsString(),
+                    "CivilStatusID", custRecord.CivilStatusID.AsString(),
+                    "DateOfMarriage", custRecord.DateOfMarriage.AsString(),
+                    "CitizenShipID", custRecord.CitizenshipID.AsString(),
+                    "DateofBirth", custRecord.DateOfBirth.AsString(),
+                    "GSISNumber", custRecord.GSISNumber.AsString(),
+                    "SSSNumber", custRecord.SSSNumber.AsString(),
+                    "TINNumber", custRecord.TinNumber.AsString(),
+                    "RCN", custRecord.RCN.AsString(),
+                    "RCNPlaceIssued", custRecord.RCNPlaceIssued.AsString(),
+                    "RCNDateIssued", custRecord.RCNDateIssued.AsString(),
+                    "BorrowerTypeID", custRecord.BorrowerTypeID.AsString(),
+                    "LeadSourceID", custRecord.LeadSourceID.AsString(),
+                    "ApplicationTypeID", custRecord.ApplicationTypeID.AsString(),
+                    "AgentProfileID", custRecord.AgentProfileID.AsString(),
+                    "SpouseFirstName", custRecord.SpouseFirstName.AsString(),
+                    "SpouseMiddleName", custRecord.SpouseMiddleName.AsString(),
+                    "SpouseLastName", custRecord.SpouseLastName.AsString(),
+                    "SpouseDateofBirth", custRecord.SpouseDateofBirth.AsString(),
+                    "SpouseContactNumber", custRecord.SpouseContactNumber.AsString(),
+                    "PreparedBYID", custRecord.PreparedByID.AsString(),
+                    "PreparedByDateTime", custRecord.PreparedByDatetime.AsString(),
+                    "DocumentStatusCode", custRecord.DocumentStatusCode.AsString(),
+                    "Permission", custRecord.Permission.AsString(),
+                    "Notes", custRecord.Notes.AsString(),
+                    "OwnerCode", custRecord.OwnerCode.AsString(),
+                    "OwnerID", custRecord.OwnerID.AsString()
+                };
+                ret = db.Scalar(sql, 1, parms).AsInt();
             }
             return ret;
         }
@@ -455,7 +492,7 @@ namespace DataObjects.AdoNET
             retComponent.AddressType = getAddressType(false);
             retComponent.RelationshipType = getRelationshipType();
             retComponent.EducationType = getEducationType();
-            retComponent.Agent = getAgent();
+            retComponent.Agent = getAgent(custRecord.ID);
             return retComponent;
         }
 
@@ -745,14 +782,35 @@ namespace DataObjects.AdoNET
            };
         #endregion
         #region Agent
-        public IEnumerable<Agent> getAgent()
+        public IEnumerable<Agent> getAgent(string PISID)
         {
-            string sql = "Select ID,Code,LAST_NAME + ', ' + FIRST_NAME + ' ' + MIDDLE_NAME as Description from agent_profile";
+            string sql = "Select ID,Code,LAST_NAME + ', ' + FIRST_NAME + ' ' + MIDDLE_NAME as Description from agent_profile where ORGANIZATION_ID in " +
+                        "(Select ORGANIZATION_ID from PIS where ID = '"+ PISID + "') and AGENT_TYPE_ID in " +
+                        "(Select AGENT_TYPE_ID from agent_profile where ID in (Select AGENT_PROFILE_ID from PIS where ID = '" + PISID + "'))";
             object[] parms = { };
             return db.Read(sql, selectAgent, 0, parms);
         }
 
         static Func<IDataReader, Agent> selectAgent = reader =>
+           new Agent
+           {
+               AgentProfileID = reader["ID"].AsString(),
+               Code = reader["Code"].AsString(),
+               Description = reader["Description"].AsString()
+           };
+        public IEnumerable<Agent> updateAgent(string applicationTypeID, string OrganizationID)
+        {
+            string AgentTypeID = applicationTypeID;
+            if (AgentTypeID == "3")
+                AgentTypeID = "1";
+            if (AgentTypeID == "4")
+                AgentTypeID = "2";
+            string sql = "Select ID,Code,LAST_NAME + ', ' + FIRST_NAME + ' ' + MIDDLE_NAME as Description from agent_profile where ORGANIZATION_ID = '" + OrganizationID + "' and AGENT_TYPE_ID = '" + AgentTypeID + "'";
+            object[] parms = { };
+            return db.Read(sql, updateselectAgent, 0, parms);
+        }
+
+        static Func<IDataReader, Agent> updateselectAgent = reader =>
            new Agent
            {
                AgentProfileID = reader["ID"].AsString(),

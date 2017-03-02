@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 using System.ComponentModel.DataAnnotations;
 
 namespace LMS.Models.Customer
@@ -80,7 +81,7 @@ namespace LMS.Models.Customer
         public string DateOfMarriage { get; set; }
         public string CitizenshipID { get; set; }
         public string Citizenship { get; set; }        
-        [Required(ErrorMessage = "Date of Birth is required.")]
+        [Required(ErrorMessage = "Date of Birth is required.")]       
         public string DateOfBirth { get; set; }
         public string GSISNumber { get; set; }
         public string SSSNumber { get; set; }
@@ -116,7 +117,7 @@ namespace LMS.Models.Customer
         public string Notes { get; set; }
     }
 
-    public class CustomerEmployment
+    public class CustomerEmployment 
     {
         public string ID { get; set; }
         public string PISID { get; set; }
@@ -129,12 +130,38 @@ namespace LMS.Models.Customer
         [Required(ErrorMessage = "Contact Number is required.")]
         public string Contact_No { get; set; }
         [Required(ErrorMessage = "Active From Date is required.")]
-        public string FromDate { get; set; }
+        public string FromDate { get; set; }        
         public string ToDate { get; set; }
         public string IsActive { get; set; }
         public string IsSpouse { get; set; }
         public string NatureOfBusinessID { get; set; }
         public string NatureOfBusiness { get; set; }
+
+    }
+    [AttributeUsage(AttributeTargets.Property, Inherited = true)]
+    public class DateValidationAttribute : ValidationAttribute
+    {
+        public override bool IsValid(object value)
+        {
+            var dateString = value as string;
+            if (string.IsNullOrWhiteSpace(dateString))
+            {
+                return true; // Not our problem
+            }
+            DateTime result;
+            var success = DateTime.TryParse(dateString, out result);
+            return success;
+        }
+
+        public IEnumerable<ModelClientValidationRule> GetClientValidationRules(ModelMetadata metadata)
+        {
+            var rule = new ModelClientValidationRule
+            {
+                ErrorMessage = FormatErrorMessage(metadata.DisplayName),
+                ValidationType = "DateValidation"
+            };
+            yield return rule;
+        }
 
     }
 
@@ -356,4 +383,6 @@ namespace LMS.Models.Customer
         public string Code { get; set; }
         public string Description { get; set; }
     }
+
+    
 }

@@ -6,10 +6,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@section Scripts
-{
-    @Helper.LoadCustomJS("ViewsJS/Customer/JS_CustomerUpdate.js", Url)
-}
 
 
 @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "updateForm" }))
@@ -109,19 +105,19 @@
                                     @Html.DropDownListFor(model => model.custRecord.DistrictID, new SelectList(Model.allComponents.District, "DistrictID", "Description", @Model.custRecord.DistrictID), new { @class = "form-control" })
                                 </div>
                                 <div class="col-lg-4">
-                                    @Html.DropDownListFor(model => model.custRecord.OrganizationID, new SelectList(Model.allComponents.Organization, "OrganizationID", "Description", @Model.custRecord.OrganizationID), new { @class = "form-control" })
+                                    @Html.DropDownListFor(model => model.custRecord.OrganizationID, new SelectList(Model.allComponents.Organization, "OrganizationID", "Description", @Model.custRecord.OrganizationID), new { @onChange = "UpdateAgent()", @class = "form-control MainOrganization" })
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-lg-3 control-label">Application Type</label>
                                 <div class="col-lg-9">
-                                    @Html.DropDownListFor(model => model.custRecord.ApplicationTypeID, new SelectList(Model.allComponents.ApplicationType, "ApplicationTypeID", "Description", @Model.custRecord.ApplicationTypeID), new { @class = "form-control" })
+                                    @Html.DropDownListFor(model => model.custRecord.ApplicationTypeID, new SelectList(Model.allComponents.ApplicationType, "ApplicationTypeID", "Description", @Model.custRecord.ApplicationTypeID), new { @onChange = "UpdateAgent()", @class = "form-control MainApplicationType" })
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-lg-3 control-label">Agent</label>
                                 <div class="col-lg-9">
-                                    @Html.DropDownListFor(model => model.custRecord.AgentProfileID, new SelectList(Model.allComponents.Agent, "AgentProfileID", "Description", @Model.custRecord.AgentProfileID), new { @class = "form-control" })
+                                    @Html.DropDownListFor(model => model.custRecord.AgentProfileID, new SelectList(Model.allComponents.Agent, "AgentProfileID", "Description", @Model.custRecord.AgentProfileID), new { @class = "form-control MainAgent" })
                                 </div>
                             </div>
                             <div class="form-group">
@@ -468,3 +464,8 @@
         </div>
     </div>
 </div>
+
+@section Scripts
+{
+    @Helper.LoadCustomJS("ViewsJS/Customer/JS_CustomerUpdate.js", Url)
+}

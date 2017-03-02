@@ -126,6 +126,13 @@ namespace ServiceLayer
         {
             return customer.getEducationType();
         }
-
+        public IEnumerable<Agent> getAgent(string PISID)
+        {
+            return customer.getAgent(PISID);
+        }
+        public IEnumerable<Agent> updateAgent(string applicationTypeID, string OrganizationID)
+        {
+            return customer.updateAgent(applicationTypeID, OrganizationID);
+        }
     }
 }
