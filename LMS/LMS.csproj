@@ -172,8 +172,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\Application\ApplicationController.cs" />
     <Compile Include="Controllers\Booking\BookingController.cs" />
     <Compile Include="Controllers\Collections\OfficialReceiptController.cs" />
+    <Compile Include="Controllers\CreditInvestigation\CreditInvestigationController.cs" />
     <Compile Include="Controllers\Customer\CustomerController.cs" />
     <Compile Include="Controllers\DevelopmentTools\DevelopmentToolsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -185,6 +187,7 @@
     <Compile Include="Models\Customer\CustomerModel.cs" />
     <Compile Include="Models\DevelopmentTools\LibraryComponentModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\LoanApplication\LoanApplicationModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\OfficialReceiptViewModel.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
@@ -277,6 +280,8 @@
     <Content Include="Content\jquery\jquery-ui-1.12.1\jquery-ui.theme.css" />
     <Content Include="Content\jquery\jquery-ui-1.12.1\jquery-ui.theme.min.css" />
     <Content Include="Content\jquery\jquery-ui-1.12.1\LICENSE.txt" />
+    <Content Include="Content\jquery\jquery.validate.js" />
+    <Content Include="Content\jquery\jquery.validate.unobtrusive.min.js" />
     <Content Include="Content\uiPlugins\theme\css\animate.css" />
     <Content Include="Content\uiPlugins\theme\css\bootstrap.css" />
     <Content Include="Content\uiPlugins\theme\css\bootstrap.min.css" />
@@ -389,7 +394,20 @@
     <Content Include="ViewsJS\Booking\JS_Booking_CV.js" />
     <Content Include="ViewsJS\Booking\JS_Booking_DV.js" />
     <Content Include="ViewsJS\Customer\JS_Customer.js" />
+    <Content Include="ViewsJS\Customer\JS_CustomerAdd.js" />
+    <Content Include="ViewsJS\Customer\JS_CustomerUpdate.js" />
     <Content Include="ViewsJS\Library\JS_LibraryComponent.js" />
+    <Content Include="Views\Customer\Update_CustomerRecord.cshtml" />
+    <Content Include="Views\Customer\_AddAddress.cshtml" />
+    <Content Include="Views\Customer\_AddCharacter.cshtml" />
+    <Content Include="Views\Customer\_AddDependent.cshtml" />
+    <Content Include="Views\Customer\_AddEducation.cshtml" />
+    <Content Include="Views\Customer\_AddEmployment.cshtml" />
+    <Content Include="Views\Customer\_UpdateAddress.cshtml" />
+    <Content Include="Views\Customer\_UpdateCharacter.cshtml" />
+    <Content Include="Views\Customer\_UpdateDependent.cshtml" />
+    <Content Include="Views\Customer\_UpdateEducation.cshtml" />
+    <Content Include="Views\Customer\_UpdateEmployment.cshtml" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
@@ -435,6 +453,7 @@
     <Content Include="Views\Booking\DirectLoanReceipt.cshtml" />
     <Content Include="Views\Booking\DisbursementVoucher.cshtml" />
     <Content Include="Views\Booking\PromissoryNoteAllocation.cshtml" />
+    <Content Include="Views\Customer\Add_CustomerRecord.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -451,7 +470,9 @@
     <Folder Include="Content\uiPlugins\theme\css\patterns\" />
     <Folder Include="Content\uiPlugins\theme\css\plugins\" />
     <Folder Include="Content\uiPlugins\theme\js\demo\" />
+    <Folder Include="Views\Application\" />
     <Folder Include="Views\Collections\" />
+    <Folder Include="Views\CreditInvestigation\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />

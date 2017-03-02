@@ -30,12 +30,14 @@
                             <label class="col-lg-3 control-label">Barangay</label>
                             <div class="col-lg-9">
                                 @Html.TextBoxFor(model => model.custAddress.BarangayName, new { @class = "form-control" })
+                                <br />@Html.ValidationMessageFor(model => model.custAddress.BarangayName, "", new { @class = "validation" })
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-lg-3 control-label">Street Address</label>
                             <div class="col-lg-9">
                                 @Html.TextBoxFor(model => model.custAddress.StreetAddress, new { @class = "form-control" })
+                                <br />@Html.ValidationMessageFor(model => model.custAddress.StreetAddress, "", new { @class = "validation" })
                             </div>
                         </div>
                         <div class="form-group">
@@ -48,15 +50,18 @@
                             <label class="col-lg-3 control-label">Landline / Mobile No.</label>
                             <div class="col-lg-4">
                                 @Html.TextBoxFor(model => model.custAddress.PhoneNumber, new { @class = "form-control" })
+                                <br />@Html.ValidationMessageFor(model => model.custAddress.PhoneNumber, "", new { @class = "validation" })
                             </div>
                             <div class="col-lg-5">
                                 @Html.TextBoxFor(model => model.custAddress.MobileNumber, new { @class = "form-control" })
+                                <br />@Html.ValidationMessageFor(model => model.custAddress.MobileNumber, "", new { @class = "validation" })
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-lg-3 control-label">Date of Residence</label>
                             <div class="col-lg-9">
                                 @Html.TextBoxFor(model => model.custAddress.ResidentDate, new { @class = "form-control applyDatePicker" })
+                                <br />@Html.ValidationMessageFor(model => model.custAddress.ResidentDate, "", new { @class = "validation" })
                             </div>
                         </div>
                         <div class="form-group">

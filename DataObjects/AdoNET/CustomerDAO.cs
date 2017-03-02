@@ -50,6 +50,217 @@ namespace DataObjects.AdoNET
                ContactNo = reader["Contact_No"].AsString()
            };
 
+        public int UpdateCustomerData(string ProcessType, CustomerModel custModel, string PISID)
+        {
+            int ret = 0;
+            ret = updatePISData(ProcessType, custModel.custRecord);
+            if (ret != 1)
+                return 0;
+            ret = updatePISAddress(custModel.custAddress, PISID);
+            if (ret != 1)
+                return 0;
+            ret = updatePISCharacter(custModel.custCharacter, PISID);
+            if (ret != 1)
+                return 0;
+            ret = updatePISDependent(custModel.custDependents, PISID);
+            if (ret != 1)
+                return 0;
+            ret = updatePISEducation(custModel.custEducation, PISID);
+            if (ret != 1)
+                return 0;
+            ret = updatePISEmployment(custModel.custEmployment, PISID);
+            if (ret != 1)
+                return 0;
+            return 1;
+        }
+        public int updatePISData(string ProcessType, CustomerRecord custRecord)
+        {
+            int ret = 1;
+            if (ProcessType == "Update")
+            {
+                string sql = "[usp_UpdatePIS]";
+                object[] parms = {
+                    "ID" , "",
+                    "Code", custRecord.Code.AsString(),
+                    "OrganizationID", custRecord.OrganizationID.AsString(),
+                    "FirstName", custRecord.FirstName.AsString(),
+                    "MiddleName", custRecord.MiddleName.AsString(),
+                    "LastName", custRecord.LastName.AsString(),
+                    "GenderID", custRecord.GenderID.AsString(),
+                    "CivilStatusID", custRecord.CivilStatusID.AsString(),
+                    "DateOfMarriage", custRecord.DateOfMarriage.AsString(),
+                    "CitizenShipID", custRecord.CitizenshipID.AsString(),
+                    "DateofBirth", custRecord.DateOfBirth.AsString(),
+                    "GSISNumber", custRecord.GSISNumber.AsString(),
+                    "SSSNumber", custRecord.SSSNumber.AsString(),
+                    "TINNumber", custRecord.TinNumber.AsString(),
+                    "RCN", custRecord.RCN.AsString(),
+                    "RCNPlaceIssued", custRecord.RCNPlaceIssued.AsString(),
+                    "RCNDateIssued", custRecord.RCNDateIssued.AsString(),
+                    "BorrowerTypeID", custRecord.BorrowerTypeID.AsString(),
+                    "LeadSourceID", custRecord.LeadSourceID.AsString(),
+                    "ApplicationTypeID", custRecord.ApplicationTypeID.AsString(),
+                    "SpouseFirstName", custRecord.SpouseFirstName.AsString(),
+                    "SpouseMiddleName", custRecord.SpouseMiddleName.AsString(),
+                    "SpouseLastName", custRecord.SpouseLastName.AsString(),
+                    "SpouseDateofBirth", custRecord.SpouseDateofBirth.AsString(),
+                    "SpouseContactNumber", custRecord.SpouseContactNumber.AsString(),
+                    "PreparedBYID", custRecord.PreparedByID.AsString(),
+                    "PreparedByDateTime", custRecord.PreparedByDatetime.AsString(),
+                    "DocumentStatusCode", custRecord.DocumentStatusCode.AsString(),
+                    "Permission", custRecord.Permission.AsString(),
+                    "Notes", custRecord.Notes.AsString(),
+                    "OwnerCode", custRecord.OwnerCode.AsString(),
+                    "OwnerID", custRecord.OwnerID.AsString()
+                };
+                ret = db.Scalar(sql, 1, parms).AsInt();
+            }
+            else
+            {
+
+            }
+            return ret;
+        }
+        public int updatePISEmployment(List<CustomerEmployment> custEmployment,string PISID)
+        {
+            string sqlDel = "Delete from pis_employment where PIS_ID = '"+ PISID + "'";
+            object[] parmsDel = {};
+            db.Scalar(sqlDel, 0, parmsDel).AsInt();
+
+            int ret = 1;
+            foreach (CustomerEmployment md in custEmployment)
+            {
+                string sql = "[usp_UpdatePISEmployment]";
+                object[] parms = {
+                    "ID", md.ID.AsString(),
+                    "PISID", md.PISID.AsString(),
+                    "BusinessTypeID", md.BusinessTypeID.AsString(),
+                    "EmployerName", md.EmployerName.AsString(),
+                    "Income", md.Income.AsString(),
+                    "ContactNo", md.Contact_No.AsString(),
+                    "FromDate", md.FromDate.AsString(),
+                    "ToDate", md.ToDate.AsString(),
+                    "IsSpouse", md.IsSpouse.AsString(),
+                    "NatureOfBusinessID", md.NatureOfBusinessID.AsString()
+                };
+                ret = db.Scalar(sql, 1, parms).AsInt();
+                if (ret != 1)                
+                    break;                
+            }
+            return ret;
+        }
+        public int updatePISAddress(List<CustomerAddress> custAddress, string PISID)
+        {
+            string sqlDel = "Delete from pis_address where PIS_ID = '" + PISID + "'";
+            object[] parmsDel = { };
+            db.Scalar(sqlDel, 0, parmsDel).AsInt();
+
+            int ret = 1;
+            foreach (CustomerAddress md in custAddress)
+            {
+                string sql = "[usp_UpdatePISAddress]";
+                object[] parms = {
+                    "ID", md.ID.AsString(),
+                    "PISID", md.PISID.AsString(),
+                    "AddressTypeID", md.AddressTypeID.AsString(),
+                    "StreetAddress", md.StreetAddress.AsString(),
+                    "BarangayName", md.BarangayName.AsString(),
+                    "CityID", md.CityID.AsString(),
+                    "PostalCode", md.PostalCode.AsString(),
+                    "PhoneNumber", md.PhoneNumber.AsString(),
+                    "MobileNumber", md.MobileNumber.AsString(),
+                    "ResidentDate", md.ResidentDate.AsString(),
+                    "HomeOwnershipID", md.HomeOwnershipID.AsString()
+                };
+                ret = db.Scalar(sql, 1, parms).AsInt();
+                if (ret != 1)
+                    break;
+            }
+            return ret;
+        }
+        public int updatePISDependent(List<CustomerDependents> custDependent, string PISID)
+        {
+            string sqlDel = "Delete from pis_dependent where PIS_ID = '" + PISID + "'";
+            object[] parmsDel = { };
+            db.Scalar(sqlDel, 0, parmsDel).AsInt();
+
+            int ret = 1;
+            foreach (CustomerDependents md in custDependent)
+            {
+                string sql = "[usp_UpdatePISDependent]";
+                object[] parms = {
+                    "ID", md.ID.AsString(),
+                    "PISID", md.PISID.AsString(),
+                    "FirstName", md.FirstName.AsString(),
+                    "MiddleName", md.MiddleName.AsString(),
+                    "LastName", md.LastName.AsString(),
+                    "GenderID", md.GenderID.AsString(),
+                    "StreetAddress", md.StreetAddress.AsString(),
+                    "CityID", md.CityID.AsString(),
+                    "RelationShipTypeID", md.RelationshipTypeID.AsString(),
+                    "BirthDate", md.BirthDate.AsString(),
+                    "SchoolAddress", md.SchoolAddress.AsString(),
+                    "ContactNo", md.ContactNo.AsString()
+                };
+                ret = db.Scalar(sql, 1, parms).AsInt();
+                if (ret != 1)
+                    break;
+            }
+            return ret;
+        }
+        public int updatePISEducation(List<CustomerEducation> custEducation, string PISID)
+        {
+            string sqlDel = "Delete from pis_education where PIS_ID = '" + PISID + "'";
+            object[] parmsDel = { };
+            db.Scalar(sqlDel, 0, parmsDel).AsInt();
+
+            int ret = 1;
+            foreach (CustomerEducation md in custEducation)
+            {
+                string sql = "[usp_UpdatePISEducation]";
+                object[] parms = {
+                    "ID", md.ID.AsString(),
+                    "PISID", md.PISID.AsString(),
+                    "EducationTypeID", md.EducationTypeID.AsString(),
+                    "SchoolName", md.SchoolName.AsString(),
+                    "GraduationDate", md.GraduationDate.AsString()
+                };
+                ret = db.Scalar(sql, 1, parms).AsInt();
+                if (ret != 1)
+                    break;
+            }
+            return ret;
+        }
+        public int updatePISCharacter(List<CustomerCharacter> custCharacter, string PISID)
+        {
+            string sqlDel = "Delete from pis_character where PIS_ID = '" + PISID + "'";
+            object[] parmsDel = { };
+            db.Scalar(sqlDel, 0, parmsDel).AsInt();
+
+            int ret = 1;
+            foreach (CustomerCharacter md in custCharacter)
+            {
+                string sql = "[usp_UpdatePISCharacter]";
+                object[] parms = {
+                    "ID", md.ID.AsString(),
+                    "PISID", md.PISID.AsString(),
+                    "FirstName", md.FirstName.AsString(),
+                    "MiddleName", md.MiddleName.AsString(),
+                    "LastName", md.LastName.AsString(),
+                    "RelationShip", md.RelationShip.AsString(),
+                    "StreetAddress", md.StreetAddress.AsString(),
+                    "CityID", md.CityID.AsString(),
+                    "ContactNo", md.ContactNo.AsString()
+                };
+                ret = db.Scalar(sql, 1, parms).AsInt();
+                if (ret != 1)
+                    break;
+            }
+            return ret;
+        }
+
+        
+
         public IEnumerable<CustomerEducation> getCustomerEducationByID(string ID)
         {
             string sql = "SELECT [ID],[PIS_ID],[EDUCATION_TYPE_ID],[EducationType],[SCHOOL_NAME]," +

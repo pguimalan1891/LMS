@@ -22,6 +22,7 @@
                             <label class="col-lg-3 control-label">Employer / Business</label>
                             <div class="col-lg-9">
                                 @Html.TextBoxFor(model => model.custEmployment.EmployerName, new { @class = "form-control" })
+                                <br />@Html.ValidationMessageFor(model => model.custEmployment.EmployerName, "", new { @class = "validation" })
                             </div>
                         </div>
                         <div class="form-group">
@@ -34,18 +35,21 @@
                             <label class="col-lg-3 control-label">Monthly Income</label>
                             <div class="col-lg-9">
                                 @Html.TextBoxFor(model => model.custEmployment.Income, new { @class = "form-control" })
+                                <br />@Html.ValidationMessageFor(model => model.custEmployment.Income, "", new { @class = "validation" })
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-lg-3 control-label">Contact Number</label>
                             <div class="col-lg-9">
                                 @Html.TextBoxFor(model => model.custEmployment.Contact_No, new { @class = "form-control" })
+                                <br />@Html.ValidationMessageFor(model => model.custEmployment.Contact_No, "", new { @class = "validation" })
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-lg-3 control-label">Active From</label>
                             <div class="col-lg-9">
                                 @Html.TextBoxFor(model => model.custEmployment.FromDate, new { @class = "form-control applyDatePicker" })
+                                <br />@Html.ValidationMessageFor(model => model.custEmployment.FromDate, "", new { @class = "validation" })
                             </div>
                         </div>
                         <div class="form-group">

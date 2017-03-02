@@ -59,7 +59,9 @@ namespace LMS
                     "~/Content/datatable/media/js/dataTables.bootstrap.min.js",
                     "~/Content/datatable/media/js/dataTables.responsive.min.js",
                     "~/Content/datatable/media/js/responsive.bootstrap.min.js",
-                    "~/Content/bootstrap/js/bootstrap-datepicker.min.js"
+                    "~/Content/bootstrap/js/bootstrap-datepicker.min.js",
+                    "~/Content/jquery/jquery.validate.js",
+                    "~/Content/jquery/jquery.validate.unobtrusive.min.js"
                     ));
         }
     }

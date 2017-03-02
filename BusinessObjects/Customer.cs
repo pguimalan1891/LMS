@@ -6,6 +6,20 @@ using System.Threading.Tasks;
 
 namespace BusinessObjects
 {
+
+    public class CustomerModel
+    {
+        public CustomerRecord custRecord { get; set; }
+        public List<CustomerEmployment> custEmployment { get; set; }
+        public List<CustomerAddress> custAddress { get; set; }
+        public List<CustomerDependents> custDependents { get; set; }
+        public List<CustomerEducation> custEducation { get; set; }
+        public List<CustomerCharacter> custCharacter { get; set; }
+        public List<Gender> Gender { get; set; }
+        public List<Citizenship> Citizenship { get; set; }
+        public getComponents allComponents { get; set; }
+
+    }
     public class CustomerRecord
     {
         public string ID { get; set; }

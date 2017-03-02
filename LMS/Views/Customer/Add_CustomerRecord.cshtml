@@ -2,13 +2,13 @@
 @model LMS.Models.Customer.CustomerModel
 
 @{
-    ViewBag.Title = "Update_CustomerRecord";
+    ViewBag.Title = "Add_CustomerRecord";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 @section Scripts
 {
-    @Helper.LoadCustomJS("ViewsJS/Customer/JS_CustomerUpdate.js", Url)
+    @Helper.LoadCustomJS("ViewsJS/Customer/JS_CustomerAdd.js", Url)
 }
 
 
@@ -18,20 +18,20 @@
     @Html.ValidationSummary(true)
     <div style="background-color:white;">
         <div class="row">
-            <div class="col-md-3" style="padding-bottom:10px;padding-top:10px;padding-left:30px;">                
-                <div class="btn btn-info" onclick="updateCustomerData()" title="Update Customer Data" id="btnUpdate"><b>Update Customer</b></div>                                
+            <div class="col-md-3" style="padding-bottom:10px;padding-top:10px;padding-left:30px;">
+                <div class="btn btn-info" onclick="updateCustomerData()" title="Update Customer Data" id="btnUpdate"><b>Update Customer</b></div>
             </div>
             <div class="col-md-1">
-                @Html.TextBoxFor(model => model.custRecord.ID, new { @id = "CustRecord_ID", @disabled = "disabled", @style = "visibility:hidden", @class = "form-control", @value = @Model.custRecord.Code })
+                @Html.TextBoxFor(model => model.custRecord.ID, new { @id = "CustRecord_ID", @disabled = "disabled", @style = "visibility:hidden", @class = "form-control" })
             </div>
             <div class="col-md-1">
-                @Html.TextBoxFor(model => model.custAddress[0].ID, new { @disabled = "disabled", @style = "visibility:hidden", @class = "form-control", @value = @Model.custAddress[0].ID })
+                @Html.TextBoxFor(model => model.custAddress[0].ID, new { @disabled = "disabled", @style = "visibility:hidden", @class = "form-control"})
             </div>
             <div class="col-md-1">
-                @Html.TextBoxFor(model => model.custAddress[0].PISID, new { @disabled = "disabled", @style = "visibility:hidden", @class = "form-control", @value = @Model.custAddress[0].PISID })
+                @Html.TextBoxFor(model => model.custAddress[0].PISID, new { @disabled = "disabled", @style = "visibility:hidden", @class = "form-control"})
             </div>
             <div class="col-md-1">
-                @Html.TextBoxFor(model => model.custAddress[0].AddressTypeID, new { @disabled = "disabled", @style = "visibility:hidden", @class = "form-control", @value = @Model.custAddress[0].AddressTypeID })
+                @Html.TextBoxFor(model => model.custAddress[0].AddressTypeID, new { @disabled = "disabled", @style = "visibility:hidden", @class = "form-control" })
             </div>
         </div>
         <div class="row">
@@ -41,38 +41,38 @@
                         <h5>Personal Information</h5>
                     </div>
                     <div class="ibox-content">
-                        <div class="form-horizontal">                            
+                        <div class="form-horizontal">
                             <div class="form-group">
                                 <label class="col-lg-3 control-label">Borrower Code</label>
                                 <div class="col-lg-9">
-                                    @Html.TextBoxFor(model => model.custRecord.Code, new { @id = "CustRecord_Code", @disabled = "disabled", @class = "form-control", @value = @Model.custRecord.Code })
+                                    @Html.TextBoxFor(model => model.custRecord.Code, new { @id = "CustRecord_Code", @disabled = "disabled", @class = "form-control" })
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-lg-3 control-label">First Name</label>
                                 <div class="col-lg-9">
-                                    @Html.TextBoxFor(model => model.custRecord.FirstName, new { @class = "form-control", @value = @Model.custRecord.FirstName })
+                                    @Html.TextBoxFor(model => model.custRecord.FirstName, new { @class = "form-control" })
                                     <br />@Html.ValidationMessageFor(model => model.custRecord.FirstName, "", new { @class = "validation" })
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-lg-3 control-label">Middle Name</label>
                                 <div class="col-lg-9">
-                                    @Html.TextBoxFor(model => model.custRecord.MiddleName, new { @class = "form-control", @value = @Model.custRecord.MiddleName })
+                                    @Html.TextBoxFor(model => model.custRecord.MiddleName, new { @class = "form-control" })
                                     <br />@Html.ValidationMessageFor(model => model.custRecord.MiddleName, "", new { @class = "validation" })
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-lg-3 control-label">Last Name</label>
                                 <div class="col-lg-9">
-                                    @Html.TextBoxFor(model => model.custRecord.LastName, new { @class = "form-control", @value = @Model.custRecord.LastName })
+                                    @Html.TextBoxFor(model => model.custRecord.LastName, new { @class = "form-control" })
                                     <br />@Html.ValidationMessageFor(model => model.custRecord.LastName, "", new { @class = "validation" })
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-lg-3 control-label">Date of Birth</label>
                                 <div class="col-lg-5">
-                                    @Html.TextBoxFor(model => model.custRecord.DateOfBirth, new { @class = "form-control applyDatePicker", @value = @Model.custRecord.DateOfBirth })
+                                    @Html.TextBoxFor(model => model.custRecord.DateOfBirth, new { @class = "form-control applyDatePicker" })
                                     <br />@Html.ValidationMessageFor(model => model.custRecord.DateOfBirth, "", new { @class = "validation" })
                                 </div>
                                 <div class="col-lg-4">
@@ -82,13 +82,13 @@
                             <div class="form-group">
                                 <label class="col-lg-3 control-label">Gender</label>
                                 <div class="col-lg-9">
-                                    @Html.DropDownListFor(model => model.custRecord.GenderID, new SelectList(Model.allComponents.Gender, "GenderID", "Description", @Model.custRecord.GenderID), new { @class = "form-control" })
+                                    @Html.DropDownListFor(model => model.custRecord.GenderID, new SelectList(Model.allComponents.Gender, "GenderID", "Description"), new { @class = "form-control" })
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-lg-3 control-label">Citizenship</label>
                                 <div class="col-lg-9">
-                                    @Html.DropDownListFor(model => model.custRecord.CitizenshipID, new SelectList(Model.allComponents.Citizenship, "CitizenshipID", "Description", @Model.custRecord.CitizenshipID), new { @class = "form-control" })
+                                    @Html.DropDownListFor(model => model.custRecord.CitizenshipID, new SelectList(Model.allComponents.Citizenship, "CitizenshipID", "Description"), new { @class = "form-control" })
                                 </div>
                             </div>
 
@@ -106,34 +106,34 @@
                             <div class="form-group">
                                 <label class="col-lg-3 control-label">District/Branch</label>
                                 <div class="col-lg-5">
-                                    @Html.DropDownListFor(model => model.custRecord.DistrictID, new SelectList(Model.allComponents.District, "DistrictID", "Description", @Model.custRecord.DistrictID), new { @class = "form-control" })
+                                    @Html.DropDownListFor(model => model.custRecord.DistrictID, new SelectList(Model.allComponents.District, "DistrictID", "Description"), new { @class = "form-control" })
                                 </div>
                                 <div class="col-lg-4">
-                                    @Html.DropDownListFor(model => model.custRecord.OrganizationID, new SelectList(Model.allComponents.Organization, "OrganizationID", "Description", @Model.custRecord.OrganizationID), new { @class = "form-control" })
+                                    @Html.DropDownListFor(model => model.custRecord.OrganizationID, new SelectList(Model.allComponents.Organization, "OrganizationID", "Description"), new { @class = "form-control" })
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-lg-3 control-label">Application Type</label>
                                 <div class="col-lg-9">
-                                    @Html.DropDownListFor(model => model.custRecord.ApplicationTypeID, new SelectList(Model.allComponents.ApplicationType, "ApplicationTypeID", "Description", @Model.custRecord.ApplicationTypeID), new { @class = "form-control" })
+                                    @Html.DropDownListFor(model => model.custRecord.ApplicationTypeID, new SelectList(Model.allComponents.ApplicationType, "ApplicationTypeID", "Description"), new { @class = "form-control" })
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-lg-3 control-label">Agent</label>
                                 <div class="col-lg-9">
-                                    @Html.DropDownListFor(model => model.custRecord.AgentProfileID, new SelectList(Model.allComponents.Agent, "AgentProfileID", "Description", @Model.custRecord.AgentProfileID), new { @class = "form-control" })
+                                    @Html.DropDownListFor(model => model.custRecord.AgentProfileID, new SelectList(Model.allComponents.Agent, "AgentProfileID", "Description"), new { @class = "form-control" })
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-lg-3 control-label">Borrower Type</label>
                                 <div class="col-lg-9">
-                                    @Html.DropDownListFor(model => model.custRecord.BorrowerTypeID, new SelectList(Model.allComponents.BorrowerType, "BorrowerTypeID", "Description", @Model.custRecord.BorrowerTypeID), new { @class = "form-control" })
+                                    @Html.DropDownListFor(model => model.custRecord.BorrowerTypeID, new SelectList(Model.allComponents.BorrowerType, "BorrowerTypeID", "Description"), new { @class = "form-control" })
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-lg-3 control-label">Source</label>
                                 <div class="col-lg-9">
-                                    @Html.DropDownListFor(model => model.custRecord.LeadSourceID, new SelectList(Model.allComponents.LeadSource, "LeadSourceID", "Description", @Model.custRecord.LeadSourceID), new { @class = "form-control" })
+                                    @Html.DropDownListFor(model => model.custRecord.LeadSourceID, new SelectList(Model.allComponents.LeadSource, "LeadSourceID", "Description"), new { @class = "form-control" })
                                 </div>
                             </div>
                         </div>
@@ -152,50 +152,50 @@
                             <div class="form-group">
                                 <label class="col-lg-3 control-label">Civil Status</label>
                                 <div class="col-lg-9">
-                                    @Html.DropDownListFor(model => model.custRecord.CivilStatusID, new SelectList(Model.allComponents.CivilStatus, "CivilStatusID", "Description", @Model.custRecord.CivilStatusID), new { @class = "form-control" })
+                                    @Html.DropDownListFor(model => model.custRecord.CivilStatusID, new SelectList(Model.allComponents.CivilStatus, "CivilStatusID", "Description"), new { @class = "form-control" })
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-lg-3 control-label">Date of Marriage</label>
                                 <div class="col-lg-9">
-                                    @Html.TextBoxFor(model => model.custRecord.DateOfMarriage, new { @class = "form-control applyDatePicker", @value = @Model.custRecord.DateOfMarriage })
+                                    @Html.TextBoxFor(model => model.custRecord.DateOfMarriage, new { @class = "form-control applyDatePicker" })
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-lg-3 control-label">Spouse First Name</label>
                                 <div class="col-lg-9">
-                                    @Html.TextBoxFor(model => model.custRecord.SpouseFirstName, new { @class = "form-control", @value = @Model.custRecord.SpouseFirstName })
+                                    @Html.TextBoxFor(model => model.custRecord.SpouseFirstName, new { @class = "form-control" })
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-lg-3 control-label">Spouse Middle Name</label>
                                 <div class="col-lg-9">
-                                    @Html.TextBoxFor(model => model.custRecord.SpouseMiddleName, new { @class = "form-control", @value = @Model.custRecord.SpouseMiddleName })
+                                    @Html.TextBoxFor(model => model.custRecord.SpouseMiddleName, new { @class = "form-control" })
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-lg-3 control-label">Spouse Last Name</label>
                                 <div class="col-lg-9">
-                                    @Html.TextBoxFor(model => model.custRecord.SpouseLastName, new { @class = "form-control", @value = @Model.custRecord.SpouseLastName })
+                                    @Html.TextBoxFor(model => model.custRecord.SpouseLastName, new { @class = "form-control" })
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-lg-3 control-label">Spouse Birth Date</label>
                                 <div class="col-lg-9">
-                                    @Html.TextBoxFor(model => model.custRecord.SpouseDateofBirth, new { @class = "form-control applyDatePicker", @value = @Model.custRecord.SpouseDateofBirth })
+                                    @Html.TextBoxFor(model => model.custRecord.SpouseDateofBirth, new { @class = "form-control applyDatePicker" })
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-lg-3 control-label">Spouse Contact No.</label>
                                 <div class="col-lg-9">
-                                    @Html.TextBoxFor(model => model.custRecord.SpouseContactNumber, new { @class = "form-control", @value = @Model.custRecord.SpouseContactNumber })
+                                    @Html.TextBoxFor(model => model.custRecord.SpouseContactNumber, new { @class = "form-control" })
                                 </div>
-                            </div>                            
-                            @{                                
+                            </div>
+                            @{
                                 <table id="tblSpouse" class="table table-bordered" width="100%" cellspacing="0" style="font-size:smaller;">
                                     <thead>
                                         <tr>
-                                            <th><div class="text-center"><div class="btn btn-info btn-xs" title='Add' onclick="addData('spouse')"><span class='glyphicon glyphicon-plus' aria-hidden='true'></span></div></div></th>                                            
+                                            <th><div class="text-center"><div class="btn btn-info btn-xs" title='Add' onclick="addData('spouse')"><span class='glyphicon glyphicon-plus' aria-hidden='true'></span></div></div></th>
                                             <th>Type</th>
                                             <th>Employer / Business</th>
                                             <th>Nature</th>
@@ -220,38 +220,38 @@
                         <div class="form-horizontal">
                             <div class="form-group">
                                 <label class="col-lg-4 control-label">SSS No.</label>
-                                <div class="col-lg-8">                                    
-                                    @Html.TextBoxFor(model => model.custRecord.SSSNumber, new { @class = "form-control", @value = @Model.custRecord.SSSNumber })
+                                <div class="col-lg-8">
+                                    @Html.TextBoxFor(model => model.custRecord.SSSNumber, new { @class = "form-control" })
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-lg-4 control-label">GSIS No.</label>
-                                <div class="col-lg-8">                                    
-                                    @Html.TextBoxFor(model => model.custRecord.GSISNumber, new { @class = "form-control", @value = @Model.custRecord.GSISNumber })
+                                <div class="col-lg-8">
+                                    @Html.TextBoxFor(model => model.custRecord.GSISNumber, new { @class = "form-control" })
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-lg-4 control-label">Tax ID No.</label>
-                                <div class="col-lg-8">                                    
-                                    @Html.TextBoxFor(model => model.custRecord.TinNumber, new { @class = "form-control", @value = @Model.custRecord.TinNumber })
+                                <div class="col-lg-8">
+                                    @Html.TextBoxFor(model => model.custRecord.TinNumber, new { @class = "form-control" })
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-lg-4 control-label">RCN</label>
-                                <div class="col-lg-8">                                    
-                                    @Html.TextBoxFor(model => model.custRecord.RCN, new { @class = "form-control", @value = @Model.custRecord.RCN })
+                                <div class="col-lg-8">
+                                    @Html.TextBoxFor(model => model.custRecord.RCN, new { @class = "form-control" })
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-lg-4 control-label">RCN Place Issued</label>
-                                <div class="col-lg-8">                                    
-                                    @Html.TextBoxFor(model => model.custRecord.RCNPlaceIssued, new { @class = "form-control", @value = @Model.custRecord.RCNPlaceIssued })
+                                <div class="col-lg-8">
+                                    @Html.TextBoxFor(model => model.custRecord.RCNPlaceIssued, new { @class = "form-control" })
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-lg-4 control-label">RCN Date Issued</label>
-                                <div class="col-lg-8">                                    
-                                    @Html.TextBoxFor(model => model.custRecord.RCNDateIssued, new { @class = "form-control applyDatePicker", @value = @Model.custRecord.RCNDateIssued })
+                                <div class="col-lg-8">
+                                    @Html.TextBoxFor(model => model.custRecord.RCNDateIssued, new { @class = "form-control applyDatePicker" })
                                 </div>
                             </div>
                         </div>
@@ -270,56 +270,56 @@
                             <div class="form-group">
                                 <label class="col-lg-2 control-label">Province/City</label>
                                 <div class="col-lg-4">
-                                    @Html.DropDownListFor(model => model.custAddress[0].ProvinceID, new SelectList(Model.allComponents.Province, "ProvinceID", "Description", @Model.custAddress[0].ProvinceID), new { @onChange= "UpdateCity('Main')", @class = "form-control provinceMainBox" })
+                                    @Html.DropDownListFor(model => model.custAddress[0].ProvinceID, new SelectList(Model.allComponents.Province, "ProvinceID", "Description"), new { @onChange = "UpdateCity('Main')", @class = "form-control provinceMainBox" })
                                 </div>
                                 <div class="col-lg-4">
-                                    @Html.DropDownListFor(model => model.custAddress[0].CityID, new SelectList(Model.allComponents.City, "CityID", "Description", @Model.custAddress[0].CityID), new { @class = "form-control cityMainBox" })
+                                    @Html.DropDownListFor(model => model.custAddress[0].CityID, new SelectList(Model.allComponents.City, "CityID", "Description"), new { @class = "form-control cityMainBox" })
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-lg-2 control-label">Barangay</label>
-                                <div class="col-lg-8">                                        
-                                    @Html.TextBoxFor(model => model.custAddress[0].BarangayName, new { @class = "form-control", @value = @Model.custAddress[0].BarangayName })
+                                <div class="col-lg-8">
+                                    @Html.TextBoxFor(model => model.custAddress[0].BarangayName, new { @class = "form-control" })
                                     <br />@Html.ValidationMessageFor(model => model.custAddress[0].BarangayName, "", new { @class = "validation" })
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-lg-2 control-label">Street Address</label>
-                                <div class="col-lg-8">                                        
-                                    @Html.TextBoxFor(model => model.custAddress[0].StreetAddress, new { @class = "form-control", @value = @Model.custAddress[0].StreetAddress })
+                                <div class="col-lg-8">
+                                    @Html.TextBoxFor(model => model.custAddress[0].StreetAddress, new { @class = "form-control" })
                                     <br />@Html.ValidationMessageFor(model => model.custAddress[0].StreetAddress, "", new { @class = "validation" })
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-lg-2 control-label">Postal Code</label>
-                                <div class="col-lg-8">                                        
-                                    @Html.TextBoxFor(model => model.custAddress[0].PostalCode, new { @class = "form-control", @value = @Model.custAddress[0].PostalCode })
+                                <div class="col-lg-8">
+                                    @Html.TextBoxFor(model => model.custAddress[0].PostalCode, new { @class = "form-control" })
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-lg-2 control-label">Landline / Mobile No.</label>
                                 <div class="col-lg-4">
-                                    @Html.TextBoxFor(model => model.custAddress[0].PhoneNumber, new { @class = "form-control", @value = @Model.custAddress[0].PhoneNumber })
+                                    @Html.TextBoxFor(model => model.custAddress[0].PhoneNumber, new { @class = "form-control" })
                                     <br />@Html.ValidationMessageFor(model => model.custAddress[0].PhoneNumber, "", new { @class = "validation" })
                                 </div>
                                 <div class="col-lg-4">
-                                    @Html.TextBoxFor(model => model.custAddress[0].MobileNumber, new { @class = "form-control", @value = @Model.custAddress[0].MobileNumber })
+                                    @Html.TextBoxFor(model => model.custAddress[0].MobileNumber, new { @class = "form-control" })
                                     <br />@Html.ValidationMessageFor(model => model.custAddress[0].MobileNumber, "", new { @class = "validation" })
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-lg-2 control-label">Date of Residence</label>
-                                <div class="col-lg-8">                                        
-                                    @Html.TextBoxFor(model => model.custAddress[0].ResidentDate, new { @class = "form-control applyDatePicker", @value = @Model.custAddress[0].ResidentDate })
+                                <div class="col-lg-8">
+                                    @Html.TextBoxFor(model => model.custAddress[0].ResidentDate, new { @class = "form-control applyDatePicker" })
                                     <br />@Html.ValidationMessageFor(model => model.custAddress[0].ResidentDate, "", new { @class = "validation" })
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-lg-2 control-label">Home Ownership</label>
                                 <div class="col-lg-8">
-                                    @Html.DropDownListFor(model => model.custAddress[0].HomeOwnershipID, new SelectList(Model.allComponents.HomeOwnership, "HomeOwnershipID", "Description", @Model.custAddress[0].HomeOwnershipID), new { @class = "form-control" })
+                                    @Html.DropDownListFor(model => model.custAddress[0].HomeOwnershipID, new SelectList(Model.allComponents.HomeOwnership, "HomeOwnershipID", "Description"), new { @class = "form-control" })
                                 </div>
-                            </div>                            
+                            </div>
                             <table id="tblAddress" class="table table-bordered" width="100%" cellspacing="0" style="font-size:smaller;">
                                 <thead>
                                     <tr>
@@ -384,8 +384,7 @@
                                     <th>Date Graduated</th>
                                 </tr>
                             </thead>
-                            <tbody>                               
-                            </tbody>
+                            <tbody></tbody>
                         </table>
                     </div>
                 </div>
@@ -408,8 +407,7 @@
                                     <th>Contact No.</th>
                                 </tr>
                             </thead>
-                            <tbody>                                
-                            </tbody>
+                            <tbody></tbody>
                         </table>
                     </div>
                 </div>
@@ -441,12 +439,12 @@
             </div>
         </div>
     </div>
-                                    }   
+                                }
 
 <div id="UpdateTableData" class="modal fade" role="dialog">
     <div class="modal-dialog" style="background-color:#ffffff;">
         <div class="modal-body" style="background-color:white;">
-            <div id="update-display-modal-body">                
+            <div id="update-display-modal-body">
             </div>
         </div>
         <div class="modal-footer" style="background-color:white;">
