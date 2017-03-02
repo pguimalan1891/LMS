@@ -4,5 +4,63 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>DisbursementVoucher</h2>
+
+@section Scripts
+{
+    @Helper.LoadCustomJS("ViewsJS/Booking/JS_Booking_DV.js", Url)
+}
+    
+<div class="row">
+    <div class="col-md-12">
+        <div class="page-header"><h1>Workdesk <small>Disbursement Voucher</small></h1></div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-7">
+        <form class="form-inline">
+            <div class="form-group">
+                <label for="selfindDV">Find DV:</label>
+                <select class="form-control" id="selfindDV">
+                    <option value="48">For Releasing</option>
+                    <option value="49">Released</option>
+                    <option value="99">All Listing</option>
+                </select>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <br />
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 id="lblfindDV" class="panel-title">For Releasing</h3>
+            </div>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table id="tbBookingDV" class="table table-striped table-bordered dt-responsive no-wrap" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th>Status</th>
+                                <th>DV No</th>
+                                <th>Date</th>
+                                <th>Branch</th>
+                                <th>LMS DLR No</th>
+                                <th>DLR No</th>
+                                <th>CIR No</th>
+                                <th>FRP No</th>
+                                <th>Expense</th>
+                                <th>Amount</th>
+                                <th>Payee</th>
+                                <th>Date Prepared</th>
+                                <th>Prepared By</th>
+                            </tr>
+
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 

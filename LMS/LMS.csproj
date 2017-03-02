@@ -387,6 +387,7 @@
     <Content Include="ViewsJS\Booking\JS_Booking.js" />
     <Content Include="ViewsJS\Booking\JS_Booking_CIR.js" />
     <Content Include="ViewsJS\Booking\JS_Booking_CV.js" />
+    <Content Include="ViewsJS\Booking\JS_Booking_DV.js" />
     <Content Include="ViewsJS\Customer\JS_Customer.js" />
     <Content Include="ViewsJS\Library\JS_LibraryComponent.js" />
     <Content Include="Views\Web.config" />
