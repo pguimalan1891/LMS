@@ -35,6 +35,7 @@ namespace ServiceLayer.Interface
         IEnumerable<AddressType> getAddressType(bool includecurrentAddress);
         IEnumerable<RelationshipType> getRelationshipType();
         IEnumerable<EducationType> getEducationType();
-
+        IEnumerable<Agent> getAgent(string PISID);
+        IEnumerable<Agent> updateAgent(string applicationTypeID, string OrganizationID);
     }
 }
