@@ -12,5 +12,6 @@ namespace ServiceLayer.Interface
         List<Dictionary<string, object>> getCheckVoucher(int status);
         List<Dictionary<string, object>> getCIRForm(int status);
         List<Dictionary<string, object>> getDisbursementVoucher(int status);
+        List<Dictionary<string, object>> getChangeCCIForm(int status);
     }
 }
