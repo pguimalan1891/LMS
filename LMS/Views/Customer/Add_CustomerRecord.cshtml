@@ -12,14 +12,14 @@
 }
 
 
-@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "updateForm" }))
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "addForm" }))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
     <div style="background-color:white;">
         <div class="row">
             <div class="col-md-3" style="padding-bottom:10px;padding-top:10px;padding-left:30px;">
-                <div class="btn btn-info" onclick="updateCustomerData()" title="Update Customer Data" id="btnUpdate"><b>Update Customer</b></div>
+                <div class="btn btn-info" onclick="AddCustomerData()" title="Add Customer Data" id="btnUpdate"><b>Add Customer</b></div>
             </div>
             <div class="col-md-1">
                 @Html.TextBoxFor(model => model.custRecord.ID, new { @id = "CustRecord_ID", @disabled = "disabled", @style = "visibility:hidden", @class = "form-control" })
@@ -109,19 +109,19 @@
                                     @Html.DropDownListFor(model => model.custRecord.DistrictID, new SelectList(Model.allComponents.District, "DistrictID", "Description"), new { @class = "form-control" })
                                 </div>
                                 <div class="col-lg-4">
-                                    @Html.DropDownListFor(model => model.custRecord.OrganizationID, new SelectList(Model.allComponents.Organization, "OrganizationID", "Description"), new { @class = "form-control" })
+                                    @Html.DropDownListFor(model => model.custRecord.OrganizationID, new SelectList(Model.allComponents.Organization, "OrganizationID", "Description"), new { @onChange = "UpdateAgent()", @class = "form-control MainOrganization" })
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-lg-3 control-label">Application Type</label>
                                 <div class="col-lg-9">
-                                    @Html.DropDownListFor(model => model.custRecord.ApplicationTypeID, new SelectList(Model.allComponents.ApplicationType, "ApplicationTypeID", "Description"), new { @class = "form-control" })
+                                    @Html.DropDownListFor(model => model.custRecord.ApplicationTypeID, new SelectList(Model.allComponents.ApplicationType, "ApplicationTypeID", "Description"), new { @onChange = "UpdateAgent()", @class = "form-control MainApplicationType" })
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-lg-3 control-label">Agent</label>
                                 <div class="col-lg-9">
-                                    @Html.DropDownListFor(model => model.custRecord.AgentProfileID, new SelectList(Model.allComponents.Agent, "AgentProfileID", "Description"), new { @class = "form-control" })
+                                    @Html.DropDownListFor(model => model.custRecord.AgentProfileID, new SelectList(Model.allComponents.Agent, "AgentProfileID", "Description"), new { @class = "form-control MainAgent" })
                                 </div>
                             </div>
                             <div class="form-group">

@@ -69,3 +69,12 @@ function ViewCustomer(code) {
         modalDispCustProfMain.modal();
     });
 }
+
+function AddCustomer() {
+    var req = $.ajax({
+        type: 'GET',
+        async: true,
+        url: "Customer/Add_CustomerRecord",
+        contentType: "application/json; charset=utf-8"        
+    });    
+}

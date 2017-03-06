@@ -3,7 +3,7 @@
 
 
 @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "addEmployment" }))
-{
+{    
     <div style="background-color:white;">
         <div class="row">
             <div class="ibox float-e-margins">
@@ -48,7 +48,7 @@
                         <div class="form-group">
                             <label class="col-lg-3 control-label">Active From</label>
                             <div class="col-lg-9">
-                                @Html.TextBoxFor(model => model.custEmployment.FromDate, new { @class = "form-control applyDatePicker" })
+                                @Html.TextBoxFor(model => model.custEmployment.FromDate, new { @class = "form-control applyDatePicker" })                                
                                 <br />@Html.ValidationMessageFor(model => model.custEmployment.FromDate, "", new { @class = "validation" })
                             </div>
                         </div>

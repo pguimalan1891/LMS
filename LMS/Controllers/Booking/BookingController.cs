@@ -87,6 +87,18 @@ namespace LMS.Controllers
             return Json(this.service.getCIRForm(status));
         }
 
+        [HttpPost]
+        public ActionResult RetrieveDisbursementVoucher(int status)
+        {
+            return Json(this.service.getDisbursementVoucher(status));
+        }
+
+        [HttpPost]
+        public ActionResult RetrieveChangeCCIForm(int status)
+        {
+            return Json(this.service.getChangeCCIForm(status));
+        }
+
         protected override JsonResult Json(object data, string contentType, System.Text.Encoding contentEncoding, JsonRequestBehavior behavior)
         {
             return new JsonResult()

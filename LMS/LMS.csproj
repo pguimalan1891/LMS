@@ -390,8 +390,10 @@
     <Content Include="Scripts\respond.min.js" />
     <None Include="Scripts\_references.js" />
     <Content Include="ViewsJS\Booking\JS_Booking.js" />
+    <Content Include="ViewsJS\Booking\JS_Booking_CCI.js" />
     <Content Include="ViewsJS\Booking\JS_Booking_CIR.js" />
     <Content Include="ViewsJS\Booking\JS_Booking_CV.js" />
+    <Content Include="ViewsJS\Booking\JS_Booking_DV.js" />
     <Content Include="ViewsJS\Customer\JS_Customer.js" />
     <Content Include="ViewsJS\Customer\JS_CustomerAdd.js" />
     <Content Include="ViewsJS\Customer\JS_CustomerUpdate.js" />

@@ -1,10 +1,6 @@
 ﻿var currentRowUpdate;
 
-$(document).ready(function () {
-    loadAllTables();
-    $("#btnUpdate").click(function () {
-        frm = $("#updateForm").serialize();
-    });
+$(document).ready(function () {    
     $('.applyDatePicker').datepicker({ forceParse: false });
     UpdateCity("Main");
 });
@@ -622,15 +618,24 @@ function UpdateCity(type) {
     }
 }
 
-function updateCustomerData() {
-    $.validator.unobtrusive.parse($("#updateForm"));
+function UpdateAgent() {
+    $(".MainAgent").children().remove();
+    $.post("/Customer/UpdateAgent", { ApplicationTypeID: $(".MainApplicationType>option:selected").val(), OrganizationID: $(".MainOrganization>option:selected").val() }, function (data) {
+        $.each(data, function (AgentProfileID, AgentProfile) {
+            $(".MainAgent").append("<option value='" + AgentProfile.AgentProfileID + "'>" + AgentProfile.Description + "</option>")
+        });
+    });
+}
+
+function AddCustomerData() {
+    $.validator.unobtrusive.parse($("#addForm"));
     $(".validation").css("color", "red");
-    if (!$("#updateForm").valid()) {
+    if (!$("#addForm").valid()) {
         return;
     }
     var custModel = {};
     var PISID = $("#CustRecord_ID").val();
-    $.each($("#updateForm")[0], function (rowkey, ctrl) {
+    $.each($("#addForm")[0], function (rowkey, ctrl) {
         custModel[ctrl.name] = ctrl.value;
     });
     var custEmployment = [];
@@ -771,16 +776,17 @@ function updateCustomerData() {
     });
 
     var jsonObject = $.ajax({
-        url: '/Customer/UpdateCustomerData',
+        url: '/Customer/AddCustomerData',
         type: 'POST',
         contentType: 'application/json;charset=utf-8',
         data: "{ custModel: " + JSON.stringify(custModel) + ", custAddress: " + JSON.stringify(custAddress) + ", custDependents: " + JSON.stringify(custDependents) + ", custEmployment: " + JSON.stringify(custEmployment) + ", custEducation: " + JSON.stringify(custEducation) + ", custCharacter: " + JSON.stringify(custCharacter) + ",PISID: '" + PISID + "' }"
     });
     jsonObject.done(function (data) {
-        if (data == 1) {
-            alert("Successful Updating!");
-        } else {
-            alert("Updating Failed!");
+        if (data == 1) {            
+            toastr.info("Successful Updating.");
+
+        } else {            
+            toastr.error("Updating Failed: Contact Administrator.");
         }
     });
 }
