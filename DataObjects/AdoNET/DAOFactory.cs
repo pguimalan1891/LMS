@@ -23,9 +23,16 @@ namespace DataObjects.AdoNET
             get { return new AccountDAO(); }
         }
 
+        public ILoanApplicationDAO LoanApplicationDAO
+        {
+            get { return new LoanApplicationDAO(); }
+        }
+
         public IBookingDAO BookingDAO
         {
             get { return new BookingDAO(); }
+
+
         }
     }
 }

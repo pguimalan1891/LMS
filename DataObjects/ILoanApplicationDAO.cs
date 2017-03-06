@@ -9,5 +9,11 @@ namespace DataObjects
     public interface ILoanApplicationDAO
     {
         List<Dictionary<string, object>> GetBorrowers(string searchkey);
+
+        IEnumerable<BusinessObjects.LoanType> getProducts();
+        IEnumerable<BusinessObjects.LoanSet> getLoanSet();
+
+        IEnumerable<BusinessObjects.LoanTerms> getLoanTerms();
+        IEnumerable<BusinessObjects.BorrowerProfile> getBorrowerProfile(string borrowerCode);
     }
 }

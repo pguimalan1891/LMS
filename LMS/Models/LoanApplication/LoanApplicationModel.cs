@@ -32,6 +32,7 @@ namespace LMS.Models.LoanApplication
         public string ORExpiryDate;
         public string InsuranceName;
         public string InsuranceExpiryDate;
+       
 
     }
     
@@ -88,6 +89,16 @@ namespace LMS.Models.LoanApplication
         public string Notes;
 
         public string ResultStatus;
+
+        public IEnumerable<BusinessObjects.Organization> orgs;
+        public BusinessObjects.BorrowerProfile borrowerProfile;
+        public IEnumerable<BusinessObjects.District> districts;
+        public IEnumerable<BusinessObjects.ApplicationType> applicationTypes;
+        public IEnumerable<BusinessObjects.LoanType> products;
+        public IEnumerable<BusinessObjects.LoanSet> sets;
+        public IEnumerable<BusinessObjects.LoanTerms> terms;
+
+        //functions
 
         public LoanApplicationModel submit()
         {

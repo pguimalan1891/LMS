@@ -389,6 +389,7 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <None Include="Scripts\_references.js" />
+    <Content Include="ViewsJS\Application\JS_ApplicationCtrl.js" />
     <Content Include="ViewsJS\Booking\JS_Booking.js" />
     <Content Include="ViewsJS\Booking\JS_Booking_CCI.js" />
     <Content Include="ViewsJS\Booking\JS_Booking_CIR.js" />
@@ -456,6 +457,8 @@
     <Content Include="Views\Booking\PromissoryNoteAllocation.cshtml" />
     <Content Include="Views\Customer\Add_CustomerRecord.cshtml" />
     <Content Include="Views\Application\LoanApplication.cshtml" />
+    <Content Include="Views\Application\_LoanComakers.cshtml" />
+    <Content Include="Views\Application\_LoanCollaterals.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -531,7 +534,9 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.BinFix.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.BinFix.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.BinFix.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.BinFix.targets'))" />
   </Target>
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.BinFix.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.BinFix.targets" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.BinFix.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.BinFix.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
