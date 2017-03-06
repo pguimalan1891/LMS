@@ -1,18 +1,18 @@
 ﻿var tblComponent;
 var fntblComponent = $("#tbl-component thead")
-var compnent = "";
+var component = "";
 $(document).ready(function () {
-    compnent = "Company Type"
-    loadComponents("/DevelopmentTools/FetchLibraryComponent");    
+    component = $("#txtComponentName").val();
+    loadComponents("/DevelopmentTools/FetchLibraryComponent", { 'ComponentName': component });
 });
 
-function loadComponents(url) {    
+function loadComponents(url, ajaxdata) {    
     var req = $.ajax({
         type: 'GET',
         async: true,
         url: url,
         contentType: "application/json; charset=utf-8",
-        data: {},
+        data: ajaxdata,
     });
 
     req.error(function (request, status, error) {
@@ -25,8 +25,8 @@ function loadComponents(url) {
             {
                 "data": null, "targets": -1, "sortable": false,
                 "render": function (data, type, full, meta) {
-                    return "<a class='btn btn-success btn-minier' href='#' title='Edit' onClick='EditComponent(\"" + data.ID + "\")'><span class='glyphicon glyphicon-edit' aria-hidden='true'></span></a>" +
-                        "&nbsp;<a class='btn btn-danger btn-minier' href='#' title='Delete' onClick='DeleteComponent(\"" + data.ID + "\")'><span class='glyphicon glyphicon-remove' aria-hidden='true'></span></a>"
+                    return "<a class='btn btn-success btn-minier btn-sm' href='#' title='Edit' onClick='EditComponent(\"" + data.ID + "\")'><span class='glyphicon glyphicon-edit' aria-hidden='true'></span></a>" +
+                        "&nbsp;<a class='btn btn-danger btn-minier btn-sm' href='#' title='Delete' onClick='DeleteComponent(\"" + data.ID + "\")'><span class='glyphicon glyphicon-remove' aria-hidden='true'></span></a>"
                 }
             },
         ];
@@ -51,11 +51,12 @@ function loadComponents(url) {
             "ajax": {
                 "url": url,
                 "datatype": "json",
-                "type": "GET"
+                "type": "GET",
+                "data": ajaxdata
             },
             "columns": dataColumns
         });
-        $.get("/DevelopmentTools/FetchLibraryUpdateCompent", {}, function (data) {
+        $.get("/DevelopmentTools/FetchLibraryUpdateComponent", { 'ComponentName': component }, function (data) {
             $.each(data, function (datakey, comp) {
                 if (comp.FieldisHide == "Hide") {
                     tblComponent.columns(comp.FieldisHideColIndex).visible(false, false);
@@ -67,7 +68,7 @@ function loadComponents(url) {
 
 function AddComponent() {
     event.preventDefault();
-    $.get("/DevelopmentTools/FetchLibraryUpdateCompent", {}, function (data) {
+    $.get("/DevelopmentTools/FetchLibraryUpdateComponent", { 'ComponentName': component }, function (data) {
         var dlgAdd = $("#dlgadd-modal-body");
         var dlgAddMain = $("#dlgAdd");
         dlgAdd.empty();
@@ -126,7 +127,7 @@ function AddComponent() {
                 async: true,
                 url: "/DevelopmentTools/AddComponent",
                 contentType: "application/json; charset=utf-8",
-                data: "{'compData': '" + AddRet + "','opCode': 0 }"
+                data: "{'ComponentName': '" + component + "','compData': '" + AddRet + "','opCode': 0 }"
             });
             req.error(function (request, status, error) {
                 toastr.error(request.responseText);
@@ -147,7 +148,7 @@ function AddComponent() {
 
 function EditComponent(editItem) {
     event.preventDefault();
-    $.get("/DevelopmentTools/FetchLibraryUpdateCompent", {}, function (data) {
+    $.get("/DevelopmentTools/FetchLibraryUpdateComponent", { 'ComponentName': component }, function (data) {
         var dlgEdit = $("#dlgedit-modal-body");
         var dlgEditMain = $("#dlgEdit");
         dlgEdit.empty();
@@ -225,7 +226,7 @@ function EditComponent(editItem) {
                 async: true,
                 url: "/DevelopmentTools/UpdateComponent",
                 contentType: "application/json; charset=utf-8",
-                data: "{'compData': '" + UpdateRet + "','opCode': 1 }"
+                data: "{'ComponentName': '" + component + "','compData': '" + UpdateRet + "','opCode': 1 }"
             });
             req.error(function (request, status, error) {
                 toastr.error(request.responseText);
@@ -245,7 +246,7 @@ function EditComponent(editItem) {
 
 function DeleteComponent(delItem) {
     event.preventDefault();
-    $.get("/DevelopmentTools/FetchLibraryUpdateCompent", {}, function (data) {
+    $.get("/DevelopmentTools/FetchLibraryUpdateComponent", { 'ComponentName': component }, function (data) {
         var grpSelect = {};
         var dlgDelete = $("#dlgdelete-modal-body");
         var dlgDeleteMain = $("#dlgDelete");
@@ -306,7 +307,7 @@ function DeleteComponent(delItem) {
                 async: true,
                 url: "/DevelopmentTools/DeleteComponent",
                 contentType: "application/json; charset=utf-8",
-                data: "{'compData': '" + DeleteRet + "','opCode': 2 }"
+                data: "{'ComponentName': '" + component + "','compData': '" + DeleteRet + "','opCode': 2 }"
             });
             req.error(function (request, status, error) {
                 toastr.error(request.responseText);

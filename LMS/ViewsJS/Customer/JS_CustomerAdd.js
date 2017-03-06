@@ -784,7 +784,7 @@ function AddCustomerData() {
     jsonObject.done(function (data) {
         if (data == 1) {            
             toastr.info("Successful Updating.");
-
+            window.location.href = '/Customer?ID=' + PISID;
         } else {            
             toastr.error("Updating Failed: Contact Administrator.");
         }

@@ -1,7 +1,7 @@
 USE [FINAL_TESTING]
 GO
 
-/****** Object:  View [dbo].[uvw_PISAddress]    Script Date: 2/9/2017 5:10:16 PM ******/
+/****** Object:  View [dbo].[uvw_PISAddress]    Script Date: 3/6/2017 1:32:50 PM ******/
 SET ANSI_NULLS ON
 GO
 
@@ -11,8 +11,8 @@ GO
 CREATE VIEW [dbo].[uvw_PISAddress]
 AS
 SELECT        pisAdd.ID, pisAdd.PIS_ID, pisAdd.ADDRESS_TYPE_ID, addType.DESCRIPTION AS AddressType, pisAdd.STREET_ADDRESS, pisAdd.BARANGAY_NAME, pisAdd.CITY_ID, dbo.city.DESCRIPTION AS City, 
-                         prov.DESCRIPTION AS Province, coun.DESCRIPTION AS Country, pisAdd.POSTAL_CODE, pisAdd.PHONE_NUMBER, pisAdd.MOBILE_NUMBER, pisAdd.RESIDENT_DATE, pisAdd.HOME_OWNERSHIP_ID, 
-                         homeOwn.DESCRIPTION AS HomeOwnership
+                         prov.ID AS ProvinceID, prov.DESCRIPTION AS Province, coun.DESCRIPTION AS Country, pisAdd.POSTAL_CODE, pisAdd.PHONE_NUMBER, pisAdd.MOBILE_NUMBER, pisAdd.RESIDENT_DATE, 
+                         pisAdd.HOME_OWNERSHIP_ID, homeOwn.DESCRIPTION AS HomeOwnership
 FROM            dbo.pis_address AS pisAdd LEFT OUTER JOIN
                          dbo.address_type AS addType ON pisAdd.ADDRESS_TYPE_ID = addType.ID LEFT OUTER JOIN
                          dbo.home_ownership AS homeOwn ON pisAdd.HOME_OWNERSHIP_ID = homeOwn.ID LEFT OUTER JOIN

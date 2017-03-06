@@ -34,5 +34,10 @@ namespace DataObjects.AdoNET
 
 
         }
+
+        public IMaintenanceAgentProfileDAO MaintenanceAgentProfileDAO
+        {
+            get { return new MaintenanceAgentProfileDAO(); }
+        }
     }
 }

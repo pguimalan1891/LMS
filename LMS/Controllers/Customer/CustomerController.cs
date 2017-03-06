@@ -31,24 +31,25 @@ namespace LMS.Controllers
         }
 
         [Route("Customer")]
-        public ActionResult Customer()
+        public ActionResult Customer(string ID)
         {
-            //Models.Customer.CustomerModel custModel = new CustomerModel();
-            //custModel.custRecord = SetCustomerRecordModel(service.getCustomerRecordByCode("096-20150604000022"));
-            //var ID = custModel.custRecord.ID;
-            //custModel.custCharacter = setCustomerCharacterModel(service.getCustomerCharacterByID(ID));
-            //custModel.custEducation = setCustomerEducationModel(service.getCustomerEducationByID(ID));
-            //custModel.custDependents = setCustomerDependentModel(service.getCustomerDependentsByID(ID));
-            //custModel.custAddress = setCustomerAddressModel(service.getCustomerAddressByID(ID));
-            //custModel.custEmployment = setCustomerEmploymentModel(service.getCustomerEmploymentRecordByID(ID));
-            //custModel.allComponents = setComponents(custModel);
-            return View();
+            if (ID == null)
+                ID = "";
+            string Code;
+            Code = service.getCustomerCodebyID(ID);
+            LMS.Models.Customer.CustomerRecord custRecord = new Models.Customer.CustomerRecord();
+            if (Code == null)
+                Code = "";
+            custRecord.Code = Code;
+            return View(custRecord);
         }
 
         [HttpGet]
         public ActionResult FetchCustomerRecord()
         {
-            return Json(this.service.getCustomerRecord(), JsonRequestBehavior.AllowGet);
+            List<Dictionary<string, object>> custRecord = new List<Dictionary<string, object>>();
+            custRecord = service.getCustomerRecord();
+            return Json(custRecord, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]

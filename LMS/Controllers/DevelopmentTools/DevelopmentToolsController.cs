@@ -17,14 +17,13 @@ namespace LMS.Controllers.DevelopmentTools
     public class DevelopmentToolsController : Controller
     {
         private ILibrarySvc service;
-
         public DevelopmentToolsController()
             : this(new LibrarySvc())
         {
         }
 
         public DevelopmentToolsController(ILibrarySvc service)
-        {            
+        {
             this.service = service;
         }
 
@@ -33,45 +32,48 @@ namespace LMS.Controllers.DevelopmentTools
             return View();
         }
 
-        public ActionResult Library()
+        [Route("Library")]
+        public ActionResult Library(string ComponentName)
         {
             LibraryComponentModel md = new LibraryComponentModel();
-            md.ComponentName = "Company Type";
+            string[] cmp = ComponentName.Split('|');
+            md.ComponentName = cmp[0];
+            md.DisplayName = cmp[1].ToUpper();
             ViewBag.Title = "Loans Management System";
             return View(md);
         }
-        
+     
         [HttpGet]
-        public ActionResult FetchLibraryComponent()
+        public ActionResult FetchLibraryComponent(string ComponentName)
         {
-            return Json(this.service.getLibraryComponent("borrower_type"),JsonRequestBehavior.AllowGet);
+            return Json(this.service.getLibraryComponent(ComponentName), JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
-        public ActionResult FetchLibraryUpdateCompent()
+        public ActionResult FetchLibraryUpdateComponent(string ComponentName)
         {
-            return Json(this.service.getLIbraryUpdateComponent("borrower_type" + "UpdCom"),JsonRequestBehavior.AllowGet);
+            return Json(this.service.getLIbraryUpdateComponent(ComponentName + "UpdCom"), JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
-        public ActionResult AddComponent(string compData,int opCode)
+        public ActionResult AddComponent(string ComponentName, string compData, int opCode)
         {
             compData = Guid.NewGuid().ToString() + "|" + compData;
-            int resp = this.service.updLibraryComponent("borrower_type", opCode, compData);
-            return Content(resp == 1 ? "1" : resp.ToString());
-        }
-
-        [HttpPost]        
-        public ActionResult UpdateComponent(string compData, int opCode)
-        {
-            int resp = this.service.updLibraryComponent("borrower_type", opCode, compData);
+            int resp = this.service.updLibraryComponent(ComponentName, opCode, compData);
             return Content(resp == 1 ? "1" : resp.ToString());
         }
 
         [HttpPost]
-        public ActionResult DeleteComponent(string compData, int opCode)
+        public ActionResult UpdateComponent(string ComponentName, string compData, int opCode)
         {
-            int resp = this.service.updLibraryComponent("borrower_type", opCode, compData);
+            int resp = this.service.updLibraryComponent(ComponentName, opCode, compData);
+            return Content(resp == 1 ? "1" : resp.ToString());
+        }
+
+        [HttpPost]
+        public ActionResult DeleteComponent(string ComponentName, string compData, int opCode)
+        {
+            int resp = this.service.updLibraryComponent(ComponentName, opCode, compData);
             return Content(resp == 1 ? "1" : resp.ToString());
         }
     }

@@ -1,7 +1,7 @@
 USE [FINAL_TESTING]
 GO
 
-/****** Object:  View [dbo].[uvw_PISCharacter]    Script Date: 2/9/2017 5:10:30 PM ******/
+/****** Object:  View [dbo].[uvw_PISCharacter]    Script Date: 3/6/2017 1:32:54 PM ******/
 SET ANSI_NULLS ON
 GO
 
@@ -11,9 +11,10 @@ GO
 CREATE VIEW [dbo].[uvw_PISCharacter]
 AS
 SELECT        pisChar.ID, pisChar.PIS_ID, pisChar.FIRST_NAME, pisChar.MIDDLE_NAME, pisChar.LAST_NAME, pisChar.RELATIONSHIP, pisChar.STREET_ADDRESS, pisChar.CITY_ID, dbo.city.DESCRIPTION AS City, 
-                         pisChar.CONTACT_NO
+                         prov.ID AS ProvinceID, prov.DESCRIPTION AS Province, pisChar.CONTACT_NO
 FROM            dbo.pis_character AS pisChar LEFT OUTER JOIN
-                         dbo.city ON pisChar.CITY_ID = dbo.city.ID
+                         dbo.city ON pisChar.CITY_ID = dbo.city.ID LEFT OUTER JOIN
+                         dbo.province AS prov ON dbo.city.PROVINCE_ID = prov.ID
 
 GO
 
@@ -108,12 +109,33 @@ Begin DesignProperties =
             DisplayFlags = 280
             TopColumn = 0
          End
+         Begin Table = "prov"
+            Begin Extent = 
+               Top = 6
+               Left = 466
+               Bottom = 136
+               Right = 636
+            End
+            DisplayFlags = 280
+            TopColumn = 0
+         End
       End
    End
    Begin SQLPane = 
    End
    Begin DataPane = 
       Begin ParameterDefaults = ""
+      End
+      Begin ColumnWidths = 9
+         Width = 284
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
       End
    End
    Begin CriteriaPane = 

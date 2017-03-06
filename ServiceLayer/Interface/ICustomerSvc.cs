@@ -9,6 +9,7 @@ namespace ServiceLayer.Interface
 {
     public interface ICustomerSvc
     {
+        string getCustomerCodebyID(string ID);
         List<Dictionary<string, object>> getCustomerRecord();
         CustomerRecord getCustomerRecordByCode(string Code);
         IEnumerable<CustomerCharacter> getCustomerCharacterByID(string ID);

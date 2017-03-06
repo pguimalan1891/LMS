@@ -14,6 +14,7 @@ function getBookingRecords2() {
         autoWidth: true,
         initComplete: function () {
         },
+
         processing: true,
         language: {
             processing: "DataTables is currently busy"
@@ -32,6 +33,7 @@ function getBookingRecords2() {
         },
         columns: [
             //{ data: 'Seq' },
+            {  },
             { data: 'Status' },
             { data: 'LMS DLR No' },
             { data: 'DLR No' },
