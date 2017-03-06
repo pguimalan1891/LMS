@@ -11,6 +11,8 @@ namespace DataObjects
         ILibraryDAO LibraryDAO { get; }
         ICustomerDAO CustomerDAO { get; }
         IBookingDAO BookingDAO { get; }
+
+        ILoanApplicationDAO LoanApplicationDAO { get; }
         IAccountDAO AccountDAO { get; }
         IMaintenanceAgentProfileDAO MaintenanceAgentProfileDAO { get;   }
     }

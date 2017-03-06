@@ -392,6 +392,7 @@
     <Content Include="Scripts\respond.min.js" />
     <None Include="Scripts\_references.js" />
     <Content Include="ViewsJS\Booking\JS_Booking.js" />
+    <Content Include="ViewsJS\Booking\JS_Booking_CCI.js" />
     <Content Include="ViewsJS\Booking\JS_Booking_CIR.js" />
     <Content Include="ViewsJS\Booking\JS_Booking_CV.js" />
     <Content Include="ViewsJS\Booking\JS_Booking_DV.js" />
@@ -459,6 +460,7 @@
     <Content Include="Views\Booking\DisbursementVoucher.cshtml" />
     <Content Include="Views\Booking\PromissoryNoteAllocation.cshtml" />
     <Content Include="Views\Customer\Add_CustomerRecord.cshtml" />
+    <Content Include="Views\Application\LoanApplication.cshtml" />
     <Content Include="Views\MaintenanceAgentProfile\Index.cshtml" />
     <Content Include="Views\MaintenanceAgentProfile\_Display_AgentProfile.cshtml" />
     <Content Include="Views\MaintenanceAgentProfile\Update_AgentProfile.cshtml" />
@@ -481,7 +483,6 @@
     <Folder Include="Content\uiPlugins\theme\css\patterns\" />
     <Folder Include="Content\uiPlugins\theme\css\plugins\" />
     <Folder Include="Content\uiPlugins\theme\js\demo\" />
-    <Folder Include="Views\Application\" />
     <Folder Include="Views\Collections\" />
     <Folder Include="Views\CreditInvestigation\" />
   </ItemGroup>

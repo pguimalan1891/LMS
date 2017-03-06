@@ -44,5 +44,13 @@ namespace DataObjects.AdoNET
             object[] parms = { "@statuscode", status };
             return db.ReadDictionary(sql, 1, parms);
         }
+
+        public List<Dictionary<string, object>> getChangeCCIForm(int status)
+        {
+            string sql = "usp_getChangeCCIForm";
+
+            object[] parms = { "@statuscode", status };
+            return db.ReadDictionary(sql, 1, parms);
+        }
     }
 }

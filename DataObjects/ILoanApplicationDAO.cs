@@ -8,6 +8,6 @@ namespace DataObjects
 {
     public interface ILoanApplicationDAO
     {
-        List<Dictionary<string, string>> GetBorrowers(string searchkey);
+        List<Dictionary<string, object>> GetBorrowers(string searchkey);
     }
 }

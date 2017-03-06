@@ -47,6 +47,7 @@
     <Compile Include="AdoNET\CustomerDAO.cs" />
     <Compile Include="AdoNET\AccountDAO.cs" />
     <Compile Include="AdoNET\MaintenanceAgentProfileDAO.cs" />
+    <Compile Include="AdoNET\LoanApplicationDAO.cs" />
     <Compile Include="DAOFactories.cs" />
     <Compile Include="AdoNET\DAOFactory.cs" />
     <Compile Include="AdoNET\DB.cs" />
@@ -60,6 +61,7 @@
     <Compile Include="ILoanApplicationDAO.cs" />
     <Compile Include="IMaintenanceAgentProfileDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="SPs\Booking\usp_getChangeCCIForm.sql" />
     <Content Include="SPs\Booking\usp_getCheckVoucher.sql" />
   </ItemGroup>
   <ItemGroup>
@@ -77,6 +79,7 @@
     <Content Include="SPs\Account\usp_Login.sql" />
     <Content Include="SPs\Booking\RetrieveBookingRecords.sql" />
     <Content Include="SPs\Booking\usp_getCIRForm.sql" />
+    <Content Include="SPs\Booking\usp_getDisbursementVoucher.sql" />
     <Content Include="SPs\Customer\Views\[uvw_PISAddress].sql" />
     <Content Include="SPs\Customer\Views\[uvw_PISCharacter].sql" />
     <Content Include="SPs\Customer\Views\[uvw_PISData].sql" />
