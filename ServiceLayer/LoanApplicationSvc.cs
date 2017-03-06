@@ -13,7 +13,7 @@ namespace ServiceLayer
         static readonly IDAOFactory factory = DAOFactories.GetFactory();
         static readonly IAccountDAO acctCtrl = factory.AccountDAO;
 
-        public List<Dictionary<string, string>> GetBorrowers(string searchkey)
+        public List<Dictionary<string, object>> GetBorrowers(string searchkey)
         {
             return null;   
         }

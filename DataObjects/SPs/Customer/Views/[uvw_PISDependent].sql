@@ -1,7 +1,7 @@
 USE [FINAL_TESTING]
 GO
 
-/****** Object:  View [dbo].[uvw_PISDependent]    Script Date: 2/9/2017 5:10:40 PM ******/
+/****** Object:  View [dbo].[uvw_PISDependent]    Script Date: 3/6/2017 1:33:06 PM ******/
 SET ANSI_NULLS ON
 GO
 
@@ -11,8 +11,8 @@ GO
 CREATE VIEW [dbo].[uvw_PISDependent]
 AS
 SELECT        pisDep.ID, pisDep.PIS_ID, pisDep.FIRST_NAME, pisDep.MIDDLE_NAME, pisDep.LAST_NAME, pisDep.GENDER_ID, gend.DESCRIPTION AS Gender, pisDep.STREET_ADDRESS, pisDep.CITY_ID, 
-                         dbo.city.DESCRIPTION AS City, prov.DESCRIPTION AS Province, pisDep.RELATIONSHIP_TYPE_ID, rela.DESCRIPTION AS RelationshipType, pisDep.BIRTH_DATE, pisDep.SCHOOL_ADDRESS, 
-                         pisDep.CONTACT_NO
+                         dbo.city.DESCRIPTION AS City, prov.ID AS ProvinceID, prov.DESCRIPTION AS Province, pisDep.RELATIONSHIP_TYPE_ID, rela.DESCRIPTION AS RelationshipType, pisDep.BIRTH_DATE, 
+                         pisDep.SCHOOL_ADDRESS, pisDep.CONTACT_NO
 FROM            dbo.pis_dependent AS pisDep LEFT OUTER JOIN
                          dbo.city ON pisDep.CITY_ID = dbo.city.ID LEFT OUTER JOIN
                          dbo.province AS prov ON dbo.city.PROVINCE_ID = prov.ID LEFT OUTER JOIN
@@ -112,6 +112,16 @@ Begin DesignProperties =
             DisplayFlags = 280
             TopColumn = 0
          End
+         Begin Table = "prov"
+            Begin Extent = 
+               Top = 6
+               Left = 917
+               Bottom = 136
+               Right = 1087
+            End
+            DisplayFlags = 280
+            TopColumn = 0
+         End
          Begin Table = "gend"
             Begin Extent = 
                Top = 6
@@ -128,16 +138,6 @@ Begin DesignProperties =
                Left = 709
                Bottom = 119
                Right = 879
-            End
-            DisplayFlags = 280
-            TopColumn = 0
-         End
-         Begin Table = "prov"
-            Begin Extent = 
-               Top = 6
-               Left = 917
-               Bottom = 136
-               Right = 1087
             End
             DisplayFlags = 280
             TopColumn = 0

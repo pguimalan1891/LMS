@@ -46,6 +46,8 @@
     <Compile Include="AdoNET\BookingDAO.cs" />
     <Compile Include="AdoNET\CustomerDAO.cs" />
     <Compile Include="AdoNET\AccountDAO.cs" />
+    <Compile Include="AdoNET\MaintenanceAgentProfileDAO.cs" />
+    <Compile Include="AdoNET\LoanApplicationDAO.cs" />
     <Compile Include="DAOFactories.cs" />
     <Compile Include="AdoNET\DAOFactory.cs" />
     <Compile Include="AdoNET\DB.cs" />
@@ -57,6 +59,7 @@
     <Compile Include="IDAOFactory.cs" />
     <Compile Include="ILibraryDAO.cs" />
     <Compile Include="ILoanApplicationDAO.cs" />
+    <Compile Include="IMaintenanceAgentProfileDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="SPs\Booking\usp_getChangeCCIForm.sql" />
     <Content Include="SPs\Booking\usp_getCheckVoucher.sql" />

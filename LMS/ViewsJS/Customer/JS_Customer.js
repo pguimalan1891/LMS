@@ -2,8 +2,15 @@
 var fntblComponent = $("#tbl-customer thead")
 $(document).ready(function () {    
     loadComponents("/Customer/FetchCustomerRecord");
-
     $('.applyDatePicker').datepicker();
+    if ($("#CustomerCode").val() != "") {
+        modalDispCustProf = $("#display-modal-body");
+        modalDispCustProfMain = $("#DisplayCustomerModal");
+        $.get("Customer/FetchCustomerRecordByID", { "Code": $("#CustomerCode").val() }, function (data) {
+            modalDispCustProf.empty().html(data);
+            modalDispCustProfMain.modal();
+        });
+    }
 });
 
 function loadComponents(url) {
@@ -29,7 +36,7 @@ function loadComponents(url) {
                 if (compdatakey == "Code") {
                     dataColumns[colCount] = {
                         "data": compdatakey, "autowidth": true, "render": function (data, type, row, meta) {
-                            return "<a href='#' onclick='ViewCustomer(\"" + data + "\")'>" + data + "</a>";
+                            return "<a onclick='ViewCustomer(\"" + data + "\")'>" + data + "</a>";
                         }
                     };
                 } else {
@@ -47,13 +54,13 @@ function loadComponents(url) {
             "bFilter": true,
             "bProcessing": true,
             "bServerside": true,
-            "responsive": true,
-            "sAjaxDataProp": "",
+            "responsive": true,            
+            "sAjaxDataProp": "",            
             "ajax": {
                 "url": url,
                 "datatype": "json",
                 "type": "GET"
-            },
+            },            
             "columns": dataColumns
         });
         tblComponent.columns(0).visible(false, false);
@@ -71,10 +78,5 @@ function ViewCustomer(code) {
 }
 
 function AddCustomer() {
-    var req = $.ajax({
-        type: 'GET',
-        async: true,
-        url: "Customer/Add_CustomerRecord",
-        contentType: "application/json; charset=utf-8"        
-    });    
+    window.location.href = '/CustomerAdd';
 }

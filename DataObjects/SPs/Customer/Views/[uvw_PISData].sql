@@ -1,7 +1,7 @@
 USE [FINAL_TESTING]
 GO
 
-/****** Object:  View [dbo].[uvw_PISData]    Script Date: 2/9/2017 5:10:35 PM ******/
+/****** Object:  View [dbo].[uvw_PISData]    Script Date: 3/6/2017 1:33:00 PM ******/
 SET ANSI_NULLS ON
 GO
 
@@ -10,11 +10,11 @@ GO
 
 CREATE VIEW [dbo].[uvw_PISData]
 AS
-SELECT        a.ID, a.CODE, a.DATETIME_CREATED, a.ORGANIZATION_ID, org.DESCRIPTION AS Organization, dist.DESCRIPTION AS District, a.FIRST_NAME, a.LAST_NAME, a.MIDDLE_NAME, a.GENDER_ID, 
-                         gend.DESCRIPTION AS Gender, a.CIVIL_STATUS_ID, civi.DESCRIPTION AS CivilStatus, CONVERT(varchar, a.DATE_OF_MARRIAGE, 101) AS DateOfMarriage, a.CITIZENSHIP_ID, citi.DESCRIPTION AS Citizenship, 
-                         CONVERT(varchar, a.DATE_OF_BIRTH, 101) AS DateOfBirth, a.GSIS_NUMBER, a.SSS_NUMBER, a.TIN_NUMBER, a.RCN, a.RCN_PLACE_ISSUED, a.RCN_DATE_ISSUED, a.BORROWER_TYPE_ID, 
-                         borrT.DESCRIPTION AS BorrowerType, borrG.DESCRIPTION AS BorrowerGroup, a.LEAD_SOURCE_ID, lead.DESCRIPTION AS LeadSource, a.AGENT_PROFILE_ID, agentProf.LAST_NAME AS AgentLastName, 
-                         agentProf.FIRST_NAME AS AgentFirstName, agentProf.MIDDLE_NAME AS AgentMiddleName, agentProf.CODE AS AgentCode, agentType.DESCRIPTION AS AgentType, 
+SELECT        a.ID, a.CODE, a.DATETIME_CREATED, a.ORGANIZATION_ID, org.DESCRIPTION AS Organization, dist.ID AS DistrictID, dist.DESCRIPTION AS District, a.FIRST_NAME, a.LAST_NAME, a.MIDDLE_NAME, 
+                         a.GENDER_ID, gend.DESCRIPTION AS Gender, a.CIVIL_STATUS_ID, civi.DESCRIPTION AS CivilStatus, CONVERT(varchar, a.DATE_OF_MARRIAGE, 101) AS DateOfMarriage, a.CITIZENSHIP_ID, 
+                         citi.DESCRIPTION AS Citizenship, CONVERT(varchar, a.DATE_OF_BIRTH, 101) AS DateOfBirth, a.GSIS_NUMBER, a.SSS_NUMBER, a.TIN_NUMBER, a.RCN, a.RCN_PLACE_ISSUED, a.RCN_DATE_ISSUED, 
+                         a.BORROWER_TYPE_ID, borrT.DESCRIPTION AS BorrowerType, borrG.DESCRIPTION AS BorrowerGroup, a.LEAD_SOURCE_ID, lead.DESCRIPTION AS LeadSource, a.AGENT_PROFILE_ID, 
+                         agentProf.LAST_NAME AS AgentLastName, agentProf.FIRST_NAME AS AgentFirstName, agentProf.MIDDLE_NAME AS AgentMiddleName, agentProf.CODE AS AgentCode, agentType.DESCRIPTION AS AgentType, 
                          docuStatus.DESCRIPTION AS DocumentationStatus, a.APPLICATION_TYPE_ID, appType.DESCRIPTION AS ApplicationType, a.SPOUSE_FIRST_NAME, a.SPOUSE_MIDDLE_NAME, a.SPOUSE_LAST_NAME, 
                          a.SPOUSE_DATE_OF_BIRTH, a.SPOUSE_CONTACT_NUMBER, a.OWNER_CODE, a.OWNER_ID, a.PREPARED_BY_ID, a.PREPARED_BY_DATETIME, a.DOCUMENT_STATUS_CODE, a.PERMISSION, 
                          a.NOTES
@@ -245,8 +245,49 @@ EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPane2', @value=N'         End
    Begin DataPane = 
       Begin ParameterDefaults = ""
       End
-      Begin ColumnWidths = 9
+      Begin ColumnWidths = 50
          Width = 284
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 3240
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
          Width = 1500
          Width = 1500
          Width = 1500

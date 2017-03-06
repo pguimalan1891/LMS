@@ -27,5 +27,10 @@ namespace DataObjects.AdoNET
         {
             get { return new BookingDAO(); }
         }
+
+        public IMaintenanceAgentProfileDAO MaintenanceAgentProfileDAO
+        {
+            get { return new MaintenanceAgentProfileDAO(); }
+        }
     }
 }
