@@ -22,16 +22,16 @@
                 <div class="btn btn-info" onclick="AddCustomerData()" title="Add Customer Data" id="btnUpdate"><b>Add Customer</b></div>
             </div>
             <div class="col-md-1">
-                @Html.TextBoxFor(model => model.custRecord.ID, new { @id = "CustRecord_ID", @disabled = "disabled", @style = "visibility:hidden", @class = "form-control" })
+                @Html.TextBoxFor(model => model.custRecord.ID, new { @id = "CustRecord_ID", @disabled = "disabled", @style = "visibility:hidden", @class = "form-control", @value = Model.custRecord.ID })
             </div>
             <div class="col-md-1">
-                @Html.TextBoxFor(model => model.custAddress[0].ID, new { @disabled = "disabled", @style = "visibility:hidden", @class = "form-control"})
+                @Html.TextBoxFor(model => model.custAddress[0].ID, new { @disabled = "disabled", @style = "visibility:hidden", @class = "form-control", @value = @Model.custAddress[0].ID })
             </div>
             <div class="col-md-1">
-                @Html.TextBoxFor(model => model.custAddress[0].PISID, new { @disabled = "disabled", @style = "visibility:hidden", @class = "form-control"})
+                @Html.TextBoxFor(model => model.custAddress[0].PISID, new { @disabled = "disabled", @style = "visibility:hidden", @class = "form-control", @value = @Model.custAddress[0].PISID })
             </div>
             <div class="col-md-1">
-                @Html.TextBoxFor(model => model.custAddress[0].AddressTypeID, new { @disabled = "disabled", @style = "visibility:hidden", @class = "form-control" })
+                @Html.TextBoxFor(model => model.custAddress[0].AddressTypeID, new { @disabled = "disabled", @style = "visibility:hidden", @class = "form-control", @value = @Model.custAddress[0].AddressTypeID })
             </div>
         </div>
         <div class="row">

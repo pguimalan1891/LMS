@@ -10,6 +10,7 @@ namespace DataObjects
 {
     public interface ICustomerDAO
     {
+        string getCustomerCodebyID(string ID);
         List<Dictionary<string, object>> getCustomerRecord();
         IEnumerable<CustomerCharacter> getCustomerCharacterByID(string ID);
         IEnumerable<CustomerEducation> getCustomerEducationByID(string ID);

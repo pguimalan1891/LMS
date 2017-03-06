@@ -1,0 +1,202 @@
+﻿@using LMS.Models.MaintenanceAgentProfile
+@model LMS.Models.MaintenanceAgentProfile.AgentModel
+
+<div class="row" style="padding-bottom:10px">
+    <div class="col-md-12">
+        <a class="btn btn-info" onclick="@("window.location.href='" + @Url.Action("Update_AgentProfile", "MaintenanceAgentProfile", new { Code = Model.AgentProfile.AGENTCode }) + "'")">Update Agent Profile</a>
+        &nbsp;<a class="btn btn-info" id="dlgadd-close-btn">Print Agent Profile</a>
+    </div>
+</div>
+<div style="background-color:white;">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Personal Information</h5>
+                </div>
+                <div class="ibox-content">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Agent Code</label>
+                            <div class="col-lg-9">
+                                <span class="form-control">@Model.AgentProfile.AGENTCode</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">First Name</label>
+                            <div class="col-lg-9">
+                                <span class="form-control">@Model.AgentProfile.FirstName</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Middle Name</label>
+                            <div class="col-lg-9">
+                                <span class="form-control">@Model.AgentProfile.MiddleName</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Last Name</label>
+                            <div class="col-lg-9">
+                                <span class="form-control">@Model.AgentProfile.LastName</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Date of Birth</label>
+                            <div class="col-lg-5">
+                                <span class="form-control">@Model.AgentProfile.DateofBirth</span>
+                            </div>
+                            <div class="col-lg-4">
+                                <span class="form-control">Years Old</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Gender</label>
+                            <div class="col-lg-9">
+                                <span class="form-control">@Model.AgentProfile.Gender</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Civil Status</label>
+                            <div class="col-lg-9">
+                                <span class="form-control">@Model.AgentProfile.CivilStatus</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Other Information</h5>
+                </div>
+                <div class="ibox-content">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">District / Branch</label>
+                            <div class="col-lg-5">
+                                <span class="form-control">@Model.AgentProfile.District</span>
+                            </div>
+                            <div class="col-lg-4">
+                                <span class="form-control">@Model.AgentProfile.Organization</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Agent Type</label>
+                            <div class="col-lg-9">
+                                <span class="form-control">@Model.AgentProfile.AgentType</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">With Cash Card</label>
+                            <div class="col-lg-9">
+                                <span class="form-control">@Model.AgentProfile.WithCashCard</span>
+                            </div>
+                        </div>                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Contacts And Addresses</h5>
+                </div>
+                <div class="ibox-content">
+                    <div class="form-horizontal">
+                        @foreach (var addr in Model.AgentAddress)
+                        {
+                            if (@addr.AddressTypeID == "0")
+                            {
+                                <div class="form-group">
+                                    <label class="col-lg-3 control-label">Province/City</label>
+                                    <div class="col-lg-5">
+                                        <span class="form-control">@addr.Province</span>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <span class="form-control">@addr.City</span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-3 control-label">Barangay</label>
+                                    <div class="col-lg-9">
+                                        <span class="form-control">@addr.BarangayName</span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-3 control-label">Street Address</label>
+                                    <div class="col-lg-9">
+                                        <span class="form-control">@addr.StreetAddress</span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-3 control-label">Postal Code</label>
+                                    <div class="col-lg-9">
+                                        <span class="form-control">@addr.PostalCode</span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-3 control-label">Landline / Mobile No.</label>
+                                    <div class="col-lg-5">
+                                        <span class="form-control">@addr.PhoneNumber</span>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <span class="form-control">@addr.MobileNumber</span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-3 control-label">Date of Residence</label>
+                                    <div class="col-lg-9">
+                                        <span class="form-control">@addr.ResidentDate</span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-3 control-label">Home Ownership</label>
+                                    <div class="col-lg-9">
+                                        <span class="form-control">@addr.HomeOwnerShip</span>
+                                    </div>
+                                </div>
+                            }
+                        }
+                        <table class="table table-bordered" width="100%" cellspacing="0" style="font-size:smaller;">
+                            <thead>
+                                <tr>
+                                    <th>Address Type</th>
+                                    <th>Full Address</th>
+                                    <th>Contact Number/s</th>
+                                    <th>Residence Date</th>
+                                    <th>Ownership</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{ bool isSendAddressExist = false;}
+                                @foreach (var addr in Model.AgentAddress)
+                                {
+                                    if (@addr.AddressTypeID != "0")
+                                    {
+                                        isSendAddressExist = true;
+                                        <tr>
+                                            <td>@addr.AddressType</td>
+                                            <td>@addr.StreetAddress, @addr.BarangayName, @addr.City, @addr.PostalCode, @addr.Province</td>
+                                            <td>@addr.PhoneNumber, @addr.MobileNumber</td>
+                                            <td>@addr.ResidentDate</td>
+                                            <td>@addr.HomeOwnerShip</td>
+                                        </tr>
+                                    }
+                                }
+                                @if (isSendAddressExist == false)
+                                {
+                                    <tr>
+                                        <td colspan="5">No Other Addresses.</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

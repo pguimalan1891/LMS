@@ -1,0 +1,239 @@
+﻿@using LMS.Models.MaintenanceAgentProfile
+@model  LMS.Models.MaintenanceAgentProfile.AgentModel
+
+@{
+    ViewBag.Title = "Update_AgentProfile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "updateForm" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="row">
+        <div class="col-md-3" style="padding-bottom:10px;padding-top:10px;padding-left:30px;">
+            <div class="btn btn-info" onclick="updateAgentProfileData()" title="Update Agent Data" id="btnUpdate"><b>Update Agent Profile</b></div>
+        </div>
+        <div class="col-md-1">
+            @Html.TextBoxFor(model => model.AgentProfile.ID, new { @id = "AgentProfileID", @disabled = "disabled", @style = "visibility:hidden", @class = "form-control", @value = @Model.AgentProfile.ID })
+        </div>
+        <div class="col-md-1">
+            @Html.TextBoxFor(model => model.AgentAddress[0].ID, new { @disabled = "disabled", @style = "visibility:hidden", @class = "form-control", @value = @Model.AgentAddress[0].ID })
+        </div>
+        <div class="col-md-1">
+            @Html.TextBoxFor(model => model.AgentAddress[0].AgentProfileID, new { @disabled = "disabled", @style = "visibility:hidden", @class = "form-control", @value = @Model.AgentAddress[0].AgentProfileID })
+        </div>
+        <div class="col-md-1">
+            @Html.TextBoxFor(model => model.AgentAddress[0].AddressTypeID, new { @disabled = "disabled", @style = "visibility:hidden", @class = "form-control", @value = @Model.AgentAddress[0].AddressTypeID })
+        </div>
+    </div>
+    <div style="background-color:white;">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Personal Information</h5>
+                </div>
+                <div class="ibox-content">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Agent Code</label>
+                            <div class="col-lg-9">
+                                @Html.TextBoxFor(model => model.AgentProfile.AGENTCode, new { @disabled = "disabled", @class = "form-control", @value = @Model.AgentProfile.AGENTCode })
+                                <br />@Html.ValidationMessageFor(model => model.AgentProfile.AGENTCode, "", new { @class = "validation" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">First Name</label>
+                            <div class="col-lg-9">
+                                @Html.TextBoxFor(model => model.AgentProfile.FirstName, new { @class = "form-control", @value = @Model.AgentProfile.FirstName })
+                                <br />@Html.ValidationMessageFor(model => model.AgentProfile.FirstName, "", new { @class = "validation" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Middle Name</label>
+                            <div class="col-lg-9">
+                                @Html.TextBoxFor(model => model.AgentProfile.MiddleName, new { @class = "form-control", @value = @Model.AgentProfile.MiddleName })
+                                <br />@Html.ValidationMessageFor(model => model.AgentProfile.MiddleName, "", new { @class = "validation" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Last Name</label>
+                            <div class="col-lg-9">
+                                @Html.TextBoxFor(model => model.AgentProfile.LastName, new { @class = "form-control", @value = @Model.AgentProfile.LastName })
+                                <br />@Html.ValidationMessageFor(model => model.AgentProfile.LastName, "", new { @class = "validation" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Date of Birth</label>
+                            <div class="col-lg-5">
+                                @Html.TextBoxFor(model => model.AgentProfile.DateofBirth, new { @class = "form-control applyDatePicker", @value = @Model.AgentProfile.DateofBirth })
+                                <br />@Html.ValidationMessageFor(model => model.AgentProfile.DateofBirth, "", new { @class = "validation" })
+                            </div>
+                            <div class="col-lg-4">
+                                <span class="form-control">Years Old</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Gender</label>
+                            <div class="col-lg-9">
+                                @Html.DropDownListFor(model => model.AgentProfile.GenderID, new SelectList(Model.Gender, "GenderID", "Description", @Model.AgentProfile.GenderID), new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Civil Status</label>
+                            <div class="col-lg-9">
+                                @Html.DropDownListFor(model => model.AgentProfile.CivilStatusID, new SelectList(Model.CivilStatus, "CivilStatusID", "Description", @Model.AgentProfile.CivilStatusID), new { @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Other Information</h5>
+                </div>
+                <div class="ibox-content">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">District / Branch</label>
+                            <div class="col-lg-5">
+                                @Html.DropDownListFor(model => model.AgentProfile.DistrictID, new SelectList(Model.District, "DistrictID", "Description", @Model.AgentProfile.DistrictID), new { @class = "form-control" })
+                            </div>
+                            <div class="col-lg-4">
+                                @Html.DropDownListFor(model => model.AgentProfile.OrganizationID, new SelectList(Model.Organization, "OrganizationID", "Description", @Model.AgentProfile.OrganizationID), new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Agent Type</label>
+                            <div class="col-lg-9">
+                                @Html.DropDownListFor(model => model.AgentProfile.AgentTypeID, new SelectList(Model.AgentType, "AgentTypeID", "Description", @Model.AgentProfile.AgentTypeID), new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">With Cash Card</label>
+                            <div class="col-lg-9">
+                                @Html.DropDownListFor(model => model.AgentProfile.WithCashCard, new SelectList(Model.WithCashCard, "WithCashCard", "text", @Model.AgentProfile.WithCashCard), new { @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Contacts And Addresses</h5>
+                </div>
+                <div class="ibox-content">
+                    <div class="form-horizontal">                       
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Province/City</label>
+                            <div class="col-lg-5">
+                                @Html.DropDownListFor(model => model.AgentAddress[0].ProvinceID, new SelectList(Model.Province, "ProvinceID", "Description", @Model.AgentAddress[0].ProvinceID), new { @onChange = "UpdateCity('Main')", @class = "form-control provinceMainBox" })
+                            </div>
+                            <div class="col-lg-4">
+                                @Html.DropDownListFor(model => model.AgentAddress[0].CityID, new SelectList(Model.City, "CityID", "Description", @Model.AgentAddress[0].CityID), new { @class = "form-control cityMainBox" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Barangay</label>
+                            <div class="col-lg-9">
+                                @Html.TextBoxFor(model => model.AgentAddress[0].BarangayName, new { @class = "form-control", @value = @Model.AgentAddress[0].BarangayName })
+                                <br />@Html.ValidationMessageFor(model => model.AgentAddress[0].BarangayName, "", new { @class = "validation" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Street Address</label>
+                            <div class="col-lg-9">
+                                @Html.TextBoxFor(model => model.AgentAddress[0].StreetAddress, new { @class = "form-control", @value = @Model.AgentAddress[0].StreetAddress })
+                                <br />@Html.ValidationMessageFor(model => model.AgentAddress[0].StreetAddress, "", new { @class = "validation" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Postal Code</label>
+                            <div class="col-lg-9">
+                                @Html.TextBoxFor(model => model.AgentAddress[0].PostalCode, new { @class = "form-control", @value = @Model.AgentAddress[0].PostalCode })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Landline / Mobile No.</label>
+                            <div class="col-lg-5">
+                                @Html.TextBoxFor(model => model.AgentAddress[0].PhoneNumber, new { @class = "form-control", @value = @Model.AgentAddress[0].PhoneNumber })
+                                <br />@Html.ValidationMessageFor(model => model.AgentAddress[0].PhoneNumber, "", new { @class = "validation" })
+                            </div>
+                            <div class="col-lg-4">
+                                @Html.TextBoxFor(model => model.AgentAddress[0].MobileNumber, new { @class = "form-control", @value = @Model.AgentAddress[0].MobileNumber })
+                                <br />@Html.ValidationMessageFor(model => model.AgentAddress[0].MobileNumber, "", new { @class = "validation" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Date of Residence</label>
+                            <div class="col-lg-9">
+                                @Html.TextBoxFor(model => model.AgentAddress[0].ResidentDate, new { @class = "form-control applyDatePicker", @value = @Model.AgentAddress[0].ResidentDate })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Home Ownership</label>
+                            <div class="col-lg-9">
+                                @Html.DropDownListFor(model => model.AgentAddress[0].HomeOwnershipID, new SelectList(Model.HomeOwnership, "HomeOwnershipID", "Description", @Model.AgentAddress[0].HomeOwnershipID), new { @class = "form-control" })
+                            </div>
+                        </div>                            
+                        <table id="tblAddress" class="table table-bordered" width="100%" cellspacing="0" style="font-size:smaller;">
+                            <thead>
+                                <tr>
+                                    <th><div class="text-center"><div class="btn btn-info btn-xs" title='Add' onclick="addData('address')"><span class='glyphicon glyphicon-plus' aria-hidden='true'></span></div></div></th>
+                                    <th>Address Type</th>
+                                    <th>Barangay</th>
+                                    <th>Street Address</th>
+                                    <th>Postal Code</th>
+                                    <th>City</th>
+                                    <th>Province</th>
+                                    <th>Contact No/s</th>
+                                    <th>Residence Date</th>
+                                    <th>Ownership</th>
+                                </tr>
+                            </thead>
+                            <tbody>                               
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+}
+
+<div id="UpdateTableData" class="modal fade" role="dialog">
+    <div class="modal-dialog" style="background-color:#ffffff;">
+        <div class="modal-body" style="background-color:white;">
+            <div id="update-display-modal-body">
+            </div>
+        </div>
+        <div class="modal-footer" style="background-color:white;">
+            <div id="update-display-modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="AddTableData" class="modal fade" role="dialog">
+    <div class="modal-dialog" style="background-color:#ffffff;">
+        <div class="modal-body" style="background-color:white">
+            <div id="add-display-modal-body">
+            </div>
+        </div>
+        <div class="modal-footer" style="background-color:white">
+            <div id="add-display-modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    @Helper.LoadCustomJS("ViewsJS/MaintenanceAgentProfile/JS_AgentProfileUpdate.js", Url)
+}
