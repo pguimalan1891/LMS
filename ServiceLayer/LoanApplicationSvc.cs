@@ -43,5 +43,14 @@ namespace ServiceLayer
             return list.First();
         }
 
+        public IEnumerable<BusinessObjects.LoanList> GetLoanApplicationListing()
+        {
+            return lnCtrl.getLoanApplicationListing();
+        }
+
+        public IEnumerable<BusinessObjects.DocumentStatus> GetDocumentStatus()
+        {
+            return lnCtrl.getDocumentStatus();
+        }
     }
 }

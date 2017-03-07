@@ -88,11 +88,28 @@ namespace DataObjects.AdoNET
            };
 
 
+        public IEnumerable<BusinessObjects.DocumentStatus> getDocumentStatus()
+        {
+            string sql = "SELECT '-1' as [CODE], 'All' as [DESCRIPTION] UNION ALL SELECT" +
+                         "[CODE] " +
+                         ",[DESCRIPTION] " +
+                         "FROM[FINAL_TESTING].[dbo].[document_status_map]"; object[] parms = { };
+            return db.Read(sql, selectDocumentStatus, 0, parms);
+        }
+
+        static Func<IDataReader, BusinessObjects.DocumentStatus> selectDocumentStatus = reader =>
+           new BusinessObjects.DocumentStatus
+           {
+                CODE = reader["CODE"].AsString(),
+               DESCRIPTION = reader["DESCRIPTION"].AsString(),
+            };
+
+
         public IEnumerable<BusinessObjects.BorrowerProfile> getBorrowerProfile(string borrowerCode)
         {
             string sql = "select pis.CODE,(pis.LAST_NAME+', '+pis.FIRST_NAME) as Fullname, pa.PHONE_NUMBER as LandLine, pa.MOBILE_NUMBER as MobileNumber, " +
                          "(city.DESCRIPTION+', '+province.DESCRIPTION) as ProvinceCity, " +
-                         " '' as Barangay, pa.STREET_ADDRESS, pa.POSTAL_CODE " +
+                         " pa.BARANGAY_NAME as Barangay, pa.STREET_ADDRESS, pa.POSTAL_CODE " +
                          " from pis inner join pis_address pa on pa.PIS_ID = pis.ID " +
                          " inner join city on city.ID = pa.CITY_ID  " +
                          " inner join province on province.ID = city.PROVINCE_ID where pis.CODE = @BorrowerCode";
@@ -111,6 +128,75 @@ namespace DataObjects.AdoNET
                Barangay = reader["Barangay"].AsString(),
                STREET_ADDRESS = reader["STREET_ADDRESS"].AsString(),
                POSTAL_CODE = reader["POSTAL_CODE"].AsString(),
+           };
+
+
+        public IEnumerable<BusinessObjects.LoanList> getLoanApplicationListing()
+        {
+            string sql = "select top 1000 "+
+" loan_application.ID, " +
+" dm.DESCRIPTION as [Status], " +
+" loan_application.code as LA_No,  " +
+" convert(varchar, loan_application.DATETIME_CREATED, 101) as [Date], " +
+" org.DESCRIPTION as Branch, " +
+" pis.LAST_NAME + ' ,' + pis.FIRST_NAME + ' ' + pis.MIDDLE_NAME as Customer, " +
+" city.DESCRIPTION + ', ' + province.DESCRIPTION as [CustomerAddress], " +
+" loan_type.DESCRIPTION as Product, " +
+" loan_application.ORIGINAL_MLV as Desired, " +
+" loan_application.RECOMMENDED_MLV as Recommended, " +
+" loan_application.APPROVED_MLV as Approved, " +
+" loan_set.DESCRIPTION as [Set], " +
+" loan_terms.DESCRIPTION as [Terms], " +
+" loan_application.PURPOSE_OF_LOAN as Purpose, " +
+" user_account.LAST_NAME + ', ' + user_account.FIRST_NAME as CCI, " +
+" ISNULL((select document_status_map.description from document_status_map where document_status_map.code = ci.document_status_code), 'Not Available') as CiStatus " +
+" from loan_application " +
+" inner join document_status_map dm on dm.CODE = loan_application.DOCUMENT_STATUS_CODE " +
+" inner " +
+" join organization org on org.ID = loan_application.ORGANIZATION_ID " +
+" inner " +
+" join pis on pis.ID = loan_application.PIS_ID " +
+" inner " +
+" join pis_address on pis_address.PIS_ID = loan_application.PIS_ID " +
+" inner " +
+" join city on city.ID = pis_address.CITY_ID " +
+" inner " +
+" join province on province.ID = city.PROVINCE_ID " +
+" inner " +
+" join loan_type on loan_type.ID = loan_application.LOAN_TYPE_ID " +
+" inner " +
+" join loan_set on loan_set.ID = loan_application.LOAN_SET_ID " +
+" inner " +
+" join loan_terms on loan_terms.ID = loan_application.LOAN_TERMS_ID " +
+" inner " +
+" join user_account on user_account.ID = loan_application.REQUESTED_BY_ID " +
+" inner " +
+" join credit_investigation ci on ci.LOAN_APPLICATION_ID = loan_application.id " +
+" inner " +
+" join document_status_map ciStat on ciStat.CODE = ci.DOCUMENT_STATUS_CODE";
+            object[] parms = { };
+            return db.Read(sql, selectLoanList, 0, parms);
+        }
+
+        static Func<IDataReader, BusinessObjects.LoanList> selectLoanList = reader =>
+           new BusinessObjects.LoanList
+           {
+               ID = reader["ID"].ToString(),
+                LA_No = "<a href='Application/LoanApplication/?code="+reader["LA_No"].AsString()+"'>"+ reader["LA_No"].AsString() + "</a>",
+               Status = reader["Status"].AsString(),
+               Date = reader["Date"].AsString(),
+               Branch = reader["Branch"].AsString(),
+               Customer = reader["Customer"].AsString(),
+               CustomerAddress = reader["CustomerAddress"].AsString(),
+               Product = reader["Product"].AsString(),
+               Desired = reader["Desired"].AsString(),
+               Recommended = reader["Recommended"].AsString(),
+               Approved = reader["Approved"].AsString(),
+               Set = reader["Set"].AsString(),
+               Terms = reader["Terms"].AsString(),
+               Purpose = reader["Purpose"].AsString(),
+               CCI = reader["CCI"].AsString(),
+               CiStatus = reader["CiStatus"].AsString()
            };
 
 

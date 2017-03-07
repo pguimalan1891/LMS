@@ -16,5 +16,9 @@ namespace ServiceLayer.Interface
         IEnumerable<BusinessObjects.LoanTerms> GetLoanTerms();
 
         BusinessObjects.BorrowerProfile GetBorrowerProfile(string code);
+
+        IEnumerable<BusinessObjects.LoanList> GetLoanApplicationListing();
+
+        IEnumerable<BusinessObjects.DocumentStatus> GetDocumentStatus();
     }
 }

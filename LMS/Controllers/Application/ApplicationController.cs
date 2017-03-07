@@ -30,16 +30,18 @@ namespace LMS.Controllers
         }
 
         [Route("Application")]
-        public ActionResult Index()
+        public ActionResult Application()
         {
-            return View();
+            return View("ApplicationList");
         }
 
         [Route("LoanApplication")]
         
-        public ActionResult LoanApplication(LoanApplicationModel loan)
+        [HttpGet]
+        public ActionResult LoanApplication(string code)
         {
-            
+            LoanApplicationModel loan = new LoanApplicationModel();
+            loan.AccountNo = code;
             loan.orgs = customerComp.getOrganization();
             loan.districts = customerComp.getDistrict();
             loan.applicationTypes = customerComp.getApplicationType();
@@ -73,10 +75,25 @@ namespace LMS.Controllers
             loan.products = service.GetLoanProducts();
             loan.sets = service.GetLoanSet();
             loan.terms = service.GetLoanTerms();
-
             return View("LoanApplication", loan);
        
         }
+
+
+        [HttpPost]
+        public ActionResult ListApplications()
+        {
+            return Json(service.GetLoanApplicationListing());
+        }
+
+
+        [HttpPost]
+        public ActionResult ListDocumentStatus()
+        {
+            return Json(service.GetDocumentStatus());
+        }
+
+
 
         [HttpPost]
         public ActionResult getBorrowers(string searchkey)

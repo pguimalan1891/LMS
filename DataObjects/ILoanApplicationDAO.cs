@@ -15,5 +15,8 @@ namespace DataObjects
 
         IEnumerable<BusinessObjects.LoanTerms> getLoanTerms();
         IEnumerable<BusinessObjects.BorrowerProfile> getBorrowerProfile(string borrowerCode);
+
+        IEnumerable<BusinessObjects.LoanList> getLoanApplicationListing();
+        IEnumerable<BusinessObjects.DocumentStatus> getDocumentStatus();
     }
 }

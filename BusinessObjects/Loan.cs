@@ -46,4 +46,31 @@ namespace BusinessObjects
         public string MONTHS;
         public string MIGID;
     }
+
+    public class DocumentStatus
+    {
+        public string CODE;
+        public string DESCRIPTION;
+        
+    }
+
+    public class LoanList
+    {
+        public string ID;
+        public string Status;
+        public string LA_No;
+        public string Date;
+        public string Branch;
+        public string Customer;
+        public string CustomerAddress;
+        public string Product;
+        public string Desired;
+        public string Recommended;
+        public string Approved;
+        public string Set;
+        public string Terms;
+        public string Purpose;
+        public string CCI;
+        public string CiStatus;
+    }
 }

@@ -392,6 +392,7 @@
     <Content Include="Scripts\respond.min.js" />
     <None Include="Scripts\_references.js" />
     <Content Include="ViewsJS\Application\JS_ApplicationCtrl.js" />
+    <Content Include="ViewsJS\Application\JS_ApplicationListCtrl.js" />
     <Content Include="ViewsJS\Booking\JS_Booking.js" />
     <Content Include="ViewsJS\Booking\JS_Booking_CCI.js" />
     <Content Include="ViewsJS\Booking\JS_Booking_CIR.js" />
@@ -468,6 +469,7 @@
     <Content Include="Views\MaintenanceAgentProfile\_AddAddress.cshtml" />
     <Content Include="Views\MaintenanceAgentProfile\_UpdateAddress.cshtml" />
     <Content Include="Views\MaintenanceAgentProfile\Add_AgentProfile.cshtml" />
+    <Content Include="Views\Application\ApplicationList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
