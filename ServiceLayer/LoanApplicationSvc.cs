@@ -16,12 +16,17 @@ namespace ServiceLayer
         static readonly ICustomerDAO customer = factory.CustomerDAO;
 
 
-        public List<Dictionary<string, object>> GetBorrowers(string searchkey)
+        public IEnumerable<BusinessObjects.newLoanBorrowerProfile> GetBorrowers(string searchkey)
+
         {
-            return null;   
+            return lnCtrl.GetBorrowers(searchkey);   
         }
 
-       
+        public IEnumerable<BusinessObjects.RequiredDocuments> getBorrowerRequiredDocuments(string borrowerCode)
+        {
+            return lnCtrl.getBorrowerRequiredDocuments(borrowerCode);
+        }
+
         public IEnumerable<BusinessObjects.LoanType> GetLoanProducts()
         {
             return lnCtrl.getProducts();
@@ -43,9 +48,15 @@ namespace ServiceLayer
             return list.First();
         }
 
-        public IEnumerable<BusinessObjects.LoanList> GetLoanApplicationListing()
+
+        public  BusinessObjects.LoanApplicationModel  getLoanFormDetails(string AccountNo)
         {
-            return lnCtrl.getLoanApplicationListing();
+            IEnumerable<BusinessObjects.LoanApplicationModel> list = lnCtrl.getLoanFormDetails(AccountNo);
+            return list.First();
+        }
+        public IEnumerable<BusinessObjects.LoanList> getLoanApplicationListing(string status, string searchkey)
+        {
+            return lnCtrl.getLoanApplicationListing(status, searchkey);
         }
 
         public IEnumerable<BusinessObjects.DocumentStatus> GetDocumentStatus()

@@ -168,6 +168,7 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\IAuthorizationFilter.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
@@ -470,6 +471,9 @@
     <Content Include="Views\MaintenanceAgentProfile\_UpdateAddress.cshtml" />
     <Content Include="Views\MaintenanceAgentProfile\Add_AgentProfile.cshtml" />
     <Content Include="Views\Application\ApplicationList.cshtml" />
+    <Content Include="Views\Home\_MenuView.cshtml" />
+    <Content Include="Views\Application\ApplicationMainMenu.cshtml" />
+    <Content Include="Views\Application\CustomerSearch.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

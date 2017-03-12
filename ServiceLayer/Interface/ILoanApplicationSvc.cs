@@ -8,7 +8,8 @@ namespace ServiceLayer.Interface
 {
     public interface ILoanApplicationSvc
     {
-        List<Dictionary<string, object>> GetBorrowers(string searchkey);
+        IEnumerable<BusinessObjects.newLoanBorrowerProfile> GetBorrowers(string searchkey);
+
         IEnumerable<BusinessObjects.LoanType> GetLoanProducts();
 
         IEnumerable<BusinessObjects.LoanSet> GetLoanSet();
@@ -17,8 +18,12 @@ namespace ServiceLayer.Interface
 
         BusinessObjects.BorrowerProfile GetBorrowerProfile(string code);
 
-        IEnumerable<BusinessObjects.LoanList> GetLoanApplicationListing();
+        IEnumerable<BusinessObjects.LoanList> getLoanApplicationListing(string status, string searchkey);
 
         IEnumerable<BusinessObjects.DocumentStatus> GetDocumentStatus();
+
+        IEnumerable<BusinessObjects.RequiredDocuments> getBorrowerRequiredDocuments(string borrowerCode);
+
+        BusinessObjects.LoanApplicationModel getLoanFormDetails(string AccountNo);
     }
 }

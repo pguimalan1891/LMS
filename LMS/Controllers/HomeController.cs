@@ -20,6 +20,10 @@ namespace LMS.Controllers
             }
             
         }
+        public ActionResult RenderMenu()
+        {
+            return PartialView("_MenuView");
+        }
 
         public ActionResult About()
         {

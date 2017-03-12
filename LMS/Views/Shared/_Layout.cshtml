@@ -1,19 +1,19 @@
 ﻿
 @{
-    if(Session["loginDetails"] != null)
+    if (Session["loginDetails"] != null)
     {
         ViewBag.isEnabled = true;
         ViewBag.ApplicationUserAccount = Session["loginDetails"];
     }
 
- }
+}
 <!DOCTYPE html>
 <html>
 <head>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RFC - Loans Management System</title>    
+    <title>RFC - Loans Management System</title>
     @Styles.Render("~/Content/themeui/css")
     @Styles.Render("~/Content/DataTableCSS")
 
@@ -25,33 +25,33 @@
         body {
             font-family: 'Ubuntu', sans-serif !important;
         }
-        input.form-control{
+
+        input.form-control {
             border-bottom: 1px solid #CCC;
         }
-        
     </style>
 
 </head>
 <body>
     <div id="wrapper">
-        @if(ViewBag.isEnabled == true)
+        @if (ViewBag.isEnabled == true)
         {
-        <nav class="navbar-default navbar-static-side" role="navigation">
-            <div class="sidebar-collapse">
-                <ul class="nav" id="side-menu">
-                    <li class="nav-header">
-                          <div class="dropdown profile-ele  ment">
-                               
+            <nav class="navbar-default navbar-static-side" role="navigation">
+                <div class="sidebar-collapse">
+                    <ul class="nav" id="side-menu">
+                        <li class="nav-header">
+                            <div class="dropdown profile-ele  ment">
+
                                 <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                                     <span class="clear">
-                                        <br/>
-                                        <br/>
+                                        <br />
+                                        <br />
                                         <span>Logged in as:</span>
                                         <span class="block m-t-xs" style="font-weight: normal;">
                                             @Html.Label("position", (string)ViewBag.ApplicationUserAccount[0]["NAME"])
                                         </span>
                                         <span class="text-muted text-xs block">@Html.Label("position", (string)ViewBag.ApplicationUserAccount[0]["DESCRIPTION"]) <b class="caret"></b></span>
-                                        
+
                                     </span>
                                     <hr />
                                 </a>
@@ -64,17 +64,17 @@
                                 </ul>
                             </div>
 
-                      
-                        <div class="logo-element">
-                            RFC
-                        </div>
-                    </li>
-                       <li>
+
+                            <div class="logo-element">
+                                RFC
+                            </div>
+                        </li>
+                        <li>
                             <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">Application</span> <span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
-                                <li>@Html.ActionLink("BorrowerProfile", "Customer", "Customer")</li>       
-                                <li>@Html.ActionLink("Loan Application", "Application", "Application")</li>                     
-                                <li>@Html.ActionLink("Credit Investigation", "Customer", "Customer")</li>                                              
+                                <li>@Html.ActionLink("BorrowerProfile", "Customer", "Customer")</li>
+                                <li>@Html.ActionLink("Loan Application", "Application", "Application")</li>
+                                <li>@Html.ActionLink("Credit Investigation", "Customer", "Customer")</li>
                             </ul>
                         </li>
                         <li>
@@ -94,7 +94,7 @@
                                 <li>@Html.ActionLink("Promissory Note Allocation", "PromissoryNoteAllocation", "Booking")</li>
 
 
-                                <li>@Html.ActionLink("Change CCI", "ChangeCCI", "Booking")</li>                                      
+                                <li>@Html.ActionLink("Change CCI", "ChangeCCI", "Booking")</li>
                             </ul>
                         </li>
                         <li>
@@ -113,72 +113,72 @@
                                 <li>@Html.ActionLink("Deposit Slip", "Contact", "Home")</li>
                             </ul>
                         </li>
-                    <li>
-                        <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">System Settings</span> <span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">Library Components</span> <span class="fa arrow"></span></a>
-                                <ul class="nav nav-third-level">
-                                    <li><a href="~/Library?ComponentName=Company_Type|Company%20Type">Company Type</a></li>
-                                    <li><a href='~/Library?ComponentName=Industry|Industry'>Industry</a></li>
-                                    <li><a href='~/Library?ComponentName=Gender|Gender'>Gender</a></li>
-                                    <li><a href='~/Library?ComponentName=Lead_Source|Lead%20Source'>Lead Source</a></li>
-                                    <li><a href='~/Library?ComponentName=gl_account|gl%20account'>GL Account</a></li>
-                                    <li><a href='~/Library?ComponentName=payment_type|payment%20type'>Payment Type</a></li>
-                                    <li><a href='~/Library?ComponentName=ledger_type|ledger%20type'>Ledger Type</a></li>
-                                    <li><a href='~/Library?ComponentName=incentive_release_mode|incentive%20release%20mode'>Incentive Release Mode</a></li>
-                                    <li><a href='~/Library?ComponentName=agent_type|agent%20type'>Agent Type</a></li>
-                                    <li><a href='~/Library?ComponentName=application_type|application%20type'>Application Type</a></li>
-                                    <li><a href='~/Library?ComponentName=collateral_group|collateral%20group'>Collateral Group</a></li>
-                                    <li><a href='~/Library?ComponentName=borrower_group|borrower%20group'>Borrower Group</a></li>
-                                    <li><a href='~/Library?ComponentName=official_receipt_type|official%20receipt%20type'>Official Receipt Type</a></li>
-                                    <li><a href='~/Library?ComponentName=check_voucher_type|check%20voucher%20type'>Check Voucher Type</a></li>
-                                    <li><a href='~/Library?ComponentName=bank_account_type|bank_account%20type'>Bank Account Type</a></li>
-                                    <li><a href='~/Library?ComponentName=remedial_type|remedial%20type'>Remedial Type</a></li>
-                                    <li><a href='~/Library?ComponentName=machine_validation_type|machine%20validation%20type'>Validation Type</a></li>
-                                    <li><a href='~/Library?ComponentName=realization_type|realization%20type'>Realization Type</a></li>
-                                    <li><a href='~/Library?ComponentName=commission_level|commission%20level'>Commission Level</a></li>
-                                    <li><a href='~/Library?ComponentName=waiver_type|waiver%20type'>Waiver Type</a></li>
-                                    <li><a href='~/Library?ComponentName=amount_type|amount%20type'>Amount Type</a></li>
-                                    <li><a href='~/Library?ComponentName=cmdm_account_type|cmdm_account%20type'>CMDM Account Type</a></li>
-                                    <li><a href='~/Library?ComponentName=cmdm_adjustment_type|cmdm%20adjustment%20type'>CMDM Adjustment Type</a></li>
-                                    <li><a href='~/Library?ComponentName=cmdm_entry_type|cmdm%20entry%20type'>CMDM Entry Type</a></li>
-                                    <li><a href='~/Library?ComponentName=borrower_Type|borrower%20Type'>Borrower Type</a></li>
-                                    <li><a href='~/Library?ComponentName=Nature_of_business|Nature%20of%20business'>Business Type</a></li>
-                                    <li><a href='~/Library?ComponentName=Loan_Type|Loan%20Type'>Loan Type</a></li>
-                                    <li><a href='~/Library?ComponentName=loan_set|loan%20set'>Loan Set</a></li>
-                                    <li><a href='~/Library?ComponentName=loan_terms|loan%20terms'>Loan Terms</a></li>
-                                    <li><a href='~/Library?ComponentName=support_document|support%20document'>Support Document</a></li>
-                                    <li><a href='~/Library?ComponentName=collateral_type|collateral%20type'>Collateral Type</a></li>
-                                    <li><a href='~/Library?ComponentName=collateral_usage|collateral%20usage'>Collateral Usage</a></li>
-                                    <li><a href='~/Library?ComponentName=color|Collateral%20color'>Collateral Color</a></li>
-                                    <li><a href='~/Library?ComponentName=fuel_type|fuel%20type'>Fuel Type</a></li>
-                                    <li><a href='~/Library?ComponentName=support_group|support%20group'>Support Group</a></li>
-                                    <li><a href='~/Library?ComponentName=district_group|district%20group'>District Group</a></li>
-                                    <li><a href='~/Library?ComponentName=regional_office|regional%20office'>Regional Office</a></li>
-                                    <li><a href='~/Library?ComponentName=district|district'>District</a></li>
-                                    <li><a href='~/Library?ComponentName=organization|branch'>Branch</a></li>
-                                    <li><a href='~/Library?ComponentName=payment_mode|payment%20mode'>Payment Mode</a></li>
-                                    <li><a href='~/Library?ComponentName=bank|bank'>Bank</a></li>
-                                    <li><a href='~/Library?ComponentName=expense_type|expense%20type'>Expense Type</a></li>
-                                </ul>
-                            </li>
+                        <li>
+                            <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">System Settings</span> <span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">Library Components</span> <span class="fa arrow"></span></a>
+                                    <ul class="nav nav-third-level">
+                                        <li><a href="~/Library?ComponentName=Company_Type|Company%20Type">Company Type</a></li>
+                                        <li><a href='~/Library?ComponentName=Industry|Industry'>Industry</a></li>
+                                        <li><a href='~/Library?ComponentName=Gender|Gender'>Gender</a></li>
+                                        <li><a href='~/Library?ComponentName=Lead_Source|Lead%20Source'>Lead Source</a></li>
+                                        <li><a href='~/Library?ComponentName=gl_account|gl%20account'>GL Account</a></li>
+                                        <li><a href='~/Library?ComponentName=payment_type|payment%20type'>Payment Type</a></li>
+                                        <li><a href='~/Library?ComponentName=ledger_type|ledger%20type'>Ledger Type</a></li>
+                                        <li><a href='~/Library?ComponentName=incentive_release_mode|incentive%20release%20mode'>Incentive Release Mode</a></li>
+                                        <li><a href='~/Library?ComponentName=agent_type|agent%20type'>Agent Type</a></li>
+                                        <li><a href='~/Library?ComponentName=application_type|application%20type'>Application Type</a></li>
+                                        <li><a href='~/Library?ComponentName=collateral_group|collateral%20group'>Collateral Group</a></li>
+                                        <li><a href='~/Library?ComponentName=borrower_group|borrower%20group'>Borrower Group</a></li>
+                                        <li><a href='~/Library?ComponentName=official_receipt_type|official%20receipt%20type'>Official Receipt Type</a></li>
+                                        <li><a href='~/Library?ComponentName=check_voucher_type|check%20voucher%20type'>Check Voucher Type</a></li>
+                                        <li><a href='~/Library?ComponentName=bank_account_type|bank_account%20type'>Bank Account Type</a></li>
+                                        <li><a href='~/Library?ComponentName=remedial_type|remedial%20type'>Remedial Type</a></li>
+                                        <li><a href='~/Library?ComponentName=machine_validation_type|machine%20validation%20type'>Validation Type</a></li>
+                                        <li><a href='~/Library?ComponentName=realization_type|realization%20type'>Realization Type</a></li>
+                                        <li><a href='~/Library?ComponentName=commission_level|commission%20level'>Commission Level</a></li>
+                                        <li><a href='~/Library?ComponentName=waiver_type|waiver%20type'>Waiver Type</a></li>
+                                        <li><a href='~/Library?ComponentName=amount_type|amount%20type'>Amount Type</a></li>
+                                        <li><a href='~/Library?ComponentName=cmdm_account_type|cmdm_account%20type'>CMDM Account Type</a></li>
+                                        <li><a href='~/Library?ComponentName=cmdm_adjustment_type|cmdm%20adjustment%20type'>CMDM Adjustment Type</a></li>
+                                        <li><a href='~/Library?ComponentName=cmdm_entry_type|cmdm%20entry%20type'>CMDM Entry Type</a></li>
+                                        <li><a href='~/Library?ComponentName=borrower_Type|borrower%20Type'>Borrower Type</a></li>
+                                        <li><a href='~/Library?ComponentName=Nature_of_business|Nature%20of%20business'>Business Type</a></li>
+                                        <li><a href='~/Library?ComponentName=Loan_Type|Loan%20Type'>Loan Type</a></li>
+                                        <li><a href='~/Library?ComponentName=loan_set|loan%20set'>Loan Set</a></li>
+                                        <li><a href='~/Library?ComponentName=loan_terms|loan%20terms'>Loan Terms</a></li>
+                                        <li><a href='~/Library?ComponentName=support_document|support%20document'>Support Document</a></li>
+                                        <li><a href='~/Library?ComponentName=collateral_type|collateral%20type'>Collateral Type</a></li>
+                                        <li><a href='~/Library?ComponentName=collateral_usage|collateral%20usage'>Collateral Usage</a></li>
+                                        <li><a href='~/Library?ComponentName=color|Collateral%20color'>Collateral Color</a></li>
+                                        <li><a href='~/Library?ComponentName=fuel_type|fuel%20type'>Fuel Type</a></li>
+                                        <li><a href='~/Library?ComponentName=support_group|support%20group'>Support Group</a></li>
+                                        <li><a href='~/Library?ComponentName=district_group|district%20group'>District Group</a></li>
+                                        <li><a href='~/Library?ComponentName=regional_office|regional%20office'>Regional Office</a></li>
+                                        <li><a href='~/Library?ComponentName=district|district'>District</a></li>
+                                        <li><a href='~/Library?ComponentName=organization|branch'>Branch</a></li>
+                                        <li><a href='~/Library?ComponentName=payment_mode|payment%20mode'>Payment Mode</a></li>
+                                        <li><a href='~/Library?ComponentName=bank|bank'>Bank</a></li>
+                                        <li><a href='~/Library?ComponentName=expense_type|expense%20type'>Expense Type</a></li>
+                                    </ul>
+                                </li>
                             </ul>
-                    </li>
+                        </li>
 
-                </ul>
-            </div>
-        </nav>
-        <div id="page-wrapper" class="gray-bg">
-            <div class="row border-bottom">
-               
+                    </ul>
+                </div>
+            </nav>
+            <div id="page-wrapper" class="gray-bg">
+                <div class="row border-bottom">
+
                     <nav class="navbar navbar-static-top white-bg" role="navigation" style="margin-bottom: 0">
                         <div class="navbar-header">
                             <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i></a>
                         </div>
                         <ul class="nav navbar-top-links navbar-left" style="padding-left: 15px;">
                             <li>
-                              <h2>RFC- Loans Management System</h2> 
+                                <h2>RFC- Loans Management System</h2>
                             </li>
 
                         </ul>
@@ -189,30 +189,31 @@
 
                         </ul>
                     </nav>
-               
+
+                </div>
+
+                <div class="wrapper wrapper-content">
+                    @RenderBody()
+                </div>
+                <div class="footer">
+                    <div class="pull-right">
+
+                    </div>
+                    <div>
+
+                    </div>
+                </div>
             </div>
-            
+        }
+        else
+        {
             <div class="wrapper wrapper-content">
                 @RenderBody()
             </div>
-            <div class="footer">
-                <div class="pull-right">
-
-                </div>
-                <div>
-                    
-                </div>
-            </div>
-        </div>
-        }else
-        {
-        <div class="wrapper wrapper-content">
-            @RenderBody()
-        </div>
         }
     </div>
 
-    
+
 
     @Scripts.Render("~/Content/themeui/js")
     @Scripts.Render("~/Content/DataTableJS")
