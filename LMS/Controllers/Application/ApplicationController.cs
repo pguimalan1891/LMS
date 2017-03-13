@@ -13,7 +13,6 @@ namespace LMS.Controllers
     {
         private ILoanApplicationSvc service;
         private ICustomerSvc customerComp;
-        private BusinessObjects.getComponents allComponenents;
        
         // GET: Application
 
@@ -29,25 +28,55 @@ namespace LMS.Controllers
             this.customerComp = customerSvc;
         }
 
+        [AuthorizationFilter]
         [Route("Application")]
-        public ActionResult Index()
+        [Route("Application/ApplicationMainMenu")]
+        public ActionResult Application()
         {
-            return View();
+            return View("ApplicationMainMenu");
         }
 
-        [Route("LoanApplication")]
-        
-        public ActionResult LoanApplication(LoanApplicationModel loan)
+        [AuthorizationFilter]
+        [Route("Application/List/{status}")]
+        public ActionResult ApplicationList(string status)
         {
-            
-            loan.orgs = customerComp.getOrganization();
-            loan.districts = customerComp.getDistrict();
-            loan.applicationTypes = customerComp.getApplicationType();
-            loan.products = service.GetLoanProducts();
-            loan.sets = service.GetLoanSet();
-            loan.terms = service.GetLoanTerms();
-            
-            return View(loan);
+            ViewBag.getStatus = status;
+            return View("ApplicationList");
+        }
+
+
+
+        [AuthorizationFilter]
+        [Route("Application/CustomerList")]
+        public ActionResult BorrowerList()
+        {
+            return View("CustomerSearch");
+        }
+
+
+        [AuthorizationFilter]
+        [Route("Application/LoanApplication")]
+        public ActionResult wdLoanApplication(string code)
+        {
+            BusinessObjects.LoanApplicationModel loan = new BusinessObjects.LoanApplicationModel();
+
+            if (code.Length > 3)
+            {
+                loan = new BusinessObjects.LoanApplicationModel();
+                loan = service.getLoanFormDetails(code);
+                loan.orgs = customerComp.getOrganization();
+                loan.districts = customerComp.getDistrict();
+                loan.applicationTypes = customerComp.getApplicationType();
+                loan.products = service.GetLoanProducts();
+                loan.sets = service.GetLoanSet();
+                loan.terms = service.GetLoanTerms();
+                loan.borrowerProfile = service.GetBorrowerProfile(loan.BorrowerCode);
+                loan.reqDocs = service.getBorrowerRequiredDocuments(loan.BorrowerCode);
+            }
+           
+           // loan.AccountNo = loanID;
+           
+            return View("LoanApplication", loan);
         }
 
         [HttpPost]
@@ -65,18 +94,51 @@ namespace LMS.Controllers
         public ActionResult NewLoanApplication(string borrower)
         {
             LoanApplicationModel loan = new LoanApplicationModel();
-            loan.BorrowerCode = borrower;
-            loan.borrowerProfile = service.GetBorrowerProfile(borrower);
             loan.orgs = customerComp.getOrganization();
             loan.districts = customerComp.getDistrict();
             loan.applicationTypes = customerComp.getApplicationType();
             loan.products = service.GetLoanProducts();
             loan.sets = service.GetLoanSet();
             loan.terms = service.GetLoanTerms();
-
+            loan.borrowerProfile = service.GetBorrowerProfile(borrower);
+            loan.reqDocs = service.getBorrowerRequiredDocuments(borrower);
             return View("LoanApplication", loan);
        
         }
+
+
+        [HttpPost]
+        [AuthorizationFilter]
+        [Route("Application/ListApplications/{status}/{filterKey}")]
+        public ActionResult ListApplications(string status, string filterKey)
+        {
+            if(status == "undefined")
+            {
+                status = "[All]";
+            }
+            return Json(service.getLoanApplicationListing(status,filterKey));
+        }
+
+        [HttpPost]
+        [AuthorizationFilter]
+        [Route("Application/ListBorrowers/{filterKey}")]
+        public ActionResult ListBorrowers(string filterKey)
+        {
+            return Json(service.GetBorrowers(filterKey));
+        }
+
+
+      
+
+        [HttpPost]
+        [AuthorizationFilter]
+        [Route("Application/ListDocumentStatus")]
+        public ActionResult ListDocumentStatus()
+        {
+            return Json(service.GetDocumentStatus());
+        }
+
+
 
         [HttpPost]
         public ActionResult getBorrowers(string searchkey)

@@ -1,10 +1,7 @@
 ﻿
+@model BusinessObjects.LoanApplicationModel
 @{
     ViewBag.Title = "LoanApplication";
-}
-@model LMS.Models.LoanApplication.LoanApplicationModel
-@{
-    ViewBag.Title = "OfficialReceipt";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -81,13 +78,13 @@
                                 <div class="form-horizontal">
                                     <div class="form-group">
                                         <label class="col-lg-2 control-label">Account No.:</label>
-                                        <div class="col-lg-10"><input type="text" placeholder="" class="form-control" id="AccountNo" readonly="readonly"></div>
+                                        <div class="col-lg-10"><input type="text" placeholder="" class="form-control" id="AccountNo" value="@Model.AccountNo" readonly="readonly"></div>
 
                                     </div>
                                     <div class="form-group">
                                         <label class="col-lg-2 control-label">Transaction Date Date.:</label>
 
-                                        <div class="col-lg-10"><input type="date" placeholder="" class="form-control"></div>
+                                        <div class="col-lg-10"><input type="text" placeholder="" class="form-control" value="@Model.TransactionDate.ToShortDateString()"></div>
                                     </div>
                                 </div>
                             </div>
@@ -112,7 +109,7 @@
                                     <label class="col-lg-2 control-label">Purpose of Loan:</label>
 
                                     <div class="col-lg-10">
-                                       <textarea cols="50" rows="5"></textarea>
+                                       <textarea cols="50" rows="5">@Model.LoanPurpose</textarea>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -123,9 +120,19 @@
                                             @foreach (var district in Model.districts)
                                             {
                                                 // cut for brevity, need to add back more code from original
-                                                <option value="@district.DistrictID">
-                                                    @district.Description
-                                                </option>
+                                                if (Model.DistrictCode != null && Model.DistrictCode == district.Code)
+                                                {
+                                                    <option value="@district.DistrictID" selected="selected">
+                                                        @district.Description
+                                                    </option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@district.DistrictID">
+                                                        @district.Description
+                                                    </option>
+                                                }
+
                                             }
                                            
                                             
@@ -136,9 +143,49 @@
                                             @foreach (var org in Model.orgs)
                                             {
                                                 // cut for brevity, need to add back more code from original
-                                                <option value="@org.OrganizationID">
-                                                    @org.Description
-                                                </option>
+
+
+                                                if (Model.DistrictCode != null && Model.DistrictCode == org.DistrictID)
+                                                {
+                                                    var distId = "";
+                                                    foreach (var district in Model.districts)
+                                                    {
+                                                        if (Model.DistrictCode == district.Code)
+                                                        {
+                                                            distId = district.DistrictID;
+                                                        }
+                                                    }
+                                                    if (distId != "")
+                                                    {
+                                                        if (distId == org.DistrictID)
+                                                        {
+                                                            <option value="@org.OrganizationID" selected="selected">
+                                                                @org.Description
+                                                            </option>
+                                                        }
+                                                        else
+                                                        {
+                                                            <option value="@org.OrganizationID">
+                                                                @org.Description
+                                                            </option>
+                                                        }
+
+                                                    }
+                                                    else
+                                                    {
+                                                        <option value="@org.OrganizationID">
+                                                            @org.Description
+                                                        </option>
+                                                    }
+
+                                                }
+                                                else
+                                                {
+                                                    <option value="@org.OrganizationID">
+                                                        @org.Description
+                                                    </option>
+                                                }
+
                                             }
                                         </select>
                                     </div>
@@ -150,10 +197,21 @@
                                         <select class="form-control">
                                             @foreach (var appType in Model.applicationTypes)
                                             {
-                                                // cut for brevity, need to add back more code from original
-                                                <option value="@appType.ApplicationTypeID">
-                                                    @appType.Description
-                                                </option>
+                                                if (Model.ApplicationType != null && Model.ApplicationType == appType.ApplicationTypeID)
+                                                {
+                                                    // cut for brevity, need to add back more code from original
+                                                    <option value="@appType.ApplicationTypeID" selected="selected">
+                                                        @appType.Description
+                                                    </option>
+                                                }
+                                                else
+                                                {
+                                                    // cut for brevity, need to add back more code from original
+                                                    <option value="@appType.ApplicationTypeID">
+                                                        @appType.Description
+                                                    </option>
+                                                }
+
                                             }
                                         </select>
                                     </div>
@@ -176,9 +234,21 @@
                                             @foreach (var product in Model.products)
                                             {
                                                 // cut for brevity, need to add back more code from original
-                                                <option value="@product.ID">
-                                                    @product.DESCRIPTION
-                                                </option>
+                                                if (Model.ProductId != null && Model.ProductId == product.ID)
+                                                {
+                                                    // cut for brevity, need to add back more code from original
+                                                    <option value="@product.ID" selected="selected">
+                                                        @product.DESCRIPTION
+                                                    </option>
+                                                }
+                                                else
+                                                {
+                                                    // cut for brevity, need to add back more code from original
+                                                    <option value="@product.ID">
+                                                        @product.DESCRIPTION
+                                                    </option>
+                                                }
+                                              
                                             }
                                         </select>
                                     </div>
@@ -191,9 +261,22 @@
                                             @foreach (var set in Model.sets)
                                             {
                                                 // cut for brevity, need to add back more code from original
-                                                <option value="@set.ID">
-                                                    @set.DESCRIPTION
-                                                </option>
+                                               
+
+                                                if (Model.SetId != null && Model.SetId == set.ID)
+                                                {
+                                                    // cut for brevity, need to add back more code from original
+                                                    <option value="@set.ID" selected="selected">
+                                                        @set.DESCRIPTION
+                                                    </option>
+                                                }
+                                                else
+                                                {
+                                                    // cut for brevity, need to add back more code from original
+                                                    <option value="@set.ID">
+                                                        @set.DESCRIPTION
+                                                    </option>
+                                                }
                                             }
                                         </select>
                                     </div>
@@ -208,9 +291,21 @@
                                             @foreach (var term in Model.terms)
                                             {
                                                 // cut for brevity, need to add back more code from original
-                                                <option value="@term.ID">
-                                                    @term.DESCRIPTION
-                                                </option>
+                                                if (Model.TermsId != null && Model.TermsId == term.ID)
+                                                {
+                                                    // cut for brevity, need to add back more code from original
+                                                    <option value="@term.ID" selected="selected">
+                                                        @term.DESCRIPTION
+                                                    </option>
+                                                }
+                                                else
+                                                {
+                                                    // cut for brevity, need to add back more code from original
+                                                    <option value="@term.ID">
+                                                        @term.DESCRIPTION
+                                                    </option>
+                                                }
+                                              
                                             }
                                         </select>
                                     </div>
@@ -218,12 +313,12 @@
                                 <div class="form-group">
                                     <label class="col-lg-2 control-label">Factor Rate:</label>
 
-                                    <div class="col-lg-10"><input type="text" placeholder="" class="form-control"></div>
+                                    <div class="col-lg-10"><input type="text" placeholder="" class="form-control" value="@Model.FactorRate"></div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-lg-2 control-label">Desired MLV:</label>
 
-                                    <div class="col-lg-10"><input type="text" placeholder="" class="form-control"></div>
+                                    <div class="col-lg-10"><input type="text" placeholder="" class="form-control" value="@Model.DesiredMLV"></div>
                                 </div>
 
 
@@ -339,7 +434,15 @@
                         </div>
                         <div class="ibox-content">
                             <div class="form-horizontal">
-                                
+                                <ul>
+                                    @foreach (var doc in Model.reqDocs)
+                                    {
+                                        // cut for brevity, need to add back more code from original
+                                        <li>
+                                            @doc.description
+                                        </li>
+                                    }
+                                </ul>
                             </div>
                         </div>
                     </div>
