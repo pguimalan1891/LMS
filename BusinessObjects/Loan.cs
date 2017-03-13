@@ -18,6 +18,19 @@ namespace BusinessObjects
         public string POSTAL_CODE;
     }
 
+    public class ComakerProfile
+    {
+        public string ID;
+        public string LOAN_APPLICATION_ID;
+        public string FIRST_NAME;
+        public string MIDDLE_NAME;
+        public string LAST_NAME;
+        public string DATE_OF_BIRTH;
+        public string PHONE_NUMBER;
+        public string ADDRESS;
+        public string NOTES;
+    }
+
     public class newLoanBorrowerProfile
     {
         public string newLoanLink;

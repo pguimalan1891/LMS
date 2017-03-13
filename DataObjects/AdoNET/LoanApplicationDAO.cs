@@ -344,7 +344,7 @@ namespace DataObjects.AdoNET
            new BusinessObjects.LoanList
            {
                ID = reader["ID"].ToString(),
-                LA_No = "<a href='../Application/LoanApplication?code="+reader["LA_No"].AsString()+"'>"+ reader["LA_No"].AsString() + "</a>",
+                LA_No = "<a href='../../Application/LoanApplication?code="+reader["LA_No"].AsString()+"'>"+ reader["LA_No"].AsString() + "</a>",
                Status = reader["Status"].AsString(),
                Date = reader["Date"].AsString(),
                Branch = reader["Branch"].AsString(),
@@ -361,6 +361,36 @@ namespace DataObjects.AdoNET
                CiStatus = reader["CiStatus"].AsString()
            };
 
+        public IEnumerable<BusinessObjects.ComakerProfile> getComakers(string loanCode)
+        {
+            string sql = " SELECT [loan_application_pis].[ID] "+
+     " ,[LOAN_APPLICATION_ID] "+
+     " ,[FIRST_NAME] " +
+     " ,[MIDDLE_NAME] " +
+     " ,[LAST_NAME] " +
+     " ,[DATE_OF_BIRTH] " +
+     " ,[PHONE_NUMBER] " +
+     " ,[ADDRESS] " +
+     " ,[loan_application_pis].NOTES " +
+        "FROM[loan_application_pis] " +
+         " inner join loan_application la on la.ID=loan_application_pis.LOAN_APPLICATION_ID " +
+        "  where la.CODE = @loanCode";
+            object[] parms = { "loanCode", loanCode };
+            return db.Read(sql, selectComakers, 0, parms);
+        }
 
+        static Func<IDataReader, BusinessObjects.ComakerProfile> selectComakers = reader =>
+           new BusinessObjects.ComakerProfile
+           {
+               ID = reader["ID"].AsString(),
+               LOAN_APPLICATION_ID = reader["LOAN_APPLICATION_ID"].AsString(),
+               FIRST_NAME = reader["FIRST_NAME"].AsString(),
+               MIDDLE_NAME = reader["MIDDLE_NAME"].AsString(),
+               LAST_NAME = reader["LAST_NAME"].AsString(),
+               DATE_OF_BIRTH = reader["DATE_OF_BIRTH"].AsString(),
+               PHONE_NUMBER = reader["PHONE_NUMBER"].AsString(),
+               ADDRESS = reader["ADDRESS"].AsString(),
+               NOTES = reader["NOTES"].AsString()
+           };
     }
 }

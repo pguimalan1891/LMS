@@ -7,7 +7,9 @@ GO
 
 SET QUOTED_IDENTIFIER ON
 GO
-
+IF OBJECT_ID('[uvw_PISAddress]') IS NOT NUll
+	DROP VIEW [dbo].[uvw_PISAddress]
+GO
 CREATE VIEW [dbo].[uvw_PISAddress]
 AS
 SELECT        pisAdd.ID, pisAdd.PIS_ID, pisAdd.ADDRESS_TYPE_ID, addType.DESCRIPTION AS AddressType, pisAdd.STREET_ADDRESS, pisAdd.BARANGAY_NAME, pisAdd.CITY_ID, dbo.city.DESCRIPTION AS City, 

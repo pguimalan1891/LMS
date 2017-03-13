@@ -25,5 +25,7 @@ namespace ServiceLayer.Interface
         IEnumerable<BusinessObjects.RequiredDocuments> getBorrowerRequiredDocuments(string borrowerCode);
 
         BusinessObjects.LoanApplicationModel getLoanFormDetails(string AccountNo);
+
+        IEnumerable<BusinessObjects.ComakerProfile> getComakers(string LoanCode);
     }
 }

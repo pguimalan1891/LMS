@@ -1,0 +1,124 @@
+﻿@using LMS.Models.DevelopmentTools
+@model LMS.Models.DevelopmentTools.UserAccountModel
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "AddUserAccount" }))
+{
+    @Html.AntiForgeryToken()    
+    <div style="background-color:white;">
+        <div class="row">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>User Details</h5>
+                    @Html.TextBoxFor(model => model.userAccount.ID, new { @class = "form-control", @style="visibility:hidden;position:absolute", @value = @Model.userAccount.ID  })
+                </div>
+                <div class="ibox-content">    
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <div class="col-lg-6">
+                                <label for="" class="control-label">User Code</label>
+                                @Html.TextBoxFor(model => model.userAccount.Code, new { @class = "form-control" })
+                            </div>
+                            <div class="col-lg-6">
+                                <label for="" class="control-label">Account Status</label>
+                                @Html.DropDownListFor(model => model.userAccount.Status, new SelectList(Model.userAccountStatus, "Status", "Description"), new { @class = "form-control userAccountStatusAddBox" })
+                            </div>
+                        </div>                    
+                        <div class="form-group">
+                            <div class="col-lg-4">
+                                <label for="" class="control-label">Last Name</label>
+                                @Html.TextBoxFor(model => model.userAccount.LastName, new { @class = "form-control" })
+                            </div>
+                            <div class="col-lg-4">
+                                <label for="" class="control-label">First Name</label>
+                                @Html.TextBoxFor(model => model.userAccount.FirstName, new { @class = "form-control" })
+                            </div>
+                            <div class="col-lg-4">
+                                <label for="" class="control-label">Middle Name</label>
+                                @Html.TextBoxFor(model => model.userAccount.MiddleName, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-6">
+                                <label for="" class="control-label">Password Never Expire</label>
+                                @Html.DropDownListFor(model => model.userAccount.PasswordNeverExpires, new SelectList(Model.PasswordNeverExpires, "PasswordNeverExpires", "text"), new { @class = "form-control PasswordNeverExpireAddBox" })
+                            </div>
+                            <div class="col-lg-6">
+                                <label for="" class="control-label">Expiry Date</label>
+                                @Html.TextBoxFor(model => model.userAccount.ExpiryDate, new { @disabled = "disabled", @class = "form-control" })
+                            </div>                            
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-6">
+                                <label for="" class="control-label">Password</label>
+                                @Html.TextBoxFor(model => model.userAccount.Password, new { @type = "password", @class = "form-control" })
+                            </div>
+                            <div class="col-lg-6">
+                                <label for="" class="control-label">Confirm Password</label>
+                                @Html.TextBoxFor(model => model.userAccount.ConfirmPassword, new { @type = "password", @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-12">
+                                <label for="" class="control-label">Postal Address</label>
+                                @Html.TextBoxFor(model => model.userAccount.PostalAddress, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-6">
+                                <label for="" class="control-label">Email Address</label>
+                                @Html.TextBoxFor(model => model.userAccount.EmailAddress, new { @type = "email", @class = "form-control" })
+                            </div>
+                            <div class="col-lg-6">
+                                <label for="" class="control-label">Confirm Password</label>
+                                @Html.DropDownListFor(model => model.userAccount.PositionID, new SelectList(Model.Position, "PositionID", "Description"), new { @class = "form-control PositionAddBox" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-6">
+                                <label for="" class="control-label">Assigned Office</label>
+                                @Html.DropDownListFor(model => model.userAccount.OrganizationID, new SelectList(Model.Organization, "OrganizationID", "Description"), new { @class = "form-control PositionAddBox" })
+                            </div>
+                            <div class="col-lg-6">
+                                <label for="" class="control-label">Company</label>
+                                @Html.DropDownListFor(model => model.userAccount.CompanyID, new SelectList(Model.Company, "CompanyID", "Name"), new { @class = "form-control PositionAddBox" })   
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="alertModal" class="modal fade" role="dialog">
+        <div class="modal-dialog" style="background-color:#ffffff;width:60%">
+            <div class="modal-header" style="background-color:white">
+                <h3>Validation Summary</h3>
+            </div>
+            <div class="modal-body" style="background-color:white">
+                <div style="color:red;font-size:small;">
+                    @Html.ValidationSummary(false)                    
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a class="btn btn-info" onclick="closeAlert()">&nbsp;OK&nbsp;</a>
+            </div>
+        </div>
+    </div>
+    <div id="alertMessageModal" class="modal fade" role="dialog">
+        <div class="modal-dialog" style="background-color:#ffffff;width:60%">
+            <div class="modal-header" style="background-color:white">
+                <h3>Validation Summary</h3>
+            </div>
+            <div class="modal-body" style="background-color:white">
+                <div style="color:red;font-size:small;">                   
+                    <div id="alertMessage"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a class="btn btn-info" onclick="closeAlert()">&nbsp;OK&nbsp;</a>
+            </div>
+        </div>
+    </div>
+}
+
+

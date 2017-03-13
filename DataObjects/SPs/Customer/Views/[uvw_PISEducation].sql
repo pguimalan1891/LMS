@@ -7,7 +7,9 @@ GO
 
 SET QUOTED_IDENTIFIER ON
 GO
-
+IF OBJECT_ID('[uvw_PISEducation]') IS NOT NUll
+	DROP VIEW [dbo].[uvw_PISEducation]
+GO
 CREATE VIEW [dbo].[uvw_PISEducation]
 AS
 SELECT        pisEdu.ID, pisEdu.PIS_ID, pisEdu.EDUCATION_TYPE_ID, eduType.DESCRIPTION AS EducationType, pisEdu.SCHOOL_NAME, pisEdu.GRADUATION_DATE

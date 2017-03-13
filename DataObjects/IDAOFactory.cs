@@ -17,5 +17,6 @@ namespace DataObjects
         ILoanApplicationDAO LoanApplicationDAO { get; }
         IAccountDAO AccountDAO { get; }
         IMaintenanceAgentProfileDAO MaintenanceAgentProfileDAO { get;   }
+        IDTSecurityManagerDAO DTSecurityManagerDAO { get; }
     }
 }

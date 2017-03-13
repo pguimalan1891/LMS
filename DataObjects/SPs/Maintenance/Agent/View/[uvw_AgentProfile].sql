@@ -7,7 +7,9 @@ GO
 
 SET QUOTED_IDENTIFIER ON
 GO
-
+IF OBJECT_ID('[uvw_AgentProfile]') IS NOT NUll
+	DROP VIEW [dbo].[uvw_AgentProfile]
+GO
 CREATE VIEW [dbo].[uvw_AgentProfile]
 AS
 SELECT        agentProf.ID, agentProf.CODE, agentProf.ORGANIZATION_ID, org.DESCRIPTION AS Organization, dbo.district.ID AS DistrictID, dbo.district.DESCRIPTION AS District, agentProf.FIRST_NAME, agentProf.LAST_NAME, 
