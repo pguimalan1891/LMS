@@ -63,5 +63,10 @@ namespace ServiceLayer
         {
             return lnCtrl.getDocumentStatus();
         }
+
+        public IEnumerable<BusinessObjects.ComakerProfile> getComakers(string LoanCode)
+        {
+            return lnCtrl.getComakers(LoanCode);
+        }
     }
 }

@@ -79,18 +79,22 @@ namespace LMS.Controllers
             return View("LoanApplication", loan);
         }
 
+        [AuthorizationFilter]
         [HttpPost]
         public ActionResult getComakers(string loanApplicationNo)
         {
             return PartialView("_LoanComakers", null);
         }
 
+        [AuthorizationFilter]
         [HttpPost]
         public ActionResult getCollaterals(string loanApplicationNo)
         {
             return PartialView("_LoanCollaterals", null);
         }
 
+    
+        [AuthorizationFilter]
         public ActionResult NewLoanApplication(string borrower)
         {
             LoanApplicationModel loan = new LoanApplicationModel();
@@ -141,13 +145,15 @@ namespace LMS.Controllers
 
 
         [HttpPost]
-        public ActionResult getBorrowers(string searchkey)
+        [AuthorizationFilter]
+        [Route("Application/ListComakers")]
+        [Route("Application/ListComakers/{loanCode}")]
+        public ActionResult ListComakers(string loanCode)
         {
-            return Json(this.service.GetBorrowers(searchkey), JsonRequestBehavior.DenyGet);
+            return Json(service.getComakers(loanCode));
         }
 
 
-        
         //getDistrict, getBranch, getApplicationType, getLoanProduct, getSetPerProduct, getTerms, getCollateralType
     }
 }

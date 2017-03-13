@@ -19,7 +19,7 @@ namespace DataObjects
         IEnumerable<BusinessObjects.RequiredDocuments> getBorrowerRequiredDocuments(string borrowerCode);
         IEnumerable<BusinessObjects.LoanList> getLoanApplicationListing(string status, string searchkey);
         IEnumerable<BusinessObjects.DocumentStatus> getDocumentStatus();
-
+        IEnumerable<BusinessObjects.ComakerProfile> getComakers(string loanCode);
         IEnumerable<BusinessObjects.LoanApplicationModel> getLoanFormDetails(string AccountNo);
     }
 }

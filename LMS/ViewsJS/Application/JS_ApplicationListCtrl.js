@@ -10,7 +10,8 @@
     getCustomerRecords("");
     listDocumentStatus();
 });
-
+var tempComaker = {};
+var tempCollaterls = {};
 function jsonReq(url, parms, callback, returnType) {
 
     $.ajax({
@@ -184,5 +185,12 @@ function getCustomerRecordsWithFilter(searchkey) {
 
 
 
+
+}
+
+
+
+function addComaker()
+{
 
 }
