@@ -14,26 +14,19 @@
     @Html.ValidationSummary(true)
     <div style="background-color:white;">
         <div class="row">
-            <div class="col-md-3" style="padding-bottom:10px;padding-top:10px;padding-left:30px;">                
-                <div class="btn btn-info" onclick="updateCustomerData()" title="Update Customer Data" id="btnUpdate"><b>Update Customer</b></div>                                
-            </div>
-            <div class="col-md-1">
-                @Html.TextBoxFor(model => model.custRecord.ID, new { @id = "CustRecord_ID", @disabled = "disabled", @style = "visibility:hidden", @class = "form-control", @value = @Model.custRecord.Code })
-            </div>
-            <div class="col-md-1">
-                @Html.TextBoxFor(model => model.custAddress[0].ID, new { @disabled = "disabled", @style = "visibility:hidden", @class = "form-control", @value = @Model.custAddress[0].ID })
-            </div>
-            <div class="col-md-1">
-                @Html.TextBoxFor(model => model.custAddress[0].PISID, new { @disabled = "disabled", @style = "visibility:hidden", @class = "form-control", @value = @Model.custAddress[0].PISID })
-            </div>
-            <div class="col-md-1">
-                @Html.TextBoxFor(model => model.custAddress[0].AddressTypeID, new { @disabled = "disabled", @style = "visibility:hidden", @class = "form-control", @value = @Model.custAddress[0].AddressTypeID })
+            <div class="col-md-12" style="padding-bottom:10px;padding-top:10px;padding-left:30px;padding-right:30px;">
+                <div class="btn btn-info" onclick="updateCustomerData()" title="Update Customer Data" id="btnUpdate"><b>Update Customer</b></div>
+                @Html.TextBoxFor(model => model.custRecord.ID, new { @id = "CustRecord_ID", @disabled = "disabled", @style = "visibility:hidden;position:absolute;", @class = "form-control", @value = @Model.custRecord.Code })
+                @Html.TextBoxFor(model => model.custAddress[0].ID, new { @disabled = "disabled", @style = "visibility:hidden;position:absolute;", @class = "form-control", @value = @Model.custAddress[0].ID })
+                @Html.TextBoxFor(model => model.custAddress[0].PISID, new { @disabled = "disabled", @style = "visibility:hidden;position:absolute;", @class = "form-control", @value = @Model.custAddress[0].PISID })
+                @Html.TextBoxFor(model => model.custAddress[0].AddressTypeID, new { @disabled = "disabled", @style = "visibility:hidden;position:absolute;", @class = "form-control", @value = @Model.custAddress[0].AddressTypeID })
+                <a class="btn btn-danger pull-right" href="~/Customer">Back to Customer List</a>
             </div>
         </div>
         <div class="row">
             <div class="col-md-6">
                 <div class="ibox float-e-margins">
-                    <div class="ibox-title">
+                    <div class="ibox-title"  style="background-color:#1ab394;color:white;">
                         <h5>Personal Information</h5>
                     </div>
                     <div class="ibox-content">
@@ -94,7 +87,7 @@
             </div>
             <div class="col-md-6">
                 <div class="ibox float-e-margins">
-                    <div class="ibox-title">
+                    <div class="ibox-title"  style="background-color:#1ab394;color:white;">
                         <h5>Account Information</h5>
                     </div>
                     <div class="ibox-content">
@@ -140,7 +133,7 @@
         <div class="row">
             <div class="col-md-7">
                 <div class="ibox float-e-margins">
-                    <div class="ibox-title">
+                    <div class="ibox-title"  style="background-color:#1ab394;color:white;">
                         <h5>Civil Status Information</h5>
                     </div>
                     <div class="ibox-content">
@@ -209,7 +202,7 @@
             </div>
             <div class="col-md-5">
                 <div class="ibox float-e-margins">
-                    <div class="ibox-title">
+                    <div class="ibox-title"  style="background-color:#1ab394;color:white;">
                         <h5>Social Security Information</h5>
                     </div>
                     <div class="ibox-content">
@@ -258,7 +251,7 @@
         <div class="row">
             <div class="col-md-10">
                 <div class="ibox float-e-margins">
-                    <div class="ibox-title">
+                    <div class="ibox-title"  style="background-color:#1ab394;color:white;">
                         <h5>Contacts And Addresses</h5>
                     </div>
                     <div class="ibox-content">
@@ -342,7 +335,7 @@
         <div class="row">
             <div class="col-md-10">
                 <div class="ibox float-e-margins">
-                    <div class="ibox-title">
+                    <div class="ibox-title"  style="background-color:#1ab394;color:white;">
                         <h5>Dependents Information</h5>
                     </div>
                     <div class="ibox-content">
@@ -368,7 +361,7 @@
         <div class="row">
             <div class="col-md-8">
                 <div class="ibox float-e-margins">
-                    <div class="ibox-title">
+                    <div class="ibox-title"  style="background-color:#1ab394;color:white;">
                         <h5>Acquired Education</h5>
                     </div>
                     <div class="ibox-content">
@@ -391,7 +384,7 @@
         <div class="row">
             <div class="col-md-8">
                 <div class="ibox float-e-margins">
-                    <div class="ibox-title">
+                    <div class="ibox-title"  style="background-color:#1ab394;color:white;">
                         <h5>Character References</h5>
                     </div>
                     <div class="ibox-content">
@@ -415,7 +408,7 @@
         <div class="row">
             <div class="col-md-10">
                 <div class="ibox float-e-margins">
-                    <div class="ibox-title">
+                    <div class="ibox-title"  style="background-color:#1ab394;color:white;">
                         <h5>Employment/Business Record and History</h5>
                     </div>
                     <div class="ibox-content">

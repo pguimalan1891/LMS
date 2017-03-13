@@ -52,6 +52,7 @@ function loadComponents(url) {
         tblComponent = $("#tbl-agent").DataTable({
             "pageLength": 10,
             "bFilter": true,
+            "sDom":'<"top"l>rt<"bottom"ip><"clear">',
             "bProcessing": true,
             "bServerside": true,
             "responsive": true,
@@ -64,6 +65,17 @@ function loadComponents(url) {
             "columns": dataColumns
         });
         tblComponent.columns(0).visible(false, false);
+        $("#filter_searchkey").unbind("keyup");
+        $("#filter_searchkey").keyup(function (e) {
+            var code = e.which;
+            if (code == 13) {                
+                tblComponent.search($(this).val()).draw();
+            }
+        });
+        $("#cmdFilter").unbind("click");
+        $("#cmdFilter").click(function () {
+            tblComponent.search($("#filter_searchkey").val()).draw();
+        });
     });
 }
 
