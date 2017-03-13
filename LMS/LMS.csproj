@@ -178,6 +178,7 @@
     <Compile Include="Controllers\CreditInvestigation\CreditInvestigationController.cs" />
     <Compile Include="Controllers\Customer\CustomerController.cs" />
     <Compile Include="Controllers\DevelopmentTools\DevelopmentToolsController.cs" />
+    <Compile Include="Controllers\DevelopmentTools\DTSecurityManagerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -186,6 +187,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer\CustomerModel.cs" />
     <Compile Include="Models\DevelopmentTools\LibraryComponentModel.cs" />
+    <Compile Include="Models\DevelopmentTools\UserAccount.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\LoanApplication\LoanApplicationModel.cs" />
     <Compile Include="Controllers\MaintenanceAgentProfile\MaintenanceAgentProfileController.cs" />
@@ -290,6 +292,8 @@
     <Content Include="Content\uiPlugins\theme\css\font-awesome.min.css" />
     <Content Include="Content\uiPlugins\theme\css\style.css" />
     <Content Include="Content\uiPlugins\theme\css\style.min.css" />
+    <Content Include="Content\uiPlugins\theme\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\uiPlugins\theme\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\uiPlugins\theme\img\profile_small.jpg" />
     <Content Include="Content\uiPlugins\theme\img\profile_small.png" />
     <Content Include="Content\uiPlugins\theme\js\bootstrap.js" />
@@ -308,7 +312,6 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Content\Scripts\bootstrap.js" />
     <Content Include="Content\Scripts\bootstrap.min.js" />
     <Content Include="App_Code\Helper.cshtml" />
     <Content Include="Content\bootstrap\css\bootstrap-theme.css.map" />
@@ -321,17 +324,9 @@
     <Content Include="Content\bootstrap\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Content\datatable\media\images\Sorting icons.psd" />
     <Content Include="Content\jquery\jquery-ui-1.12.1\package.json" />
-    <None Include="Content\Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Content\Scripts\jquery-1.10.2.js" />
     <Content Include="Content\Scripts\jquery-1.10.2.min.js" />
-    <None Include="Content\Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Content\Scripts\jquery.validate.js" />
-    <Content Include="Content\Scripts\jquery.validate.min.js" />
-    <Content Include="Content\Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Content\Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Content\Scripts\modernizr-2.6.2.js" />
-    <Content Include="Content\Scripts\respond.js" />
-    <Content Include="Content\Scripts\respond.min.js" />
     <Content Include="Content\Scripts\_references.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -342,6 +337,15 @@
     <Content Include="Models\Booking\DirectLoanReceipt.cshtml" />
     <Content Include="Models\Booking\DisbursementVoucher.cshtml" />
     <Content Include="Models\Booking\PromissoryNoteAllocation.cshtml" />
+    <Content Include="Content\uiPlugins\theme\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\uiPlugins\theme\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\uiPlugins\theme\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\uiPlugins\theme\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\uiPlugins\theme\fonts\FontAwesome.otf" />
+    <Content Include="Content\uiPlugins\theme\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\uiPlugins\theme\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\uiPlugins\theme\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\uiPlugins\theme\fonts\glyphicons-halflings-regular.woff2" />
     <None Include="Properties\PublishProfiles\LMSPublish.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\extra\jquery.qtip.min.js" />
@@ -400,6 +404,7 @@
     <Content Include="ViewsJS\Customer\JS_Customer.js" />
     <Content Include="ViewsJS\Customer\JS_CustomerAdd.js" />
     <Content Include="ViewsJS\Customer\JS_CustomerUpdate.js" />
+    <Content Include="ViewsJS\DevelopmentTools\DTSecurityManager.js" />
     <Content Include="ViewsJS\Library\JS_LibraryComponent.js" />
     <Content Include="ViewsJS\MaintenanceAgentProfile\JS_AgentProfile.js" />
     <Content Include="ViewsJS\MaintenanceAgentProfile\JS_AgentProfileAdd.js" />
@@ -450,7 +455,6 @@
     </Content>
     <Content Include="Views\OfficialReceipt\OfficialReceipt.cshtml" />
     <Content Include="Views\Customer\Customer.cshtml" />
-    <Content Include="Views\Booking\Booking.cshtml" />
     <Content Include="Views\Customer\_Display_CustomerRecord.cshtml" />
     <Content Include="Views\Customer\_Update_CustomerRecord.cshtml" />
     <Content Include="Views\Booking\BankAssignment.cshtml" />
@@ -468,6 +472,12 @@
     <Content Include="Views\MaintenanceAgentProfile\_AddAddress.cshtml" />
     <Content Include="Views\MaintenanceAgentProfile\_UpdateAddress.cshtml" />
     <Content Include="Views\MaintenanceAgentProfile\Add_AgentProfile.cshtml" />
+    <Content Include="Views\DTSecurityManager\Index.cshtml" />
+    <Content Include="Views\DTSecurityManager\_Add_UserAccount.cshtml" />
+    <Content Include="Views\DTSecurityManager\_Update_UserAccount.cshtml" />
+    <Content Include="Views\DTSecurityManager\_ResetPassword_UserAccount.cshtml" />
+    <Content Include="Views\DTSecurityManager\_UpdateStatus_UserAccount.cshtml" />
+    <Content Include="Views\DTSecurityManager\_UpdateRoles_UserAccount.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

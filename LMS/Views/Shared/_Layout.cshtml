@@ -40,8 +40,7 @@
             <div class="sidebar-collapse">
                 <ul class="nav" id="side-menu">
                     <li class="nav-header">
-                          <div class="dropdown profile-ele  ment">
-                               
+                          <div class="dropdown profile-ele  ment">                               
                                 <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                                     <span class="clear">
                                         <br/>
@@ -63,8 +62,6 @@
                                     <li><a href="#login.html">Logout</a></li>
                                 </ul>
                             </div>
-
-                      
                         <div class="logo-element">
                             RFC
                         </div>
@@ -114,15 +111,63 @@
                             </ul>
                         </li>
                     <li>
-                        <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">System Settings</span> <span class="fa arrow"></span></a>
+                        <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">Maintenance</span> <span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
+                            <li><a href="~/AgentProfile">Agent Profile</a></li>
                             <li>
-                                <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">Library Components</span> <span class="fa arrow"></span></a>
+                                <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">References</span> <span class="fa arrow"></span></a>
+                                <ul class="nav nav-third-level">
+                                    <li>
+                                        <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">PIS</span> <span class="fa arrow"></span></a>
+                                        <ul class="nav">
+                                            <li><a href='~/Library?ComponentName=borrower_Type|borrower%20Type'>Borrower Type</a></li>
+                                            <li><a href='~/Library?ComponentName=Nature_of_business|Nature%20of%20business'>Business Type</a></li>
+                                        </ul>
+                                        <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">Loans</span> <span class="fa arrow"></span></a>
+                                        <ul class="nav">
+                                            <li><a href='~/Library?ComponentName=Loan_Type|Loan%20Type'>Loan Type</a></li>
+                                            <li><a href='~/Library?ComponentName=loan_set|loan%20set'>Loan Set</a></li>
+                                            <li><a href='~/Library?ComponentName=loan_terms|loan%20terms'>Loan Terms</a></li>
+                                            <li><a href='~/Library?ComponentName=support_document|support%20document'>Support Document</a></li>
+                                        </ul>
+                                        <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">Collateral</span> <span class="fa arrow"></span></a>
+                                        <ul class="nav">
+                                            <li><a href='~/Library?ComponentName=collateral_type|collateral%20type'>Collateral Type</a></li>
+                                            <li><a href='~/Library?ComponentName=collateral_usage|collateral%20usage'>Collateral Usage</a></li>
+                                            <li><a href='~/Library?ComponentName=color|Collateral%20color'>Collateral Color</a></li>
+                                            <li><a href='~/Library?ComponentName=fuel_type|fuel%20type'>Fuel Type</a></li>
+                                        </ul>
+                                        <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">Organizational</span> <span class="fa arrow"></span></a>
+                                        <ul class="nav">
+                                            <li><a href='~/Library?ComponentName=support_group|support%20group'>Support Group</a></li>
+                                            <li><a href='~/Library?ComponentName=district_group|district%20group'>District Group</a></li>
+                                            <li><a href='~/Library?ComponentName=regional_office|regional%20office'>Regional Office</a></li>
+                                            <li><a href='~/Library?ComponentName=district|district'>District</a></li>
+                                            <li><a href='~/Library?ComponentName=organization|branch'>Branch</a></li>
+                                        </ul>
+                                        <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">Organizational</span> <span class="fa arrow"></span></a>
+                                        <ul class="nav">
+                                            <li><a href='~/Library?ComponentName=payment_mode|payment%20mode'>Payment Mode</a></li>
+                                            <li><a href='~/Library?ComponentName=bank|bank'>Bank</a></li>
+                                            <li><a href='~/Library?ComponentName=expense_type|expense%20type'>Expense Type</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">Development Tool</span> <span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li><a href="~/SecurityManager">Security Manager</a></li>
+                            <li>
+                                <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">Library 1st Part</span> <span class="fa arrow"></span></a>
                                 <ul class="nav nav-third-level">
                                     <li><a href="~/Library?ComponentName=Company_Type|Company%20Type">Company Type</a></li>
-                                    <li><a href='~/Library?ComponentName=Industry|Industry'>Industry</a></li>
                                     <li><a href='~/Library?ComponentName=Gender|Gender'>Gender</a></li>
+                                    <li><a href='~/Library?ComponentName=Civil_Status|Civil%20Status'>Civil Status</a></li>
                                     <li><a href='~/Library?ComponentName=Lead_Source|Lead%20Source'>Lead Source</a></li>
+                                    <li><a href='~/Library?ComponentName=Industry|Industry'>Industry</a></li>
                                     <li><a href='~/Library?ComponentName=gl_account|gl%20account'>GL Account</a></li>
                                     <li><a href='~/Library?ComponentName=payment_type|payment%20type'>Payment Type</a></li>
                                     <li><a href='~/Library?ComponentName=ledger_type|ledger%20type'>Ledger Type</a></li>
@@ -130,7 +175,12 @@
                                     <li><a href='~/Library?ComponentName=agent_type|agent%20type'>Agent Type</a></li>
                                     <li><a href='~/Library?ComponentName=application_type|application%20type'>Application Type</a></li>
                                     <li><a href='~/Library?ComponentName=collateral_group|collateral%20group'>Collateral Group</a></li>
-                                    <li><a href='~/Library?ComponentName=borrower_group|borrower%20group'>Borrower Group</a></li>
+                                    <li><a href='~/Library?ComponentName=borrower_group|borrower%20group'>Borrower Group</a></li>    
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">Library 2nd Part</span> <span class="fa arrow"></span></a>
+                                <ul class="nav nav-third-level">
                                     <li><a href='~/Library?ComponentName=official_receipt_type|official%20receipt%20type'>Official Receipt Type</a></li>
                                     <li><a href='~/Library?ComponentName=check_voucher_type|check%20voucher%20type'>Check Voucher Type</a></li>
                                     <li><a href='~/Library?ComponentName=bank_account_type|bank_account%20type'>Bank Account Type</a></li>
@@ -143,29 +193,10 @@
                                     <li><a href='~/Library?ComponentName=cmdm_account_type|cmdm_account%20type'>CMDM Account Type</a></li>
                                     <li><a href='~/Library?ComponentName=cmdm_adjustment_type|cmdm%20adjustment%20type'>CMDM Adjustment Type</a></li>
                                     <li><a href='~/Library?ComponentName=cmdm_entry_type|cmdm%20entry%20type'>CMDM Entry Type</a></li>
-                                    <li><a href='~/Library?ComponentName=borrower_Type|borrower%20Type'>Borrower Type</a></li>
-                                    <li><a href='~/Library?ComponentName=Nature_of_business|Nature%20of%20business'>Business Type</a></li>
-                                    <li><a href='~/Library?ComponentName=Loan_Type|Loan%20Type'>Loan Type</a></li>
-                                    <li><a href='~/Library?ComponentName=loan_set|loan%20set'>Loan Set</a></li>
-                                    <li><a href='~/Library?ComponentName=loan_terms|loan%20terms'>Loan Terms</a></li>
-                                    <li><a href='~/Library?ComponentName=support_document|support%20document'>Support Document</a></li>
-                                    <li><a href='~/Library?ComponentName=collateral_type|collateral%20type'>Collateral Type</a></li>
-                                    <li><a href='~/Library?ComponentName=collateral_usage|collateral%20usage'>Collateral Usage</a></li>
-                                    <li><a href='~/Library?ComponentName=color|Collateral%20color'>Collateral Color</a></li>
-                                    <li><a href='~/Library?ComponentName=fuel_type|fuel%20type'>Fuel Type</a></li>
-                                    <li><a href='~/Library?ComponentName=support_group|support%20group'>Support Group</a></li>
-                                    <li><a href='~/Library?ComponentName=district_group|district%20group'>District Group</a></li>
-                                    <li><a href='~/Library?ComponentName=regional_office|regional%20office'>Regional Office</a></li>
-                                    <li><a href='~/Library?ComponentName=district|district'>District</a></li>
-                                    <li><a href='~/Library?ComponentName=organization|branch'>Branch</a></li>
-                                    <li><a href='~/Library?ComponentName=payment_mode|payment%20mode'>Payment Mode</a></li>
-                                    <li><a href='~/Library?ComponentName=bank|bank'>Bank</a></li>
-                                    <li><a href='~/Library?ComponentName=expense_type|expense%20type'>Expense Type</a></li>
                                 </ul>
                             </li>
-                            </ul>
-                    </li>
-
+                        </ul>
+                    </li>                    
                 </ul>
             </div>
         </nav>

@@ -84,6 +84,7 @@ namespace LMS.Controllers
             return Content(service.UpdateCustomerData("Update", cModel, PISID).ToString());
         }
 
+        [HttpPost]
         public ActionResult AddCustomerData(Models.Customer.CustomerModel custModel, List<Models.Customer.CustomerAddress> custAddress, List<Models.Customer.CustomerDependents> custDependents, List<Models.Customer.CustomerEmployment> custEmployment, List<Models.Customer.CustomerEducation> custEducation, List<Models.Customer.CustomerCharacter> custCharacter, string PISID)
         {
             if (custEmployment == null)
