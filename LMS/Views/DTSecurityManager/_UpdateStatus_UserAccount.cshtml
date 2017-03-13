@@ -1,0 +1,37 @@
+﻿@using LMS.Models.DevelopmentTools
+@model LMS.Models.DevelopmentTools.UserAccountModel
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "updateStatus_UserAccount" }))
+{
+    @Html.AntiForgeryToken()
+    <div style="background-color:white;">
+        <div class="row">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Reset Password</h5>
+                    @Html.TextBoxFor(model => model.userAccount.ID, new { @class = "form-control", @style = "visibility:hidden;position:absolute", @value = @Model.userAccount.ID })
+                </div>
+                <div class="ibox-content">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <div class="col-lg-4">
+                                <label for="" class="control-label">User Code</label>
+                                @Html.TextBoxFor(model => model.userAccount.Code, new { @disabled = "disabled", @class = "form-control" })
+                            </div>
+                            <div class="col-lg-4">
+                                <label for="" class="control-label">User Full Name</label>
+                                @Html.TextBoxFor(model => model.userAccount.FullName, new { @disabled = "disabled", @class = "form-control" })
+                            </div>
+                            <div class="col-lg-4">
+                                <label for="" class="control-label">Status</label>
+                                @Html.TextBoxFor(model => model.userAccount.UASMDesciption, new { @disabled = "disabled", @class = "form-control" })
+                            </div>
+                        </div>                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>    
+}
+
+

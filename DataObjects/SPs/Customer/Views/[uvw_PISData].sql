@@ -7,7 +7,9 @@ GO
 
 SET QUOTED_IDENTIFIER ON
 GO
-
+IF OBJECT_ID('[uvw_PISData]') IS NOT NUll
+	DROP VIEW [dbo].[uvw_PISData]
+GO
 CREATE VIEW [dbo].[uvw_PISData]
 AS
 SELECT        a.ID, a.CODE, a.DATETIME_CREATED, a.ORGANIZATION_ID, org.DESCRIPTION AS Organization, dist.ID AS DistrictID, dist.DESCRIPTION AS District, a.FIRST_NAME, a.LAST_NAME, a.MIDDLE_NAME, 
