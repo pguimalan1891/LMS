@@ -33,7 +33,6 @@ function getBookingRecords2() {
         },
         columns: [
             //{ data: 'Seq' },
-            {  },
             { data: 'Status' },
             { data: 'LMS DLR No' },
             { data: 'DLR No' },
