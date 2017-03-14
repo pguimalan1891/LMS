@@ -168,10 +168,12 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\IAuthorizationFilter.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\Accounting\AccountingController.cs" />
     <Compile Include="Controllers\Application\ApplicationController.cs" />
     <Compile Include="Controllers\Booking\BookingController.cs" />
     <Compile Include="Controllers\Collections\OfficialReceiptController.cs" />
@@ -292,8 +294,6 @@
     <Content Include="Content\uiPlugins\theme\css\font-awesome.min.css" />
     <Content Include="Content\uiPlugins\theme\css\style.css" />
     <Content Include="Content\uiPlugins\theme\css\style.min.css" />
-    <Content Include="Content\uiPlugins\theme\fonts\fontawesome-webfont.svg" />
-    <Content Include="Content\uiPlugins\theme\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\uiPlugins\theme\img\profile_small.jpg" />
     <Content Include="Content\uiPlugins\theme\img\profile_small.png" />
     <Content Include="Content\uiPlugins\theme\js\bootstrap.js" />
@@ -312,6 +312,7 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\Scripts\bootstrap.js" />
     <Content Include="Content\Scripts\bootstrap.min.js" />
     <Content Include="App_Code\Helper.cshtml" />
     <Content Include="Content\bootstrap\css\bootstrap-theme.css.map" />
@@ -324,9 +325,17 @@
     <Content Include="Content\bootstrap\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Content\datatable\media\images\Sorting icons.psd" />
     <Content Include="Content\jquery\jquery-ui-1.12.1\package.json" />
+    <None Include="Content\Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Content\Scripts\jquery-1.10.2.js" />
     <Content Include="Content\Scripts\jquery-1.10.2.min.js" />
+    <None Include="Content\Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Content\Scripts\jquery.validate.js" />
+    <Content Include="Content\Scripts\jquery.validate.min.js" />
+    <Content Include="Content\Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Content\Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Content\Scripts\modernizr-2.6.2.js" />
+    <Content Include="Content\Scripts\respond.js" />
+    <Content Include="Content\Scripts\respond.min.js" />
     <Content Include="Content\Scripts\_references.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -395,6 +404,7 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <None Include="Scripts\_references.js" />
+    <Content Include="ViewsJS\Accounting\JS_Accounting_RFP.js" />
     <Content Include="ViewsJS\Application\JS_ApplicationCtrl.js" />
     <Content Include="ViewsJS\Application\JS_ApplicationListCtrl.js" />
     <Content Include="ViewsJS\Booking\JS_Booking.js" />
@@ -456,6 +466,7 @@
     </Content>
     <Content Include="Views\OfficialReceipt\OfficialReceipt.cshtml" />
     <Content Include="Views\Customer\Customer.cshtml" />
+    <Content Include="Views\Booking\Booking.cshtml" />
     <Content Include="Views\Customer\_Display_CustomerRecord.cshtml" />
     <Content Include="Views\Customer\_Update_CustomerRecord.cshtml" />
     <Content Include="Views\Booking\BankAssignment.cshtml" />
@@ -482,6 +493,11 @@
     <Content Include="Views\Application\ApplicationList.cshtml" />
     <Content Include="Views\Application\ApplicationMainMenu.cshtml" />
     <Content Include="Views\Application\CustomerSearch.cshtml" />
+    <Content Include="Views\Application\ApplicationList.cshtml" />
+    <Content Include="Views\Home\_MenuView.cshtml" />
+    <Content Include="Views\Application\ApplicationMainMenu.cshtml" />
+    <Content Include="Views\Application\CustomerSearch.cshtml" />
+    <Content Include="Views\Accounting\RequestForPayment.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

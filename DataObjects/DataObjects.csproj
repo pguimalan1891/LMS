@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdoNET\AccountingDAO.cs" />
     <Compile Include="AdoNET\BookingDAO.cs" />
     <Compile Include="AdoNET\CustomerDAO.cs" />
     <Compile Include="AdoNET\AccountDAO.cs" />
@@ -55,6 +56,7 @@
     <Compile Include="AdoNET\LibraryDAO.cs" />
     <Compile Include="AdoNET\Extensions.cs" />
     <Compile Include="IAccountDAO.cs" />
+    <Compile Include="IAccountingDAO.cs" />
     <Compile Include="IBookingDAO.cs" />
     <Compile Include="ICustomerDAO.cs" />
     <Compile Include="IDAOFactory.cs" />
@@ -63,8 +65,16 @@
     <Compile Include="ILoanApplicationDAO.cs" />
     <Compile Include="IMaintenanceAgentProfileDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="SPs\Accounting\usp_getRequestForPayment.sql" />
     <Content Include="SPs\Booking\usp_getChangeCCIForm.sql" />
     <Content Include="SPs\Booking\usp_getCheckVoucher.sql" />
+    <Content Include="SPs\Maintenance\Agent\SP\[usp_UpdateAgentAddress].sql" />
+    <Content Include="SPs\Maintenance\Agent\SP\[usp_UpdateAgentProfile].sql" />
+    <Content Include="SPs\Maintenance\Agent\View\[uvw_AgentProfileAddress].sql" />
+    <Content Include="SPs\Maintenance\Agent\View\[uvw_AgentProfile].sql" />
+    <Content Include="SPs\Maintenance\Reference\[usp_getDevelopmentToolsLibrary].sql" />
+    <Content Include="SPs\Maintenance\Reference\[usp_updDevelopmentToolsLibrary].sql" />
+    <Content Include="SPs\Update One Click\03132017Update.sql" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BusinessObjects\BusinessObjects.csproj">
@@ -91,6 +101,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\Release\" />
+    <Folder Include="SPs\Maintenance\View\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

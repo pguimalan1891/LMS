@@ -8,28 +8,22 @@
 @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "addForm" }))
 {
     @Html.AntiForgeryToken()
-    <div class="row">
-        <div class="col-md-3" style="padding-bottom:10px;padding-top:10px;padding-left:30px;">
-            <div class="btn btn-info" onclick="addAgentProfileData()" title="Update Agent Data" id="btnUpdate"><b>Add Agent Profile</b></div>
-        </div>
-        <div class="col-md-1">
-            @Html.TextBoxFor(model => model.AgentProfile.ID, new { @id = "AgentProfileID", @disabled = "disabled", @style = "visibility:hidden", @class = "form-control", @value = @Model.AgentProfile.ID })
-        </div>
-        <div class="col-md-1">
-            @Html.TextBoxFor(model => model.AgentAddress[0].ID, new { @disabled = "disabled", @style = "visibility:hidden", @class = "form-control", @value = @Model.AgentAddress[0].ID })
-        </div>
-        <div class="col-md-1">
-            @Html.TextBoxFor(model => model.AgentAddress[0].AgentProfileID, new { @disabled = "disabled", @style = "visibility:hidden", @class = "form-control", @value = @Model.AgentAddress[0].AgentProfileID })
-        </div>
-        <div class="col-md-1">
-            @Html.TextBoxFor(model => model.AgentAddress[0].AddressTypeID, new { @disabled = "disabled", @style = "visibility:hidden", @class = "form-control", @value = @Model.AgentAddress[0].AddressTypeID })
-        </div>
-    </div>
+    
     <div style="background-color:white;">
+        <div class="row">
+            <div class="col-md-12" style="padding-bottom:10px;padding-top:10px;padding-left:30px;padding-right:30px;">
+                <div class="btn btn-info" onclick="addAgentProfileData()" title="Update Agent Data" id="btnUpdate"><b>Add Agent Profile</b></div>
+                @Html.TextBoxFor(model => model.AgentProfile.ID, new { @id = "AgentProfileID", @disabled = "disabled", @style = "visibility:hidden;position:absolute;", @class = "form-control", @value = @Model.AgentProfile.ID })
+                @Html.TextBoxFor(model => model.AgentAddress[0].ID, new { @disabled = "disabled", @style = "visibility:hidden;position:absolute;", @class = "form-control", @value = @Model.AgentAddress[0].ID })
+                @Html.TextBoxFor(model => model.AgentAddress[0].AgentProfileID, new { @disabled = "disabled", @style = "visibility:hidden;position:absolute;", @class = "form-control", @value = @Model.AgentAddress[0].AgentProfileID })
+                @Html.TextBoxFor(model => model.AgentAddress[0].AddressTypeID, new { @disabled = "disabled", @style = "visibility:hidden;position:absolute;", @class = "form-control", @value = @Model.AgentAddress[0].AddressTypeID })
+                <a class="btn btn-danger pull-right" href="~/AgentProfile">Back to Agent Profile</a>
+            </div>            
+        </div>
         <div class="row">
             <div class="col-md-6">
                 <div class="ibox float-e-margins">
-                    <div class="ibox-title">
+                    <div class="ibox-title" style="background-color:#1ab394;color:white;">
                         <h5>Personal Information</h5>
                     </div>
                     <div class="ibox-content">
@@ -89,7 +83,7 @@
             </div>
             <div class="col-md-6">
                 <div class="ibox float-e-margins">
-                    <div class="ibox-title">
+                    <div class="ibox-title" style="background-color:#1ab394;color:white;">
                         <h5>Other Information</h5>
                     </div>
                     <div class="ibox-content">
@@ -123,7 +117,7 @@
         <div class="row">
             <div class="col-md-8">
                 <div class="ibox float-e-margins">
-                    <div class="ibox-title">
+                    <div class="ibox-title" style="background-color:#1ab394;color:white;">
                         <h5>Contacts And Addresses</h5>
                     </div>
                     <div class="ibox-content">

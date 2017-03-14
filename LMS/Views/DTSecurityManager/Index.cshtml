@@ -4,13 +4,26 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+
 <div class="container-fluid">
     <div class="row">
+        <div class="col-md-12">
+            <div class="form-inline">
+                <div class="form-group">
+                    <label>Search User&nbsp;</label>
+                    <input type="text" id="filter_searchkey" placeholder="Leave blank to view all" class="form-control" />
+                </div>
+                <button type="button" class="btn btn-default" id="cmdFilter">Filter Search</button>                      
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <br />
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <div class="row">
                     <div class="col-md-3">
-                        <h3>User Maintenance</h3>
+                        <h3 class="panel-title">User Maintenance</h3>
                     </div>
                 </div>
             </div>

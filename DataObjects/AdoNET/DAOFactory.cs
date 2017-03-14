@@ -33,6 +33,13 @@ namespace DataObjects.AdoNET
             get { return new BookingDAO(); }
         }
 
+        public IAccountingDAO AccountingDAO
+        {
+            get { return new AccountingDAO(); }
+
+
+        }
+
         public IMaintenanceAgentProfileDAO MaintenanceAgentProfileDAO
         {
             get { return new MaintenanceAgentProfileDAO(); }

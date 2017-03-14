@@ -5,6 +5,7 @@
     <div class="col-md-12">
         <a class="btn btn-info" onclick="@("window.location.href='" + @Url.Action("Update_CustomerRecord", "Customer", new { Code = Model.custRecord.Code }) + "'")">Update Customer Profile</a>
         &nbsp;<a class="btn btn-info" id="dlgadd-close-btn">Print Customer Profile</a>
+        <a class="btn btn-danger pull-right" onclick="$('#DisplayCustomerModal').modal('hide');">Close</a>
     </div>
     
 </div>
@@ -12,7 +13,7 @@
     <div class="row">
         <div class="col-md-6">
             <div class="ibox float-e-margins">
-                <div class="ibox-title">
+                <div class="ibox-title"  style="background-color:#1ab394;color:white;">
                     <h5>Personal Information</h5>
                 </div>
                 <div class="ibox-content">
@@ -69,7 +70,7 @@
         </div>
         <div class="col-md-6">
             <div class="ibox float-e-margins">
-                <div class="ibox-title">
+                <div class="ibox-title"  style="background-color:#1ab394;color:white;">
                     <h5>Account Information</h5>
                 </div>
                 <div class="ibox-content">
@@ -121,7 +122,7 @@
     <div class="row">
         <div class="col-md-7">
             <div class="ibox float-e-margins">
-                <div class="ibox-title">
+                <div class="ibox-title"  style="background-color:#1ab394;color:white;">
                     <h5>Civil Status Information</h5>
                 </div>
                 <div class="ibox-content">
@@ -221,7 +222,7 @@
         </div>
         <div class="col-md-5">
             <div class="ibox float-e-margins">
-                <div class="ibox-title">
+                <div class="ibox-title"  style="background-color:#1ab394;color:white;">
                     <h5>Social Security Information</h5>
                 </div>
                 <div class="ibox-content">
@@ -270,7 +271,7 @@
     <div class="row">
         <div class="col-md-7">
             <div class="ibox float-e-margins">
-                <div class="ibox-title">
+                <div class="ibox-title"  style="background-color:#1ab394;color:white;">
                     <h5>Contacts And Addresses</h5>
                 </div>
                 <div class="ibox-content">
@@ -362,7 +363,7 @@
     <div class="row">
         <div class="col-md-8">
             <div class="ibox float-e-margins">
-                <div class="ibox-title">
+                <div class="ibox-title"  style="background-color:#1ab394;color:white;">
                     <h5>Dependents Information</h5>
                 </div>
                 <div class="ibox-content">
@@ -408,7 +409,7 @@
     <div class="row">
         <div class="col-md-8">
             <div class="ibox float-e-margins">
-                <div class="ibox-title">
+                <div class="ibox-title"  style="background-color:#1ab394;color:white;">
                     <h5>Acquired Education</h5>
                 </div>
                 <div class="ibox-content">
@@ -446,7 +447,7 @@
     <div class="row">
         <div class="col-md-8">
             <div class="ibox float-e-margins">
-                <div class="ibox-title">
+                <div class="ibox-title"  style="background-color:#1ab394;color:white;">
                     <h5>Character References</h5>
                 </div>
                 <div class="ibox-content">
@@ -486,7 +487,7 @@
     <div class="row">
         <div class="col-md-8">
             <div class="ibox float-e-margins">
-                <div class="ibox-title">
+                <div class="ibox-title"  style="background-color:#1ab394;color:white;">
                     <h5>Employment/Business Record and History</h5>
                 </div>
                 <div class="ibox-content">

@@ -36,7 +36,7 @@ function loadComponents(url) {
                 if (compdatakey == "Code") {
                     dataColumns[colCount] = {
                         "data": compdatakey, "autowidth": true, "render": function (data, type, row, meta) {
-                            return "<a onclick='ViewCustomer(\"" + data + "\")'>" + data + "</a>";
+                            return "<a onclick='ViewCustomer(\"" + data + "\")'>" + data + "</a>";                            
                         }
                     };
                 } else {
@@ -52,6 +52,7 @@ function loadComponents(url) {
         tblComponent = $("#tbl-customer").DataTable({
             "pageLength": 10,
             "bFilter": true,
+            "sDom": '<"top"l>rt<"bottom"ip><"clear">',
             "bProcessing": true,
             "bServerside": true,
             "responsive": true,          
@@ -65,9 +66,20 @@ function loadComponents(url) {
             "columns": dataColumns
         });
         tblComponent.columns(0).visible(false, false);
-        
+        $("#filter_searchkey").unbind("keyup");
+        $("#filter_searchkey").keyup(function (e) {
+            var code = e.which;
+            if (code == 13) {
+                tblComponent.search($(this).val()).draw();
+            }
+        });
+        $("#cmdFilter").unbind("click");
+        $("#cmdFilter").click(function () {            
+            tblComponent.search($("#filter_searchkey").val()).draw();
+        });
     });
 }
+
 
 function ViewCustomer(code) {
     modalDispCustProf = $("#display-modal-body");

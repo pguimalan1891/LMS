@@ -14,22 +14,25 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-2">
-            <div class="form-group">
-                @*<a class="btn btn-info" onclick="@("window.location.href='" + @Url.Action("Add_CustomerRecord", "Customer") + "'")">Add New Customer</a>*@
-                <a class="btn btn-info" onclick="AddCustomer()">Add New Customer</a>
-            </div>
-        </div>
-        <div class="col-md-1">
-            @Html.TextBoxFor(model => model.Code, new { @id = "CustomerCode", @disabled = "disabled", @style = "visibility:hidden", @class = "form-control", @value = @Model.Code })
-        </div>
+        <div class="col-md-12">   
+            <div class="form-inline">
+                <div class="form-group">
+                    <label>Search by Borrower Name</label>
+                    <input type="text" id="filter_searchkey" placeholder="Leave blank to view all" class="form-control" />
+                </div>
+                <button type="button" class="btn btn-default" id="cmdFilter">Filter Search</button>
+                <a class="btn btn-info" onclick="AddCustomer()">Add New Customer</a>            
+                @Html.TextBoxFor(model => model.Code, new { @id = "CustomerCode", @disabled = "disabled", @style = "visibility:hidden", @class = "form-control", @value = @Model.Code })
+            </div>                                         
+        </div>        
     </div>
     <div class="row">
+        <br />
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <div class="row">
                     <div class="col-md-3">
-                        <h3>Borrower Information Sheet</h3>
+                        <h3 class="panel-title">Borrower Information Sheet</h3>
                     </div>
                 </div>
             </div>
