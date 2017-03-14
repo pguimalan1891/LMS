@@ -404,6 +404,7 @@
     <Content Include="ViewsJS\Customer\JS_Customer.js" />
     <Content Include="ViewsJS\Customer\JS_CustomerAdd.js" />
     <Content Include="ViewsJS\Customer\JS_CustomerUpdate.js" />
+    <Content Include="ViewsJS\DevelopmentTools\DTSecurityManager.js" />
     <Content Include="ViewsJS\Library\JS_LibraryComponent.js" />
     <Content Include="ViewsJS\MaintenanceAgentProfile\JS_AgentProfile.js" />
     <Content Include="ViewsJS\MaintenanceAgentProfile\JS_AgentProfileAdd.js" />
@@ -477,6 +478,12 @@
     <Content Include="Views\Application\ApplicationMainMenu.cshtml" />
     <Content Include="Views\Application\CustomerSearch.cshtml" />
     <Content Include="Views\Accounting\RequestForPayment.cshtml" />
+    <Content Include="Views\DTSecurityManager\Index.cshtml" />
+    <Content Include="Views\DTSecurityManager\_Add_UserAccount.cshtml" />
+    <Content Include="Views\DTSecurityManager\_ResetPassword_UserAccount.cshtml" />
+    <Content Include="Views\DTSecurityManager\_UpdateRoles_UserAccount.cshtml" />
+    <Content Include="Views\DTSecurityManager\_UpdateStatus_UserAccount.cshtml" />
+    <Content Include="Views\DTSecurityManager\_Update_UserAccount.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
