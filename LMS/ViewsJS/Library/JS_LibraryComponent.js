@@ -47,6 +47,7 @@ function loadComponents(url, ajaxdata) {
             "bFilter": true,
             "bProcessing": true,
             "bServerside": true,
+            "responsive": true,
             "sAjaxDataProp": "",
             "ajax": {
                 "url": url,

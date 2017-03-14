@@ -43,9 +43,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdoNET\AccountingDAO.cs" />
     <Compile Include="AdoNET\BookingDAO.cs" />
     <Compile Include="AdoNET\CustomerDAO.cs" />
     <Compile Include="AdoNET\AccountDAO.cs" />
+    <Compile Include="AdoNET\DTSecurityManagerDAO.cs" />
     <Compile Include="AdoNET\MaintenanceAgentProfileDAO.cs" />
     <Compile Include="AdoNET\LoanApplicationDAO.cs" />
     <Compile Include="DAOFactories.cs" />
@@ -54,13 +56,16 @@
     <Compile Include="AdoNET\LibraryDAO.cs" />
     <Compile Include="AdoNET\Extensions.cs" />
     <Compile Include="IAccountDAO.cs" />
+    <Compile Include="IAccountingDAO.cs" />
     <Compile Include="IBookingDAO.cs" />
     <Compile Include="ICustomerDAO.cs" />
     <Compile Include="IDAOFactory.cs" />
+    <Compile Include="IDTSecurityManagerDAO.cs" />
     <Compile Include="ILibraryDAO.cs" />
     <Compile Include="ILoanApplicationDAO.cs" />
     <Compile Include="IMaintenanceAgentProfileDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="SPs\Accounting\usp_getRequestForPayment.sql" />
     <Content Include="SPs\Booking\usp_getChangeCCIForm.sql" />
     <Content Include="SPs\Booking\usp_getCheckVoucher.sql" />
   </ItemGroup>

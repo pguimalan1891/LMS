@@ -168,10 +168,12 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\IAuthorizationFilter.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\Accounting\AccountingController.cs" />
     <Compile Include="Controllers\Application\ApplicationController.cs" />
     <Compile Include="Controllers\Booking\BookingController.cs" />
     <Compile Include="Controllers\Collections\OfficialReceiptController.cs" />
@@ -391,6 +393,8 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <None Include="Scripts\_references.js" />
+    <Content Include="ViewsJS\Application\JS_ApplicationCtrl.js" />
+    <Content Include="ViewsJS\Application\JS_ApplicationListCtrl.js" />
     <Content Include="ViewsJS\Booking\JS_Booking.js" />
     <Content Include="ViewsJS\Booking\JS_Booking_CCI.js" />
     <Content Include="ViewsJS\Booking\JS_Booking_CIR.js" />
@@ -467,6 +471,11 @@
     <Content Include="Views\MaintenanceAgentProfile\_AddAddress.cshtml" />
     <Content Include="Views\MaintenanceAgentProfile\_UpdateAddress.cshtml" />
     <Content Include="Views\MaintenanceAgentProfile\Add_AgentProfile.cshtml" />
+    <Content Include="Views\Application\ApplicationList.cshtml" />
+    <Content Include="Views\Home\_MenuView.cshtml" />
+    <Content Include="Views\Application\ApplicationMainMenu.cshtml" />
+    <Content Include="Views\Application\CustomerSearch.cshtml" />
+    <Content Include="Views\Accounting\RequestForPayment.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -542,7 +551,9 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.BinFix.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.BinFix.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.BinFix.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.BinFix.targets'))" />
   </Target>
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.BinFix.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.BinFix.targets" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.BinFix.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.BinFix.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

@@ -7,7 +7,9 @@ GO
 
 SET QUOTED_IDENTIFIER ON
 GO
-
+IF OBJECT_ID('[uvw_PISEmployment]') IS NOT NUll
+	DROP VIEW [dbo].[uvw_PISEmployment]
+GO
 CREATE VIEW [dbo].[uvw_PISEmployment]
 AS
 SELECT        pisE.ID, pisE.PIS_ID, pisE.BUSINESS_TYPE_ID, busType.DESCRIPTION AS BusinessType, pisE.EMPLOYER_NAME, pisE.INCOME, pisE.CONTACT_NO, CONVERT(varchar, pisE.FROM_DATE, 101) AS FromDate, 

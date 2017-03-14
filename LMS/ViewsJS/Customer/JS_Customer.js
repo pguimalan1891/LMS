@@ -54,7 +54,8 @@ function loadComponents(url) {
             "bFilter": true,
             "bProcessing": true,
             "bServerside": true,
-            "responsive": true,            
+            "responsive": true,          
+            "aaSorting": [],
             "sAjaxDataProp": "",            
             "ajax": {
                 "url": url,

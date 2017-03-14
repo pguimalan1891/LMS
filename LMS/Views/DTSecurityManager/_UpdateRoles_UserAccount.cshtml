@@ -1,0 +1,65 @@
+﻿@using LMS.Models.DevelopmentTools
+@model LMS.Models.DevelopmentTools.UserRoleModel
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "updateRoles_UserAccount" }))
+{
+    <style type="text/css">
+        #tblRoles tbody tr:hover{
+            background-color:#23c6c8;
+        }
+        #tbleGrantedRoles tbody tr:hover{
+            background-color:#23c6c8;
+        }
+    </style>
+
+    <div style="background-color:white;">
+        <div class="row">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Update Roles</h5>
+                    @Html.TextBoxFor(model => model.userAccount.ID, new { @class = "form-control", @style = "visibility:hidden;position:absolute", @value = @Model.userAccount.ID })
+                </div>
+                <div class="ibox-content">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <div class="col-lg-6">
+                                <div class="panel panel-info">
+                                    <div class="panel-heading">Roles</div>
+                                    <div class="panel-body" style="height:400px;overflow-y:scroll">
+                                        <table id="tblRoles" class="table table-bordered" width="100%" cellspacing="0">
+                                            <thead>
+                                                <tr>
+                                                    <th style="visibility:hidden;position:absolute;">ID</th>
+                                                    <th>CODE</th>
+                                                    <th>ROLE NAME</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody style="cursor:pointer"></tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="panel panel-info">
+                                    <div class="panel-heading">Granted Roles</div>
+                                    <div class="panel-body" style="height:400px;overflow-y:scroll">
+                                        <table id="tbleGrantedRoles" class="table table-bordered" width="100%" cellspacing="0">
+                                            <thead>
+                                                <tr>
+                                                    <th style="visibility:hidden;position:absolute;">ID</th>
+                                                    <th>CODE</th>
+                                                    <th>ROLE NAME</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody style="cursor:pointer"></tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
