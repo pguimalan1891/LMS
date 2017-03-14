@@ -45,6 +45,7 @@
     <Compile Include="AccountSvc.cs" />
     <Compile Include="BookingSvc.cs" />
     <Compile Include="CustomerSvc.cs" />
+    <Compile Include="DTSecurityManagerSvc.cs" />
     <Compile Include="Interface\IAccountingSvc.cs" />
     <Compile Include="Interface\IAccountSvc.cs" />
     <Compile Include="Interface\IBookingSvc.cs" />
