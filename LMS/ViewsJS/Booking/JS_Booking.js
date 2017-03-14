@@ -7,6 +7,11 @@ $(function () {
         $('#lblfindDLR').html($('#selfindDLR option:selected').text());
         tblBooking.ajax.reload();
     });
+
+    $('#tbBooking tbody').on('click', 'tr', function () {
+        $(this).toggleClass('selected');
+    });
+
 });
 
 function getBookingRecords2() {
@@ -33,7 +38,6 @@ function getBookingRecords2() {
         },
         columns: [
             //{ data: 'Seq' },
-            {  },
             { data: 'Status' },
             { data: 'LMS DLR No' },
             { data: 'DLR No' },
