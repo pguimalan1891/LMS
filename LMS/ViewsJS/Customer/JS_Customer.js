@@ -36,7 +36,7 @@ function loadComponents(url) {
                 if (compdatakey == "Code") {
                     dataColumns[colCount] = {
                         "data": compdatakey, "autowidth": true, "render": function (data, type, row, meta) {
-                            return "<a onclick='ViewCustomer(\"" + data + "\")'>" + data + "</a>";
+                            return "<a onclick='ViewCustomer(\"" + data + "\")'>" + data + "</a>";                            
                         }
                     };
                 } else {
