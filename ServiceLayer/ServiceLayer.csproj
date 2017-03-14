@@ -50,6 +50,7 @@
     <Compile Include="Interface\IAccountSvc.cs" />
     <Compile Include="Interface\IBookingSvc.cs" />
     <Compile Include="Interface\ICustomerSvc.cs" />
+    <Compile Include="Interface\IDTSecurityManagerSvc.cs" />
     <Compile Include="Interface\ILibrarySvc.cs" />
     <Compile Include="Interface\ILoanApplicationSvc.cs" />
     <Compile Include="Interface\IMaintenanceAgentProfileSvc.cs" />
