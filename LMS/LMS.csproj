@@ -487,10 +487,7 @@
     <Content Include="Views\Application\ApplicationList.cshtml" />
     <Content Include="Views\Application\ApplicationMainMenu.cshtml" />
     <Content Include="Views\Application\CustomerSearch.cshtml" />
-    <Content Include="Views\Application\ApplicationList.cshtml" />
     <Content Include="Views\Home\_MenuView.cshtml" />
-    <Content Include="Views\Application\ApplicationMainMenu.cshtml" />
-    <Content Include="Views\Application\CustomerSearch.cshtml" />
     <Content Include="Views\Accounting\RequestForPayment.cshtml" />
     <Content Include="Views\DTSecurityManager\Index.cshtml" />
     <Content Include="Views\DTSecurityManager\_Add_UserAccount.cshtml" />
