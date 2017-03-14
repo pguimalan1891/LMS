@@ -5,7 +5,7 @@ alter procedure usp_getRequestForPayment(
 )
 as
 begin
-select request_for_payment.document_status_code,request_for_payment.id,document_status_map.description as dsm_description, request_for_payment.code, request_for_payment.datetime_created, organization.description branch_name,
+select request_for_payment.document_status_code,request_for_payment.id,document_status_map.description as dsm_description, request_for_payment.code,convert(varchar(10), request_for_payment.datetime_created,101) as datetime_created, organization.description branch_name,
  expense_type.description et_description, request_for_payment.amount, request_for_payment.payee, prepared_by.last_name  +  ', '  + prepared_by.first_name  as prepared_by_name 
  --,row_number() OVER (INSERT ORDER BY HERE) as row_num 
  into #temp 
