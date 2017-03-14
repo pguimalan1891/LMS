@@ -457,7 +457,6 @@
     </Content>
     <Content Include="Views\OfficialReceipt\OfficialReceipt.cshtml" />
     <Content Include="Views\Customer\Customer.cshtml" />
-    <Content Include="Views\Booking\Booking.cshtml" />
     <Content Include="Views\Customer\_Display_CustomerRecord.cshtml" />
     <Content Include="Views\Customer\_Update_CustomerRecord.cshtml" />
     <Content Include="Views\Booking\BankAssignment.cshtml" />
