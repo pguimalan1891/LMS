@@ -111,33 +111,34 @@ namespace BusinessObjects
         public string CiStatus;
     }
 
-    public class Collateral
+    public class CollateralProfile
     {
-        public string collateralId;
-        public string MaxLoanValue;
-        public string AppraisedValue;
-        public string LoanValue;
-        public string CollateralGroup;
-        public string CollateralType;
-        public string Description;
-        public string Usage;
-        public string TCTNo;
-        public string Year;
-        public string Model;
+        public string ID;
+        public string LOAN_APPLICATION_ID;
+        public string ColType;
+        public string ColGroup;
+        public string SERIAL_NUMBER;
+        public string DESCRIPTION;
+        public string ColUsage;
+        public string YEAR;
+        public string MODEL;
         public string Color;
-        public string SerialNo;
-        public string Fuel;
-        public string ChassisNo;
-        public string EngineNo;
-        public string PlateNo;
-        public string OdoReading;
-        public string CRENo;
-        public string CREName;
-        public string CRExpiryDate;
-        public string ORNo;
-        public string ORExpiryDate;
-        public string InsuranceName;
-        public string InsuranceExpiryDate;
+        public string FuelType;
+        public string CHASSIS_NUMBER;
+        public string ENGINE_NUMBER;
+        public string PLATE_NUMBER;
+        public string TCT_NUMBER;
+        public string ODO_READING;
+        public string CR_NUMBER;
+        public string OR_NUMBER;
+        public string OR_EXPIRATION_DATE;
+        public string INSURANCE_NAME;
+        public string INDSURANCE_EXPIRATION_DATE;
+        public string MLV;
+        public string APPRAISED_VALUE;
+        public string LOAN_VALUE;
+        public string DIRECT_LOAN_RECEIPT_ID;
+        public string ADDITIONAL_INFO;
 
 
     }
@@ -186,11 +187,11 @@ namespace BusinessObjects
 
 
 
-        public List<Comaker> ListOfComakers;
+        public List<ComakerProfile> ListOfComakers;
 
 
 
-        public List<Collateral> ListOfCollaterals;
+        public List<CollateralProfile> ListOfCollaterals;
 
         public string Notes;
 

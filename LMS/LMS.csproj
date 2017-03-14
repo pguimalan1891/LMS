@@ -180,6 +180,7 @@
     <Compile Include="Controllers\CreditInvestigation\CreditInvestigationController.cs" />
     <Compile Include="Controllers\Customer\CustomerController.cs" />
     <Compile Include="Controllers\DevelopmentTools\DevelopmentToolsController.cs" />
+    <Compile Include="Controllers\DevelopmentTools\DTSecurityManagerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -188,6 +189,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer\CustomerModel.cs" />
     <Compile Include="Models\DevelopmentTools\LibraryComponentModel.cs" />
+    <Compile Include="Models\DevelopmentTools\UserAccount.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\LoanApplication\LoanApplicationModel.cs" />
     <Compile Include="Controllers\MaintenanceAgentProfile\MaintenanceAgentProfileController.cs" />
@@ -344,6 +346,15 @@
     <Content Include="Models\Booking\DirectLoanReceipt.cshtml" />
     <Content Include="Models\Booking\DisbursementVoucher.cshtml" />
     <Content Include="Models\Booking\PromissoryNoteAllocation.cshtml" />
+    <Content Include="Content\uiPlugins\theme\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\uiPlugins\theme\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\uiPlugins\theme\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\uiPlugins\theme\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\uiPlugins\theme\fonts\FontAwesome.otf" />
+    <Content Include="Content\uiPlugins\theme\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\uiPlugins\theme\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\uiPlugins\theme\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\uiPlugins\theme\fonts\glyphicons-halflings-regular.woff2" />
     <None Include="Properties\PublishProfiles\LMSPublish.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\extra\jquery.qtip.min.js" />
@@ -473,6 +484,15 @@
     <Content Include="Views\MaintenanceAgentProfile\_AddAddress.cshtml" />
     <Content Include="Views\MaintenanceAgentProfile\_UpdateAddress.cshtml" />
     <Content Include="Views\MaintenanceAgentProfile\Add_AgentProfile.cshtml" />
+    <Content Include="Views\DTSecurityManager\Index.cshtml" />
+    <Content Include="Views\DTSecurityManager\_Add_UserAccount.cshtml" />
+    <Content Include="Views\DTSecurityManager\_Update_UserAccount.cshtml" />
+    <Content Include="Views\DTSecurityManager\_ResetPassword_UserAccount.cshtml" />
+    <Content Include="Views\DTSecurityManager\_UpdateStatus_UserAccount.cshtml" />
+    <Content Include="Views\DTSecurityManager\_UpdateRoles_UserAccount.cshtml" />
+    <Content Include="Views\Application\ApplicationList.cshtml" />
+    <Content Include="Views\Application\ApplicationMainMenu.cshtml" />
+    <Content Include="Views\Application\CustomerSearch.cshtml" />
     <Content Include="Views\Application\ApplicationList.cshtml" />
     <Content Include="Views\Home\_MenuView.cshtml" />
     <Content Include="Views\Application\ApplicationMainMenu.cshtml" />
