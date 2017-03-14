@@ -68,5 +68,10 @@ namespace ServiceLayer
         {
             return lnCtrl.getComakers(LoanCode);
         }
+
+        public IEnumerable<BusinessObjects.CollateralProfile> getCollaterals(string loanCode)
+        {
+            return lnCtrl.getCollaterals(loanCode);
+        }
     }
 }

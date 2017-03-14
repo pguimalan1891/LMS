@@ -15,7 +15,7 @@ namespace DataObjects.AdoNET
         {
             string sql = "select '../../Application/NewLoanApplication/?borrower='+pis.CODE as newLoanLink, pis.id,document_status_map.description as [Status], pis.code as [Code], pis.last_name as [LastName], pis.first_name as [FirstName], pis.middle_name as [MiddleName], Convert(varchar,pis.date_of_birth,101) as [DateofBirth],  " +
             "gender.description as [Gender], civil_status.description as [CivilStatus], pis_address.street_address as [Address], city.description as [City] " +
-            "from Final_Testing.dbo.pis inner join Final_Testing.dbo.document_status_map   on (pis.document_status_code = document_status_map.code)  inner join Final_Testing.dbo.user_account prepared_by   on (pis.prepared_by_id = prepared_by.id)  inner join Final_Testing.dbo.gender   on (pis.gender_id = gender.id)  inner join Final_Testing.dbo.civil_status   on (pis.civil_status_id = civil_status.id)  left join Final_Testing.dbo.pis_address   on (pis_address.pis_id = pis.id and pis_address.address_type_id = '0')  inner join Final_Testing.dbo.city on(pis_address.city_id = city.id)  inner join Final_Testing.dbo.province   on(city.province_id = province.id)  inner join Final_Testing.dbo.organization   on(pis.organization_id = organization.id)  where pis.permission > 0  ";
+            "from pis inner join document_status_map   on (pis.document_status_code = document_status_map.code)  inner join user_account prepared_by   on (pis.prepared_by_id = prepared_by.id)  inner join gender   on (pis.gender_id = gender.id)  inner join civil_status   on (pis.civil_status_id = civil_status.id)  left join pis_address   on (pis_address.pis_id = pis.id and pis_address.address_type_id = '0')  inner join city on(pis_address.city_id = city.id)  inner join province   on(city.province_id = province.id)  inner join organization   on(pis.organization_id = organization.id)  where pis.permission > 0  ";
             object[] parms = { "search", searchkey };
             sql += " and (pis.LAST_NAME like '%'+@search+'%' OR pis.FIRST_NAME like '%'+@search+'%' OR pis.CODE like '%'+@search+'%') ";
             return db.Read(sql, selectGetBorrowers, 0, parms);
@@ -391,6 +391,101 @@ namespace DataObjects.AdoNET
                PHONE_NUMBER = reader["PHONE_NUMBER"].AsString(),
                ADDRESS = reader["ADDRESS"].AsString(),
                NOTES = reader["NOTES"].AsString()
+           };
+
+        public IEnumerable<BusinessObjects.CollateralProfile> getCollaterals(string loanCode)
+        {
+            string sql = " SELECT  lp.[ID] " +
+          ",[LOAN_APPLICATION_ID] "+
+          ", ct.DESCRIPTION as ColType " +
+          ",cg.DESCRIPTION as ColGroup " +
+          ",[SERIAL_NUMBER] " +
+          ",lp.[DESCRIPTION] " +
+          ",cu.DESCRIPTION as ColUsage " +
+          ",[YEAR] " +
+          ",[MODEL] " +
+          ",col.DESCRIPTION as Color " +
+          ",ft.DESCRIPTION as FuelType " +
+          ",[CHASSIS_NUMBER] " +
+          ",[ENGINE_NUMBER] " +
+          ",[PLATE_NUMBER] " +
+          ",[TCT_NUMBER] " +
+          ",[ODO_READING] " +
+          ",[CR_NUMBER] " +
+          ",[CR_NAME] " +
+          ",[OR_NUMBER] " +
+           ", ISNULL(convert(varchar,[OR_EXPIRATION_DATE], 101), 'Not Available') as [OR_EXPIRATION_DATE] "+
+        ",ISNULL(convert(varchar,[CR_EXPIRATION_DATE], 101), 'Not Available') as [CR_EXPIRATION_DATE] "+
+        ",[INSURANCE_NAME] "+
+        ",ISNULL(convert(varchar, [INSURANCE_EXPIRATION_DATE],101),'Not Available') as [INSURANCE_EXPIRATION_DATE] "+
+        ",[MLV] "+
+        ",[APPRAISED_VALUE] "+
+        ",[LOAN_VALUE] "+
+        ",ISNULL(lp.[DIRECT_LOAN_RECEIPT_ID],'Not Available') as [DIRECT_LOAN_RECEIPT_ID] "+
+        ", CASE " +
+        "WHEN cg.ID = 3 " +
+        "    then 'TCT No. : ' + lp.[TCT_NUMBER] " +
+        "WHEN cg.ID = 2 " +
+        "    then 'Year: ' + lp.YEAR + '<br/>' " +
+        "            + 'Model: ' + lp.MODEL + '<br/>' " +
+        "            + 'Color: ' + col.DESCRIPTION + '<br/>' " +
+        "            + 'Serial No.: ' + lp.SERIAL_NUMBER + '<br/>' " +
+        "WHEN cg.ID = 1 " +
+        "    then 'Year: ' + lp.[YEAR] + '<br/>' " +
+        "            + 'Model: ' + lp.MODEL + '<br/>' " +
+        "            + 'Color: ' + col.DESCRIPTION + '<br/>' " +
+        "            + 'Fuel: ' + ft.DESCRIPTION + '<br/>' " +
+        "            + 'Chassis No.: ' + lp.CHASSIS_NUMBER + '<br/>' " +
+        "            + 'Engine No.: ' + lp.ENGINE_NUMBER + '<br/>' " +
+        "            + 'ODO Reading: ' + convert(varchar, ODO_READING) + '<br/>' " +
+        "            + 'CRE No.: ' + lp.CR_NUMBER + '<br/>' " +
+        "            + 'CR Expiry Date: ' + convert(varchar, CR_EXPIRATION_DATE, 101) + '<br/>' " +
+        "            + 'OR No.: ' + OR_NUMBER + '<br/>' " +
+        "            + 'Insurance Name: ' + INSURANCE_NAME + '<br/>' " +
+        "            + 'Insurance Expiry Date: ' + convert(varchar, INSURANCE_EXPIRATION_DATE, 101) + '<br/>' "+
+
+        "END as ADDITIONAL_INFO "+
+          "FROM[loan_application_collateral] lp " +
+        " inner join loan_application la on la.ID = lp.LOAN_APPLICATION_ID " +
+        " inner join collateral_type ct on ct.ID =lp.COLLATERAL_TYPE_ID " +
+        " inner join collateral_usage cu on cu.ID = lp.COLLATERAL_USAGE_ID " +
+        " inner join collateral_group cg on cg.ID = ct.COLLATERAL_GROUP_ID " +
+        " inner join fuel_type ft on ft.ID = lp.FUEL_TYPE_ID " +
+        " inner join color col on col.ID = lp.COLOR_ID " +
+        " where la.CODE = @loanCode";
+            object[] parms = { "loanCode", loanCode };
+            return db.Read(sql, selectCollaterals, 0, parms);
+        }
+
+        static Func<IDataReader, BusinessObjects.CollateralProfile> selectCollaterals = reader =>
+           new BusinessObjects.CollateralProfile
+           {
+               ID = reader["ID"].AsString(),
+               LOAN_APPLICATION_ID = reader["LOAN_APPLICATION_ID"].AsString(),
+               ColType = reader["ColType"].AsString(),
+               ColGroup = reader["ColGroup"].AsString(),
+               SERIAL_NUMBER = reader["SERIAL_NUMBER"].AsString(),
+               DESCRIPTION = reader["DESCRIPTION"].AsString(),
+               ColUsage = reader["ColUsage"].AsString(),
+               YEAR = reader["YEAR"].AsString(),
+               MODEL = reader["MODEL"].AsString(),
+               Color = reader["Color"].AsString(),
+               FuelType = reader["FuelType"].AsString(),
+               CHASSIS_NUMBER = reader["CHASSIS_NUMBER"].AsString(),
+               ENGINE_NUMBER = reader["ENGINE_NUMBER"].AsString(),
+               PLATE_NUMBER = reader["PLATE_NUMBER"].AsString(),
+               TCT_NUMBER = reader["TCT_NUMBER"].AsString(),
+               ODO_READING = reader["ODO_READING"].AsString(),
+               CR_NUMBER = reader["CR_NUMBER"].AsString(),
+               OR_NUMBER = reader["OR_NUMBER"].AsString(),
+               OR_EXPIRATION_DATE = reader["OR_EXPIRATION_DATE"].AsString(),
+               INSURANCE_NAME = reader["INSURANCE_NAME"].AsString(),
+               INDSURANCE_EXPIRATION_DATE = reader["INSURANCE_EXPIRATION_DATE"].AsString(),
+               MLV = reader["MLV"].AsString(),
+               APPRAISED_VALUE = reader["APPRAISED_VALUE"].AsString(),
+               LOAN_VALUE = reader["LOAN_VALUE"].AsString(),
+               DIRECT_LOAN_RECEIPT_ID = reader["DIRECT_LOAN_RECEIPT_ID"].AsString(),
+               ADDITIONAL_INFO = reader["ADDITIONAL_INFO"].AsString(),
            };
     }
 }

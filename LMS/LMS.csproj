@@ -396,6 +396,7 @@
     <Content Include="Scripts\respond.min.js" />
     <None Include="Scripts\_references.js" />
     <Content Include="ViewsJS\Application\JS_ApplicationCtrl.js" />
+    <Content Include="ViewsJS\Application\JS_ApplicationListCtrl.js" />
     <Content Include="ViewsJS\Booking\JS_Booking.js" />
     <Content Include="ViewsJS\Booking\JS_Booking_CCI.js" />
     <Content Include="ViewsJS\Booking\JS_Booking_CIR.js" />
@@ -478,6 +479,9 @@
     <Content Include="Views\DTSecurityManager\_ResetPassword_UserAccount.cshtml" />
     <Content Include="Views\DTSecurityManager\_UpdateStatus_UserAccount.cshtml" />
     <Content Include="Views\DTSecurityManager\_UpdateRoles_UserAccount.cshtml" />
+    <Content Include="Views\Application\ApplicationList.cshtml" />
+    <Content Include="Views\Application\ApplicationMainMenu.cshtml" />
+    <Content Include="Views\Application\CustomerSearch.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

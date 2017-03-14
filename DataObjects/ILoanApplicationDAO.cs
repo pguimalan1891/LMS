@@ -21,5 +21,7 @@ namespace DataObjects
         IEnumerable<BusinessObjects.DocumentStatus> getDocumentStatus();
         IEnumerable<BusinessObjects.ComakerProfile> getComakers(string loanCode);
         IEnumerable<BusinessObjects.LoanApplicationModel> getLoanFormDetails(string AccountNo);
+
+        IEnumerable<BusinessObjects.CollateralProfile> getCollaterals(string loanCode);
     }
 }

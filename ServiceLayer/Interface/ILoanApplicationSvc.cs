@@ -27,5 +27,7 @@ namespace ServiceLayer.Interface
         BusinessObjects.LoanApplicationModel getLoanFormDetails(string AccountNo);
 
         IEnumerable<BusinessObjects.ComakerProfile> getComakers(string LoanCode);
+
+        IEnumerable<BusinessObjects.CollateralProfile> getCollaterals(string loanCode);
     }
 }

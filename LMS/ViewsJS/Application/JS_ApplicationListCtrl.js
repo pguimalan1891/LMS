@@ -10,8 +10,7 @@
     getCustomerRecords("");
     listDocumentStatus();
 });
-var tempComaker = {};
-var tempCollaterls = {};
+
 function jsonReq(url, parms, callback, returnType) {
 
     $.ajax({
@@ -67,6 +66,7 @@ function getBookingCVRecordsWithFilter(status, searchkey) {
 
 
     jsonReq('/Application/ListApplications/' + status + '/' + searchkey, {}, function (newDataArray) {
+
 
         tblBookingCV = $('#tbApplicationList').DataTable();
         tblBookingCV.clear();

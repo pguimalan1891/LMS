@@ -142,7 +142,7 @@ namespace LMS.Controllers
             return Json(service.GetDocumentStatus());
         }
 
-
+        
 
         [HttpPost]
         [AuthorizationFilter]
@@ -151,6 +151,15 @@ namespace LMS.Controllers
         public ActionResult ListComakers(string loanCode)
         {
             return Json(service.getComakers(loanCode));
+        }
+
+        [HttpPost]
+        [AuthorizationFilter]
+        [Route("Application/ListCollaterals")]
+        [Route("Application/ListCollaterals/{loanCode}")]
+        public ActionResult ListCollaterals(string loanCode)
+        {
+            return Json(service.getCollaterals(loanCode));
         }
 
 
