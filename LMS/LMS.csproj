@@ -484,12 +484,6 @@
     <Content Include="Views\MaintenanceAgentProfile\_AddAddress.cshtml" />
     <Content Include="Views\MaintenanceAgentProfile\_UpdateAddress.cshtml" />
     <Content Include="Views\MaintenanceAgentProfile\Add_AgentProfile.cshtml" />
-    <Content Include="Views\DTSecurityManager\Index.cshtml" />
-    <Content Include="Views\DTSecurityManager\_Add_UserAccount.cshtml" />
-    <Content Include="Views\DTSecurityManager\_Update_UserAccount.cshtml" />
-    <Content Include="Views\DTSecurityManager\_ResetPassword_UserAccount.cshtml" />
-    <Content Include="Views\DTSecurityManager\_UpdateStatus_UserAccount.cshtml" />
-    <Content Include="Views\DTSecurityManager\_UpdateRoles_UserAccount.cshtml" />
     <Content Include="Views\Application\ApplicationList.cshtml" />
     <Content Include="Views\Application\ApplicationMainMenu.cshtml" />
     <Content Include="Views\Application\CustomerSearch.cshtml" />
@@ -498,6 +492,12 @@
     <Content Include="Views\Application\ApplicationMainMenu.cshtml" />
     <Content Include="Views\Application\CustomerSearch.cshtml" />
     <Content Include="Views\Accounting\RequestForPayment.cshtml" />
+    <Content Include="Views\DTSecurityManager\Index.cshtml" />
+    <Content Include="Views\DTSecurityManager\_Add_UserAccount.cshtml" />
+    <Content Include="Views\DTSecurityManager\_ResetPassword_UserAccount.cshtml" />
+    <Content Include="Views\DTSecurityManager\_UpdateRoles_UserAccount.cshtml" />
+    <Content Include="Views\DTSecurityManager\_UpdateStatus_UserAccount.cshtml" />
+    <Content Include="Views\DTSecurityManager\_Update_UserAccount.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
