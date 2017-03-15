@@ -487,10 +487,7 @@
     <Content Include="Views\Application\ApplicationList.cshtml" />
     <Content Include="Views\Application\ApplicationMainMenu.cshtml" />
     <Content Include="Views\Application\CustomerSearch.cshtml" />
-    <Content Include="Views\Application\ApplicationList.cshtml" />
     <Content Include="Views\Home\_MenuView.cshtml" />
-    <Content Include="Views\Application\ApplicationMainMenu.cshtml" />
-    <Content Include="Views\Application\CustomerSearch.cshtml" />
     <Content Include="Views\Accounting\RequestForPayment.cshtml" />
     <Content Include="Views\DTSecurityManager\Index.cshtml" />
     <Content Include="Views\DTSecurityManager\_Add_UserAccount.cshtml" />
@@ -557,7 +554,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>12615</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:12615/</IISUrl>
+          <IISUrl>http://localhost:12615/LMS/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
