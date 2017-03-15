@@ -146,7 +146,7 @@ function reloadCollateral()
 
 
 function reloadCollaterals() {
-    tmpObj = tmpCollObject;
+    tmpObj = tmpCollObject;asd
     tmpObj['LOAN_APPLICATION_ID'] = $('#AccountNo').val();
     tmpObj['ID'] = 'NEW';
     tempCollaterls.push(tmpObj);
