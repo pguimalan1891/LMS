@@ -1,7 +1,7 @@
 ﻿var tblComponent;
 var fntblComponent = $("#tbl-agent thead")
 $(document).ready(function () {
-    loadComponents("/MaintenanceAgentProfile/getAgentProfileList");
+    loadComponents("MaintenanceAgentProfile/getAgentProfileList");
     $('.applyDatePicker').datepicker();
     if ($("#AGENTCode").val() != "") {
         modalDispAgentProf = $("#display-modal-body");
@@ -89,6 +89,6 @@ function ViewAgent(code) {
 }
 
 function AddAgent() {
-    window.location.href = '/AgentProfileAdd';
+    window.location.href = 'AgentProfileAdd';
 }
 

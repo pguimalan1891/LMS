@@ -3,7 +3,7 @@ var fntblComponent = $("#tbl-component thead")
 var component = "";
 $(document).ready(function () {
     component = $("#txtComponentName").val();
-    loadComponents("/DevelopmentTools/FetchLibraryComponent", { 'ComponentName': component });
+    loadComponents("DevelopmentTools/FetchLibraryComponent", { 'ComponentName': component });
 });
 
 function loadComponents(url, ajaxdata) {    
@@ -57,7 +57,7 @@ function loadComponents(url, ajaxdata) {
             },
             "columns": dataColumns
         });
-        $.get("/DevelopmentTools/FetchLibraryUpdateComponent", { 'ComponentName': component }, function (data) {
+        $.get("DevelopmentTools/FetchLibraryUpdateComponent", { 'ComponentName': component }, function (data) {
             $.each(data, function (datakey, comp) {
                 if (comp.FieldisHide == "Hide") {
                     tblComponent.columns(comp.FieldisHideColIndex).visible(false, false);
@@ -69,7 +69,7 @@ function loadComponents(url, ajaxdata) {
 
 function AddComponent() {
     event.preventDefault();
-    $.get("/DevelopmentTools/FetchLibraryUpdateComponent", { 'ComponentName': component }, function (data) {
+    $.get("DevelopmentTools/FetchLibraryUpdateComponent", { 'ComponentName': component }, function (data) {
         var dlgAdd = $("#dlgadd-modal-body");
         var dlgAddMain = $("#dlgAdd");
         dlgAdd.empty();
@@ -126,7 +126,7 @@ function AddComponent() {
             var req = $.ajax({
                 type: 'POST',
                 async: true,
-                url: "/DevelopmentTools/AddComponent",
+                url: "DevelopmentTools/AddComponent",
                 contentType: "application/json; charset=utf-8",
                 data: "{'ComponentName': '" + component + "','compData': '" + AddRet + "','opCode': 0 }"
             });
@@ -149,7 +149,7 @@ function AddComponent() {
 
 function EditComponent(editItem) {
     event.preventDefault();
-    $.get("/DevelopmentTools/FetchLibraryUpdateComponent", { 'ComponentName': component }, function (data) {
+    $.get("DevelopmentTools/FetchLibraryUpdateComponent", { 'ComponentName': component }, function (data) {
         var dlgEdit = $("#dlgedit-modal-body");
         var dlgEditMain = $("#dlgEdit");
         dlgEdit.empty();
@@ -225,7 +225,7 @@ function EditComponent(editItem) {
             var req = $.ajax({
                 type: 'POST',
                 async: true,
-                url: "/DevelopmentTools/UpdateComponent",
+                url: "DevelopmentTools/UpdateComponent",
                 contentType: "application/json; charset=utf-8",
                 data: "{'ComponentName': '" + component + "','compData': '" + UpdateRet + "','opCode': 1 }"
             });
@@ -247,7 +247,7 @@ function EditComponent(editItem) {
 
 function DeleteComponent(delItem) {
     event.preventDefault();
-    $.get("/DevelopmentTools/FetchLibraryUpdateComponent", { 'ComponentName': component }, function (data) {
+    $.get("DevelopmentTools/FetchLibraryUpdateComponent", { 'ComponentName': component }, function (data) {
         var grpSelect = {};
         var dlgDelete = $("#dlgdelete-modal-body");
         var dlgDeleteMain = $("#dlgDelete");
@@ -306,7 +306,7 @@ function DeleteComponent(delItem) {
             var req = $.ajax({
                 type: 'POST',
                 async: true,
-                url: "/DevelopmentTools/DeleteComponent",
+                url: "DevelopmentTools/DeleteComponent",
                 contentType: "application/json; charset=utf-8",
                 data: "{'ComponentName': '" + component + "','compData': '" + DeleteRet + "','opCode': 2 }"
             });

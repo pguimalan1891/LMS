@@ -10,7 +10,7 @@ function loadAllTables() {
     event.preventDefault();
     var tbl;
     var append;
-    $.post("/Customer/GetCustomerFullData", { Code: $("#CustRecord_Code").val(), Type: "Employment" }, function (data) {       
+    $.post("Customer/GetCustomerFullData", { Code: $("#CustRecord_Code").val(), Type: "Employment" }, function (data) {       
         tbl = $("#tblSpouse tbody");
         append = "";
         var isSpouseExist = 0;
@@ -39,7 +39,7 @@ function loadAllTables() {
         }
 
     });
-    $.post("/Customer/GetCustomerFullData", { Code: $("#CustRecord_Code").val(), Type: "Address" }, function (data) {
+    $.post("Customer/GetCustomerFullData", { Code: $("#CustRecord_Code").val(), Type: "Address" }, function (data) {
         tbl = $("#tblAddress tbody");
         append = "";
         var isOtherAddressExist = 0;
@@ -66,7 +66,7 @@ function loadAllTables() {
             tbl.append("<tr id='delete'><td colspan='10'>No Other Addresses.</td></tr>");
         }
     });
-    $.post("/Customer/GetCustomerFullData", { Code: $("#CustRecord_Code").val(), Type: "Dependent" }, function (data) {
+    $.post("Customer/GetCustomerFullData", { Code: $("#CustRecord_Code").val(), Type: "Dependent" }, function (data) {
         tbl = $("#tblDependents tbody");
         append = "";
         var isDependentExist = 0;
@@ -89,7 +89,7 @@ function loadAllTables() {
             tbl.append("<tr id='delete'><td colspan='8'>This customer have no dependents.</td></tr>");
         }
     });
-    $.post("/Customer/GetCustomerFullData", { Code: $("#CustRecord_Code").val(), Type: "Employment" }, function (data) {
+    $.post("Customer/GetCustomerFullData", { Code: $("#CustRecord_Code").val(), Type: "Employment" }, function (data) {
         tbl = $("#tblEmployment tbody");
         append = "";
         var isSpouseExist = 0;
@@ -118,7 +118,7 @@ function loadAllTables() {
         }
 
     });
-    $.post("/Customer/GetCustomerFullData", { Code: $("#CustRecord_Code").val(), Type: "Education" }, function (data) {
+    $.post("Customer/GetCustomerFullData", { Code: $("#CustRecord_Code").val(), Type: "Education" }, function (data) {
         tbl = $("#tblEducation tbody");
         append = "";
         var isEducationExist = 0;
@@ -138,7 +138,7 @@ function loadAllTables() {
         }
 
     });
-    $.post("/Customer/GetCustomerFullData", { Code: $("#CustRecord_Code").val(), Type: "Character" }, function (data) {
+    $.post("Customer/GetCustomerFullData", { Code: $("#CustRecord_Code").val(), Type: "Character" }, function (data) {
         tbl = $("#tblCharacter tbody");
         append = "";
         var isCharacterExist = 0;
@@ -181,7 +181,7 @@ function editData(row, type) {
         else
             custEmployment.ToDate = activeArray[1];
         var jsonObject = $.ajax({
-            url: '/Customer/UpdateEmployment',
+            url: 'Customer/UpdateEmployment',
             type: 'POST',
             contentType: 'application/json;charset=utf-8',
             data: "{ UpdateType: 'update', custEmployment: " + JSON.stringify(custEmployment) + " }"
@@ -214,7 +214,7 @@ function editData(row, type) {
         custAddress.HomeOwnershipID = row.cells[9].id;
         custAddress.HomeOwnerShip = row.cells[9].innerHTML;
         var jsonObject = $.ajax({
-            url: '/Customer/UpdateAddress',
+            url: 'Customer/UpdateAddress',
             type: 'POST',
             contentType: 'application/json;charset=utf-8',
             data: "{ UpdateType: 'update', custAddress: " + JSON.stringify(custAddress) + " }"
@@ -246,7 +246,7 @@ function editData(row, type) {
         custDependents.SchoolAddress = row.cells[6].innerHTML;
         custDependents.ContactNo = row.cells[7].innerHTML;
         var jsonObject = $.ajax({
-            url: '/Customer/UpdateDependent',
+            url: 'Customer/UpdateDependent',
             type: 'POST',
             contentType: 'application/json;charset=utf-8',
             data: "{ UpdateType: 'update', custDependents: " + JSON.stringify(custDependents) + " }"
@@ -278,7 +278,7 @@ function editData(row, type) {
         else
             custEmployment.ToDate = activeArray[1];
         var jsonObject = $.ajax({
-            url: '/Customer/UpdateEmployment',
+            url: 'Customer/UpdateEmployment',
             type: 'POST',
             contentType: 'application/json;charset=utf-8',
             data: "{ UpdateType: 'update', custEmployment: " + JSON.stringify(custEmployment) + " }"
@@ -299,7 +299,7 @@ function editData(row, type) {
         custEducation.SchoolName = row.cells[2].innerHTML;
         custEducation.GraduationDate = row.cells[3].innerHTML;        
         var jsonObject = $.ajax({
-            url: '/Customer/UpdateEducation',
+            url: 'Customer/UpdateEducation',
             type: 'POST',
             contentType: 'application/json;charset=utf-8',
             data: "{ UpdateType: 'update', custEducation: " + JSON.stringify(custEducation) + " }"
@@ -326,7 +326,7 @@ function editData(row, type) {
         custCharacter.ProvinceID = FullAddress[2];
         custCharacter.ContactNo = row.cells[4].innerHTML;
         var jsonObject = $.ajax({
-            url: '/Customer/UpdateCharacter',
+            url: 'Customer/UpdateCharacter',
             type: 'POST',
             contentType: 'application/json;charset=utf-8',
             data: "{ UpdateType: 'update', custCharacter: " + JSON.stringify(custCharacter) + " }"
@@ -346,7 +346,7 @@ function addData(type) {
     if (type == "spouse") {
         var custEmployment = {};
         var jsonObject = $.ajax({
-            url: '/Customer/UpdateEmployment',
+            url: 'Customer/UpdateEmployment',
             type: 'POST',
             contentType: 'application/json;charset=utf-8',
             data: "{ UpdateType: 'add', custEmployment: " + JSON.stringify(custEmployment) + " }"
@@ -364,7 +364,7 @@ function addData(type) {
     if (type == "address") {
         var custAddress = {};
         var jsonObject = $.ajax({
-            url: '/Customer/UpdateAddress',
+            url: 'Customer/UpdateAddress',
             type: 'POST',
             contentType: 'application/json;charset=utf-8',
             data: "{ UpdateType: 'add', custAddress: " + JSON.stringify(custAddress) + " }"
@@ -382,7 +382,7 @@ function addData(type) {
     if (type == "dependents") {
         var custDependents = {};
         var jsonObject = $.ajax({
-            url: '/Customer/UpdateDependent',
+            url: 'Customer/UpdateDependent',
             type: 'POST',
             contentType: 'application/json;charset=utf-8',
             data: "{ UpdateType: 'add', custDependents: " + JSON.stringify(custDependents) + " }"
@@ -400,7 +400,7 @@ function addData(type) {
     if (type == "employment") {
         var custEmployment = {};
         var jsonObject = $.ajax({
-            url: '/Customer/UpdateEmployment',
+            url: 'Customer/UpdateEmployment',
             type: 'POST',
             contentType: 'application/json;charset=utf-8',
             data: "{ UpdateType: 'add', custEmployment: " + JSON.stringify(custEmployment) + " }"
@@ -418,7 +418,7 @@ function addData(type) {
     if (type == "education") {
         var custEducation = {};
         var jsonObject = $.ajax({
-            url: '/Customer/UpdateEducation',
+            url: 'Customer/UpdateEducation',
             type: 'POST',
             contentType: 'application/json;charset=utf-8',
             data: "{ UpdateType: 'add', custEducation: " + JSON.stringify(custEducation) + " }"
@@ -436,7 +436,7 @@ function addData(type) {
     if (type == "character") {
         var custCharacter = {};
         var jsonObject = $.ajax({
-            url: '/Customer/UpdateCharacter',
+            url: 'Customer/UpdateCharacter',
             type: 'POST',
             contentType: 'application/json;charset=utf-8',
             data: "{ UpdateType: 'add', custCharacter: " + JSON.stringify(custCharacter) + " }"
@@ -773,7 +773,7 @@ function DeleteData(row, type) {
 function UpdateCity(type) {
     if (type == "Main") {
         $(".cityMainBox").children().remove();
-        $.post("/Customer/UpdateCity", { ProvinceID: $(".provinceMainBox>option:selected").val() }, function (data) {
+        $.post("Customer/UpdateCity", { ProvinceID: $(".provinceMainBox>option:selected").val() }, function (data) {
             $.each(data, function (cityID, city) {
                 $(".cityMainBox").append("<option value='" + city.CityID + "'>" + city.Description + "</option>")
             });
@@ -781,7 +781,7 @@ function UpdateCity(type) {
     }
     if (type == "updateBox") {
         $(".cityUpdateBox").children().remove();
-        $.post("/Customer/UpdateCity", { ProvinceID: $(".provinceUpdateBox>option:selected").val() }, function (data) {
+        $.post("Customer/UpdateCity", { ProvinceID: $(".provinceUpdateBox>option:selected").val() }, function (data) {
             $.each(data, function (cityID, city) {
                 $(".cityUpdateBox").append("<option value='" + city.CityID + "'>" + city.Description + "</option>")
             });
@@ -789,7 +789,7 @@ function UpdateCity(type) {
     }
     if (type == "addBox") {
         $(".cityAddBox").children().remove();
-        $.post("/Customer/UpdateCity", { ProvinceID: $(".provinceAddBox>option:selected").val() }, function (data) {
+        $.post("Customer/UpdateCity", { ProvinceID: $(".provinceAddBox>option:selected").val() }, function (data) {
             $.each(data, function (cityID, city) {
                 $(".cityAddBox").append("<option value='" + city.CityID + "'>" + city.Description + "</option>")
             });
@@ -799,7 +799,7 @@ function UpdateCity(type) {
 
 function UpdateAgent() {
     $(".MainAgent").children().remove();
-    $.post("/Customer/UpdateAgent", { ApplicationTypeID: $(".MainApplicationType>option:selected").val(), OrganizationID: $(".MainOrganization>option:selected").val() }, function (data) {
+    $.post("Customer/UpdateAgent", { ApplicationTypeID: $(".MainApplicationType>option:selected").val(), OrganizationID: $(".MainOrganization>option:selected").val() }, function (data) {
         $.each(data, function (AgentProfileID, AgentProfile) {
             $(".MainAgent").append("<option value='" + AgentProfile.AgentProfileID + "'>" + AgentProfile.Description + "</option>")
         });
@@ -955,7 +955,7 @@ function updateCustomerData() {
     });
     
     var jsonObject = $.ajax({
-        url: '/Customer/UpdateCustomerData',
+        url: 'Customer/UpdateCustomerData',
         type: 'POST',
         contentType: 'application/json;charset=utf-8',
         data: "{ custModel: " + JSON.stringify(custModel) + ", custAddress: " + JSON.stringify(custAddress) + ", custDependents: " + JSON.stringify(custDependents) + ", custEmployment: " + JSON.stringify(custEmployment) + ", custEducation: " + JSON.stringify(custEducation) + ", custCharacter: " + JSON.stringify(custCharacter) + ",PISID: '" + PISID + "' }"
@@ -972,7 +972,7 @@ function updateCustomerData() {
 function getGUID() {
     var ret;
     var jsonObject = $.ajax({
-        url: '/Customer/getGUID',
+        url: 'Customer/getGUID',
         type: 'GET',
         async: false,
         contentType: 'application/json;charset=utf-8',
