@@ -17,5 +17,12 @@ namespace DataObjects.AdoNET
             return db.ReadDictionary(sql, 1, parms);
         }
 
+        public List<Dictionary<string,object>> getMenus()
+        {
+            string sql = "Select MenuID,ParentID,MenuName,DisplayName,LnkAddress,Ordering from User_menu Order by Ordering Desc";
+            object[] parms = { };
+            return db.ReadDictionary(sql, 0, parms);
+        }
+
     }
 }

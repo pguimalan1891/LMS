@@ -15,7 +15,7 @@ using System.Collections.Generic;
 
 namespace LMS.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class AccountController : Controller
     {
         private IAccountSvc acctService;
@@ -29,9 +29,12 @@ namespace LMS.Controllers
         {
             this.acctService = service;
         }
-
-    
-
+        [HttpGet]
+        [Route("Account/FetchUserMenus")]
+        public ActionResult FetchUserMenus()
+        {            
+            return Json(acctService.getMenus(), JsonRequestBehavior.AllowGet);
+        }
         //
         // GET: /Account/Login
         [AllowAnonymous]

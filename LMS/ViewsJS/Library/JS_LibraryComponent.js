@@ -45,6 +45,7 @@ function loadComponents(url, ajaxdata) {
         tblComponent = $("#tbl-component").DataTable({
             "pageLength": 10,
             "bFilter": true,
+            "sDom": '<"top"l>rt<"bottom"ip><"clear">',
             "bProcessing": true,
             "bServerside": true,
             "responsive": true,
@@ -56,6 +57,17 @@ function loadComponents(url, ajaxdata) {
                 "data": ajaxdata
             },
             "columns": dataColumns
+        });
+        $("#filter_searchkey").unbind("keyup");
+        $("#filter_searchkey").keyup(function (e) {
+            var code = e.which;
+            if (code == 13) {
+                tblComponent.search($(this).val()).draw();
+            }
+        });
+        $("#cmdFilter").unbind("click");
+        $("#cmdFilter").click(function () {
+            tblComponent.search($("#filter_searchkey").val()).draw();
         });
         $.get("DevelopmentTools/FetchLibraryUpdateComponent", { 'ComponentName': component }, function (data) {
             $.each(data, function (datakey, comp) {

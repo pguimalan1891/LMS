@@ -8,7 +8,7 @@ namespace DataObjects
 {
     public interface IAccountDAO
     {
-         List<Dictionary<string, object>> Login(string username, string password);
-        
+        List<Dictionary<string, object>> Login(string username, string password);
+        List<Dictionary<string, object>> getMenus();
     }
 }

@@ -8,7 +8,7 @@ namespace ServiceLayer.Interface
 {
     public interface IAccountSvc
     {
-         List<Dictionary<string, object>> Login(string username, string password);
-
+        List<Dictionary<string, object>> Login(string username, string password);
+        List<Dictionary<string, object>> getMenus();
     }
 }
