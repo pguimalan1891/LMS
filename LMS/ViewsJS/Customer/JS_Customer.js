@@ -1,7 +1,7 @@
 ﻿var tblComponent;
 var fntblComponent = $("#tbl-customer thead")
 $(document).ready(function () {    
-    loadComponents("Customer/FetchCustomerRecord");
+    loadComponents("/Customer/FetchCustomerRecord");
     $('.applyDatePicker').datepicker();
     if ($("#CustomerCode").val() != "") {
         modalDispCustProf = $("#display-modal-body");
@@ -91,5 +91,5 @@ function ViewCustomer(code) {
 }
 
 function AddCustomer() {
-    window.location.href = 'CustomerAdd';
+    window.location.href = '/CustomerAdd';
 }

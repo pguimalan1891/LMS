@@ -13,7 +13,7 @@ namespace DataObjects.AdoNET
 
         public IEnumerable<BusinessObjects.newLoanBorrowerProfile> GetBorrowers(string searchkey)
         {
-            string sql = "select '../../Application/NewLoanApplication/?borrower='+pis.CODE as newLoanLink, pis.id,document_status_map.description as [Status], pis.code as [Code], pis.last_name as [LastName], pis.first_name as [FirstName], pis.middle_name as [MiddleName], Convert(varchar,pis.date_of_birth,101) as [DateofBirth],  " +
+            string sql = "select 'NewLoanApplication?borrower='+pis.CODE as newLoanLink, pis.id,document_status_map.description as [Status], pis.code as [Code], pis.last_name as [LastName], pis.first_name as [FirstName], pis.middle_name as [MiddleName], Convert(varchar,pis.date_of_birth,101) as [DateofBirth],  " +
             "gender.description as [Gender], civil_status.description as [CivilStatus], pis_address.street_address as [Address], city.description as [City] " +
             "from pis inner join document_status_map   on (pis.document_status_code = document_status_map.code)  inner join user_account prepared_by   on (pis.prepared_by_id = prepared_by.id)  inner join gender   on (pis.gender_id = gender.id)  inner join civil_status   on (pis.civil_status_id = civil_status.id)  left join pis_address   on (pis_address.pis_id = pis.id and pis_address.address_type_id = '0')  inner join city on(pis_address.city_id = city.id)  inner join province   on(city.province_id = province.id)  inner join organization   on(pis.organization_id = organization.id)  where pis.permission > 0  ";
             object[] parms = { "search", searchkey };
@@ -344,7 +344,7 @@ namespace DataObjects.AdoNET
            new BusinessObjects.LoanList
            {
                ID = reader["ID"].ToString(),
-                LA_No = "<a href='../../Application/LoanApplication?code="+reader["LA_No"].AsString()+"'>"+ reader["LA_No"].AsString() + "</a>",
+                LA_No = "<a href='../LoanApplication?code="+reader["LA_No"].AsString()+"'>"+ reader["LA_No"].AsString() + "</a>",
                Status = reader["Status"].AsString(),
                Date = reader["Date"].AsString(),
                Branch = reader["Branch"].AsString(),

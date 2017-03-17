@@ -2,7 +2,7 @@
 var fntblComponent = $("#tbl-UserAccounts thead")
 
 $(document).ready(function () {
-    loadComponents("DTSecurityManager/FetchUserAccounts");
+    loadComponents("/DTSecurityManager/FetchUserAccounts");
     $('.applyDatePicker').datepicker();    
 });
 
@@ -146,7 +146,7 @@ function UpdateUserRoleInDatabase() {
     });    
     var userAccountID = $("#userAccount_ID").val();
     var jsonObject = $.ajax({
-        url: 'DTSecurityManager/UpdateUserRoles',
+        url: '/DTSecurityManager/UpdateUserRoles',
         type: 'POST',
         contentType: 'application/json;charset=utf-8',
         data: "{ userRoles: " + JSON.stringify(userRoles) + ", UserAccountID: '" + userAccountID + "' }"
@@ -239,7 +239,7 @@ function AddUserInDatabase(data) {
         UserAccount[ctrl.name] = ctrl.value;
     });
     var jsonObject = $.ajax({
-        url: 'DTSecurityManager/AddUserAccount',
+        url: '/DTSecurityManager/AddUserAccount',
         type: 'POST',
         contentType: 'application/json;charset=utf-8',
         data: "{ userAccountModel: " + JSON.stringify(UserAccount) + " }"
@@ -275,7 +275,7 @@ function UpdateUserInDatabase(data) {
     });
     var jsonObject = $.ajax({
         type: 'POST',
-        url: 'DTSecurityManager/UpdateUserAccount',
+        url: '/DTSecurityManager/UpdateUserAccount',
         contentType: 'application/json;charset=utf-8',
         data: "{ userAccountModel: " + JSON.stringify(UserAccount) + " }"
     });
@@ -316,7 +316,7 @@ function UserResetPassword() {
         UserAccount[ctrl.name] = ctrl.value;
     });
     var jsonObject = $.ajax({
-        url: 'DTSecurityManager/ResetPasswordUserAccount',
+        url: '/DTSecurityManager/ResetPasswordUserAccount',
         type: 'POST',
         contentType: 'application/json;charset=utf-8',
         data: "{ userAccountModel: " + JSON.stringify(UserAccount) + " }"
@@ -341,7 +341,7 @@ function UserResetPassword() {
 function updateStatus(data) {
     var userAccountID = $("#userAccount_ID").val();
     var jsonObject = $.ajax({
-        url: 'DTSecurityManager/UpdateStatusUserAccount',
+        url: '/DTSecurityManager/UpdateStatusUserAccount',
         type: 'POST',
         contentType: 'application/json;charset=utf-8',
         data: "{ ID: '" + userAccountID + "', Status: '" + data + "' }"

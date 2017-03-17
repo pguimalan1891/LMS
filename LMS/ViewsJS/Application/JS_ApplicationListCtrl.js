@@ -65,7 +65,7 @@ function getBookingCVRecordsWithFilter(status, searchkey) {
     }
 
 
-    jsonReq('/Application/ListApplications/' + status + '/' + searchkey, {}, function (newDataArray) {
+    jsonReq('../ListApplications/' + status + '/' + searchkey, {}, function (newDataArray) {
 
 
         tblBookingCV = $('#tbApplicationList').DataTable();
@@ -100,7 +100,7 @@ function getBookingCVRecords(status, searchkey) {
         ajax: {
             type: 'post',
             contentType: 'application/json; charset=utf-8',
-            url: '/Application/ListApplications/' + status + '/' + searchkey,
+            url: '../ListApplications/' + status + '/' + searchkey,
             data: function (d) {
                 return JSON.stringify(d);
             },
@@ -144,7 +144,7 @@ function getCustomerRecords(searchkey) {
         ajax: {
             type: 'post',
             contentType: 'application/json; charset=utf-8',
-            url: '/Application/ListBorrowers/a',
+            url: 'ListBorrowers/a',
             data: function (d) {
                 return JSON.stringify(d);
             },
@@ -173,7 +173,7 @@ function getCustomerRecords(searchkey) {
 function getCustomerRecordsWithFilter(searchkey) {
 
 
-    jsonReq('/Application/ListBorrowers/' + searchkey, {}, function (newDataArray) {
+    jsonReq('ListBorrowers/' + searchkey, {}, function (newDataArray) {
 
         tblBookingCV = $('#tblCustomerList').DataTable();
         tblBookingCV.clear();
