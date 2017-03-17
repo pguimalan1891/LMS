@@ -110,7 +110,7 @@ function initComakers()
         ajax: {
             type: 'post',
             contentType: 'application/json; charset=utf-8',
-            url: '/Application/ListComakers/' + $('#AccountNo').val(),
+            url: '../Application/ListComakers/' + $('#AccountNo').val(),
             data: function (d) {
                 return JSON.stringify(d);
             },
@@ -191,7 +191,7 @@ function initCollaterals() {
         ajax: {
             type: 'post',
             contentType: 'application/json; charset=utf-8',
-            url: '/Application/ListCollaterals/' + $('#AccountNo').val(),
+            url: '../Application/ListCollaterals/' + $('#AccountNo').val(),
             data: function (d) {
                 return JSON.stringify(d);
             },

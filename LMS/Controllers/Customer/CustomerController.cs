@@ -45,6 +45,7 @@ namespace LMS.Controllers
         }
 
         [HttpGet]
+        [Route("Customer/FetchCustomerRecord")]
         public ActionResult FetchCustomerRecord()
         {
             List<Dictionary<string, object>> custRecord = new List<Dictionary<string, object>>();
