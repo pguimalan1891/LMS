@@ -75,6 +75,7 @@
     <Content Include="SPs\Maintenance\Reference\[usp_getDevelopmentToolsLibrary].sql" />
     <Content Include="SPs\Maintenance\Reference\[usp_updDevelopmentToolsLibrary].sql" />
     <Content Include="SPs\Update One Click\03132017Update.sql" />
+    <Content Include="SPs\Update One Click\03172017.sql" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BusinessObjects\BusinessObjects.csproj">
