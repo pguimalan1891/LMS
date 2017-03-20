@@ -6,6 +6,15 @@ using System.Threading.Tasks;
 
 namespace BusinessObjects
 {
+
+    public class CollateralType
+    {
+        public string ID;
+        public string CODE;
+        public string DESCRIPTION;
+        public string COLLATERAL_GROUP_ID;
+        public string MIGID;
+    }
     public class BorrowerProfile
     {
         public string CODE;
@@ -74,6 +83,31 @@ namespace BusinessObjects
         public string DESCRIPTION;
         public string MIGID;
     }
+
+    public class FuelType
+    {
+        public string ID;
+        public string CODE;
+        public string DESCRIPTION;
+        public string MIGID;
+    }
+
+    public class CollateralUsage
+    {
+        public string ID;
+        public string CODE;
+        public string DESCRIPTION;
+        public string MIGID;
+    }
+
+    public class Color
+    {
+        public string ID;
+        public string CODE;
+        public string DESCRIPTION;
+        public string MIGID;
+    }
+
 
     public class LoanTerms
     {

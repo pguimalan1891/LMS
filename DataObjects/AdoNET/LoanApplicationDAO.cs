@@ -56,7 +56,7 @@ namespace DataObjects.AdoNET
                          ",[WITH_CV] " +
                          ",[BALLOON_PAYMENT] " +
                          ",[MIGID] " +
-                       "FROM[FINAL_TESTING].[dbo].[loan_type]"; object[] parms = { };
+                       "FROM [dbo].[loan_type]"; object[] parms = { };
             return db.Read(sql, selectLoanType, 0, parms);
         }
 
@@ -79,7 +79,7 @@ namespace DataObjects.AdoNET
                          ",[CODE] " +
                          ",[DESCRIPTION] " +
                          ",[MIGID] " +
-                       "FROM[FINAL_TESTING].[dbo].[loan_set]"; object[] parms = { };
+                       "FROM [dbo].[loan_set]"; object[] parms = { };
             return db.Read(sql, selectLoanSet, 0, parms);
         }
 
@@ -92,6 +92,86 @@ namespace DataObjects.AdoNET
                MIGID = reader["MIGID"].AsString()
            };
 
+        public IEnumerable<BusinessObjects.FuelType> getFuelType()
+        {
+            string sql = "SELECT [ID] " +
+                         ",[CODE] " +
+                         ",[DESCRIPTION] " +
+                         ",[MIGID] " +
+                       "FROM [dbo].[fuel_type]"; object[] parms = { };
+            return db.Read(sql, selectFuelType, 0, parms);
+        }
+
+        static Func<IDataReader, BusinessObjects.FuelType> selectFuelType = reader =>
+           new BusinessObjects.FuelType
+           {
+               ID = reader["ID"].AsString(),
+               CODE = reader["CODE"].AsString(),
+               DESCRIPTION = reader["DESCRIPTION"].AsString(),
+               MIGID = reader["MIGID"].AsString()
+           };
+
+        public IEnumerable<BusinessObjects.CollateralUsage> getCollateralUsage()
+        {
+            string sql = "SELECT [ID] " +
+                         ",[CODE] " +
+                         ",[DESCRIPTION] " +
+                         ",[MIGID] " +
+                       "FROM [dbo].[collateral_usage]"; object[] parms = { };
+            return db.Read(sql, selectCollateralUsage, 0, parms);
+        }
+
+        static Func<IDataReader, BusinessObjects.CollateralUsage> selectCollateralUsage = reader =>
+           new BusinessObjects.CollateralUsage
+           {
+               ID = reader["ID"].AsString(),
+               CODE = reader["CODE"].AsString(),
+               DESCRIPTION = reader["DESCRIPTION"].AsString(),
+               MIGID = reader["MIGID"].AsString()
+           };
+
+        public IEnumerable<BusinessObjects.Color> getColor()
+        {
+            string sql = "SELECT [ID] " +
+                         ",[CODE] " +
+                         ",[DESCRIPTION] " +
+                         ",[MIGID] " +
+                       "FROM [dbo].[color]"; object[] parms = { };
+            return db.Read(sql, selectColor, 0, parms);
+        }
+
+        static Func<IDataReader, BusinessObjects.Color> selectColor = reader =>
+           new BusinessObjects.Color
+           {
+               ID = reader["ID"].AsString(),
+               CODE = reader["CODE"].AsString(),
+               DESCRIPTION = reader["DESCRIPTION"].AsString(),
+               MIGID = reader["MIGID"].AsString()
+           };
+
+
+
+        public IEnumerable<BusinessObjects.CollateralType> getCollateralType()
+        {
+            string sql = "SELECT [ID] " +
+                         ",[CODE] " +
+                         ",[DESCRIPTION] " +
+                         ",[COLLATERAL_GROUP_ID] "+
+                         ",[MIGID] " +
+                       "FROM [dbo].[collateral_type]"; object[] parms = { };
+            return db.Read(sql, selectCollateralType, 0, parms);
+        }
+
+        static Func<IDataReader, BusinessObjects.CollateralType> selectCollateralType = reader =>
+           new BusinessObjects.CollateralType
+           {
+               ID = reader["ID"].AsString(),
+               CODE = reader["CODE"].AsString(),
+               DESCRIPTION = reader["DESCRIPTION"].AsString(),
+               COLLATERAL_GROUP_ID = reader["COLLATERAL_GROUP_ID"].AsString(),
+               MIGID = reader["MIGID"].AsString()
+           };
+
         public IEnumerable<BusinessObjects.LoanTerms> getLoanTerms()
         {
             string sql = "SELECT [ID] " +
@@ -99,7 +179,7 @@ namespace DataObjects.AdoNET
                          ",[DESCRIPTION] " +
                          ",[MONTHS] " +
                          ",[MIGID] " +
-                       "FROM[FINAL_TESTING].[dbo].[loan_terms]"; object[] parms = { };
+                       "FROM [dbo].[loan_terms]"; object[] parms = { };
             return db.Read(sql, selectLoanTerms, 0, parms);
         }
 
@@ -119,7 +199,7 @@ namespace DataObjects.AdoNET
             string sql = "SELECT '-1' as [CODE], 'All' as [DESCRIPTION] UNION ALL SELECT" +
                          "[CODE] " +
                          ",[DESCRIPTION] " +
-                         "FROM[FINAL_TESTING].[dbo].[document_status_map]";
+                         "FROM [dbo].[document_status_map]";
             object[] parms = {};
             return db.Read(sql, selectDocumentStatus, 0, parms);
         }

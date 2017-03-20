@@ -23,5 +23,13 @@ namespace DataObjects
         IEnumerable<BusinessObjects.LoanApplicationModel> getLoanFormDetails(string AccountNo);
 
         IEnumerable<BusinessObjects.CollateralProfile> getCollaterals(string loanCode);
+
+        IEnumerable<BusinessObjects.CollateralType> getCollateralType();
+
+        IEnumerable<BusinessObjects.CollateralUsage> getCollateralUsage();
+        IEnumerable<BusinessObjects.Color> getColor();
+
+        IEnumerable<BusinessObjects.FuelType> getFuelType();
+
     }
 }

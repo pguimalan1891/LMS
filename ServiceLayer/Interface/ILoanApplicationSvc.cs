@@ -29,5 +29,14 @@ namespace ServiceLayer.Interface
         IEnumerable<BusinessObjects.ComakerProfile> getComakers(string LoanCode);
 
         IEnumerable<BusinessObjects.CollateralProfile> getCollaterals(string loanCode);
+
+        IEnumerable<BusinessObjects.CollateralType> GetCollateralType();
+
+        IEnumerable<BusinessObjects.CollateralUsage> GetCollateralUsage();
+
+        IEnumerable<BusinessObjects.Color> GetColor();
+
+        IEnumerable<BusinessObjects.FuelType> GetFuelType();
+      
     }
 }

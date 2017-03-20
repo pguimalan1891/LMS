@@ -142,7 +142,41 @@ namespace LMS.Controllers
             return Json(service.GetDocumentStatus());
         }
 
-        
+        [HttpPost]
+        [AuthorizationFilter]
+        [Route("Application/ListCollateralUsage")]
+        public ActionResult ListCollateralUsage()
+        {
+            return Json(service.GetCollateralUsage());
+        }
+
+
+        [HttpPost]
+        [AuthorizationFilter]
+        [Route("Application/ListFuelType")]
+        public ActionResult ListFuelType()
+        {
+            return Json(service.GetFuelType());
+        }
+
+        [HttpPost]
+        [AuthorizationFilter]
+        [Route("Application/ListColor")]
+        public ActionResult ListColor()
+        {
+            return Json(service.GetColor());
+        }
+
+
+        [HttpPost]
+        [AuthorizationFilter]
+        [Route("Application/ListCollateralType")]
+        public ActionResult ListCollateralType()
+        {
+            return Json(service.GetCollateralType());
+        }
+
+
 
         [HttpPost]
         [AuthorizationFilter]
@@ -161,6 +195,8 @@ namespace LMS.Controllers
         {
             return Json(service.getCollaterals(loanCode));
         }
+
+
 
 
         //getDistrict, getBranch, getApplicationType, getLoanProduct, getSetPerProduct, getTerms, getCollateralType

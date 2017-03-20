@@ -73,5 +73,25 @@ namespace ServiceLayer
         {
             return lnCtrl.getCollaterals(loanCode);
         }
+
+        public IEnumerable<BusinessObjects.CollateralType> GetCollateralType()
+        {
+            return lnCtrl.getCollateralType();
+
+        }
+
+        public IEnumerable<BusinessObjects.CollateralUsage> GetCollateralUsage()
+        {
+            return lnCtrl.getCollateralUsage();
+        }
+        public IEnumerable<BusinessObjects.Color> GetColor()
+        {
+            return lnCtrl.getColor();
+        }
+
+        public IEnumerable<BusinessObjects.FuelType> GetFuelType()
+        {
+            return lnCtrl.getFuelType();
+        }
     }
 }
