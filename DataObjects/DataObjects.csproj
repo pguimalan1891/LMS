@@ -48,6 +48,7 @@
     <Compile Include="AdoNET\CustomerDAO.cs" />
     <Compile Include="AdoNET\AccountDAO.cs" />
     <Compile Include="AdoNET\DTSecurityManagerDAO.cs" />
+    <Compile Include="AdoNET\HomeDAO.cs" />
     <Compile Include="AdoNET\MaintenanceAgentProfileDAO.cs" />
     <Compile Include="AdoNET\LoanApplicationDAO.cs" />
     <Compile Include="DAOFactories.cs" />
@@ -61,6 +62,7 @@
     <Compile Include="ICustomerDAO.cs" />
     <Compile Include="IDAOFactory.cs" />
     <Compile Include="IDTSecurityManagerDAO.cs" />
+    <Compile Include="IHomeDAO.cs" />
     <Compile Include="ILibraryDAO.cs" />
     <Compile Include="ILoanApplicationDAO.cs" />
     <Compile Include="IMaintenanceAgentProfileDAO.cs" />
@@ -75,6 +77,7 @@
     <Content Include="SPs\Maintenance\Reference\[usp_getDevelopmentToolsLibrary].sql" />
     <Content Include="SPs\Maintenance\Reference\[usp_updDevelopmentToolsLibrary].sql" />
     <Content Include="SPs\Update One Click\03132017Update.sql" />
+    <Content Include="SPs\Update One Click\03172017.sql" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BusinessObjects\BusinessObjects.csproj">

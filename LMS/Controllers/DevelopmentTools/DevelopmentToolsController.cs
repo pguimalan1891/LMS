@@ -31,6 +31,17 @@ namespace LMS.Controllers.DevelopmentTools
         {
             return View();
         }
+        [Route("Reference")]
+        public ActionResult Reference()
+        {
+            return View();
+        }
+
+        [Route("LibraryList")]
+        public ActionResult LibraryList()
+        {
+            return View();
+        }
 
         [Route("Library")]
         public ActionResult Library(string ComponentName)

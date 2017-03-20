@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace ServiceLayer.Interface
 {
-    public interface IAccountSvc
+    public interface IHomeSvc
     {
-        List<Dictionary<string, object>> Login(string username, string password);
-        List<Dictionary<string, object>> getMenus();
+        List<Dictionary<string, object>> GetCustomerList();
     }
 }

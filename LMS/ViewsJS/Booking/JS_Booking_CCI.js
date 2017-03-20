@@ -18,7 +18,7 @@ function getBookingCCI() {
         ajax: {
             type: 'post',
             contentType: 'application/json; charset=utf-8',
-            url: '/Booking/RetrieveChangeCCIForm',
+            url: 'Booking/RetrieveChangeCCIForm',
             data: function (d) {
                 d.status = document.getElementById("selfindCCI").value;
                 return JSON.stringify(d);

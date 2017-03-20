@@ -37,5 +37,9 @@ namespace ServiceLayer
             //outData = data;
         }
 
+        public List<Dictionary<string, object>> getMenus()
+        {
+            return acctCtrl.getMenus();
+        }
     }
 }

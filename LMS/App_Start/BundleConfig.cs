@@ -50,9 +50,9 @@ namespace LMS
                    "~/Content/uiPlugins/theme/js/plugins/jquery.metisMenu.js",
                    "~/Content/uiPlugins/theme/js/plugins/jquery.slimscroll.min.js",
                    "~/Content/uiPlugins/theme/js/inspinia.js",
-                    "~/Content/uiPlugins/theme/js/plugins/pace.min.js",
-                    "~/Content/uiPlugins/theme/js/toastr.min.js",
-                     "~/Content/uiPlugins/theme/js/plugins/jquery-ui.min.js"));
+                   "~/Content/uiPlugins/theme/js/plugins/pace.min.js",
+                   "~/Content/uiPlugins/theme/js/toastr.min.js",                   
+                   "~/Content/uiPlugins/theme/js/plugins/jquery-ui.min.js"));
 
             bundles.Add(new ScriptBundle("~/Content/DataTableJS").Include(
                     "~/Content/datatable/media/js/jquery.dataTables.min.js",
@@ -63,6 +63,9 @@ namespace LMS
                     "~/Content/jquery/jquery.validate.js",
                     "~/Content/jquery/jquery.validate.unobtrusive.min.js"
                     ));
+            bundles.Add(new ScriptBundle("~/ViewsJS").Include(
+                "~/ViewsJS/JS_MasterPage.js"
+                ));
         }
     }
 }

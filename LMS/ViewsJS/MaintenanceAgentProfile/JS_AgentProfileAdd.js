@@ -9,7 +9,7 @@ function loadAllTables() {
     event.preventDefault();
     var tbl;
     var append;
-    $.post("/MaintenanceAgentProfile/GetAgentFullData", { ID: $("#AgentProfileID").val(), Type: "Address" }, function (data) {
+    $.post("MaintenanceAgentProfile/GetAgentFullData", { ID: $("#AgentProfileID").val(), Type: "Address" }, function (data) {
         tbl = $("#tblAddress tbody");
         append = "";
         var isOtherAddressExist = 0;
@@ -41,7 +41,7 @@ function addData(type) {
     if (type == "address") {
         var agentAddress = {};
         var jsonObject = $.ajax({
-            url: '/MaintenanceAgentProfile/UpdateAddress',
+            url: 'MaintenanceAgentProfile/UpdateAddress',
             type: 'POST',
             contentType: 'application/json;charset=utf-8',
             data: "{ UpdateType: 'add', AgentAddress: " + JSON.stringify(agentAddress) + " }"
@@ -85,7 +85,7 @@ function editData(row, type) {
         agentAddress.HomeOwnershipID = row.cells[9].id;
         agentAddress.HomeOwnerShip = row.cells[9].innerHTML;
         var jsonObject = $.ajax({
-            url: '/MaintenanceAgentProfile/UpdateAddress',
+            url: 'MaintenanceAgentProfile/UpdateAddress',
             type: 'POST',
             contentType: 'application/json;charset=utf-8',
             data: "{ UpdateType: 'update', AgentAddress: " + JSON.stringify(agentAddress) + " }"
@@ -175,7 +175,7 @@ function DeleteData(row, type) {
 function UpdateCity(type) {
     if (type == "Main") {
         $(".cityMainBox").children().remove();
-        $.post("/MaintenanceAgentProfile/UpdateCity", { ProvinceID: $(".provinceMainBox>option:selected").val() }, function (data) {
+        $.post("MaintenanceAgentProfile/UpdateCity", { ProvinceID: $(".provinceMainBox>option:selected").val() }, function (data) {
             $.each(data, function (cityID, city) {
                 $(".cityMainBox").append("<option value='" + city.CityID + "'>" + city.Description + "</option>")
             });
@@ -183,7 +183,7 @@ function UpdateCity(type) {
     }
     if (type == "updateBox") {
         $(".cityUpdateBox").children().remove();
-        $.post("/MaintenanceAgentProfile/UpdateCity", { ProvinceID: $(".provinceUpdateBox>option:selected").val() }, function (data) {
+        $.post("MaintenanceAgentProfile/UpdateCity", { ProvinceID: $(".provinceUpdateBox>option:selected").val() }, function (data) {
             $.each(data, function (cityID, city) {
                 $(".cityUpdateBox").append("<option value='" + city.CityID + "'>" + city.Description + "</option>")
             });
@@ -191,7 +191,7 @@ function UpdateCity(type) {
     }
     if (type == "addBox") {
         $(".cityAddBox").children().remove();
-        $.post("/MaintenanceAgentProfile/UpdateCity", { ProvinceID: $(".provinceAddBox>option:selected").val() }, function (data) {
+        $.post("MaintenanceAgentProfile/UpdateCity", { ProvinceID: $(".provinceAddBox>option:selected").val() }, function (data) {
             $.each(data, function (cityID, city) {
                 $(".cityAddBox").append("<option value='" + city.CityID + "'>" + city.Description + "</option>")
             });
@@ -237,7 +237,7 @@ function addAgentProfileData(type) {
         AgentAddress[rowKey] = Address;
     });
     var jsonObject = $.ajax({
-        url: '/MaintenanceAgentProfile/AddAgentData',
+        url: 'MaintenanceAgentProfile/AddAgentData',
         type: 'POST',
         contentType: 'application/json;charset=utf-8',
         data: "{ AgentProfileModel: " + JSON.stringify(AgentProfileModel) + ", AgentAddress: " + JSON.stringify(AgentAddress) + ",AgentProfileID: '" + AgentProfileID + "' }"
@@ -255,7 +255,7 @@ function addAgentProfileData(type) {
 function getGUID() {
     var ret;
     var jsonObject = $.ajax({
-        url: '/MaintenanceAgentProfile/getGUID',
+        url: 'MaintenanceAgentProfile/getGUID',
         type: 'GET',
         async: false,
         contentType: 'application/json;charset=utf-8',

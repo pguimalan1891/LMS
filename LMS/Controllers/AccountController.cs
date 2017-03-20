@@ -15,7 +15,7 @@ using System.Collections.Generic;
 
 namespace LMS.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class AccountController : Controller
     {
         private IAccountSvc acctService;
@@ -29,9 +29,28 @@ namespace LMS.Controllers
         {
             this.acctService = service;
         }
+        [HttpGet]        
+        public ActionResult FetchUserMenus(string returnURL)
+        {
 
-    
+            if (Session["loginDetails"] != null)
+            {
+                return Json(acctService.getMenus(), JsonRequestBehavior.AllowGet);
+            }
+            else
+            {   
+                if (returnURL.ToString().IndexOf("Account/Login") > 0)
+                {
+                    return Content("");
+                }
+                else {
+                    //return RedirectToAction("Login", "Account", new { returnUrl = "samp" });
+                    return Content("LoginExpired");
+                }          
 
+                //
+            }            
+        }
         //
         // GET: /Account/Login
         [AllowAnonymous]

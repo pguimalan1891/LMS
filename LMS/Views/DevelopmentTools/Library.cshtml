@@ -6,20 +6,28 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
-
+            <div class="form-inline">
+                <div class="form-group">
+                    <label>Search Code/Description&nbsp;</label>
+                    <input type="text" id="filter_searchkey" placeholder="Leave blank to view all" class="form-control" />
+                </div>
+                <button type="button" class="btn btn-default" id="cmdFilter">Filter Search</button>
+                <a class="btn btn-info" onclick="AddComponent()()">Add @Model.DisplayName</a>                
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <br />
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-md-3">
-                            <h3>@Model.DisplayName</h3>
+                            <h3 class="panel-title">@Model.DisplayName</h3>
                         </div>
-                        <div class="col-md-1">
-                            <input id="txtComponentName" value="@Model.ComponentName" style="visibility:hidden"/>
-                        </div>
-                        <div class="col-md-1 col-md-offset-7">
-                            <a style="width:100%" class='btn btn-success btn-minier' href='#' title='Add' onClick='AddComponent()'><b></b><span class='glyphicon glyphicon-plus' aria-hidden='true'></span></a>
-                        </div>
-                        
+                        <div class="col-md-1 panel-title">
+                            <h3 class="panel-title"><input id="txtComponentName" value="@Model.ComponentName" style="visibility:hidden;position:absolute;" /></h3>
+                        </div>                                                
                     </div>
                 </div>
                 <div class="panel-body">

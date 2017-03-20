@@ -407,6 +407,8 @@
     <Content Include="ViewsJS\Customer\JS_CustomerAdd.js" />
     <Content Include="ViewsJS\Customer\JS_CustomerUpdate.js" />
     <Content Include="ViewsJS\DevelopmentTools\DTSecurityManager.js" />
+    <Content Include="ViewsJS\Home\JS_Home.js" />
+    <Content Include="ViewsJS\JS_MasterPage.js" />
     <Content Include="ViewsJS\Library\JS_LibraryComponent.js" />
     <Content Include="ViewsJS\MaintenanceAgentProfile\JS_AgentProfile.js" />
     <Content Include="ViewsJS\MaintenanceAgentProfile\JS_AgentProfileAdd.js" />
@@ -485,6 +487,8 @@
     <Content Include="Views\DTSecurityManager\_UpdateRoles_UserAccount.cshtml" />
     <Content Include="Views\DTSecurityManager\_UpdateStatus_UserAccount.cshtml" />
     <Content Include="Views\DTSecurityManager\_Update_UserAccount.cshtml" />
+    <Content Include="Views\DevelopmentTools\Reference.cshtml" />
+    <Content Include="Views\DevelopmentTools\LibraryList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -544,7 +548,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>12615</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost/LMS</IISUrl>
+          <IISUrl>http://localhost:12615/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
