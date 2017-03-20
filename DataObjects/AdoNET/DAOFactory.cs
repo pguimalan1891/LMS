@@ -49,5 +49,10 @@ namespace DataObjects.AdoNET
         {
             get { return new DTSecurityManagerDAO(); }
         }
+
+        public IHomeDAO HomeDAO
+        {
+            get { return new HomeDAO(); }
+        }
     }
 }

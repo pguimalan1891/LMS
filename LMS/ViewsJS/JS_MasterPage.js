@@ -1,6 +1,14 @@
 ﻿$(document).ready(function () {
-    $.get("Account/FetchUserMenus", {}, function (data) {       
-        var menus = data;        
+
+    $.get($("#userMenu").text(), { "returnURL": window.location.href }, function (data) {
+        if (data == "LoginExpired") {
+            window.location.href = $("#lnkLogin").text();
+            return;
+        }
+        if (data == "") {
+            return;
+        }
+        var menus = data;
         var MainMenu = getMenus(menus, "0");
         var append = "";
         $.each(MainMenu, function (mmKey, mm) {
@@ -16,20 +24,20 @@
                                   "<a href='#'><i class='fa fa-th-large'></i> <span class='nav-label'>" + sub2nd["DisplayName"] + "</span> <span class='fa arrow'></span></a>" +
                                   "<ul class='nav nav-third-level'>";
                         $.each(subMenu3rdLevel, function (sub3rdKey, sub3rd) {
-                            append += "<li><a onclick='window.location=\"" + sub3rd["LnkAddress"] + "\"'>" + sub3rd["DisplayName"] + "</a></li>";
+                            append += "<li><a onclick='window.location=\"" + $("#" + sub3rd["LnkAddress"]).text() + "\"'>" + sub3rd["DisplayName"] + "</a></li>";
                         });
                         append += "</ul>" +
                                   "</li>";
                     } else {
-                        append += "<li><a onclick='window.location=\"" + sub2nd["LnkAddress"] + "\"'>" + sub2nd["DisplayName"] + "</a></li>";
+                        append += "<li><a onclick='window.location=\"" + $("#" + sub2nd["LnkAddress"]).text() + "\"'>" + sub2nd["DisplayName"] + "</a></li>";
                     }
                 });
 
                 append += "</ul>" +
                            "</li>";
             } else {
-                append += "<li><a onclick='window.location=\"" + mm["LnkAddress"] + "\"'>" + mm["DisplayName"] + "</a></li>";
-            }            
+                append += "<li><a onclick='window.location=\"" + $("#" + mm["LnkAddress"]).text() + "\"'>" + mm["DisplayName"] + "</a></li>";
+            }
         });
         $("#side-menu").append(append);
         initInspinia();

@@ -18,7 +18,7 @@ function getBookingDV() {
         ajax: {
             type: 'post',
             contentType: 'application/json; charset=utf-8',
-            url: '/Booking/RetrieveDisbursementVoucher',
+            url: 'Booking/RetrieveDisbursementVoucher',
             data: function (d) {
                 d.status = document.getElementById("selfindDV").value;
                 return JSON.stringify(d);

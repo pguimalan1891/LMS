@@ -29,11 +29,27 @@ namespace LMS.Controllers
         {
             this.acctService = service;
         }
-        [HttpGet]
-        [Route("Account/FetchUserMenus")]
-        public ActionResult FetchUserMenus()
-        {            
-            return Json(acctService.getMenus(), JsonRequestBehavior.AllowGet);
+        [HttpGet]        
+        public ActionResult FetchUserMenus(string returnURL)
+        {
+
+            if (Session["loginDetails"] != null)
+            {
+                return Json(acctService.getMenus(), JsonRequestBehavior.AllowGet);
+            }
+            else
+            {   
+                if (returnURL.ToString().IndexOf("Account/Login") > 0)
+                {
+                    return Content("");
+                }
+                else {
+                    //return RedirectToAction("Login", "Account", new { returnUrl = "samp" });
+                    return Content("LoginExpired");
+                }          
+
+                //
+            }            
         }
         //
         // GET: /Account/Login

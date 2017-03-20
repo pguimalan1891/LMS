@@ -14,12 +14,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RFC - Loans Management System</title>    
+    
     @Styles.Render("~/Content/themeui/css")
     @Styles.Render("~/Content/DataTableCSS")
-
-
-
-
+    
+    
     <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
     <style>
         body {
@@ -134,8 +133,8 @@
                             <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i></a>
                         </div>
                         <ul class="nav navbar-top-links navbar-left" style="padding-left: 15px;">
-                            <li>
-                              <h2>RFC- Loans Management System</h2> 
+                            <li>                                
+                              <h2><div style="cursor:pointer;" onclick="window.location.href='@Href("~/Home")'">RFC - Loans Management System</div></h2> 
                             </li>
 
                         </ul>
@@ -167,13 +166,34 @@
             @RenderBody()
         </div>
         }
-    </div>
-
+    </div>    
     
-    
+    <span id="userMenu" style="visibility:hidden;position:absolute;">@Href("~/Account/FetchUserMenus")</span>
+    <span id="lnkBorrowerProfile" style="visibility:hidden;position:absolute;">@Href("~/Customer")</span>
+    <span id="lnkLoanApplication" style="visibility:hidden;position:absolute;">@Href("~/Application")</span>
+    <span id="lnkCreditInvestigation" style="visibility:hidden;position:absolute;">@Href("~/Customer")</span>
+    <span id="lnkDirectLoanReceipt" style="visibility:hidden;position:absolute;">@Href("~/Booking/DirectLoanReceipt")</span>
+    <span id="lnkCheckVoucher" style="visibility:hidden;position:absolute;">@Href("~/Booking/CheckVoucher")</span>
+    <span id="lnkCIRForm" style="visibility:hidden;position:absolute;">@Href("~/Booking/CIRForm")</span>
+    <span id="lnkDisbursementVoucher" style="visibility:hidden;position:absolute;">@Href("~/Booking/DisbursementVoucher")</span>
+    <span id="lnkPromissoryNoteAllocation" style="visibility:hidden;position:absolute;">@Href("~/Booking/PromissoryNoteAllocation")</span>
+    <span id="lnkChangeCCI" style="visibility:hidden;position:absolute;">@Href("~/Booking/ChangeCCI")</span>
+    <span id="lnkSundryCollection" style="visibility:hidden;position:absolute;">@Href("~/OfficialReceipt/NewSundry")</span>
+    <span id="lnkORListing" style="visibility:hidden;position:absolute;">@Href("~/Home/Contact")</span>
+    <span id="lnkPDCAcknowledgementReceipt" style="visibility:hidden;position:absolute;">@Href("~/Home/Contact")</span>
+    <span id="lnkPDCBatchEncoding" style="visibility:hidden;position:absolute;">@Href("~/Home/Contact")</span>
+    <span id="lnkReturnCheckNotice" style="visibility:hidden;position:absolute;">@Href("~/Home/Contact")</span>
+    <span id="lnkDepositSlip" style="visibility:hidden;position:absolute;">@Href("~/Home/Contact")</span>
+    <span id="lnkRequestforPayment" style="visibility:hidden;position:absolute;">@Href("~/Accounting/RequestforPayment")</span>
+    <span id="lnkAgentProfile" style="visibility:hidden;position:absolute;">@Href("~/AgentProfile")</span>
+    <span id="lnkReference" style="visibility:hidden;position:absolute;">@Href("~/Reference")</span>
+    <span id="lnkSecurityManager" style="visibility:hidden;position:absolute;">@Href("~/SecurityManager")</span>
+    <span id="lnkLibrary" style="visibility:hidden;position:absolute;">@Href("~/LibraryList")</span>
+    <span id="lnkLogin" style="visibility:hidden;position:absolute;">@Href("~/Account/Login")</span>
 
     @Scripts.Render("~/Content/themeui/js")    
     @Scripts.Render("~/Content/DataTableJS")    
+    @Scripts.Render("~/ViewsJS")
 
     @RenderSection("scripts", required: false)
 </body>
