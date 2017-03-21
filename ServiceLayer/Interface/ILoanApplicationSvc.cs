@@ -37,6 +37,8 @@ namespace ServiceLayer.Interface
         IEnumerable<BusinessObjects.Color> GetColor();
 
         IEnumerable<BusinessObjects.FuelType> GetFuelType();
-      
+
+        string insertLoan(BusinessObjects.LoanApplicationModel loan, string userID);
+
     }
 }

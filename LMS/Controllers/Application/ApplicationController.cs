@@ -6,6 +6,8 @@ using System.Web.Mvc;
 using ServiceLayer;
 using ServiceLayer.Interface;
 using LMS.Models.LoanApplication;
+using System.Web.Script.Serialization;
+using System.Reflection;
 
 namespace LMS.Controllers
 {
@@ -98,10 +100,14 @@ namespace LMS.Controllers
         public ActionResult NewLoanApplication(string borrower)
         {
             LoanApplicationModel loan = new LoanApplicationModel();
+            loan.AccountNo = "LA-" + DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Second.ToString();
+            loan.TransactionDate = DateTime.Now;
             loan.orgs = customerComp.getOrganization();
             loan.districts = customerComp.getDistrict();
             loan.applicationTypes = customerComp.getApplicationType();
             loan.products = service.GetLoanProducts();
+            loan.DesiredMLV = "0.00";
+            
             loan.sets = service.GetLoanSet();
             loan.terms = service.GetLoanTerms();
             loan.borrowerProfile = service.GetBorrowerProfile(borrower);
@@ -196,8 +202,17 @@ namespace LMS.Controllers
             return Json(service.getCollaterals(loanCode));
         }
 
+       
 
+        [HttpPost]
+        public ActionResult InsertNewLoan(BusinessObjects.LoanApplicationModel loan)
+        {
 
+            List<Dictionary<string, object>> session = (List<Dictionary<string, object>>)Session["loginDetails"];
+            
+            string user = session[0]["ID"].ToString();
+            return Json(service.insertLoan(null, user));
+        }
 
         //getDistrict, getBranch, getApplicationType, getLoanProduct, getSetPerProduct, getTerms, getCollateralType
     }

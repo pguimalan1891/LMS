@@ -75,6 +75,7 @@ namespace CommonClasses
         public static string IsStrNull(string strInput)
         {
             return strInput == null ? string.Empty : strInput.Trim();
+            
         }
     }
 }
