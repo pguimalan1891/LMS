@@ -14,20 +14,33 @@ using AutoMapper;
 using AutoMapper.Configuration;
 
 namespace LMS.Controllers.DevelopmentTools
-{    
+{
     public class DTSecurityManagerController : Controller
     {
         private IDTSecurityManagerSvc service;
         private ICustomerSvc customerSvc;
+        
         // GET: DTSecurityManager
         public DTSecurityManagerController()
-            : this(new DTSecurityManagerSvc(),new CustomerSvc())
+            : this(new DTSecurityManagerSvc(), new CustomerSvc())
         {
         }
-        public DTSecurityManagerController(IDTSecurityManagerSvc service,ICustomerSvc customerSvc)
+        public DTSecurityManagerController(IDTSecurityManagerSvc service, ICustomerSvc customerSvc)
         {
             this.service = service;
-            this.customerSvc = customerSvc;
+            this.customerSvc = customerSvc;            
+        }
+
+        [HttpGet]
+        [Route("UserRoleMenu")]
+        public ActionResult RoleMenu()
+        {
+            return View();
+        }
+
+        public ActionResult FetchUserMenus(string RoleID)
+        {
+            return Json(service.getUserRoleMenu(RoleID), JsonRequestBehavior.AllowGet);
         }
 
         [Route("SecurityManager")]
@@ -73,7 +86,7 @@ namespace LMS.Controllers.DevelopmentTools
             LMS.Models.DevelopmentTools.UserAccountModel userAccountModel = new Models.DevelopmentTools.UserAccountModel();
             Mapper.CreateMap<BusinessObjects.UserAccount, Models.DevelopmentTools.UserAccount>();
             Models.DevelopmentTools.UserAccount userAccount = Mapper.Map<BusinessObjects.UserAccount, Models.DevelopmentTools.UserAccount>(service.getUserAccountbyID(ID));
-            userAccountModel.userAccount = userAccount;            
+            userAccountModel.userAccount = userAccount;
             var pvr = new PartialViewResult();
             pvr = PartialView("_ResetPassword_UserAccount", userAccountModel);
             return pvr;
@@ -110,7 +123,7 @@ namespace LMS.Controllers.DevelopmentTools
             userAccountModel.Position = Position;
             userAccountModel.Organization = Organization;
             userAccountModel.PasswordNeverExpires = setPasswordNeverExpire();
-            userAccountModel.Company = Company;            
+            userAccountModel.Company = Company;
             var pvr = new PartialViewResult();
             pvr = PartialView("_Add_UserAccount", userAccountModel);
             return pvr;
@@ -135,7 +148,7 @@ namespace LMS.Controllers.DevelopmentTools
         }
 
         [HttpPost]
-        public ActionResult UpdateStatusUserAccount(string ID,string Status)
+        public ActionResult UpdateStatusUserAccount(string ID, string Status)
         {
             return Content(service.UpdateStatusUserAccount(ID, Status).ToString());
         }
@@ -158,15 +171,15 @@ namespace LMS.Controllers.DevelopmentTools
         }
 
         public ActionResult UserRoles(string ID)
-        {            
+        {
             Mapper.CreateMap<BusinessObjects.UserAccount, Models.DevelopmentTools.UserAccount>();
-            Models.DevelopmentTools.UserAccount userAccount = Mapper.Map<BusinessObjects.UserAccount, Models.DevelopmentTools.UserAccount>(service.getUserAccountbyID(ID));            
+            Models.DevelopmentTools.UserAccount userAccount = Mapper.Map<BusinessObjects.UserAccount, Models.DevelopmentTools.UserAccount>(service.getUserAccountbyID(ID));
 
             Models.DevelopmentTools.UserRoleModel RoleModel = new Models.DevelopmentTools.UserRoleModel();
             RoleModel.userAccount = userAccount;
             var pvr = new PartialViewResult();
             pvr = PartialView("_UpdateRoles_UserAccount", RoleModel);
-            return pvr;            
+            return pvr;
         }
 
         public ActionResult getUserRoles(string ID)

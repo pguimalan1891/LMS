@@ -190,10 +190,12 @@
     <span id="lnkSecurityManager" style="visibility:hidden;position:absolute;">@Href("~/SecurityManager")</span>
     <span id="lnkLibrary" style="visibility:hidden;position:absolute;">@Href("~/LibraryList")</span>
     <span id="lnkLogin" style="visibility:hidden;position:absolute;">@Href("~/Account/Login")</span>
+    <span id="lnkRoles" style="visibility:hidden;position:absolute;">@Href("~/Library?ComponentName=Role|Role")</span>
+    <span id="lnkUserRoleMenu" style="visibility:hidden;position:absolute;">@Href("~/UserRoleMenu")</span>
 
     @Scripts.Render("~/Content/themeui/js")    
     @Scripts.Render("~/Content/DataTableJS")    
-    @Scripts.Render("~/ViewsJS")
+    
 
     @RenderSection("scripts", required: false)
 </body>

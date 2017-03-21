@@ -9,6 +9,7 @@ namespace ServiceLayer.Interface
 {
     public interface IDTSecurityManagerSvc
     {
+        List<Dictionary<string, object>> getUserRoleMenu(string RoleID);
         int updateUserRoles(List<Roles> userRoles, string userAccountID);
         IEnumerable<Roles> getGrantedRoles(string ID);
         IEnumerable<Roles> getNotGrantedRoles(string ID);

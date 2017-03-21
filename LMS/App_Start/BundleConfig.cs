@@ -61,11 +61,9 @@ namespace LMS
                     "~/Content/datatable/media/js/responsive.bootstrap.min.js",
                     "~/Content/bootstrap/js/bootstrap-datepicker.min.js",
                     "~/Content/jquery/jquery.validate.js",
-                    "~/Content/jquery/jquery.validate.unobtrusive.min.js"
-                    ));
-            bundles.Add(new ScriptBundle("~/ViewsJS").Include(
-                "~/ViewsJS/JS_MasterPage.js"
-                ));
+                    "~/Content/jquery/jquery.validate.unobtrusive.min.js",
+                    "~/ViewsJS/Home/JS_MasterPage.js"
+                    ));            
         }
     }
 }

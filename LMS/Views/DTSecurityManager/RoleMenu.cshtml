@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewBag.Title = "RoleMenu";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h4 class="panel-title">User Roles</h4>
+                </div>
+                <div class="panel-body" style="height:450px;overflow-y:scroll">
+                    
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h4 class="panel-title">User Menus</h4>
+                </div>
+                <div class="panel-body" style="height:450px;overflow-y:scroll">                    
+                    <table class="table table-bordered" id="tblUserMenus" cellspacing="0">
+                        <tbody>                            
+                        </tbody>
+                    </table>                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    @Helper.LoadCustomJS("ViewsJS/DevelopmentTools/JS_UserRole.js", Url)
+}

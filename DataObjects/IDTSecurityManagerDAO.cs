@@ -9,6 +9,7 @@ namespace DataObjects
 {
     public interface IDTSecurityManagerDAO
     {
+        List<Dictionary<string, object>> getUserRoleMenu(string RoleID);
         int updateUserRoles(List<Roles> userRoles, string userAccountID);
         IEnumerable<Roles> getGrantedRoles(string ID);
         IEnumerable<Roles> getNotGrantedRoles(string ID);
