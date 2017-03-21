@@ -26,7 +26,7 @@ function getAccountingRFP() {
         ajax: {
             type: 'post',
             contentType: 'application/json; charset=utf-8',
-            url: '/Accounting/RetrieveRequestforPayment',
+            url: '../Accounting/RetrieveRequestforPayment',
             data: function (d) {
                 d.status = document.getElementById("selfindRFP").value;
                 return JSON.stringify(d);

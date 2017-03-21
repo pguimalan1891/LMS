@@ -70,30 +70,40 @@ namespace LMS.Controllers
         }
 
         [HttpPost]
+        [AuthorizationFilter]
+        [Route("Booking/RetrieveBookingRecords")]
         public ActionResult RetrieveBookingRecords(int status)
         {
             return Json(this.service.getBookingRecords(status));
         }
 
         [HttpPost]
+        [AuthorizationFilter]
+        [Route("Booking/RetrieveCheckVoucher")]
         public ActionResult RetrieveCheckVoucher(int status)
         {
             return Json(this.service.getCheckVoucher(status));
         }
 
         [HttpPost]
+        [AuthorizationFilter]
+        [Route("Booking/RetrieveCIRForm")]
         public ActionResult RetrieveCIRForm(int status)
         {
             return Json(this.service.getCIRForm(status));
         }
 
         [HttpPost]
+        [AuthorizationFilter]
+        [Route("Booking/RetrieveDisbursementVoucher")]
         public ActionResult RetrieveDisbursementVoucher(int status)
         {
             return Json(this.service.getDisbursementVoucher(status));
         }
 
         [HttpPost]
+        [AuthorizationFilter]
+        [Route("Booking/RetrieveChangeCCIForm")]
         public ActionResult RetrieveChangeCCIForm(int status)
         {
             return Json(this.service.getChangeCCIForm(status));

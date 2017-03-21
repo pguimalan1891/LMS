@@ -27,7 +27,7 @@ function getBookingRecords2() {
         ajax: {
             type: 'post',
             contentType: 'application/json; charset=utf-8',
-            url: 'Booking/RetrieveBookingRecords',
+            url: '../Booking/RetrieveBookingRecords',
             data: function (d) {
                 d.status = document.getElementById("selfindDLR").value;
                 return JSON.stringify(d);
