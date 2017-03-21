@@ -20,7 +20,7 @@ function getBookingCIRRecords() {
         ajax: {
             type: 'post',
             contentType: 'application/json; charset=utf-8',
-            url: 'Booking/RetrieveCIRForm',
+            url: '../Booking/RetrieveCIRForm',
             data: function (d) {
                 d.status = document.getElementById("selfindCIR").value;
                 return JSON.stringify(d);

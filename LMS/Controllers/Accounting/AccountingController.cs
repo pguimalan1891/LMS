@@ -25,12 +25,15 @@ namespace LMS.Controllers.Accounting
             this.service = service;
         }
 
+
         public ActionResult RequestForPayment()
         {
             return View();
         }
 
         [HttpPost]
+        [AuthorizationFilter]
+        [Route("Accounting/RetrieveRequestforPayment")]
         public ActionResult RetrieveRequestforPayment(int status)
         {
             return Json(this.service.getRequestForPayment(status));

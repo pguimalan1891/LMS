@@ -21,7 +21,7 @@ function getBookingCVRecords() {
         ajax: {
             type: 'post',
             contentType: 'application/json; charset=utf-8',
-            url: 'Booking/RetrieveCheckVoucher',
+            url: '../Booking/RetrieveCheckVoucher',
             data: function (d) {
                 d.status = document.getElementById("selfindCV").value;
                 return JSON.stringify(d);
