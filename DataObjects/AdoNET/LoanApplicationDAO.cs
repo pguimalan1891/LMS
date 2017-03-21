@@ -473,6 +473,104 @@ namespace DataObjects.AdoNET
                NOTES = reader["NOTES"].AsString()
            };
 
+
+        public string insertLoan(BusinessObjects.LoanApplicationModel loan, string userID)
+        {
+            string guid = Guid.NewGuid().ToString();
+            string guid_reviewer = Guid.NewGuid().ToString();
+            string sql = "usp_insertLoan";
+            object[] parms = { "id", guid , "reviewer_id", guid_reviewer, "datetime_created" ,  DateTime.Now.ToShortDateString(),
+        "prepared_by_id" , userID ,
+        "prepared_by_datetime" , DateTime.Now.ToShortDateString() ,
+        "requested_by_id" ,userID ,
+        "requested_by_datetime" , DateTime.Now.ToShortDateString() ,
+        "organization_id" , loan.BranchCode,
+        "document_status_code" , "31" ,
+        "permission" , "" ,
+        "notes" , loan.Notes,
+        "pis_id" , loan.BorrowerCode ,
+        "history_pis_id" , loan.BorrowerCode,
+        "current_pis_id" , loan.BorrowerCode ,
+        "factor_setup_id" , loan.FactorRate,
+        "authority_setup_id" , "0" ,
+        "ppd_rate_id" ,"0" ,
+        "handling_fee_id" , "0" ,
+        "pp_discount_id" , "0" ,
+        "agent_incentive_id" , "0" ,
+        "agent_incentive_type_id" , "0" ,
+        "dealer_incentive_id" , "0" ,
+        "dealer_incentive_type_id" , "0" ,
+        "loan_type_id" , loan.ApplicationType ,
+        "add_on_rate" , "0" ,
+        "loan_amount" , loan.DesiredMLV,
+        "recommended_mlv" , "0" ,
+        "original_mlv" , loan.DesiredMLV ,
+        "approved_mlv" , "0" ,
+        "loan_set_id" , loan.SetId ,
+        "loan_terms_id" , loan.TermsId ,
+        "purpose_of_loan" , loan.LoanPurpose ,
+        "required_document_id" , "0" ,
+        "character_notes" , "0",
+        "capacity_notes" , "0",
+        "collateral_notes" , "0",
+        "capital_notes" ,"0" ,
+        "business_environment_notes" ,"0" ,
+        "restructure_count" , "0",
+        "direct_loan_receipt_id" , "0",
+        "pip_balance" , "0",
+        "gibco_balance" , "0",
+        "rfc_balance" , "0",
+        "total_balance" , "0",
+        "pip_due" , "0" ,
+        "gibco_due" , "0",
+        "rfc_due" , "0",
+        "total_due" , "0",
+        "restructure_fee" , "0",
+        "restructure_income" ,"0" ,
+        "acceleration_form_id", "0", 
+        "effective_yield_id" ,"0" ,
+        "tag" ,"0" ,
+        "tag_amount" ,"0" ,
+        "assured" ,"0" ,
+        "remedial_type_id" ,"0" };
+            db.RetValue(sql, 4, parms);
+
+            insertLoanCollateral(guid, loan.ListOfCollaterals);
+            insertLoanComaker(guid, loan.ListOfComakers);
+
+            return "Success";
+
+        }
+        public string insertLoanCollateral(string loan_application_id, IEnumerable<BusinessObjects.CollateralProfile> collaterals)
+        {
+            foreach(BusinessObjects.CollateralProfile col in collaterals)
+            {
+                string guid = Guid.NewGuid().ToString();
+                col.ID = guid;
+                col.LOAN_APPLICATION_ID = loan_application_id;
+
+                string sql = "usp_insertLoanCollateral";
+                object[] parms = { "loan_application_id", loan_application_id ,"id" , guid, "collateral_type_id" , col.ColType  ,  "serial_number" , col.SERIAL_NUMBER ,  "description" , col.DESCRIPTION ,  "collateral_usage_id" , col.ColUsage ,  "year" , col.YEAR ,  "model" , col.MODEL ,  "color_id" , col.Color ,  "fuel_type_id" , col.FuelType ,  "chassis_number" , col.CHASSIS_NUMBER ,  "engine_number" ,  col.ENGINE_NUMBER,  "plate_number" , col.PLATE_NUMBER ,  "tct_number" , col.TCT_NUMBER ,  "odo_reading" , col.ODO_READING ,  "cr_number" , col.CR_NUMBER ,  "cr_name" ,  col.CR_NUMBER,  "or_number" , col.OR_NUMBER ,  "or_expiration_date" , col.OR_EXPIRATION_DATE ,  "cr_expiration_date" , "" ,  "insurance_name" , col.INSURANCE_NAME,  "insurance_expiration_date" , col.INDSURANCE_EXPIRATION_DATE ,  "mlv" ,  col.MLV ,  "appraised_value" , col.APPRAISED_VALUE,  "loan_value" , col.LOAN_VALUE  ,  "direct_loan_receipt_id","" };
+                db.RetValue(sql, 4, parms);
+            }
+           
+            return "Success";
+
+        }
+        public string insertLoanComaker(string loan_application_id, IEnumerable<BusinessObjects.ComakerProfile> comakers)
+        {
+
+            foreach (BusinessObjects.ComakerProfile com in comakers)
+            {
+                string guid = Guid.NewGuid().ToString();
+
+                string sql = "usp_insertLoanComaker";
+                object[] parms = { "loan_application_id", loan_application_id , "id",  guid , "first_name", com.FIRST_NAME , "middle_name", com.MIDDLE_NAME , "last_name", com.MIDDLE_NAME, "date_of_birth", com.DATE_OF_BIRTH, "phone_number", com.PHONE_NUMBER , "address", com.ADDRESS, "notes", com.NOTES };
+                db.RetValue(sql, 4, parms);
+            }
+          
+            return "Success";
+        }
         public IEnumerable<BusinessObjects.CollateralProfile> getCollaterals(string loanCode)
         {
             string sql = " SELECT  lp.[ID] " +
@@ -568,4 +666,6 @@ namespace DataObjects.AdoNET
                ADDITIONAL_INFO = reader["ADDITIONAL_INFO"].AsString(),
            };
     }
+
+    
 }

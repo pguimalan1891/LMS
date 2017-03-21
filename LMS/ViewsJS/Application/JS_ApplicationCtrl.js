@@ -291,7 +291,16 @@ function initStaticOthers() {
 
 
     function reloadComakers() {
-        tmpObj = tmpComObject;
+        tmpObj  = {
+            'ID': '',
+            'LOAN_APPLICATION_ID': '',
+            'FIRST_NAME': '',
+            'MIDDLE_NAME': '',
+            'LAST_NAME': '',
+            'DATE_OF_BIRTH': '',
+            'PHONE_NUMBER': '',
+            'ADDRESS': '',
+            'NOTES': ''};
         tmpObj['LOAN_APPLICATION_ID'] = $('#AccountNo').val();
         tmpObj['ID'] = 'NEW';
         tmpObj['FIRST_NAME']=$('#comaker_fName').val();
@@ -359,4 +368,47 @@ function initStaticOthers() {
 
         return results[key];
 
+    }
+
+    function insertLoan() {
+        loanModel['BorrowerCode'] = $('#fld_la_BorrowerCode').val();
+        loanModel['TransactionDate'] = $('#fld_la_trandate').val();
+            loanModel['LoanPurpose'] = $('#fld_la_LoanPurpose').val();
+
+            loanModel['DistrictCode'] = $('#fld_la_District').val();
+
+            loanModel['BranchCode'] = $('#fld_la_District').val();
+
+        loanModel['ApplicationType'] = $('#fld_la_AppType').val();
+
+        loanModel['AgentId'] = $('#fld_la_Agent').val();
+
+        loanModel['ProductId'] = $('#fld_la_Product').val();
+
+        loanModel['SetId'] = $('#fld_la_LoanSet').val();
+
+        loanModel['TermsId'] = $('#fld_la_LoanTerms').val();
+
+        loanModel['FactorRate'] = $('#fld_la_Factor').val();
+
+        loanModel['DesiredMLV'] = $('#fld_la_DesiredMLV').val();
+
+
+        loanModel['OriginalMLV'] = $('#fld_la_OriginalMLV').val();
+        loanModel['ApprovedMLV'] = $('#fld_la_ApprovedMLV').val();
+        loanModel['ciFactor'] = $('#fld_la_ciFactor').val();
+        loanModel['Recrate'] = $('#fld_la_RecRate').val();
+        loanModel['AgentIncent'] = $('#fld_la_AgentIncent').val();
+        loanModel['DealIncent'] = $('#fld_la_DealIncent').val();
+        loanModel['CCI'] = $('#fld_la_CCI').val();
+
+        loanModel['Assured'] = $('#fld_la_Assured').val();
+
+        
+
+        loanModel['Notes'] = $('#fld_la_Notes').val();
+       
+        jsonReq('../Application/InsertNewLoan', { loan: JSON.stringify(loanModel) }, function (data) {
+
+        });
     }

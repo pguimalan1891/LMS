@@ -31,5 +31,6 @@ namespace DataObjects
 
         IEnumerable<BusinessObjects.FuelType> getFuelType();
 
+        string insertLoan(BusinessObjects.LoanApplicationModel loan, string userID);
     }
 }

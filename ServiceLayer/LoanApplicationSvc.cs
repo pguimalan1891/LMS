@@ -93,5 +93,10 @@ namespace ServiceLayer
         {
             return lnCtrl.getFuelType();
         }
+
+        public string insertLoan(BusinessObjects.LoanApplicationModel loan, string userID)
+        {
+            return lnCtrl.insertLoan(loan, userID);
+        }
     }
 }

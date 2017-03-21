@@ -191,55 +191,65 @@ namespace BusinessObjects
     }
     public class LoanApplicationModel
     {
-        public string reference_id;
+        public string reference_id{get; set;}
 
-        public string AccountNo;
+        public string AccountNo{get; set;}
 
-        public DateTime TransactionDate;
+        public DateTime TransactionDate{get; set;}
 
-        public string BorrowerCode;
+        public string BorrowerCode{get; set;}
 
-        public string LoanPurpose;
+        public string LoanPurpose{get; set;}
 
-        public string DistrictCode;
+        public string DistrictCode{get; set;}
 
-        public string BranchCode;
+        public string BranchCode{get; set;}
 
-        public string ApplicationType;
+        public string ApplicationType{get; set;}
 
-        public string AgentId;
+        public string AgentId{get; set;}
 
-        public string ProductId;
+        public string ProductId{get; set;}
 
-        public string SetId;
+        public string SetId{get; set;}
 
-        public string TermsId;
+        public string TermsId{get; set;}
 
-        public string FactorRate;
+        public string FactorRate{get; set;}
 
-        public string DesiredMLV;
-
-
-
-        public List<ComakerProfile> ListOfComakers;
+        public string DesiredMLV{get; set;}
 
 
+        public string OriginalMLV{get; set;}
+        public string ApprovedMLV{get; set;}
+        public string ciFactor{get; set;}
+        public string Recrate{get; set;}
+        public string AgentIncent{get; set;}
+        public string DealIncent{get; set;}
+        public string CCI{get; set;}
 
-        public List<CollateralProfile> ListOfCollaterals;
+        public string Assured{get; set;}
 
-        public string Notes;
+    
+        public List<ComakerProfile> ListOfComakers{get; set;}
 
-        public string ResultStatus;
 
-        public IEnumerable<BusinessObjects.Organization> orgs;
-        public BusinessObjects.BorrowerProfile borrowerProfile;
-        public IEnumerable<BusinessObjects.District> districts;
-        public IEnumerable<BusinessObjects.ApplicationType> applicationTypes;
-        public IEnumerable<BusinessObjects.LoanType> products;
-        public IEnumerable<BusinessObjects.LoanSet> sets;
-        public IEnumerable<BusinessObjects.LoanTerms> terms;
 
-        public IEnumerable<BusinessObjects.RequiredDocuments> reqDocs;
+        public List<CollateralProfile> ListOfCollaterals{get; set;}
+
+        public string Notes{get; set;}
+
+        public string ResultStatus{get; set;}
+
+        public IEnumerable<BusinessObjects.Organization> orgs{get; set;}
+        public BusinessObjects.BorrowerProfile borrowerProfile{get; set;}
+        public IEnumerable<BusinessObjects.District> districts{get; set;}
+        public IEnumerable<BusinessObjects.ApplicationType> applicationTypes{get; set;}
+        public IEnumerable<BusinessObjects.LoanType> products{get; set;}
+        public IEnumerable<BusinessObjects.LoanSet> sets{get; set;}
+        public IEnumerable<BusinessObjects.LoanTerms> terms{get; set;}
+
+        public IEnumerable<BusinessObjects.RequiredDocuments> reqDocs{get; set;}
 
 
 
