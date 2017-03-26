@@ -1,6 +1,15 @@
-﻿
+﻿USE [FINAL_TESTING]
+GO
+/****** Object:  StoredProcedure [dbo].[usp_getRequestForPayment]    Script Date: 3/13/2017 6:28:29 PM ******/
+IF OBJECT_ID('[usp_getRequestForPayment]') IS NOT NUll
+	DROP PROCEDURE [dbo].[usp_getRequestForPayment]
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
 --usp_getRequestForPayment 3
-alter procedure usp_getRequestForPayment(
+create procedure usp_getRequestForPayment(
 	@statuscode int=0
 )
 as
