@@ -205,13 +205,16 @@ namespace LMS.Controllers
        
 
         [HttpPost]
-        public ActionResult InsertNewLoan(BusinessObjects.LoanApplicationModel loan)
+        public ActionResult InsertNewLoan(string loan)
         {
+            JavaScriptSerializer jsonSerializer = new JavaScriptSerializer();
+            BusinessObjects.LoanApplicationModel obj = jsonSerializer.Deserialize<BusinessObjects.LoanApplicationModel>(loan);
+
 
             List<Dictionary<string, object>> session = (List<Dictionary<string, object>>)Session["loginDetails"];
             
             string user = session[0]["ID"].ToString();
-            return Json(service.insertLoan(null, user));
+            return Json(service.insertLoan(obj, user));
         }
 
         //getDistrict, getBranch, getApplicationType, getLoanProduct, getSetPerProduct, getTerms, getCollateralType

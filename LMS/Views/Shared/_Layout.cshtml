@@ -171,7 +171,7 @@
     <span id="userMenu" style="visibility:hidden;position:absolute;">@Href("~/Account/FetchUserMenus")</span>
     <span id="lnkBorrowerProfile" style="visibility:hidden;position:absolute;">@Href("~/Customer")</span>
     <span id="lnkLoanApplication" style="visibility:hidden;position:absolute;">@Href("~/Application")</span>
-    <span id="lnkCreditInvestigation" style="visibility:hidden;position:absolute;">@Href("~/Customer")</span>
+    <span id="lnkCreditInvestigation" style="visibility:hidden;position:absolute;">@Href("~/CreditInvestigation")</span>
     <span id="lnkDirectLoanReceipt" style="visibility:hidden;position:absolute;">@Href("~/Booking/DirectLoanReceipt")</span>
     <span id="lnkCheckVoucher" style="visibility:hidden;position:absolute;">@Href("~/Booking/CheckVoucher")</span>
     <span id="lnkCIRForm" style="visibility:hidden;position:absolute;">@Href("~/Booking/CIRForm")</span>
@@ -190,10 +190,12 @@
     <span id="lnkSecurityManager" style="visibility:hidden;position:absolute;">@Href("~/SecurityManager")</span>
     <span id="lnkLibrary" style="visibility:hidden;position:absolute;">@Href("~/LibraryList")</span>
     <span id="lnkLogin" style="visibility:hidden;position:absolute;">@Href("~/Account/Login")</span>
+    <span id="lnkRoles" style="visibility:hidden;position:absolute;">@Href("~/Library?ComponentName=Role|Role")</span>
+    <span id="lnkUserRoleMenu" style="visibility:hidden;position:absolute;">@Href("~/UserRoleMenu")</span>
 
     @Scripts.Render("~/Content/themeui/js")    
     @Scripts.Render("~/Content/DataTableJS")    
-    @Scripts.Render("~/ViewsJS")
+    
 
     @RenderSection("scripts", required: false)
 </body>
