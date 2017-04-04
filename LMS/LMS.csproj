@@ -489,6 +489,7 @@
     <Content Include="Views\DTSecurityManager\_Update_UserAccount.cshtml" />
     <Content Include="Views\DevelopmentTools\Reference.cshtml" />
     <Content Include="Views\DevelopmentTools\LibraryList.cshtml" />
+    <Content Include="Views\CreditInvestigation\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -505,8 +506,8 @@
     <Folder Include="Content\uiPlugins\theme\css\patterns\" />
     <Folder Include="Content\uiPlugins\theme\css\plugins\" />
     <Folder Include="Content\uiPlugins\theme\js\demo\" />
+    <Folder Include="ViewsJS\CreditInvestigation\" />
     <Folder Include="Views\Collections\" />
-    <Folder Include="Views\CreditInvestigation\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />

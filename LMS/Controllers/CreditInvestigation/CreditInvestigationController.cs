@@ -9,6 +9,7 @@ namespace LMS.Controllers
     public class CreditInvestigationController : Controller
     {
         // GET: CreditInvestigation
+        [Route("CreditInvestigation")]
         public ActionResult Index()
         {
             return View();
