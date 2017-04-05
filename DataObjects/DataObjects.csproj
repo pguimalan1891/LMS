@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="AdoNET\AccountingDAO.cs" />
     <Compile Include="AdoNET\BookingDAO.cs" />
+    <Compile Include="AdoNET\CreditInvestigationDAO.cs" />
     <Compile Include="AdoNET\CustomerDAO.cs" />
     <Compile Include="AdoNET\AccountDAO.cs" />
     <Compile Include="AdoNET\DTSecurityManagerDAO.cs" />
@@ -59,6 +60,7 @@
     <Compile Include="IAccountDAO.cs" />
     <Compile Include="IAccountingDAO.cs" />
     <Compile Include="IBookingDAO.cs" />
+    <Compile Include="ICreditInvestigationDAO.cs" />
     <Compile Include="ICustomerDAO.cs" />
     <Compile Include="IDAOFactory.cs" />
     <Compile Include="IDTSecurityManagerDAO.cs" />

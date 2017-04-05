@@ -1,11 +1,38 @@
 ﻿
 $(function () {
+    initComakers('LA-' + tmpCrObject['CINumber']);
+    initCollaterals('LA-' + tmpCrObject['CINumber']);
+    computeSummary();
 
-  init();
+    $('#cir_deduction').change(function () {
+      
+        computeSummary();
+    });
+    $('#cir_spouseDeduction').change(function () {
+      
+        computeSummary();
+    });
+    $('#cir_businessDeduction').change(function () {
+      
+        computeSummary();
+    });
 });
 
-var tmpCrObject;
-var tempComaker = {};
+function computeSummary()
+{
+    $('#cir_netIncome').val($('#cir_income').val() - $('#cir_deduction').val());
+    $('#cir_spouseNetIncome').val($('#cir_spouseIncome').val() - $('#cir_spouseDeduction').val());
+
+    var totalExpense = 0;
+   
+    totalExpense = parseFloat($('#cir_livingExpense').val()) + parseFloat($('#cir_rentals').val()) + parseFloat($('#cir_lightWater').val()) + parseFloat($('#cir_education').val()) + parseFloat($('#cir_amortization').val()) + parseFloat($('#cir_transportation').val()) + parseFloat($('#cir_otherExpense').val());
+    $('#cir_totalExpenses').val(totalExpense);
+    $('#cir_GDI').val(parseFloat($('#cir_businessIncome').val()) + parseFloat($('#cir_spouseNetIncome').val()) + parseFloat($('#cir_netIncome').val()) - parseFloat($('#cir_totalExpenses').val()));
+    $('#cir_NDI').val($('#cir_GDI').val() - $('#cir_Class').val());
+    $('#cir_Excess').val($('#cir_NDI').val() - $('#cir_sumMonthlyInstallment').val());
+}
+
+
 var tempCollaterls = {};
 var tmpCollObject = {
     'ID': '',
@@ -76,6 +103,7 @@ function changeCollateralFields(fldType)
 function init() {
     jsonReq('CreditInvestigation/New', { 'LoanApplicationNo': 'LA-2017030800001' }, function (data) {
         tmpCrObject = data;
+     
     });
     
 }
@@ -88,7 +116,7 @@ function SaveReport()
 
 
 function intiCollType() {
-    jsonReq('Application/ListCollateralType', {}, function (data) {
+    jsonReq('../Application/ListCollateralType', {}, function (data) {
 
         $('#list_coltype').html("");
         $.each(data, function (datakey, comp) {
@@ -133,7 +161,7 @@ function initStaticOthers() {
 }
 
     function loadComakers(code) {
-        jsonReq('../Application/ListComakers', { loanCode: code }, function (data) {
+        jsonReq('../../Application/ListComakers', { loanCode: code }, function (data) {
        
             tblBookingCV = $('#tblComakers').DataTable();
             tblBookingCV.clear();
@@ -155,7 +183,7 @@ function initStaticOthers() {
             }
         });
     }
-    function initComakers()
+    function initComakers(acct)
     {
         $('#tblComakers').DataTable({
             autoWidth: true,
@@ -169,7 +197,7 @@ function initStaticOthers() {
             ajax: {
                 type: 'post',
                 contentType: 'application/json; charset=utf-8',
-                url: '../Application/ListComakers/' + $('#AccountNo').val(),
+                url: '../../Application/ListComakers/' + acct,
                 data: function (d) {
                     return JSON.stringify(d);
                 },
@@ -329,7 +357,7 @@ function initStaticOthers() {
     }
 
 
-    function initCollaterals() {
+    function initCollaterals(acct) {
         $('#tblCollateral').DataTable({
             autoWidth: true,
             initComplete: function () {
@@ -342,7 +370,7 @@ function initStaticOthers() {
             ajax: {
                 type: 'post',
                 contentType: 'application/json; charset=utf-8',
-                url: '../Application/ListCollaterals/' + $('#AccountNo').val(),
+                url: '../../Application/ListCollaterals/' + acct,
                 data: function (d) {
                     return JSON.stringify(d);
                 },

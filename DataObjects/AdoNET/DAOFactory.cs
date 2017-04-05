@@ -54,5 +54,10 @@ namespace DataObjects.AdoNET
         {
             get { return new HomeDAO(); }
         }
+
+        public ICreditInvestigationDAO CreditInvestigationDAO
+        {
+            get { return new CreditInvestigationDAO(); }
+        }
     }
 }

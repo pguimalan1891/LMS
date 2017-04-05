@@ -50,8 +50,18 @@ namespace BusinessObjects
         public IEnumerable<CreditStatus> creditStatus;
         public IEnumerable<RelativesNLApplicant> relativeNLApplicant;
 
+        public IEnumerable<CRIncome> incomes;
+
+        public newLoanBorrowerProfile borrowProf;
+        public LoanApplicationModel loanModel;
     }
 
+    public class CRIncome
+    {
+        public string IncomeType;
+        public string IncomeAmount;
+      
+    }
     public class InterviewedPersons
     {
         public string FullName;

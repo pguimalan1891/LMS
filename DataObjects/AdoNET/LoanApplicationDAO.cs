@@ -423,6 +423,7 @@ namespace DataObjects.AdoNET
         static Func<IDataReader, BusinessObjects.LoanList> selectLoanList = reader =>
            new BusinessObjects.LoanList
            {
+           
                ID = reader["ID"].ToString(),
                 LA_No = "<a href='../LoanApplication?code="+reader["LA_No"].AsString()+"'>"+ reader["LA_No"].AsString() + "</a>",
                Status = reader["Status"].AsString(),

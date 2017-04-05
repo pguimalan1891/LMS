@@ -610,6 +610,7 @@
     <Content Include="Views\DevelopmentTools\LibraryList.cshtml" />
     <Content Include="Views\CreditInvestigation\Index.cshtml" />
     <Content Include="Views\DTSecurityManager\RoleMenu.cshtml" />
+    <Content Include="Views\CreditInvestigation\CreditInvestigationFrm.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
