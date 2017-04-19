@@ -521,6 +521,7 @@
     <Content Include="ViewsJS\Booking\JS_Booking_CIR.js" />
     <Content Include="ViewsJS\Booking\JS_Booking_CV.js" />
     <Content Include="ViewsJS\Booking\JS_Booking_DV.js" />
+    <Content Include="ViewsJS\Collection\JS_OfficialReceipt.js" />
     <Content Include="ViewsJS\Customer\JS_Customer.js" />
     <Content Include="ViewsJS\Customer\JS_CustomerAdd.js" />
     <Content Include="ViewsJS\Customer\JS_CustomerUpdate.js" />
@@ -609,6 +610,7 @@
     <Content Include="Views\DevelopmentTools\Reference.cshtml" />
     <Content Include="Views\DevelopmentTools\LibraryList.cshtml" />
     <Content Include="Views\DTSecurityManager\RoleMenu.cshtml" />
+    <Content Include="Views\OfficialReceipt\_LocateDLR.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

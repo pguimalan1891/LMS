@@ -16,6 +16,7 @@ namespace ServiceLayer.Interface
         int UpdateStatusUserAccount(string ID, string Status);
         int ResetPasswordUserAccount(UserAccount UserAccount);
         UserAccount getUserAccountbyID(string ID);
+        UserAccount getUserAccountbyCode(string Code);
         int UpdateUserAccounts(string ProcessType, UserAccount UserAccount);
         List<Dictionary<string, object>> getUserAccounts();
         IEnumerable<UserAccountStatus> getUserAccountStatus();

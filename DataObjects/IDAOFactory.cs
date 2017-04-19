@@ -19,5 +19,6 @@ namespace DataObjects
         IMaintenanceAgentProfileDAO MaintenanceAgentProfileDAO { get;   }
         IDTSecurityManagerDAO DTSecurityManagerDAO { get; }
         IHomeDAO HomeDAO { get; }
+        IOfficialReceiptDAO OfficialReceiptDAO { get; }
     }
 }

@@ -12,13 +12,7 @@ namespace LMS
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-
-            routes.MapRoute(
-             name: "DefaultForOfficialReceipt",
-             url: "OfficialReceipt",
-             defaults: new { controller = "OfficialReceipt", action = "Index"}
-            );
-
+            
             routes.MapMvcAttributeRoutes();
         
             routes.MapRoute(

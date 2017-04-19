@@ -1,20 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.ComponentModel.DataAnnotations;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace LMS.Models
+namespace BusinessObjects
 {
-    public class OfficialReceiptModel
+    public class OfficialReceipt
     {
-        public OfficialReceipt OfficialReceipt { get; set; }
-        public IEnumerable<PaymentMode> PaymentMode { get; set; }
-        public IEnumerable<Bank> Bank { get; set; }
-        public LMS.Models.DevelopmentTools.UserAccount UserAccount { get; set; }
-    }
-    public class OfficialReceipt {
-        [Required(ErrorMessage = "ORNumber is Required.")]
         public string ORNumber { get; set; }
         public string ORDate { get; set; }
         public string OrganizationID { get; set; }
@@ -36,24 +29,10 @@ namespace LMS.Models
         public string GIBCODue { get; set; }
         public string RFCDue { get; set; }
         public string PPD { get; set; }
-        public string LoanAccountNo { get; set; }
+        public string LoanAccountNo { get; set; }        
         public string DirectLoanReceiptNo { get; set; }
         public string CustomerName { get; set; }
         public string CreditInvestigator { get; set; }
         public string UserID { get; set; }
     }
-    public class PaymentMode
-    {
-        public string PaymentModeID { get; set; }
-        public string Code { get; set; }
-        public string Description { get; set; }
-    }
-
-    public class Bank
-    {
-        public string BankID { get; set; }
-        public string Code { get; set; }
-        public string Description { get; set; }
-    }    
-        
 }
