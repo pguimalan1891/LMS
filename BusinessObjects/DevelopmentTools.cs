@@ -55,4 +55,19 @@ namespace BusinessObjects
         public string Permission { get; set; }
         public string Notes { get; set; }
     }
+
+    public class PaymentMode
+    {
+        public string PaymentModeID { get; set; }
+        public string Code { get; set; }
+        public string Description { get; set; }
+    }
+
+    public class Bank
+    {
+        public string BankID { get; set; }
+        public string Code { get; set; }
+        public string Description { get; set; }
+    }
 }
+

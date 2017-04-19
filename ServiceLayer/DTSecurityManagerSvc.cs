@@ -59,6 +59,11 @@ namespace ServiceLayer
             return DTSecurityManager.getUserAccountbyID(ID).First();
         }
 
+        public UserAccount getUserAccountbyCode(string Code)
+        {
+            return DTSecurityManager.getUserAccountbyCode(Code).First();
+        }
+
         public List<Dictionary<string, object>> getUserAccounts()
         {
             return DTSecurityManager.getUserAccounts();

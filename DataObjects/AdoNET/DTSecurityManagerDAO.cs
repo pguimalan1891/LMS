@@ -143,6 +143,42 @@ namespace DataObjects.AdoNET
                UASMDesciption = reader["uasm_desc"].AsString()
            };
 
+        public IEnumerable<UserAccount> getUserAccountbyCode(string Code)
+        {
+            string sql = "Select ID,CODE,LAST_NAME,FIRST_NAME,MIDDLE_NAME,full_name,ROLE_NAME,POSTAL_ADDRESS,EMAIL_ADDRESS,POSITION_ID,position_code,position_desc," +
+            "RANK_ID,Rank,ASSIGNED_OFFICE_ID,assigned_office_code,assigned_office_desc,COMPANY_ID,company_code,company_name,PASSWORD_NEVER_EXPIRES,STATUS,TYPE,uasm_desc from uvw_UserAccounts where Code=@Code";
+            object[] parms = { "Code", Code };
+            return db.Read(sql, selectUserAccountCode, 0, parms);
+        }
+        static Func<IDataReader, UserAccount> selectUserAccountCode = reader =>
+           new UserAccount
+           {
+               ID = reader["ID"].AsString(),
+               Code = reader["CODE"].AsString(),
+               LastName = reader["LAST_NAME"].AsString(),
+               FirstName = reader["FIRST_NAME"].AsString(),
+               MiddleName = reader["MIDDLE_NAME"].AsString(),
+               FullName = reader["full_name"].AsString(),
+               RoleName = reader["ROLE_NAME"].AsString(),
+               PostalAddress = reader["POSTAL_ADDRESS"].AsString(),
+               EmailAddress = reader["EMAIL_ADDRESS"].AsString(),
+               PositionID = reader["POSITION_ID"].AsString(),
+               PositionCode = reader["position_code"].AsString(),
+               Position = reader["position_desc"].AsString(),
+               Rank = reader["Rank"].AsString(),
+               RankID = reader["RANK_ID"].AsString(),
+               OrganizationID = reader["ASSIGNED_OFFICE_ID"].AsString(),
+               OrganizationCode = reader["assigned_office_code"].AsString(),
+               Organization = reader["assigned_office_desc"].AsString(),
+               CompanyID = reader["COMPANY_ID"].AsString(),
+               CompanyCode = reader["company_code"].AsString(),
+               CompanyName = reader["company_name"].AsString(),
+               PasswordNeverExpires = reader["PASSWORD_NEVER_EXPIRES"].AsString(),
+               Status = reader["STATUS"].AsString(),
+               Type = reader["TYPE"].AsString(),
+               UASMDesciption = reader["uasm_desc"].AsString()
+           };
+
         public List<Dictionary<string, object>> getUserAccounts()
         {
             string sql = "Select ID,CODE,LAST_NAME as [Last Name],FIRST_NAME as [First Name],MIDDLE_NAME as [Middle Name],assigned_office_desc as [Organization]," +

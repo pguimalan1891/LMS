@@ -55,6 +55,11 @@ namespace DataObjects.AdoNET
             get { return new HomeDAO(); }
         }
 
+        public IOfficialReceiptDAO OfficialReceiptDAO
+        {
+            get { return new OfficialReceiptDAO(); }
+        }
+
         public ICreditInvestigationDAO CreditInvestigationDAO
         {
             get { return new CreditInvestigationDAO(); }

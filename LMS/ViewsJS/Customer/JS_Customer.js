@@ -1,5 +1,5 @@
 ﻿var tblComponent;
-var fntblComponent = $("#tbl-customer thead")
+var fntblComponent = $("#tbl-customer thead");
 $(document).ready(function () {    
     loadComponents("Customer/FetchCustomerRecord");
     $('.applyDatePicker').datepicker();
@@ -29,7 +29,7 @@ function loadComponents(url) {
     req.done(function (data) {
         var dataColumns = [];       
                 
-        var thead = "<tr>"
+        var thead = "<tr>";
         var colCount = 0;        
         $.each(data, function (datakey, comp) {
             $.each(comp, function (compdatakey, compData) {

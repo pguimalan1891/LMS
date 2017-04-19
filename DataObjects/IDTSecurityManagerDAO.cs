@@ -16,6 +16,7 @@ namespace DataObjects
         int ResetPasswordUserAccount(UserAccount UserAccount);
         int UpdateUserAccounts(string ProcessType, UserAccount UserAccount);
         IEnumerable<UserAccount> getUserAccountbyID(string ID);
+        IEnumerable<UserAccount> getUserAccountbyCode(string Code);
         List<Dictionary<string, object>> getUserAccounts();
         IEnumerable<UserAccountStatus> getUserAccountStatus();
         IEnumerable<Company> getListCompany();

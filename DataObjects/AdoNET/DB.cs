@@ -47,7 +47,7 @@ namespace DataObjects.AdoNET
         {
             List<Dictionary<string, object>> retList = new List<Dictionary<string, object>>();
             using (var connection = CreateConnection())
-            {
+            {                
                 using (var command = CreateCommand(sql, connection, commandType, parms))
                 {
                     using (var reader = command.ExecuteReader())
