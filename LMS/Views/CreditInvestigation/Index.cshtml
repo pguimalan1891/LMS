@@ -1,0 +1,32 @@
+﻿
+@model BusinessObjects.CreditInvestigation
+
+
+
+ @{
+    ViewBag.Title = "Credit Investigation";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="panel panel-info">
+    <div class="panel panel-heading">
+        <h2>Credit Investigation Menu</h2>
+    </div>
+    <div class="panel panel-body">
+        <div class="row">
+            <a class="animated flipInY col-md-3" style="padding: 2%;" href="~/CreditInvestigation/New/LA-2017030800001">
+                <div class="alert alert-success" style="height: 250px;">
+                    <center>
+                        <div class="btn btn-info btn-circle btn-xl" onclick="window.location = 'New';">
+                            <i class="glyphicon glyphicon-edit" style="vertical-align:middle; text-align: center; height: 2%;"></i>
+
+                        </div>
+                        <h2 style="min-height: 72px;">New Credit Investigation Report</h2>
+                        <p> Create Credit Investigation  Report</p>
+                    </center>
+                </div>
+
+            </a>
+          </div>
+        </div>
+</div>

@@ -12,18 +12,8 @@ namespace DataObjects.AdoNET
 {
     public class DTSecurityManagerDAO : IDTSecurityManagerDAO
     {
-        static DB db = new DB();
-
-        public List<Dictionary<string, object>> getUserRoleMenu(string RoleID)
-        {
-            string sql = "Select menu.MenuID,menu.ParentID,menu.MenuName,menu.DisplayName,menu.LnkAddress,menu.Ordering," +
-                "Case When umenuExisting.MenuID is null then 0 else 1 End as isGranted from User_menu menu " +
-                "left join (Select umenu.MenuID from User_menu umenu inner join User_Role_Menu urmenu on umenu.MenuID = urmenu.MenuID " +
-                "where urmenu.UserRoleID = @RoleID) umenuExisting on menu.MenuID = umenuExisting.MenuID Order by menu.MenuID";
-            object[] parms = { "RoleID", RoleID };
-            return db.ReadDictionary(sql, 0, parms);
-        }
-
+        static DB db = new DB();        
+        
         public int updateUserRoles(List<Roles> userRoles,string userAccountID)
         {
             string sql = "Delete from user_role where USER_ID = @ID";

@@ -59,5 +59,10 @@ namespace DataObjects.AdoNET
         {
             get { return new OfficialReceiptDAO(); }
         }
+
+        public ICreditInvestigationDAO CreditInvestigationDAO
+        {
+            get { return new CreditInvestigationDAO(); }
+        }
     }
 }

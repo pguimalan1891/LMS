@@ -17,7 +17,7 @@
     <AssemblyName>LMS</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
-    <UseIISExpress>false</UseIISExpress>
+    <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -514,6 +514,7 @@
     <Content Include="Scripts\respond.min.js" />
     <None Include="Scripts\_references.js" />
     <Content Include="ViewsJS\Accounting\JS_Accounting_RFP.js" />
+    <Content Include="ViewsJS\Application\JS_CreditInvCtrl.js" />
     <Content Include="ViewsJS\Application\JS_ApplicationCtrl.js" />
     <Content Include="ViewsJS\Application\JS_ApplicationListCtrl.js" />
     <Content Include="ViewsJS\Booking\JS_Booking.js" />
@@ -527,7 +528,6 @@
     <Content Include="ViewsJS\Customer\JS_CustomerUpdate.js" />
     <Content Include="ViewsJS\DevelopmentTools\DTSecurityManager.js" />
     <Content Include="ViewsJS\DevelopmentTools\JS_UserRole.js" />
-    <Content Include="ViewsJS\Home\JS_Home.js" />
     <Content Include="ViewsJS\Home\JS_MasterPage.js" />
     <Content Include="ViewsJS\Library\JS_LibraryComponent.js" />
     <Content Include="ViewsJS\MaintenanceAgentProfile\JS_AgentProfile.js" />
@@ -609,7 +609,9 @@
     <Content Include="Views\DTSecurityManager\_Update_UserAccount.cshtml" />
     <Content Include="Views\DevelopmentTools\Reference.cshtml" />
     <Content Include="Views\DevelopmentTools\LibraryList.cshtml" />
+    <Content Include="Views\CreditInvestigation\Index.cshtml" />
     <Content Include="Views\DTSecurityManager\RoleMenu.cshtml" />
+    <Content Include="Views\CreditInvestigation\CreditInvestigationFrm.cshtml" />
     <Content Include="Views\OfficialReceipt\_LocateDLR.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -624,8 +626,8 @@
     <Folder Include="Content\metroBootstrap\fonts\" />
     <Folder Include="Content\metroBootstrap\styles\" />
     <Folder Include="Content\uiPlugins\theme\js\demo\" />
+    <Folder Include="ViewsJS\CreditInvestigation\" />
     <Folder Include="Views\Collections\" />
-    <Folder Include="Views\CreditInvestigation\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
@@ -667,7 +669,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>12615</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost/LMS</IISUrl>
+          <IISUrl>http://localhost/LMS/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
