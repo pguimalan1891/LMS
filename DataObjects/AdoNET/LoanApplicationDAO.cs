@@ -480,7 +480,7 @@ namespace DataObjects.AdoNET
             string guid = Guid.NewGuid().ToString();
             string guid_reviewer = Guid.NewGuid().ToString();
             string sql = "usp_insertLoan";
-            object[] parms = { "id", guid , "reviewer_id", guid_reviewer, "datetime_created" ,  DateTime.Now.ToShortDateString(),
+            object[] parms = { "guid", guid , "reviewer_id", guid_reviewer, "datetime_created" ,  DateTime.Now.ToShortDateString(),
         "prepared_by_id" , userID ,
         "prepared_by_datetime" , DateTime.Now.ToShortDateString() ,
         "requested_by_id" ,userID ,

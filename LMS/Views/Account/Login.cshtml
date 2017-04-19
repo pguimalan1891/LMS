@@ -9,9 +9,9 @@
 <div class="text-center loginscreen  animated fadeInDown" style="color: white; width: 350px; ">
     <div>
         <div>
-            <h1 class="logo-name">RFC</h1>
+            <h1 class="logo-name">LMS</h1>
         </div>
-        <h3>Radio Wealth Finance Corporation</h3>
+        <h3>LMS</h3>
         <p>
             Loans Management &amp; Processing System
         </p>
@@ -22,15 +22,15 @@
             <hr />
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-            <div class="form-group">
-                @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-                <div class="col-md-10">
+            <div class="form-group row">
+                @Html.LabelFor(m => m.Email, new { @class = "col-md-3 control-label" })
+                <div class="col-md-9">
                     @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @style = "color: black;" })
                 </div>
             </div>
-            <div class="form-group">
-                @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-                <div class="col-md-10">
+            <div class="form-group row">
+                @Html.LabelFor(m => m.Password, new { @class = "col-md-3 control-label" })
+                <div class="col-md-9">
                     @Html.PasswordFor(m => m.Password, new { @class = "form-control", @style = "color: black;" })
                     @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
                 </div>

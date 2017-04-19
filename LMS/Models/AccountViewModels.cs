@@ -49,12 +49,12 @@ namespace LMS.Models
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "Username")]
+        [Display(Name = "Username   ")]
         public string Email { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "Password   ")]
         public string Password { get; set; }
 
         [Display(Name = "Remember me?")]
