@@ -15,11 +15,6 @@ namespace ServiceLayer
         static readonly IDAOFactory factory = DAOFactories.GetFactory();
         static readonly IDTSecurityManagerDAO DTSecurityManager = factory.DTSecurityManagerDAO;
 
-        public List<Dictionary<string, object>> getUserRoleMenu(string RoleID)
-        {
-            return DTSecurityManager.getUserRoleMenu(RoleID);
-        }
-
         public int updateUserRoles(List<Roles> userRoles, string userAccountID)
         {
             return DTSecurityManager.updateUserRoles(userRoles, userAccountID);
@@ -62,6 +57,11 @@ namespace ServiceLayer
         public UserAccount getUserAccountbyID(string ID)
         {
             return DTSecurityManager.getUserAccountbyID(ID).First();
+        }
+
+        public UserAccount getUserAccountbyCode(string Code)
+        {
+            return DTSecurityManager.getUserAccountbyCode(Code).First();
         }
 
         public List<Dictionary<string, object>> getUserAccounts()

@@ -89,6 +89,6 @@ function ViewAgent(code) {
 }
 
 function AddAgent() {
-    window.location.href = '/AgentProfileAdd';
+    window.location.href = 'AgentProfileAdd';
 }
 

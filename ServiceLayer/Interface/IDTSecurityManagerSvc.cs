@@ -9,13 +9,13 @@ namespace ServiceLayer.Interface
 {
     public interface IDTSecurityManagerSvc
     {
-        List<Dictionary<string, object>> getUserRoleMenu(string RoleID);
         int updateUserRoles(List<Roles> userRoles, string userAccountID);
         IEnumerable<Roles> getGrantedRoles(string ID);
         IEnumerable<Roles> getNotGrantedRoles(string ID);
         int UpdateStatusUserAccount(string ID, string Status);
         int ResetPasswordUserAccount(UserAccount UserAccount);
         UserAccount getUserAccountbyID(string ID);
+        UserAccount getUserAccountbyCode(string Code);
         int UpdateUserAccounts(string ProcessType, UserAccount UserAccount);
         List<Dictionary<string, object>> getUserAccounts();
         IEnumerable<UserAccountStatus> getUserAccountStatus();

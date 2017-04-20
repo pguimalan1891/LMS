@@ -56,7 +56,7 @@ function getMenus(menus, ParentID) {
     return SortMenu(MainMenu);
 }
 
-function SortMenu(menu) {    
+function SortMenu(menu) {
     var TempMenu = {};
     for (var x = 0; x < menu.length ; x++) {
         for (var y = 1; y < menu.length ; y++) {

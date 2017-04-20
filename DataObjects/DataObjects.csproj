@@ -45,12 +45,14 @@
   <ItemGroup>
     <Compile Include="AdoNET\AccountingDAO.cs" />
     <Compile Include="AdoNET\BookingDAO.cs" />
+    <Compile Include="AdoNET\CreditInvestigationDAO.cs" />
     <Compile Include="AdoNET\CustomerDAO.cs" />
     <Compile Include="AdoNET\AccountDAO.cs" />
     <Compile Include="AdoNET\DTSecurityManagerDAO.cs" />
     <Compile Include="AdoNET\HomeDAO.cs" />
     <Compile Include="AdoNET\MaintenanceAgentProfileDAO.cs" />
     <Compile Include="AdoNET\LoanApplicationDAO.cs" />
+    <Compile Include="AdoNET\OfficialReceiptDAO.cs" />
     <Compile Include="DAOFactories.cs" />
     <Compile Include="AdoNET\DAOFactory.cs" />
     <Compile Include="AdoNET\DB.cs" />
@@ -59,6 +61,7 @@
     <Compile Include="IAccountDAO.cs" />
     <Compile Include="IAccountingDAO.cs" />
     <Compile Include="IBookingDAO.cs" />
+    <Compile Include="ICreditInvestigationDAO.cs" />
     <Compile Include="ICustomerDAO.cs" />
     <Compile Include="IDAOFactory.cs" />
     <Compile Include="IDTSecurityManagerDAO.cs" />
@@ -66,6 +69,7 @@
     <Compile Include="ILibraryDAO.cs" />
     <Compile Include="ILoanApplicationDAO.cs" />
     <Compile Include="IMaintenanceAgentProfileDAO.cs" />
+    <Compile Include="IOfficialReceiptDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="SPs\Accounting\usp_getRequestForPayment.sql" />
     <Content Include="SPs\Booking\usp_getChangeCCIForm.sql" />

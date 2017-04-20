@@ -1,309 +1,217 @@
-﻿@model LMS.Models.OfficialReceiptViewModel
+﻿@model LMS.Models.OfficialReceiptModel
 @{
     ViewBag.Title = "OfficialReceipt";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<div class="panel panel-info">
-    <div class="panel panel-heading">
-        <h2>Official Receipt</h2>
-    </div>
-    <div class="panel panel-body">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-7">
-                <div class="ibox float-e-margins">
-                    <div class="ibox-title">
-                        <h5>General Information</h5>
-                    </div>
-                    <div class="ibox-content">
-                        <div class="form-horizontal">
-                            <p>Please fill-in all required fields.</p>
-                            <div class="form-group">
-                                <label class="col-lg-2 control-label">Or No.:</label>
-                                    <div class="col-lg-10"><input type="text" placeholder="" class="form-control"></div>
-                               
-                            </div>
-                            <div class="form-group">
-                                <label class="col-lg-2 control-label">OR Date.:</label>
-
-                                <div class="col-lg-10"><input type="date" placeholder="" class="form-control"></div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-lg-2 control-label">Branch:</label>
-
-                                <div class="col-lg-10"><input type="text" placeholder="" class="form-control"></div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-lg-2 control-label">Payment Mode</label>
-
-                                <div class="col-lg-10"><input type="text" placeholder="" class="form-control"></div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-lg-2 control-label">Amount Due:</label>
-
-                                <div class="col-lg-10"><input type="text" placeholder="" class="form-control"></div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-lg-2 control-label">Amount Received:</label>
-
-                                <div class="col-lg-10"><input type="text" placeholder="" class="form-control"></div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-lg-2 control-label">Bank Name:</label>
-
-                                <div class="col-lg-10">
-                                    <select class="form-control">
-                                        <option>Branch One</option>
-                                        <option>Branch One</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-lg-2 control-label">Check No.:</label>
-
-                                <div class="col-lg-10"><input type="text" placeholder="" class="form-control"></div>
-                            </div>
-                            
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        @if (Model.isSundry != true)
-        {
-            <div class="col-md-5">
-                <div class="ibox float-e-margins">
-                    <div class="ibox-title">
-                        <h5>Discounts</h5>
-                    </div>
-                    <div class="ibox-content">
-                        <div class="form-horizontal">
-                            <div class="form-group">
-                                <label class="col-lg-4 control-label">Acceleration Discount:</label>
-
-                                <div class="col-lg-8">
-                                    <input type="text" placeholder="" class="form-control">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-lg-4 control-label">Penalty Waived:</label>
-
-                                <div class="col-lg-8">
-                                    <input type="text" placeholder="" class="form-control">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-lg-4 control-label">Prompt Payment Discount:</label>
-
-                                <div class="col-lg-8">
-                                    <input type="text" placeholder="" class="form-control">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-lg-4 control-label">Total Discount:</label>
-
-                                <div class="col-lg-8">
-                                    <input type="text" placeholder="" class="form-control">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="ibox float-e-margins">
-                    <div class="ibox-title">
-                        <h5>Accounts Receivables</h5>
-                    </div>
-                    <div class="ibox-content">
-                        <div class="form-horizontal">
-                            <div class="form-group">
-                                <label class="col-lg-4 control-label">PIP:</label>
-
-                                <div class="col-lg-8">
-                                    <input type="text" placeholder="" class="form-control">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-lg-4 control-label">GBCO:</label>
-
-                                <div class="col-lg-8">
-                                    <input type="text" placeholder="" class="form-control">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-lg-4 control-label">RFC:</label>
-
-                                <div class="col-lg-8">
-                                    <input type="text" placeholder="" class="form-control">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-lg-4 control-label">Total RFC:</label>
-
-                                <div class="col-lg-8">
-                                    <input type="text" placeholder="" class="form-control">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-        }else
-        {
-            <div class="col-md-5">
-                <div class="ibox float-e-margins">
-                    <div class="ibox-title">
-                        <h5>Sundry Collection</h5>
-                    </div>
-                    <div class="ibox-content">
-                        <div class="form-horizontal">
-                            <div class="form-group">
-                                <label class="col-lg-5 control-label">Handling Fee:</label>
-
-                                <div class="col-lg-7">
-                                    <input type="text" placeholder="" class="form-control">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-lg-5 control-label">DST Amount:</label>
-
-                                <div class="col-lg-7"><input type="text" placeholder="" class="form-control"></div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-lg-5 control-label">Restructuring Fee:</label>
-
-                                <div class="col-lg-7"><input type="text" placeholder="" class="form-control"></div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-lg-5 control-label">GIBCO Premium</label>
-
-                                <div class="col-lg-7"><input type="text" placeholder="" class="form-control"></div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-lg-5 control-label">Processing Fee:</label>
-
-                                <div class="col-lg-7"><input type="text" placeholder="" class="form-control"></div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-lg-5 control-label">PIP:</label>
-
-                                <div class="col-lg-7"><input type="text" placeholder="" class="form-control"></div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-lg-5 control-label">Downpayment:</label>
-
-                                <div class="col-lg-7"><input type="text" placeholder="" class="form-control"></div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-lg-5 control-label">Other Amount:</label>
-
-                                <div class="col-lg-7"><input type="text" placeholder="" class="form-control"></div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-lg-5 control-label">Other Description:</label>
-
-                                <div class="col-lg-7"><input type="text" placeholder="" class="form-control"></div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-lg-5 control-label">Sales of Repossessed:</label>
-
-                                <div class="col-lg-7"><input type="text" placeholder="" class="form-control"></div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-lg-5 control-label">Total Sundry:</label>
-
-                                <div class="col-lg-7"><input type="text" placeholder="" class="form-control"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        }
-
-        </div>
-   
-        @if (Model.isSundry != true)
-        {
-
-            <div class="row">
-                <div class="ibox float-e-margins">
-                    <div class="ibox-title">
-                        <h5>General Information</h5>
-                    </div>
-                    <div class="ibox-content">
-                        <div class="form-horizontal">
-                            <p>Please fill-in all required fields.</p>
-                            <div class="form-group">
-                                <label class="col-lg-2 control-label">Or No.:</label>
-
-                                <div class="col-lg-10">
-                                    <input type="email" placeholder="" class="form-control">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-lg-2 control-label">OR Date.:</label>
-
-                                <div class="col-lg-10"><input type="date" placeholder="" class="form-control"></div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-lg-2 control-label">Branch:</label>
-
-                                <div class="col-lg-10"><input type="text" placeholder="" class="form-control"></div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-lg-2 control-label">Payment Mode</label>
-
-                                <div class="col-lg-10"><input type="text" placeholder="" class="form-control"></div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-lg-2 control-label">Amount Due:</label>
-
-                                <div class="col-lg-10"><input type="text" placeholder="" class="form-control"></div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-lg-2 control-label">Amount Received:</label>
-
-                                <div class="col-lg-10"><input type="text" placeholder="" class="form-control"></div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-lg-2 control-label">Bank Name:</label>
-
-                                <div class="col-lg-10">
-                                    <select class="form-control">
-                                        <option>Branch One</option>
-                                        <option>Branch One</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-lg-2 control-label">Check No.:</label>
-
-                                <div class="col-lg-10"><input type="text" placeholder="" class="form-control"></div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-        }
-       
-        <div class="row">
-            <div class="pull-right">
-                <div class="btn btn-success">
-                            Submit
-                  </div>
-                <div class="btn btn-danger">
-                    Cancel
-                </div>
-            </div>
-        </div>
-     </div>
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "submitForm" }))
+{
+    @Html.AntiForgeryToken()
     
+    <div class="container-fluid">
+        <div class="panel panel-info">
+            <div class="panel panel-heading panel-title">
+                <b>Official Receipt</b>
+            </div>
+            <div class="panel panel-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-title">
+                                <h5>General Information</h5>
+                            </div>
+                            <div class="ibox-content">
+                                <div class="form-horizontal">                                
+                                    <div class="form-group">
+                                        <label class="col-lg-3 control-label">Or No.:</label>
+                                        <div class="col-lg-9">@Html.TextBoxFor(model => model.OfficialReceipt.ORNumber, new { @class = "form-control" })</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-3 control-label">OR Date.:</label>
+                                        <div class="col-lg-9">@Html.TextBoxFor(model => model.OfficialReceipt.ORDate, new { @class = "form-control" })</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-3 control-label">Branch:</label>
+                                        <div class="col-lg-9">@Html.TextBoxFor(model => model.UserAccount.Organization, new { @disabled = "disabled", @class = "form-control" })</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-3 control-label">Payment Mode</label>
+                                        <div class="col-lg-9">@Html.DropDownListFor(model => model.OfficialReceipt.PaymentModeID, new SelectList(Model.PaymentMode, "PaymentModeID", "Description"), new { @class = "form-control" })</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-3 control-label">Amount Due:</label>
+                                        <div class="col-lg-9">@Html.TextBoxFor(model => model.OfficialReceipt.AmountDue, new { @disabled = "disabled", @class = "form-control" })</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-3 control-label">Amount Received:</label>
+                                        <div class="col-lg-9">@Html.TextBoxFor(model => model.OfficialReceipt.AmountReceived, new { @class = "form-control" })</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-3 control-label">Bank Name:</label>
+                                        <div class="col-lg-9">@Html.DropDownListFor(model => model.OfficialReceipt.BankID, new SelectList(Model.Bank, "BankID", "Description"), new { @disabled = "disabled", @class = "form-control" })</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-3 control-label">Check No.:</label>
+                                        <div class="col-lg-9">@Html.TextBoxFor(model => model.OfficialReceipt.CheckNo, new { @disabled = "disabled", @class = "form-control" })</div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-title">
+                                <h5>Billing Information</h5>
+                            </div>
+                            <div class="ibox-content">
+                                <div class="form-horizontal">
+                                    <div class="form-group">
+                                        <label class="col-lg-3 control-label">Date Due:</label>
+                                        <div class="col-lg-9">@Html.TextBoxFor(model => model.OfficialReceipt.DateDue, new { @disabled = "disabled", @class = "form-control" })</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-3 control-label">PIP Due:</label>
+                                        <div class="col-lg-9">@Html.TextBoxFor(model => model.OfficialReceipt.PIPDue, new { @disabled = "disabled", @class = "form-control" })</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-3 control-label">GIBCO Due:</label>
+                                        <div class="col-lg-9">@Html.TextBoxFor(model => model.OfficialReceipt.GIBCODue, new { @disabled = "disabled", @class = "form-control" })</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-3 control-label">RFC Due:</label>
+                                        <div class="col-lg-9">@Html.TextBoxFor(model => model.OfficialReceipt.RFCDue, new { @disabled = "disabled", @class = "form-control" })</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-3 control-label">PPD:</label>
+                                        <div class="col-lg-9">@Html.TextBoxFor(model => model.OfficialReceipt.PPD, new { @disabled = "disabled", @class = "form-control" })</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-title">
+                                <h5>Account Information</h5>
+                            </div>
+                            <div class="ibox-content">
+                                <div class="form-horizontal">
+                                    <div class="form-group">
+                                        <label class="col-lg-3 control-label">LA No.:</label>
+                                        <div class="col-lg-9">@Html.TextBoxFor(model => model.OfficialReceipt.LoanAccountNo, new { @disabled = "disabled", @class = "form-control" })</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-3 control-label">DLR No.:</label>
+                                        <div class="col-lg-9">@Html.TextBoxFor(model => model.OfficialReceipt.DirectLoanReceiptNo, new { @disabled = "disabled", @class = "form-control" })</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-3 control-label">Customer Name.:</label>
+                                        <div class="col-lg-9">@Html.TextBoxFor(model => model.OfficialReceipt.CustomerName, new { @disabled = "disabled", @class = "form-control" })</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-3 control-label">Credit Investigator:</label>
+                                        <div class="col-lg-9">@Html.TextBoxFor(model => model.UserAccount.Position, new { @disabled = "disabled", @class = "form-control" })</div>
+                                    </div>                               
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-title">
+                                <h5>Discounts</h5>
+                            </div>
+                            <div class="ibox-content">
+                                <div class="form-horizontal">
+                                    <div class="form-group">
+                                        <label class="col-lg-3 control-label">Acceleration Discount:</label>
+                                        <div class="col-lg-9">@Html.TextBoxFor(model => model.OfficialReceipt.AccelerationDiscount, new { @disabled = "disabled", @class = "form-control" })</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-3 control-label">Penalty Waived:</label>
+                                        <div class="col-lg-9">@Html.TextBoxFor(model => model.OfficialReceipt.PenaltyWaived, new { @class = "form-control" })</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-3 control-label">Prompt Payment Discount:</label>
+                                        <div class="col-lg-9">@Html.TextBoxFor(model => model.OfficialReceipt.PromptPaymentDiscount, new { @class = "form-control" })</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-3 control-label">Total Discount:</label>
+                                        <div class="col-lg-9">@Html.TextBoxFor(model => model.OfficialReceipt.TotalDiscount, new { @disabled = "disabled", @class = "form-control" })</div>
+                                    </div>                                
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-title">
+                                <h5>Account Receivables</h5>
+                            </div>
+                            <div class="ibox-content">
+                                <div class="form-horizontal">
+                                    <div class="form-group">
+                                        <label class="col-lg-3 control-label">PIP:</label>
+                                        <div class="col-lg-9">@Html.TextBoxFor(model => model.OfficialReceipt.PIP, new { @class = "form-control" })</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-3 control-label">GIBCO:</label>
+                                        <div class="col-lg-9">@Html.TextBoxFor(model => model.OfficialReceipt.GIBCO, new { @class = "form-control" })</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-3 control-label">RFC:</label>
+                                        <div class="col-lg-9">@Html.TextBoxFor(model => model.OfficialReceipt.RFC, new { @class = "form-control" })</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-3 control-label">Total RFC:</label>
+                                        <div class="col-lg-9">@Html.TextBoxFor(model => model.OfficialReceipt.TotalRFC, new { @disabled = "disabled", @class = "form-control" })</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-title">
+                                <h5>Notes</h5>
+                            </div>
+                            <div class="ibox-content">
+                                <div class="form-horizontal">
+                                    <div class="col-lg-12">@Html.TextAreaFor(model => model.OfficialReceipt.Notes, new { @class = "form-control", @rows = "6", @style = "resize:none;" })</div>
+                                </div>
+                            </div>
+                        </div>                        
+                    </div>
+                </div>            
+            </div>
+            <div class="panel-footer">            
+                <div class="btn btn-success" onclick="submitOfficialReceipt()">Submit for Approval</div>                      
+            </div>
+        </div>
+    </div>
+        
+    <div id="alertModal" class="modal fade" role="dialog">
+        <div class="modal-dialog" style="background-color:#ffffff;width:30%">
+            <div class="modal-header" style="background-color:white">
+                <h3>Validation Summary</h3>
+            </div>
+            <div class="modal-body" style="background-color:white">
+                <div style="color:red;font-size:small;">
+                   OR Number is Required.
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a class="btn btn-info" onclick="$('#alertModal').modal('hide');">&nbsp;OK&nbsp;</a>
+            </div>
+        </div>
+    </div>
+}
+
+<div id="DisplayDLRAccounts" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog" style="background-color:#ffffff;width:90%">
+        <div class="modal-body" style="background-color:white">
+            <div id="display-modal-body">
+                @Html.Partial("_LocateDLR")                    
+            </div>
+        </div>
     </div>
 </div>
+
+
+
+@section Scripts
+{
+    @Helper.LoadCustomJS("ViewsJS/Collection/JS_OfficialReceipt.js", Url)
+}
