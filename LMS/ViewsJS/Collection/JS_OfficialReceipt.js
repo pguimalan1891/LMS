@@ -1,4 +1,4 @@
-﻿var tblComponent;
+﻿
 $(document).ready(function () {
     LocateDLR();
     $("#OfficialReceipt_PaymentModeID").on("change", function () {

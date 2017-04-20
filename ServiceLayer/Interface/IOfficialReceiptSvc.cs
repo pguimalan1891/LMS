@@ -14,5 +14,8 @@ namespace ServiceLayer.Interface
         List<Dictionary<string, object>> getCollectionDues(string DLRNumber);
         string getServerDate();
         int SubmitOfficialReceipt(OfficialReceipt OfficialReceiptModel);
+        IEnumerable<CMDMAccountType> getCMDMAccountType();
+        int SubmitSundry(OfficialReceipt OfficialReceiptModel, IEnumerable<Sundry> SundryAccount);
+        List<Dictionary<string, object>> getOfficialReceiptListing(string Status);
     }
 }

@@ -43,5 +43,20 @@ namespace ServiceLayer
         {
             return OfficialReceipt.SubmitOfficialReceipt(OfficialReceiptModel);
         }
+
+        public IEnumerable<CMDMAccountType> getCMDMAccountType()
+        {
+            return OfficialReceipt.getCMDMAccountType();
+        }
+
+        public int SubmitSundry(OfficialReceipt OfficialReceiptModel, IEnumerable<Sundry> SundryAccount)
+        {
+            return OfficialReceipt.SubmitSundry(OfficialReceiptModel, SundryAccount);
+        }
+
+        public List<Dictionary<string, object>> getOfficialReceiptListing(string Status)
+        {
+            return OfficialReceipt.getOfficialReceiptListing(Status);
+        }
     }
 }

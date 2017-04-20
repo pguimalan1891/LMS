@@ -145,6 +145,9 @@ namespace LMS.Controllers.DevelopmentTools
         {
             Mapper.CreateMap<Models.DevelopmentTools.UserAccount, BusinessObjects.UserAccount>();
             BusinessObjects.UserAccount userAccount = Mapper.Map<Models.DevelopmentTools.UserAccount, BusinessObjects.UserAccount>(userAccountModel.userAccount);
+            List<Dictionary<string, object>> session = (List<Dictionary<string, object>>)Session["loginDetails"];
+            string UserID = session[0]["ID"].ToString();
+            userAccount.RegisteredByID = UserID;
             return Content(service.UpdateUserAccounts("Update", userAccount).ToString());
         }
 

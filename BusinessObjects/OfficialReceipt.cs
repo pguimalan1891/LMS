@@ -34,5 +34,21 @@ namespace BusinessObjects
         public string CustomerName { get; set; }
         public string CreditInvestigator { get; set; }
         public string UserID { get; set; }
+        public string Notes { get; set; }
+
+    }
+
+    public class Sundry
+    {
+        public string ID { get; set; }
+        public string CMDMAccountTypeID { get; set; }
+        public string SundryAmount { get; set; }
+    }
+
+    public class CMDMAccountType
+    {
+        public string CMDMAccountTypeID { get; set; }
+        public string Code { get; set; }
+        public string Description { get; set; }
     }
 }

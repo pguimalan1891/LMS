@@ -17,7 +17,7 @@
     <AssemblyName>LMS</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
-    <UseIISExpress>true</UseIISExpress>
+    <UseIISExpress>false</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -187,6 +187,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Collection\SundryViewModel.cs" />
     <Compile Include="Models\Customer\CustomerModel.cs" />
     <Compile Include="Models\DevelopmentTools\LibraryComponentModel.cs" />
     <Compile Include="Models\DevelopmentTools\UserAccount.cs" />
@@ -195,7 +196,7 @@
     <Compile Include="Controllers\MaintenanceAgentProfile\MaintenanceAgentProfileController.cs" />
     <Compile Include="Models\MaintenanceAgentProfile\AgentProfile.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\OfficialReceiptViewModel.cs" />
+    <Compile Include="Models\Collection\OfficialReceiptViewModel.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
@@ -523,11 +524,14 @@
     <Content Include="ViewsJS\Booking\JS_Booking_CV.js" />
     <Content Include="ViewsJS\Booking\JS_Booking_DV.js" />
     <Content Include="ViewsJS\Collection\JS_OfficialReceipt.js" />
+    <Content Include="ViewsJS\Collection\JS_ORListing.js" />
+    <Content Include="ViewsJS\Collection\JS_Sundry.js" />
     <Content Include="ViewsJS\Customer\JS_Customer.js" />
     <Content Include="ViewsJS\Customer\JS_CustomerAdd.js" />
     <Content Include="ViewsJS\Customer\JS_CustomerUpdate.js" />
     <Content Include="ViewsJS\DevelopmentTools\DTSecurityManager.js" />
     <Content Include="ViewsJS\DevelopmentTools\JS_UserRole.js" />
+    <Content Include="ViewsJS\Home\JS_Home.js" />
     <Content Include="ViewsJS\Home\JS_MasterPage.js" />
     <Content Include="ViewsJS\Library\JS_LibraryComponent.js" />
     <Content Include="ViewsJS\MaintenanceAgentProfile\JS_AgentProfile.js" />
@@ -613,6 +617,10 @@
     <Content Include="Views\DTSecurityManager\RoleMenu.cshtml" />
     <Content Include="Views\CreditInvestigation\CreditInvestigationFrm.cshtml" />
     <Content Include="Views\OfficialReceipt\_LocateDLR.cshtml" />
+    <Content Include="Views\OfficialReceipt\SundryOR.cshtml" />
+    <Content Include="Views\OfficialReceipt\_AddSundry.cshtml" />
+    <Content Include="Views\OfficialReceipt\_UpdateSundry.cshtml" />
+    <Content Include="Views\OfficialReceipt\ORListing.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -669,7 +677,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>12615</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost/LMS/</IISUrl>
+          <IISUrl>http://localhost/LMS</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

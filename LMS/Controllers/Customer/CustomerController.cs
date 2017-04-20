@@ -114,7 +114,9 @@ namespace LMS.Controllers
             Mapper.CreateMap<Models.Customer.CustomerRecord, BusinessObjects.CustomerRecord>();
             Mapper.CreateMap<Models.Customer.CustomerModel, BusinessObjects.CustomerModel>();
             BusinessObjects.CustomerModel cModel = Mapper.Map<Models.Customer.CustomerModel, BusinessObjects.CustomerModel>(custModel);
-            cModel.custRecord.PreparedByID = "{0352ddc0-3ae6-400e-812d-916725e65466}";
+            List<Dictionary<string, object>> session = (List<Dictionary<string, object>>)Session["loginDetails"];
+            string UserID = session[0]["ID"].ToString();
+            cModel.custRecord.PreparedByID = UserID;
             cModel.custRecord.DocumentStatusCode = "7";
             cModel.custRecord.Permission = "5";            
             return Content(service.UpdateCustomerData("Add", cModel, PISID).ToString());

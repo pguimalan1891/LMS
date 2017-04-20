@@ -19,7 +19,7 @@ function loadComponents(url) {
         async: true,
         url: url,
         contentType: "application/json; charset=utf-8",
-        data: {},
+        data: {}
     });
 
     req.error(function (request, status, error) {

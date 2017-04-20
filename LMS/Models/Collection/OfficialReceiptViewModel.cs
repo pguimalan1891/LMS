@@ -41,6 +41,7 @@ namespace LMS.Models
         public string CustomerName { get; set; }
         public string CreditInvestigator { get; set; }
         public string UserID { get; set; }
+        public string Notes { get; set; }
     }
     public class PaymentMode
     {
@@ -55,5 +56,7 @@ namespace LMS.Models
         public string Code { get; set; }
         public string Description { get; set; }
     }    
-        
+    
+    
+            
 }

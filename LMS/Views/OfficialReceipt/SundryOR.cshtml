@@ -1,0 +1,174 @@
+﻿@model LMS.Models.OfficialReceiptModel
+@{
+    ViewBag.Title = "SundryOR";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "submitForm" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="container-fluid">
+        <div class="panel panel-info">
+            <div class="panel panel-heading panel-title">
+                <b>Sundry OR</b>
+            </div>
+            <div class="panel panel-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-title">
+                                <h5>General Information</h5>
+                            </div>
+                            <div class="ibox-content">
+                                <div class="form-horizontal">
+                                    <div class="form-group">
+                                        <label class="col-lg-3 control-label">Or No.:</label>
+                                        <div class="col-lg-9">@Html.TextBoxFor(model => model.OfficialReceipt.ORNumber, new { @class = "form-control" })</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-3 control-label">OR Date.:</label>
+                                        <div class="col-lg-9">@Html.TextBoxFor(model => model.OfficialReceipt.ORDate, new { @class = "form-control" })</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-3 control-label">Branch:</label>
+                                        <div class="col-lg-9">@Html.TextBoxFor(model => model.UserAccount.Organization, new { @disabled = "disabled", @class = "form-control" })</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-3 control-label">Payment Mode</label>
+                                        <div class="col-lg-9">@Html.DropDownListFor(model => model.OfficialReceipt.PaymentModeID, new SelectList(Model.PaymentMode, "PaymentModeID", "Description"), new { @class = "form-control" })</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-3 control-label">Amount Due:</label>
+                                        <div class="col-lg-9">@Html.TextBoxFor(model => model.OfficialReceipt.AmountDue, new { @disabled = "disabled", @class = "form-control" })</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-3 control-label">Amount Received:</label>
+                                        <div class="col-lg-9">@Html.TextBoxFor(model => model.OfficialReceipt.AmountReceived, new { @class = "form-control" })</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-3 control-label">Bank Name:</label>
+                                        <div class="col-lg-9">@Html.DropDownListFor(model => model.OfficialReceipt.BankID, new SelectList(Model.Bank, "BankID", "Description"), new { @disabled = "disabled", @class = "form-control" })</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-3 control-label">Check No.:</label>
+                                        <div class="col-lg-9">@Html.TextBoxFor(model => model.OfficialReceipt.CheckNo, new { @disabled = "disabled", @class = "form-control" })</div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-title">
+                                <h5>Account Information</h5>
+                            </div>
+                            <div class="ibox-content">
+                                <div class="form-horizontal">
+                                    <div class="form-group">
+                                        <label class="col-lg-3 control-label">DLR No.:</label>
+                                        <div class="col-lg-9">@Html.TextBoxFor(model => model.OfficialReceipt.DirectLoanReceiptNo, new { @class = "form-control" })</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-3 control-label">Customer Name.:</label>
+                                        <div class="col-lg-9">@Html.TextBoxFor(model => model.OfficialReceipt.CustomerName, new { @class = "form-control" })</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-3 control-label">Credit Investigator:</label>
+                                        <div class="col-lg-9">@Html.TextBoxFor(model => model.UserAccount.Position, new { @class = "form-control" })</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-title">
+                                <h5>Add Sundry Collection</h5>
+                            </div>
+                            <div class="ibox-content">
+                                <div class="form-horizontal">
+                                    <table id="tblAddSundry" class="table table-bordered" width="100%" cellspacing="0" style="font-size:smaller;">
+                                        <thead>
+                                            <tr>
+                                                <th><div class="text-center"><div class="btn btn-info btn-xs" title='Add' onclick="addData('sundry')"><span class='glyphicon glyphicon-plus' aria-hidden='true'></span></div></div></th>
+                                                <th>Account Type</th>
+                                                <th>Amount</th>                                                
+                                            </tr>
+                                        </thead>
+                                        <tbody>     
+                                            <tr id="delete">
+                                                <td colspan="3">Please add an account.</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-title">
+                                <h5>Notes</h5>
+                            </div>
+                            <div class="ibox-content">
+                                <div class="form-horizontal">
+                                    <div class="col-lg-12">@Html.TextAreaFor(model => model.OfficialReceipt.Notes, new { @class = "form-control", @rows="6", @style="resize:none;" })</div>
+                                </div>
+                            </div>
+                        </div>                        
+                    </div>
+                </div>
+            </div>
+            <div class="panel-footer">
+                <div class="btn btn-success" onclick="submitSundryOfficialReceipt()">Submit for Approval</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="alertModal" class="modal fade" role="dialog">
+        <div class="modal-dialog" style="background-color:#ffffff;width:30%">
+            <div class="modal-header" style="background-color:white">
+                <h3>Validation Summary</h3>
+            </div>
+            <div class="modal-body" style="background-color:white">
+                <div style="color:red;font-size:small;">
+                    @Html.ValidationSummary(true)
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a class="btn btn-info" onclick="$('#alertModal').modal('hide');">&nbsp;OK&nbsp;</a>
+            </div>
+        </div>
+    </div>
+}
+
+
+<div id="UpdateTableData" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog" style="background-color:#ffffff;">
+        <div class="modal-body" style="background-color:white;">
+            <div id="update-display-modal-body">
+            </div>
+        </div>
+        <div class="modal-footer" style="background-color:white;">
+            <div id="update-display-modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="AddTableData" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog" style="background-color:#ffffff;">
+        <div class="modal-body" style="background-color:white">
+            <div id="add-display-modal-body">
+            </div>
+        </div>
+        <div class="modal-footer" style="background-color:white">
+            <div id="add-display-modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    @Helper.LoadCustomJS("ViewsJS/Collection/JS_Sundry.js", Url)
+}

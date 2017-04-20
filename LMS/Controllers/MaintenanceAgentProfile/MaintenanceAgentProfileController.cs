@@ -164,7 +164,9 @@ namespace LMS.Controllers.MaintenanceAgentProfile
             Mapper.CreateMap<Models.MaintenanceAgentProfile.AgentProfile, BusinessObjects.AgentProfile>();
             Mapper.CreateMap<Models.MaintenanceAgentProfile.AgentModel, BusinessObjects.AgentModel>();
             BusinessObjects.AgentModel aModel = Mapper.Map<Models.MaintenanceAgentProfile.AgentModel, BusinessObjects.AgentModel>(AgentProfileModel);
-            aModel.AgentProfile.PreparedByID = "{0352ddc0-3ae6-400e-812d-916725e65466}";
+            List<Dictionary<string, object>> session = (List<Dictionary<string, object>>)Session["loginDetails"];
+            string UserID = session[0]["ID"].ToString();
+            aModel.AgentProfile.PreparedByID = UserID;
             aModel.AgentProfile.DocumentStatusCode = "7";
             aModel.AgentProfile.Permission = "65541";
             return Content(service.UpdateAgentData("Add", aModel, AgentProfileID).ToString());

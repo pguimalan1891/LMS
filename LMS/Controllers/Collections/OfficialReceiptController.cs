@@ -34,10 +34,27 @@ namespace LMS.Controllers.Collections
         [Route("OfficialReceipt")]
         public ActionResult OfficialReceipt(string Code)
         {        
-
             return View(FetchAccountInfo(Code));            
         }
-                      
+                 
+        [Route("SundryOR")]
+        public ActionResult SundryOR(string Code)
+        {
+            return View(FetchAccountInfo(Code));
+        }
+
+        [Route("ORListing")]
+        public ActionResult ORListing()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult FetchORListing(string status)
+        {
+            return Json(service.getOfficialReceiptListing(status), JsonRequestBehavior.AllowGet);
+        }
+
         [HttpGet]
         public ActionResult FetchDLRActiveAccounts()
         {
@@ -57,7 +74,8 @@ namespace LMS.Controllers.Collections
         public LMS.Models.OfficialReceiptModel FetchAccountInfo(string UserCode)
         {
             LMS.Models.OfficialReceiptModel OfficialReceiptModel = new LMS.Models.OfficialReceiptModel();
-            UserCode = "coykie.segarino";
+            List<Dictionary<string, object>> session = (List<Dictionary<string, object>>)Session["loginDetails"];
+            UserCode = session[0]["Code"].ToString();
             Mapper.CreateMap<BusinessObjects.PaymentMode, Models.PaymentMode>();
             Mapper.CreateMap<BusinessObjects.Bank, Models.Bank>();
             Mapper.CreateMap<BusinessObjects.UserAccount, Models.DevelopmentTools.UserAccount>();
@@ -80,12 +98,45 @@ namespace LMS.Controllers.Collections
         public ActionResult SubmitOfficialReceipt(Models.OfficialReceiptModel ORModel)
         {
             Mapper.CreateMap<Models.OfficialReceipt, BusinessObjects.OfficialReceipt>();
-            string UserCode = "coykie.segarino";            
+            List<Dictionary<string, object>> session = (List<Dictionary<string, object>>)Session["loginDetails"];
+            string UserCode = session[0]["Code"].ToString();
             LMS.Models.DevelopmentTools.UserAccount UserAccount = Mapper.Map<BusinessObjects.UserAccount, LMS.Models.DevelopmentTools.UserAccount>(DTSecurityservice.getUserAccountbyCode(UserCode));
             BusinessObjects.OfficialReceipt OfficialReceiptModel = Mapper.Map<Models.OfficialReceipt, BusinessObjects.OfficialReceipt>(ORModel.OfficialReceipt);
             OfficialReceiptModel.UserID = UserAccount.ID;
             OfficialReceiptModel.OrganizationID = UserAccount.OrganizationID;
             return Content(service.SubmitOfficialReceipt(OfficialReceiptModel).ToString());            
+        }
+
+        [HttpPost]
+        public ActionResult SubmitSundry(Models.OfficialReceiptModel ORModel,IEnumerable<Models.Collection.Sundry> sundry)
+        {
+            Mapper.CreateMap<Models.OfficialReceipt, BusinessObjects.OfficialReceipt>();
+            Mapper.CreateMap<Models.Collection.Sundry, BusinessObjects.Sundry>();
+            List<Dictionary<string, object>> session = (List<Dictionary<string, object>>)Session["loginDetails"];
+            string UserCode = session[0]["Code"].ToString();                        
+            LMS.Models.DevelopmentTools.UserAccount UserAccount = Mapper.Map<BusinessObjects.UserAccount, LMS.Models.DevelopmentTools.UserAccount>(DTSecurityservice.getUserAccountbyCode(UserCode));
+            BusinessObjects.OfficialReceipt OfficialReceiptModel = Mapper.Map<Models.OfficialReceipt, BusinessObjects.OfficialReceipt>(ORModel.OfficialReceipt);
+            OfficialReceiptModel.UserID = UserAccount.ID;
+            OfficialReceiptModel.OrganizationID = UserAccount.OrganizationID;
+            IEnumerable<BusinessObjects.Sundry> sundryAccounts = Mapper.Map<IEnumerable<LMS.Models.Collection.Sundry>, IEnumerable<BusinessObjects.Sundry>>(sundry);
+            return Content(service.SubmitSundry(OfficialReceiptModel, sundryAccounts).ToString());
+        }
+        [HttpPost]
+        public ActionResult UpdateSundry(string UpdateType,LMS.Models.Collection.Sundry sundry)
+        {
+            var pvr = new PartialViewResult();
+            Mapper.CreateMap<BusinessObjects.CMDMAccountType, Models.Collection.CMDMAccountType>();
+            LMS.Models.Collection.SundryViewModel SundryModel = new Models.Collection.SundryViewModel();
+            SundryModel.CMDMAccountType = Mapper.Map<IEnumerable<BusinessObjects.CMDMAccountType>, IEnumerable<LMS.Models.Collection.CMDMAccountType>>(service.getCMDMAccountType());
+            SundryModel.SundryDetails = sundry;
+            if (UpdateType == "add")
+            {
+                pvr = PartialView("_AddSundry", SundryModel);                
+            }else if(UpdateType == "edit")
+            {
+                pvr = PartialView("_UpdateSundry", SundryModel);
+            }
+            return pvr;
         }
     }
 }
