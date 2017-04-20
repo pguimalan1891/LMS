@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using BusinessObjects;
 
 namespace DataObjects.AdoNET
 {
@@ -51,6 +52,22 @@ namespace DataObjects.AdoNET
 
             object[] parms = { "@statuscode", status };
             return db.ReadDictionary(sql, 1, parms);
+        }
+
+        public DLRModel getDLR(string lmscode)
+        {
+            string sql = "usp_getDLR";
+
+            object[] parms = { "@lmsno", lmscode };
+            
+            var data = db.ReadDictionary(sql, 1, parms);
+            DLRModel mdl = new DLRModel();
+            foreach (var d in data)
+            {
+                mdl.LMSCode = d["code"].ToString();
+                mdl.DLRNo = d["bis_code"].ToString();
+            }
+            return mdl;
         }
     }
 }

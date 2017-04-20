@@ -109,6 +109,15 @@ namespace LMS.Controllers
             return Json(this.service.getChangeCCIForm(status));
         }
 
+        [AuthorizationFilter]
+        [Route("Booking/DLRbyLMSNo")]
+        public ActionResult RetrieveDLRByLMSNo(string lmsno)
+        {
+            DLRModel mdl = new DLRModel();
+            mdl = service.getDLR(lmsno);
+            return View("DLRbyLMSNo", mdl);
+        }
+
         protected override JsonResult Json(object data, string contentType, System.Text.Encoding contentEncoding, JsonRequestBehavior behavior)
         {
             return new JsonResult()
