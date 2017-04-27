@@ -66,6 +66,30 @@ namespace DataObjects.AdoNET
             {
                 mdl.LMSCode = d["code"].ToString();
                 mdl.DLRNo = d["bis_code"].ToString();
+                mdl.DLRDate = d["datetime_created"].ToString();
+                mdl.Branch = d["branch"].ToString();
+                mdl.ApplicationTypeDesc = d["ApplicationTypeDesc"].ToString();
+                BorrowerInfoModel brw = new BorrowerInfoModel();
+                brw.FullName = d["LAST_NAME"].ToString() + ", " + d["FIRST_NAME"].ToString() + " " + d["MIDDLE_NAME"].ToString() ;
+                brw.BorrowerCode = d["OWNER_CODE"].ToString();
+                brw.Province = d["province_name"].ToString();
+                brw.City = d["city_name"].ToString();
+                brw.StreetAddress = d["street_address"].ToString();
+                brw.PostalCode = d["postal_code"].ToString();
+                brw.LandlineNo = d["phone_number"].ToString();
+                brw.MobileNo = d["mobile_number"].ToString();
+                brw.Brgy = d["barangay_name"].ToString();
+                mdl.Borrower = brw;
+                LoanInfoModel ln = new LoanInfoModel();
+                ln.LoanApplicationNo= d["loan_application_code"].ToString();
+                ln.LoanTypeDesc = d["loan_type_desc"].ToString();
+                ln.LoanSetDesc = d["loan_set_desc"].ToString();
+                ln.LoanTermDesc = d["loan_term_desc"].ToString();
+                ln.DesiredMLV = Convert.ToDouble(d["LOAN_AMOUNT"]).ToString("n2");
+                ln.ApprovedMLV = Convert.ToDouble(d["approved_mlv"]).ToString("n2");
+                ln.FirstDueDate = d["first_due_date"].ToString();
+                ln.AddOnRate = d["add_on_rate"].ToString();
+                mdl.Loan = ln;
             }
             return mdl;
         }
