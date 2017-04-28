@@ -19,7 +19,7 @@ namespace LMS.Models.Collection
 
     public class CMDMAccountType
     {
-        public string CMDMAccountTypeID { get; set; }
+        public string CMDMAccountTypeID { get; set; }        
         public string Code { get; set; }
         public string Description { get; set; }
     }   
@@ -28,6 +28,7 @@ namespace LMS.Models.Collection
     {
         public string ID { get; set; }
         public string CMDMAccountTypeID { get; set; }
+        public string CMDMAccountType { get; set; }
         public string SundryAmount { get; set; }
     }
 }

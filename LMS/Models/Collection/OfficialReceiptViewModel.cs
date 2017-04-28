@@ -12,16 +12,20 @@ namespace LMS.Models
         public IEnumerable<PaymentMode> PaymentMode { get; set; }
         public IEnumerable<Bank> Bank { get; set; }
         public LMS.Models.DevelopmentTools.UserAccount UserAccount { get; set; }
+        public IEnumerable<LMS.Models.Collection.Sundry> Sundry { get; set; }
     }
     public class OfficialReceipt {
         [Required(ErrorMessage = "ORNumber is Required.")]
         public string ORNumber { get; set; }
         public string ORDate { get; set; }
         public string OrganizationID { get; set; }
+        public string Organization { get; set; }
         public string PaymentModeID { get; set; }
+        public string PaymentMode { get; set; }
         public string AmountDue { get; set; }
         public string AmountReceived { get; set; }
         public string BankID { get; set; }
+        public string Bank { get; set; }
         public string CheckNo { get; set; }
         public string AccelerationDiscount { get; set; }
         public string PenaltyWaived { get; set; }
@@ -42,6 +46,7 @@ namespace LMS.Models
         public string CreditInvestigator { get; set; }
         public string UserID { get; set; }
         public string Notes { get; set; }
+        public string OfficialReceiptType { get; set; }
     }
     public class PaymentMode
     {

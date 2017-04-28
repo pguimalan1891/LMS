@@ -17,6 +17,8 @@ namespace DataObjects
         int SubmitOfficialReceipt(OfficialReceipt OfficialReceiptModel);
         IEnumerable<CMDMAccountType> getCMDMAccountType();
         int SubmitSundry(OfficialReceipt OfficialReceiptModel, IEnumerable<Sundry> SundryAccount);
-        List<Dictionary<string, object>> getOfficialReceiptListing(string Status);
+        List<Dictionary<string, object>> getOfficialReceiptListing(string Status, string CustomerName);
+        IEnumerable<OfficialReceipt> getOfficialReceipt(string ORNumber);
+        IEnumerable<Sundry> getSundry(string ORNumber);
     }
 }

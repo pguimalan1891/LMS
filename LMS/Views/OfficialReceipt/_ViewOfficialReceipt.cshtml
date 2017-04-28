@@ -1,0 +1,171 @@
+﻿@model LMS.Models.OfficialReceiptModel
+<div class="container-fluid">
+    <div class="panel panel-info">
+        <div class="panel panel-heading panel-title">
+            <b>Official Receipt</b>
+        </div>
+        <div class="panel panel-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h5>General Information</h5>
+                        </div>
+                        <div class="ibox-content">
+                            <div class="form-horizontal">
+                                <div class="form-group">
+                                    <label class="col-lg-3 control-label">Or No.:</label>                                        
+                                    <div class="col-lg-9"><span class="form-control">@Model.OfficialReceipt.ORNumber</span></div>                                    
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-3 control-label">OR Date.:</label>
+                                    <div class="col-lg-9"><span class="form-control">@Model.OfficialReceipt.ORDate</span></div>                                                                        
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-3 control-label">Branch:</label>
+                                    <div class="col-lg-9"><span class="form-control">@Model.OfficialReceipt.Organization</span></div>                                                                        
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-3 control-label">Payment Mode</label>
+                                    <div class="col-lg-9"><span class="form-control">@Model.OfficialReceipt.PaymentMode</span></div>                                                                        
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-3 control-label">Amount Due:</label>
+                                    <div class="col-lg-9"><span class="form-control">@Model.OfficialReceipt.AmountDue</span></div>                                                                        
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-3 control-label">Amount Received:</label>
+                                    <div class="col-lg-9"><span class="form-control">@Model.OfficialReceipt.AmountReceived</span></div>                                                                        
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-3 control-label">Bank Name:</label>
+                                    <div class="col-lg-9"><span class="form-control">@Model.OfficialReceipt.Bank</span></div>                                                                                     
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-3 control-label">Check No.:</label>
+                                    <div class="col-lg-9"><span class="form-control">@Model.OfficialReceipt.CheckNo</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h5>Billing Information</h5>
+                        </div>
+                        <div class="ibox-content">
+                            <div class="form-horizontal">
+                                <div class="form-group">
+                                    <label class="col-lg-3 control-label">Date Due:</label>
+                                    <div class="col-lg-9"><span class="form-control">@Model.OfficialReceipt.DateDue</span></div>                                    
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-3 control-label">PIP Due:</label>
+                                    <div class="col-lg-9"><span class="form-control">@Model.OfficialReceipt.PIPDue</span></div>                                    
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-3 control-label">GIBCO Due:</label>
+                                    <div class="col-lg-9"><span class="form-control">@Model.OfficialReceipt.GIBCODue</span></div>                                    
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-3 control-label">RFC Due:</label>
+                                    <div class="col-lg-9"><span class="form-control">@Model.OfficialReceipt.RFCDue</span></div>                                    
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-3 control-label">PPD:</label>
+                                    <div class="col-lg-9"><span class="form-control">@Model.OfficialReceipt.PPD</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h5>Account Information</h5>
+                        </div>
+                        <div class="ibox-content">
+                            <div class="form-horizontal">
+                                <div class="form-group">
+                                    <label class="col-lg-3 control-label">LA No.:</label>
+                                    <div class="col-lg-9"><span class="form-control">@Model.OfficialReceipt.LoanAccountNo</span></div>                                    
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-3 control-label">DLR No.:</label>
+                                    <div class="col-lg-9"><span class="form-control">@Model.OfficialReceipt.DirectLoanReceiptNo</span></div>                                    
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-3 control-label">Customer Name.:</label>
+                                    <div class="col-lg-9"><span class="form-control">@Model.OfficialReceipt.CustomerName</span></div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-3 control-label">Credit Investigator:</label>
+                                    <div class="col-lg-9"><span class="form-control">@Model.OfficialReceipt.CreditInvestigator</span></div>                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h5>Discounts</h5>
+                        </div>
+                        <div class="ibox-content">
+                            <div class="form-horizontal">
+                                <div class="form-group">
+                                    <label class="col-lg-3 control-label">Acceleration Discount:</label>
+                                    <div class="col-lg-9"><span class="form-control">@Model.OfficialReceipt.AccelerationDiscount</span></div>                                    
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-3 control-label">Penalty Waived:</label>
+                                    <div class="col-lg-9"><span class="form-control">@Model.OfficialReceipt.PenaltyWaived</span></div>                                    
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-3 control-label">Prompt Payment Discount:</label>
+                                    <div class="col-lg-9"><span class="form-control">@Model.OfficialReceipt.PromptPaymentDiscount</span></div>                                    
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-3 control-label">Total Discount:</label>
+                                    <div class="col-lg-9"><span class="form-control">@Model.OfficialReceipt.TotalDiscount</span></div>                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h5>Account Receivables</h5>
+                        </div>
+                        <div class="ibox-content">
+                            <div class="form-horizontal">
+                                <div class="form-group">
+                                    <label class="col-lg-3 control-label">PIP:</label>
+                                    <div class="col-lg-9"><span class="form-control">@Model.OfficialReceipt.PIP</span></div>                                                                        
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-3 control-label">GIBCO:</label>
+                                    <div class="col-lg-9"><span class="form-control">@Model.OfficialReceipt.GIBCO</span></div>                                                                        
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-3 control-label">RFC:</label>
+                                    <div class="col-lg-9"><span class="form-control">@Model.OfficialReceipt.RFC</span></div>                                                                        
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-3 control-label">Total RFC:</label>
+                                    <div class="col-lg-9"><span class="form-control">@Model.OfficialReceipt.TotalRFC</span></div>                                                                        
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h5>Notes</h5>
+                        </div>
+                        <div class="ibox-content">
+                            <div class="form-horizontal">
+                                <div class="col-lg-12">@Html.TextAreaFor(model => model.OfficialReceipt.Notes, new { @class = "form-control", @rows = "6", @style = "resize:none;", @value = Model.OfficialReceipt.Notes })</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>        
+    </div>
+</div>

@@ -20,7 +20,7 @@
                         <div class="form-group">
                             <label class="col-lg-3 control-label">Amount</label>
                             <div class="col-lg-9">
-                                @Html.TextBoxFor(model => model.SundryDetails.SundryAmount, new { @class = "form-control" })
+                                @Html.TextBoxFor(model => model.SundryDetails.SundryAmount, new { @class = "form-control checkMoneyModal", @vername = "Amount" })
                                 <input type="text" style="visibility:hidden;position:absolute;"/>
                             </div>                            
                         </div>

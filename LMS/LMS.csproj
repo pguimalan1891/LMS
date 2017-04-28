@@ -621,6 +621,8 @@
     <Content Include="Views\OfficialReceipt\_AddSundry.cshtml" />
     <Content Include="Views\OfficialReceipt\_UpdateSundry.cshtml" />
     <Content Include="Views\OfficialReceipt\ORListing.cshtml" />
+    <Content Include="Views\OfficialReceipt\_ViewOfficialReceipt.cshtml" />
+    <Content Include="Views\OfficialReceipt\_ViewSundry.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

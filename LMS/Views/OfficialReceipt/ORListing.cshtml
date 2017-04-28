@@ -15,38 +15,100 @@
                     <div class="ibox float-e-margins">
                         <div class="ibox-title">
                             <div class="btn-group">
-                                <button type="button" onclick="showListing(14)" class="btn btn-xs btn-white" style="color:black;border:1px solid #ccc;">For Submission</button>
-                                <button type="button" onclick="showListing(13)" class="btn btn-xs btn-white" style="color:black;border:1px solid #ccc;">Submitted</button>
-                                <button type="button" onclick="showListing(1)" class="btn btn-xs btn-white" style="color:black;border:1px solid #ccc;">Cancelled</button>
+                                <button type="button" onclick="showListing(14)" class="btn btn-xs btn-info" style="color:white;border:1px solid #ccc;">For Submission</button>
+                                <button type="button" onclick="showListing(13)" class="btn btn-xs btn-success" style="color:white;border:1px solid #ccc;">Submitted</button>
+                                <button type="button" onclick="showListing(1)" class="btn btn-xs btn-danger" style="color:white;border:1px solid #ccc;">Cancelled</button>
                             </div>
                         </div>
                         <div class="ibox-content">
-                            <div class="form-horizontal">
+                            <div class="form-horizontal">                                
                                 <div id="divSubmission">
-                                    <table id="tblORListingSubmission" class="table table-bordered" width="100%" cellspacing="0" style="font-size:smaller;">
-                                        <thead>
-                                        </thead>
-                                        <tbody></tbody>
-                                    </table>
+                                    <div class="panel panel-info">
+                                        <div class="panel-heading">
+                                            <div class="panel-title">For Submission</div> 
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="col-md-12">
+                                                <div class="form-inline">
+                                                    <div class="form-group">
+                                                        <label>Search by Borrower Name</label>
+                                                        <input type="text" id="txtForSubmissionName" class="form-control" />
+                                                        <a class="btn btn-default" onclick="updateListing(0)">Filter Search</a>
+                                                    </div>
+                                                </div>
+                                            </div>                                            
+                                            <table id="tblORListingSubmission" class="table table-bordered" width="100%" cellspacing="0" style="font-size:smaller;">
+                                                <thead>
+                                                </thead>
+                                                <tbody></tbody>
+                                            </table>
+                                        </div>
+                                    </div>                                    
                                 </div>
-                                <div id="divSubmitted">
-                                    <table id="tblORListingSubmitted" class="table table-bordered" width="100%" cellspacing="0" style="font-size:smaller;">
-                                        <thead>
-                                        </thead>
-                                        <tbody></tbody>
-                                    </table>
+                                <div id="divSubmitted" style="visibility:hidden;">
+                                    <div class="panel panel-success">
+                                        <div class="panel-heading">
+                                            <div class="panel-title">Submitted</div>                                            
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="col-md-12">
+                                                <div class="form-inline">
+                                                    <div class="form-group">
+                                                        <label>Search by Borrower Name</label>
+                                                        <input type="text" id="txtSubmittedName" class="form-control" />
+                                                        <a class="btn btn-default" onclick="updateListing(1)">Filter Search</a>
+                                                    </div>
+                                                </div>
+                                            </div>                                            
+                                            <table id="tblORListingSubmitted" class="table table-bordered" width="100%" cellspacing="0" style="font-size:smaller;">
+                                                <thead>
+                                                </thead>
+                                                <tbody></tbody>
+                                            </table>
+                                        </div>
+                                    </div>                                                                       
                                 </div>
-                                <div id="divCancelled">
-                                    <table id="tblORListingCancelled" class="table table-bordered" width="100%" cellspacing="0" style="font-size:smaller;">
-                                        <thead>
-                                        </thead>
-                                        <tbody></tbody>
-                                    </table>
+                                <div id="divCancelled" style="visibility:hidden;">
+                                    <div class="panel panel-danger">
+                                        <div class="panel-heading">
+                                            <div class="panel-title">Cancelled</div>
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="col-md-12">
+                                                <div class="form-inline">
+                                                    <div class="form-group">
+                                                        <label>Search by Borrower Name</label>
+                                                        <input type="text" id="txtCancelledName" class="form-control" />
+                                                        <a class="btn btn-default" onclick="updateListing(2)">Filter Search</a>
+                                                    </div>
+                                                </div>
+                                            </div>                                            
+                                            <table id="tblORListingCancelled" class="table table-bordered" width="100%" cellspacing="0" style="font-size:smaller;">
+                                                <thead>
+                                                </thead>
+                                                <tbody></tbody>
+                                            </table>
+                                        </div>   
+                                    </div>
+                                                                       
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>                
+            </div>
+        </div>  
+    </div>
+</div>
+
+<div id="ViewOfficialReceiptModal" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog" style="background-color:#ffffff;width:90%;">
+        <div class="modal-header">
+            <div id="display-modal-header">                
+            </div>                             
+        </div>
+        <div class="modal-body" style="background-color:white">
+            <div id="display-modal-body">
             </div>
         </div>
     </div>

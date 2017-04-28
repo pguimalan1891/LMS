@@ -96,11 +96,18 @@ function loadOfficialReceiptDetails(dlrNo, laNo, custName) {
 }
 
 function submitOfficialReceipt() {
-    $.validator.unobtrusive.parse($("#submitForm"));    
-    if (!$("#submitForm").valid()) {
+    var chkr = verifyMoney() + verifyString();
+    if (chkr != "") {
         $("#alertModal").modal();
+        $("#divAlert").children().remove();
+        $("#divAlert").append(chkr);
         return;
-    }
+    }    
+    //$.validator.unobtrusive.parse($("#submitForm"));    
+    //if (!$("#submitForm").valid() || verifyMoney() != "") {
+    //    $("#alertModal").modal();
+    //    return;
+    //}
     var OfficialReceiptModel = {};    
     $.each($("#submitForm")[0], function (rowkey, ctrl) {
         OfficialReceiptModel[ctrl.name] = ctrl.value;
@@ -113,10 +120,22 @@ function submitOfficialReceipt() {
     });
     jsonObject.done(function (data) {
         if (data == 0) {
-            toastr.info("Successful Updating.");            
+            toastr.info("Successful Updating.");
+            window.location.href = "ORListing";
         } else {
             toastr.error("Updating Failed: Contact Administrator.");            
         }
     });
 }
 
+function getTotals() {
+    $("#OfficialReceipt_TotalDiscount").val((parseFloat($("#OfficialReceipt_PenaltyWaived").val()) + parseFloat($("#OfficialReceipt_PromptPaymentDiscount").val()) + parseFloat($("#OfficialReceipt_AccelerationDiscount").val())).toFixed(2));
+    $("#OfficialReceipt_TotalRFC").val((parseFloat($("#OfficialReceipt_PenaltyWaived").val()) + parseFloat($("#OfficialReceipt_RFC").val()) + parseFloat($("#OfficialReceipt_PromptPaymentDiscount").val()) + parseFloat($("#OfficialReceipt_AccelerationDiscount").val())).toFixed(2));
+    $("#OfficialReceipt_PenaltyWaived").val(parseFloat($("#OfficialReceipt_PenaltyWaived").val()).toFixed(2));
+    $("#OfficialReceipt_PromptPaymentDiscount").val(parseFloat($("#OfficialReceipt_PromptPaymentDiscount").val()).toFixed(2));
+    $("#OfficialReceipt_AccelerationDiscount").val(parseFloat($("#OfficialReceipt_AccelerationDiscount").val()).toFixed(2));
+    $("#OfficialReceipt_GIBCO").val(parseFloat($("#OfficialReceipt_GIBCO").val()).toFixed(2));
+    $("#OfficialReceipt_RFC").val(parseFloat($("#OfficialReceipt_RFC").val()).toFixed(2));
+    $("#OfficialReceipt_PIP").val(parseFloat($("#OfficialReceipt_PIP").val()).toFixed(2));
+    $("#OfficialReceipt_AmountReceived").val(parseFloat($("#OfficialReceipt_AmountReceived").val()).toFixed(2));
+}
