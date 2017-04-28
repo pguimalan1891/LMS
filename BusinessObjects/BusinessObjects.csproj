@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="AgentProfile.cs" />
     <Compile Include="CreditInvestigation.cs" />
+    <Compile Include="DLR.cs" />
     <Compile Include="Customer.cs" />
     <Compile Include="DevelopmentTools.cs" />
     <Compile Include="LibraryComponent.cs" />

@@ -37,5 +37,10 @@ namespace ServiceLayer
         {
             return booking.getChangeCCIForm(status);
         }
+
+        public BusinessObjects.DLRModel getDLR(string lmsno)
+        {
+            return booking.getDLR(lmsno);
+        }
     }
 }

@@ -17,7 +17,7 @@
     <AssemblyName>LMS</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
-    <UseIISExpress>false</UseIISExpress>
+    <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -187,6 +187,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Collection\OfficialReceiptViewModel.cs" />
     <Compile Include="Models\Collection\SundryViewModel.cs" />
     <Compile Include="Models\Customer\CustomerModel.cs" />
     <Compile Include="Models\DevelopmentTools\LibraryComponentModel.cs" />
@@ -196,7 +197,6 @@
     <Compile Include="Controllers\MaintenanceAgentProfile\MaintenanceAgentProfileController.cs" />
     <Compile Include="Models\MaintenanceAgentProfile\AgentProfile.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\Collection\OfficialReceiptViewModel.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
@@ -467,6 +467,7 @@
     <Content Include="Content\uiPlugins\theme\css\plugins\bootstrap-rtl\bootstrap-rtl.css.map" />
     <None Include="Properties\PublishProfiles\LMSPublish.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\dataTables.select.min.js" />
     <Content Include="Scripts\extra\jquery.qtip.min.js" />
     <Content Include="Scripts\Highcharts-4.0.1\js\adapters\standalone-framework.js" />
     <Content Include="Scripts\Highcharts-4.0.1\js\adapters\standalone-framework.src.js" />
@@ -515,7 +516,6 @@
     <Content Include="Scripts\respond.min.js" />
     <None Include="Scripts\_references.js" />
     <Content Include="ViewsJS\Accounting\JS_Accounting_RFP.js" />
-    <Content Include="ViewsJS\Application\JS_CreditInvCtrl.js" />
     <Content Include="ViewsJS\Application\JS_ApplicationCtrl.js" />
     <Content Include="ViewsJS\Application\JS_ApplicationListCtrl.js" />
     <Content Include="ViewsJS\Booking\JS_Booking.js" />
@@ -523,9 +523,6 @@
     <Content Include="ViewsJS\Booking\JS_Booking_CIR.js" />
     <Content Include="ViewsJS\Booking\JS_Booking_CV.js" />
     <Content Include="ViewsJS\Booking\JS_Booking_DV.js" />
-    <Content Include="ViewsJS\Collection\JS_OfficialReceipt.js" />
-    <Content Include="ViewsJS\Collection\JS_ORListing.js" />
-    <Content Include="ViewsJS\Collection\JS_Sundry.js" />
     <Content Include="ViewsJS\Customer\JS_Customer.js" />
     <Content Include="ViewsJS\Customer\JS_CustomerAdd.js" />
     <Content Include="ViewsJS\Customer\JS_CustomerUpdate.js" />
@@ -613,7 +610,6 @@
     <Content Include="Views\DTSecurityManager\_Update_UserAccount.cshtml" />
     <Content Include="Views\DevelopmentTools\Reference.cshtml" />
     <Content Include="Views\DevelopmentTools\LibraryList.cshtml" />
-    <Content Include="Views\CreditInvestigation\Index.cshtml" />
     <Content Include="Views\DTSecurityManager\RoleMenu.cshtml" />
     <Content Include="Views\CreditInvestigation\CreditInvestigationFrm.cshtml" />
     <Content Include="Views\OfficialReceipt\_LocateDLR.cshtml" />
@@ -636,8 +632,8 @@
     <Folder Include="Content\metroBootstrap\fonts\" />
     <Folder Include="Content\metroBootstrap\styles\" />
     <Folder Include="Content\uiPlugins\theme\js\demo\" />
-    <Folder Include="ViewsJS\CreditInvestigation\" />
     <Folder Include="Views\Collections\" />
+    <Folder Include="Views\CreditInvestigation\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />

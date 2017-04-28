@@ -8,10 +8,11 @@ $(function () {
         tblBooking.ajax.reload();
     });
 
-    $('#tbBooking tbody').on('click', 'tr', function () {
-        $(this).toggleClass('selected');
+    $('body').on('click', '.lmsdlrdetails', function () {
+        //alert($(this).text());
+        //$("#mdlDLR").modal();
+        window.location.href = "../Booking/DLRbyLMSNo?lmsno=" + $(this).text();
     });
-
 });
 
 function getBookingRecords2() {
@@ -19,7 +20,9 @@ function getBookingRecords2() {
         autoWidth: true,
         initComplete: function () {
         },
-
+        select: {
+            style: 'multi'
+        },
         processing: true,
         language: {
             processing: "DataTables is currently busy"
@@ -36,10 +39,17 @@ function getBookingRecords2() {
                 return json;
             }
         },
+        columnDefs: [ {
+            targets: 1,
+            //data: 'LMS DLR No',
+            render: function ( data, type, full, meta ) {
+                return '<a class="lmsdlrdetails">' + data + '</a>';
+            }
+        }],
         columns: [
             //{ data: 'Seq' },
             { data: 'Status' },
-            { data: 'LMS DLR No' },
+            { data: 'LMS DLR No'},
             { data: 'DLR No' },
             { data: 'Date' },
             { data: 'Branch' },
@@ -52,4 +62,9 @@ function getBookingRecords2() {
         ]
 
     });
+
+    $('#tbBooking tbody').on('click', 'tr', function () {
+        $(this).toggleClass('active');
+    });
+
 }

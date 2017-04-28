@@ -34,7 +34,7 @@
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Web.Mvc, Version=3.0.0.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -74,6 +74,7 @@
     <Content Include="SPs\Accounting\usp_getRequestForPayment.sql" />
     <Content Include="SPs\Booking\usp_getChangeCCIForm.sql" />
     <Content Include="SPs\Booking\usp_getCheckVoucher.sql" />
+    <Content Include="SPs\Booking\usp_getDLR.sql" />
     <Content Include="SPs\Maintenance\Agent\SP\[usp_UpdateAgentAddress].sql" />
     <Content Include="SPs\Maintenance\Agent\SP\[usp_UpdateAgentProfile].sql" />
     <Content Include="SPs\Maintenance\Agent\View\[uvw_AgentProfileAddress].sql" />

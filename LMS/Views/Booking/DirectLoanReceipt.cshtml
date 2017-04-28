@@ -6,35 +6,94 @@
 
 @section Scripts
 {
+    
+    @Helper.LoadCustomJS("Scripts/dataTables.select.min.js", Url)
     @Helper.LoadCustomJS("ViewsJS/Booking/JS_Booking.js", Url)
 }
     
     <div class="row">
         <div class="col-md-12">
-            <div class="page-header"><h1>Workdesk <small>Direct Loan Receipt</small></h1></div>
+            <div class='page-header'>
+                <div class='btn-toolbar pull-right'>
+                    <!--<div class="btn-group">
+                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                            Actions <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#">Finalize Loan R.</a></li>
+                            <li><a href="#">Cancel Direct Loan R.</a></li>
+                            <li><a href="#">Create New Allocation</a></li>
+                            <li><a href="#">Add Bank Assignment</a></li>
+                        </ul>
+                    </div>-->
+                </div>
+                <h2>Workdesk <small>Direct Loan Receipt</small></h2>
+            </div>
         </div>     
     </div>   
     <div class="row">
-        <div class="col-md-3">
-            <form>
+        <div class="col-md-4">
+            <!--
+            <div class="btn-group">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                        Direct Loan Receipt <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">For Submission</a></li>
+                        <li><a href="#">Under CV Process</a></li>
+                        <li><a href="#">Active List</a></li>
+                        <li><a href="#">Add Bank Assignment</a></li>
+                    </ul>
+                </div>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                        Actions <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">Finalize Loan R.</a></li>
+                        <li><a href="#">Cancel Direct Loan R.</a></li>
+                        <li><a href="#">Create New Allocation</a></li>
+                        <li><a href="#">Add Bank Assignment</a></li>
+                    </ul>
+                </div>
+            </div>
+            -->
+            
+            <form class="form-horizontal">
                 <div class="form-group">
-                    <label for="selfindDLR">Find DLR:</label>
-                    <select class="form-control" id="selfindDLR">
-                        <option value="14">For Submission</option>
-                        <option value="60">Under CV Process</option>
-                        <option value="7">Active List</option>
-                        <option value="64">Unexpired Restructured List</option>
-                        <option value="67">Matured Restructured List</option>
-                        <option value="63">Repossessed List</option>
-                        <option value="65">Renewed List</option>
-                        <option value="66">Unrenewed List</option>
-                        <option value="68">Legal List</option>
-                        <option value="69">Written-Off List</option>
-                        <option value="71">Forced Closure List</option>
-                        <option value="99">All Listing</option>
-                    </select>
+                    <label for="selfindDLR" class="col-md-4 text-right">Direct Loan Receipt:</label>
+                    <div class="col-md-8">
+                        <select class="form-control" id="selfindDLR">
+                            <option value="14">For Submission</option>
+                            <option value="60">Under CV Process</option>
+                            <option value="7">Active List</option>
+                            <option value="64">Unexpired Restructured List</option>
+                            <option value="67">Matured Restructured List</option>
+                            <option value="63">Repossessed List</option>
+                            <option value="65">Renewed List</option>
+                            <option value="66">Unrenewed List</option>
+                            <option value="68">Legal List</option>
+                            <option value="69">Written-Off List</option>
+                            <option value="71">Forced Closure List</option>
+                            <option value="99">All Listing</option>
+                        </select>
+                    </div>
                 </div>
             </form>
+            
+        </div>
+        @*<div class="col-md-8">
+            <div class="btn-group">
+                <button type="button" class="btn btn-primary">Finalize Loan Receipt</button>
+                <button type="button" class="btn btn-primary">Cancel Direct Loan R.</button>
+                <button type="button" class="btn btn-primary">Create New Allocation</button>
+                <button type="button" class="btn btn-primary">Add Bank Assignment</button>
+            </div>
+        </div>*@
+    </div>
+    <div class="row">
+        <div class="col-md-12">
         </div>
     </div>
     <div class="row">
@@ -67,4 +126,25 @@
             </div>
         </div>
     </div>
+
+<div id="mdlDLR" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg" style="width: 100%;height: 100%;margin: 0;padding: 0;">
+        <!--<div class="modal-content" style="height: auto;min-height: 100%;border-radius: 0;">-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Direct Loan Receipt</h4>
+            </div>
+            <div class="modal-body">
+               
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
 

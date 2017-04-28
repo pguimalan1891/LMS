@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BusinessObjects;
 
 namespace DataObjects
 {
@@ -14,6 +15,8 @@ namespace DataObjects
         List<Dictionary<string, object>> getCIRForm(int status);
         List<Dictionary<string, object>> getDisbursementVoucher(int status);
         List<Dictionary<string, object>> getChangeCCIForm(int status);
+
+        DLRModel getDLR(string lmscode);
 
     }
 }

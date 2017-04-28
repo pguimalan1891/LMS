@@ -9,5 +9,6 @@ namespace DataObjects
     public interface IAccountingDAO
     {
         List<Dictionary<string, object>> getRequestForPayment(int status);
+        List<Dictionary<string, object>> getExpenseType();
     }
 }
