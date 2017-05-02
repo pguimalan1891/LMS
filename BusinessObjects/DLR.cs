@@ -15,6 +15,8 @@ namespace BusinessObjects
         public string ApplicationTypeDesc { get; set; }
         public BorrowerInfoModel Borrower { get; set; }
         public LoanInfoModel Loan { get; set; }
+        public GIBCOModel GIBCO { get; set; }
+        public OutrightPayments Outpayments { get; set; }
     }
 
     public class LoanInfoModel
@@ -27,6 +29,7 @@ namespace BusinessObjects
         public string ApprovedMLV { get; set; }
         public string FirstDueDate { get; set; }
         public string AddOnRate { get; set; }
+        public string NetMonthlyInstallment { get; set; }
     }
 
     public class BorrowerInfoModel
@@ -40,5 +43,52 @@ namespace BusinessObjects
         public string PostalCode { get; set; }
         public string LandlineNo { get; set; }
         public string MobileNo { get; set; }
+    }
+
+    public class GIBCOModel
+    {
+        public string GIBCOBasic1 { get; set; }
+        public string GIBCOBasic2 { get; set; }
+        public string GIBCOBasic3 { get; set; }
+        public string GIBCOBasic4 { get; set; }
+        public string GIBCOBasic5 { get; set; }
+        public string GIBCOYear1 { get; set; }
+        public string GIBCOYear2 { get; set; }
+        public string GIBCOYear3 { get; set; }
+        public string GIBCOYear4 { get; set; }
+        public string GIBCOYear5 { get; set; }
+        public string GMMU1 { get; set; }
+        public string GMMU2 { get; set; }
+        public string GMMU3 { get; set; }
+        public string GMMU4 { get; set; }
+        public string GMMU5 { get; set; }
+
+        public string GIBCODate1 { get; set; }
+
+        public string GIBCODate2 { get; set; }
+
+        public string GIBCODate3 { get; set; }
+
+        public string GIBCODate4 { get; set; }
+        public string GIBCODate5 { get; set; }
+    }
+
+    public class OutrightPayments
+    {
+        public string HandlingORCode { get; set; }
+        public string HandlingORDate { get; set; }
+        public string HandlingORAmount { get; set; }
+        public string DSTORCode { get; set; }
+        public string DSTORDate { get; set; }
+        public string DSTORAmount { get; set; }
+        public string ProcessingORCode { get; set; }
+        public string ProcessingORDate { get; set; }
+        public string ProcessingORAmount { get; set; }
+        public string PIPPVAOORCode { get; set; }
+        public string PIPPVAOORDate { get; set; }
+        public string PIPPVAOORAmount { get; set; }
+        public string RestructuringFeeORCode { get; set; }
+        public string RestructuringFeeORDate { get; set; }
+        public string RestructuringFeeORAmount { get; set; }
     }
 }

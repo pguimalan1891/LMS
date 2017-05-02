@@ -523,6 +523,9 @@
     <Content Include="ViewsJS\Booking\JS_Booking_CIR.js" />
     <Content Include="ViewsJS\Booking\JS_Booking_CV.js" />
     <Content Include="ViewsJS\Booking\JS_Booking_DV.js" />
+    <Content Include="ViewsJS\Collection\JS_OfficialReceipt.js" />
+    <Content Include="ViewsJS\Collection\JS_ORListing.js" />
+    <Content Include="ViewsJS\Collection\JS_Sundry.js" />
     <Content Include="ViewsJS\Customer\JS_Customer.js" />
     <Content Include="ViewsJS\Customer\JS_CustomerAdd.js" />
     <Content Include="ViewsJS\Customer\JS_CustomerUpdate.js" />
@@ -612,6 +615,15 @@
     <Content Include="Views\DevelopmentTools\LibraryList.cshtml" />
     <Content Include="Views\DTSecurityManager\RoleMenu.cshtml" />
     <Content Include="Views\Booking\DLRbyLMSNo.cshtml" />
+    <Content Include="Views\Application\_LoanCollaterals.cshtml" />
+    <Content Include="Views\Application\_LoanComakers.cshtml" />
+    <Content Include="Views\CreditInvestigation\CreditInvestigationFrm.cshtml" />
+    <Content Include="Views\CreditInvestigation\Index.cshtml" />
+    <Content Include="Views\OfficialReceipt\ORListing.cshtml" />
+    <Content Include="Views\OfficialReceipt\SundryOR.cshtml" />
+    <Content Include="Views\OfficialReceipt\_AddSundry.cshtml" />
+    <Content Include="Views\OfficialReceipt\_LocateDLR.cshtml" />
+    <Content Include="Views\OfficialReceipt\_UpdateSundry.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -626,7 +638,6 @@
     <Folder Include="Content\metroBootstrap\styles\" />
     <Folder Include="Content\uiPlugins\theme\js\demo\" />
     <Folder Include="Views\Collections\" />
-    <Folder Include="Views\CreditInvestigation\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
