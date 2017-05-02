@@ -68,5 +68,9 @@ namespace ServiceLayer
         {
             return OfficialReceipt.getSundry(ORNumber);
         }
+        public int UpdateOfficialReceipt(OfficialReceipt OfficialReceiptModel, string isFinalize)
+        {
+            return OfficialReceipt.UpdateOfficialReceipt(OfficialReceiptModel, isFinalize);
+        }
     }
 }

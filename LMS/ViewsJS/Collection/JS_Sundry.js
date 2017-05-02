@@ -160,12 +160,20 @@ function submitSundryOfficialReceipt() {
     jsonObject.done(function (data) {
         if (data == 0) {
             toastr.info("Successful Updating.");
-            window.location.href = 'Customer?ID=' + PISID;
+            window.location.href = "ORListing";
         } else {
             toastr.error("Updating Failed: Contact Administrator.");
         }
     });
 }
+
+function castToCurrency() {
+    $("#OfficialReceipt_AmountReceived").val(parseFloat($("#OfficialReceipt_AmountReceived").val()).toFixed(2));    
+}
+function castToCurrencyModal() {
+    $("#SundryDetails_SundryAmount").val(parseFloat($("#SundryDetails_SundryAmount").val()).toFixed(2));
+}
+
 
 function getGUID() {
     var ret;

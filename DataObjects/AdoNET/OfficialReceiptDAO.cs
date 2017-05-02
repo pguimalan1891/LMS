@@ -205,7 +205,7 @@ namespace DataObjects.AdoNET
         {
             string OfficialReceiptID = Guid.NewGuid().ToString();
             int ret = 0;
-            string sql = "usp_SubmitOfficialReceipt";
+            string sql = "[usp_SubmitOfficialReceipt]";
             object[] parms = {
                 "OfficialReceiptID", OfficialReceiptID,
                 "ORNumber",OfficialReceiptModel.ORNumber,
@@ -218,19 +218,19 @@ namespace DataObjects.AdoNET
                 "PaymentModeID",OfficialReceiptModel.PaymentModeID,
                 "BankName",OfficialReceiptModel.BankID,
                 "CheckNo",OfficialReceiptModel.CheckNo,
-                "ARAcceleratedDiscount",OfficialReceiptModel.AccelerationDiscount.Replace(",",""),
-                "ARInterestWaived",OfficialReceiptModel.PenaltyWaived.Replace(",",""),
-                "ARPPD",OfficialReceiptModel.PPD.Replace(",",""),
-                "ARTotalDiscount",OfficialReceiptModel.TotalDiscount.Replace(",",""),
-                "ARRFC",OfficialReceiptModel.RFC.Replace(",",""),
-                "ARTOTALRFC",OfficialReceiptModel.TotalRFC.Replace(",",""),
-                "ARGIBCO",OfficialReceiptModel.GIBCO.Replace(",",""),
-                "ARPIP",OfficialReceiptModel.PIP.Replace(",",""),
+                "ARAcceleratedDiscount","0.00",
+                "ARInterestWaived","0.00",
+                "ARPPD","0.00",
+                "ARTotalDiscount","0.00",
+                "ARRFC","0.00",
+                "ARTOTALRFC","0.00",
+                "ARGIBCO","0.00",
+                "ARPIP","0.00",
                 "SundryTotal", "0.00",
-                "BillingPIP",OfficialReceiptModel.PIPDue.Replace(",",""),
-                "BillingGIBCO",OfficialReceiptModel.GIBCODue.Replace(",",""),
-                "BillingRFC",OfficialReceiptModel.RFCDue.Replace(",",""),
-                "BillingPPD",OfficialReceiptModel.PPD.Replace(",",""),
+                "BillingPIP","0.00",
+                "BillingGIBCO","0.00",
+                "BillingRFC","0.00",
+                "BillingPPD","0.00",
                 "DateDue",OfficialReceiptModel.DateDue,
                 "OfficialReviewerID",Guid.NewGuid().ToString(),
                 "CustomerName",OfficialReceiptModel.CustomerName,
@@ -253,6 +253,31 @@ namespace DataObjects.AdoNET
                 }
             }
             return ret;
+        }
+
+        public int UpdateOfficialReceipt(OfficialReceipt OfficialReceiptModel, string isFinalize)
+        {            
+            string sql = "usp_UpdateOfficialReceipt";
+            object[] parms = {
+                "@ORNumber", OfficialReceiptModel.ORNumber,
+                "@isFinalize",isFinalize,
+                "@UserID",OfficialReceiptModel.UserID,
+                "@GLID",Guid.NewGuid().ToString(),
+                "@GLAccountID20",Guid.NewGuid().ToString(),
+                "@GLAccountID24",Guid.NewGuid().ToString(),
+                "@GLAccountID03",Guid.NewGuid().ToString(),
+                "@GLAccountID25",Guid.NewGuid().ToString(),
+                "@GLAccountID21",Guid.NewGuid().ToString(),
+                "@GLAccountID22",Guid.NewGuid().ToString(),
+                "@GLAccountID23",Guid.NewGuid().ToString(),
+                "@GLReviewerID",Guid.NewGuid().ToString(),
+                "@DCCRID",Guid.NewGuid().ToString(),
+                "@LedgerLine1",Guid.NewGuid().ToString(),
+                "@LedgerLine2",Guid.NewGuid().ToString(),
+                "@LedgerLine3",Guid.NewGuid().ToString(),
+                "@EffectiveYieldID",Guid.NewGuid().ToString()                
+            };
+            return db.Scalar(sql, 1, parms).AsInt();             
         }
     }
 }

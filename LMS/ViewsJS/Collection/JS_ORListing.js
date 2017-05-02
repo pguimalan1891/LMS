@@ -1,7 +1,7 @@
 ﻿var tblComponentSubmission;
 var tblComponentSubmitted;
 var tblComponentCancelled;
-
+var GlobalORNumber = "";
 var fntblComponentSubmission = $("#tblORListingSubmission thead");
 var fntblComponentSubmitted = $("#tblORListingSubmitted thead");
 var fntblComponentCancelled = $("#tblORListingCancelled thead");
@@ -9,6 +9,7 @@ var customerName = "";
 var status = "";
 var tbl = "";
 var tblbody = "";
+var isRedirect = 0;
 
 $(document).ready(function () {
     $("#divSubmitted").hide();
@@ -28,8 +29,8 @@ function showListing(status) {
     if (status == 14) {
         $("#display-modal-header").children().remove();
         $("#display-modal-header").append(
-            "<button class='btn btn-info' id='dlgadd-add-btn'>Finalize Official Receipt</button> " +
-                "<button class='btn btn-danger' id='dlgadd-close-btn'>Cancel Official Receipt</button> " +
+            "<button class='btn btn-info' id='dlgadd-add-btn' onclick='updateOfficialReceipt()'>Finalize Official Receipt</button> " +
+                "<button class='btn btn-danger' id='dlgadd-close-btn' onclick='cancelOfficialReceipt()'>Cancel Official Receipt</button> " +
                "<button class='btn btn-danger pull-right' onclick='$(\"#ViewOfficialReceiptModal\").modal(\"hide\");'>Close</button>"
             );
         
@@ -220,9 +221,52 @@ function loadComponentCancelled() {
     });
 }
 
+function cancelOfficialReceipt() {
+    
+    if (confirm("Cancel Official Receipt?")) {        
+        $.post("OfficialReceipt/UpdateOfficialReceipt", { "ORNumber": GlobalORNumber, "isFinalize": "0" }, function (data) {
+            $("#alertModal").modal();
+            $("#divAlert").empty();
+            $("#divSuccess").empty();
+            if (data == "0") {
+                $("#divAlert").append("OfficialReceipt " + GlobalORNumber + " Cancelled.");
+                isRedirect = 1;
+            } else {
+                $("#divAlert").append("Internal Server Error: Call Administrator.");
+            }            
+        });
+    }
+    
+}
+
+function updateOfficialReceipt() {    
+    if (confirm("Finalize Official Receipt?")) {
+        $.post("OfficialReceipt/UpdateOfficialReceipt", { "ORNumber": GlobalORNumber, "isFinalize": "1" }, function (data) {
+            $("#alertModal").modal();
+            $("#divAlert").empty();
+            $("#divSuccess").empty();
+            $("#divSuccess").append("OfficialReceipt " + GlobalORNumber + " Updated.");
+            if (data == "0") {
+                $("#divSuccess").append("OfficialReceipt " + GlobalORNumber + " Finalized.");
+                isRedirect = 1;
+            } else {
+                $("#divAlert").append("Internal Server Error: Call Administrator.");
+            }
+        });        
+    }    
+    
+}
+
+function checkifRedirect() {
+    if (isRedirect != 0) {
+        window.location.href = "ORListing";
+    }
+}
+
 function viewOR(ORNumber) {
     var modalDispViewORBody = $("#display-modal-body");
     var modalDispViewORMain = $("#ViewOfficialReceiptModal");
+    GlobalORNumber = ORNumber;
     $.post("OfficialReceipt/viewORNumber", { "ORNumber": ORNumber }, function (data) {
         modalDispViewORBody.empty().html(data);
         modalDispViewORMain.modal();

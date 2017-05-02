@@ -124,6 +124,21 @@ namespace LMS.Controllers.Collections
             IEnumerable<BusinessObjects.Sundry> sundryAccounts = Mapper.Map<IEnumerable<LMS.Models.Collection.Sundry>, IEnumerable<BusinessObjects.Sundry>>(sundry);
             return Content(service.SubmitSundry(OfficialReceiptModel, sundryAccounts).ToString());
         }
+
+        [HttpPost]
+        public ActionResult UpdateOfficialReceipt(string ORNumber,string isFinalize)
+        {
+            Mapper.CreateMap<Models.OfficialReceipt, BusinessObjects.OfficialReceipt>();
+            List<Dictionary<string, object>> session = (List<Dictionary<string, object>>)Session["loginDetails"];            
+            string UserCode = session[0]["Code"].ToString();
+            BusinessObjects.UserAccount UserAccount = DTSecurityservice.getUserAccountbyCode(UserCode);
+            BusinessObjects.OfficialReceipt OfficialReceiptModel = new BusinessObjects.OfficialReceipt();
+            OfficialReceiptModel.UserID = UserAccount.ID;
+            OfficialReceiptModel.OrganizationID = UserAccount.OrganizationID;
+            OfficialReceiptModel.ORNumber = ORNumber;            
+            return Content(service.UpdateOfficialReceipt(OfficialReceiptModel, isFinalize).ToString());
+        }
+
         [HttpPost]
         public ActionResult UpdateSundry(string UpdateType,LMS.Models.Collection.Sundry sundry)
         {

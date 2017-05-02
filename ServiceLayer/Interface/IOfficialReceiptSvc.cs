@@ -19,5 +19,6 @@ namespace ServiceLayer.Interface
         List<Dictionary<string, object>> getOfficialReceiptListing(string Status, string CustomerName);
         OfficialReceipt getOfficialReceipt(string ORNumber);
         IEnumerable<Sundry> getSundry(string ORNumber);
+        int UpdateOfficialReceipt(OfficialReceipt OfficialReceiptModel, string isFinalize);
     }
 }
