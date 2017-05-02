@@ -10,5 +10,6 @@ namespace DataObjects
     {
         IEnumerable<BusinessObjects.CRIncome> getIncome(string BorrowerID);
         IEnumerable<BusinessObjects.CreditInvestigation> getCRForm(string code);
+        IEnumerable<BusinessObjects.LoanList> getLoanApplicationListing(string searchkey);
     }
 }

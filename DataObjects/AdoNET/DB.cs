@@ -102,7 +102,7 @@ namespace DataObjects.AdoNET
 
             using (var connection = CreateConnection())
             {
-                using (var command = CreateCommand(sql + ";SELECT SCOPE_IDENTITY();", connection, commandType, parms))
+                using (var command = CreateCommand(sql + "; SELECT SCOPE_IDENTITY();", connection, commandType, parms))
                 {
                     return int.Parse(command.ExecuteScalar().ToString());
                 }

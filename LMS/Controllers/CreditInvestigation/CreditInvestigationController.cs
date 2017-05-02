@@ -56,6 +56,22 @@ namespace LMS.Controllers
             return View("CreditInvestigationFrm",ci);
         }
 
+        [Route("CreditInvestigation/New")]
+        public ActionResult viewListCreditInvestigation()
+        {
+            return View("ListOfLoanForCR");
+            
+        }
+
+        [Route("CreditInvestigation/New/List")]
+        public ActionResult ListCreditInvestigation()
+        {
+
+            return Json(crdService.getLoanApplicationListing());
+        }
+
+
+
         [Route("CreditInvestigation/Save")]
         public JsonResult SaveCreditInvestigation(string ci)
         {
