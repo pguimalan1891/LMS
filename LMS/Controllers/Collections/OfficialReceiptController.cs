@@ -50,9 +50,9 @@ namespace LMS.Controllers.Collections
         }
 
         [HttpGet]
-        public ActionResult FetchORListing(string status)
+        public ActionResult FetchORListing(string status,string CustomerName)
         {
-            return Json(service.getOfficialReceiptListing(status), JsonRequestBehavior.AllowGet);
+            return Json(service.getOfficialReceiptListing(status, CustomerName), JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
@@ -73,9 +73,12 @@ namespace LMS.Controllers.Collections
         [HttpGet]
         public LMS.Models.OfficialReceiptModel FetchAccountInfo(string UserCode)
         {
-            LMS.Models.OfficialReceiptModel OfficialReceiptModel = new LMS.Models.OfficialReceiptModel();
+            LMS.Models.OfficialReceiptModel OfficialReceiptModel = new LMS.Models.OfficialReceiptModel();                    
             List<Dictionary<string, object>> session = (List<Dictionary<string, object>>)Session["loginDetails"];
-            UserCode = session[0]["Code"].ToString();
+            if (session == null)
+                UserCode = "admin";
+            else
+                UserCode = session[0]["Code"].ToString();
             Mapper.CreateMap<BusinessObjects.PaymentMode, Models.PaymentMode>();
             Mapper.CreateMap<BusinessObjects.Bank, Models.Bank>();
             Mapper.CreateMap<BusinessObjects.UserAccount, Models.DevelopmentTools.UserAccount>();
@@ -135,6 +138,26 @@ namespace LMS.Controllers.Collections
             }else if(UpdateType == "edit")
             {
                 pvr = PartialView("_UpdateSundry", SundryModel);
+            }
+            return pvr;
+        }
+
+        [HttpPost]
+        public ActionResult viewORNumber(string ORNumber)
+        {
+            Mapper.CreateMap<BusinessObjects.OfficialReceipt, LMS.Models.OfficialReceipt>();
+            Mapper.CreateMap<BusinessObjects.Sundry, LMS.Models.Collection.Sundry>();
+            LMS.Models.OfficialReceiptModel ORReceiptModel = new Models.OfficialReceiptModel();
+            ORReceiptModel.OfficialReceipt = Mapper.Map<BusinessObjects.OfficialReceipt, LMS.Models.OfficialReceipt>(service.getOfficialReceipt(ORNumber));
+            ORReceiptModel.Sundry = Mapper.Map<IEnumerable<BusinessObjects.Sundry>, IEnumerable<LMS.Models.Collection.Sundry>>(service.getSundry(ORNumber));
+            var pvr = new PartialViewResult();
+            if (ORReceiptModel.OfficialReceipt.OfficialReceiptType == "1")
+            {
+                pvr = PartialView("_ViewOfficialReceipt", ORReceiptModel);
+            }
+            else if (ORReceiptModel.OfficialReceipt.OfficialReceiptType == "2")
+            {
+                pvr = PartialView("_ViewSundry", ORReceiptModel);
             }
             return pvr;
         }

@@ -69,3 +69,58 @@ function SortMenu(menu) {
     }
     return menu;
 }
+
+function verifyMoney() {
+    var append = "";
+    $.each($(".checkMoney"), function (id, comp) {
+        if (checkCurrency($("#" + comp.id).val()) == false) {
+            append += "Invalid " + $("#" + comp.id).attr("vername") + "! </br>";
+        }
+    });
+    return append;
+}
+
+function verifyString() {
+    var append = "";
+    $.each($(".requiredString"), function (id, comp) {
+        if (checkString($("#" + comp.id).val()) == false) {
+            append += "Invalid " + $("#" + comp.id).attr("vername") + "! </br>";
+        }
+    });
+    return append;
+}
+
+function verifyMoneyModal() {
+    var append = "";
+    $.each($(".checkMoneyModal"), function (id, comp) {
+        if (checkCurrency($("#" + comp.id).val()) == false) {
+            append += "Invalid " + $("#" + comp.id).attr("vername") + "! </br>";
+        }
+    });
+    return append;
+}
+
+function verifyStringModal() {
+    var append = "";
+    $.each($(".requiredStringModal"), function (id, comp) {
+        if (checkString($("#" + comp.id).val()) == false) {
+            append += "Invalid " + $("#" + comp.id).attr("vername") + "! </br>";
+        }
+    });
+    return append;
+}
+
+function checkCurrency(numStr) {
+    var regex = /^\d+(?:\.\d{0,2})$/;   
+    if (regex.test(numStr))
+        return true;
+    else
+        return false;
+}
+
+function checkString(str) {    
+    if (str.trim() != "")
+        return true;
+    else
+        return false;
+}

@@ -54,9 +54,19 @@ namespace ServiceLayer
             return OfficialReceipt.SubmitSundry(OfficialReceiptModel, SundryAccount);
         }
 
-        public List<Dictionary<string, object>> getOfficialReceiptListing(string Status)
+        public List<Dictionary<string, object>> getOfficialReceiptListing(string Status, string CustomerName)
         {
-            return OfficialReceipt.getOfficialReceiptListing(Status);
+            return OfficialReceipt.getOfficialReceiptListing(Status, CustomerName);
+        }
+
+        public OfficialReceipt getOfficialReceipt(string ORNumber)
+        {
+            return OfficialReceipt.getOfficialReceipt(ORNumber).First();
+        }
+
+        public IEnumerable<Sundry> getSundry(string ORNumber)
+        {
+            return OfficialReceipt.getSundry(ORNumber);
         }
     }
 }

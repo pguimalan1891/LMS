@@ -11,10 +11,13 @@ namespace BusinessObjects
         public string ORNumber { get; set; }
         public string ORDate { get; set; }
         public string OrganizationID { get; set; }
+        public string Organization { get; set; }
         public string PaymentModeID { get; set; }
+        public string PaymentMode { get; set; }
         public string AmountDue { get; set; }
         public string AmountReceived { get; set; }
         public string BankID { get; set; }
+        public string Bank { get; set; }
         public string CheckNo { get; set; }
         public string AccelerationDiscount { get; set; }
         public string PenaltyWaived { get; set; }
@@ -35,19 +38,20 @@ namespace BusinessObjects
         public string CreditInvestigator { get; set; }
         public string UserID { get; set; }
         public string Notes { get; set; }
-
+        public string OfficialReceiptType { get; set; }
     }
 
     public class Sundry
     {
         public string ID { get; set; }
         public string CMDMAccountTypeID { get; set; }
+        public string CMDMAccountType { get; set; }
         public string SundryAmount { get; set; }
     }
 
     public class CMDMAccountType
     {
-        public string CMDMAccountTypeID { get; set; }
+        public string CMDMAccountTypeID { get; set; }        
         public string Code { get; set; }
         public string Description { get; set; }
     }

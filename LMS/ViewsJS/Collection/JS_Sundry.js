@@ -13,7 +13,7 @@ $(document).ready(function () {
     });
 });
 
-function addData(type) {
+function addData(type) {    
     if (type == "sundry") {
         var sundyDetails = {};
         var jsonObject = $.ajax({
@@ -63,6 +63,13 @@ function editData(row, type) {
 }
 
 function updateTable(type) {
+    var chkr = verifyMoneyModal() + verifyStringModal();
+    if (chkr != "") {
+        $("#alertModal").modal();
+        $("#divAlert").empty();
+        $("#divAlert").append(chkr);
+        return;
+    }
     if (type == "sundry") {
         var sundryVal = $("#updateSundry").serializeArray();
         currentRowUpdate.cells[1].id = sundryVal[0].value;
@@ -81,6 +88,13 @@ function CancelUpdate() {
 }
 
 function addTable(type) {
+    var chkr = verifyMoneyModal() + verifyStringModal();
+    if (chkr != "") {
+        $("#alertModal").modal();
+        $("#divAlert").empty();
+        $("#divAlert").append(chkr);
+        return;
+    }
     var append = "";
     if (type == "sundry") {
         var sundryVal = $("#addSundry").serializeArray();
@@ -107,10 +121,12 @@ function DeleteData(row, type) {
     }
 }
 
-function submitSundryOfficialReceipt() {
-    $.validator.unobtrusive.parse($("#submitForm"));
-    if (!$("#submitForm").valid()) {
-        $("#alertModal").modal();
+function submitSundryOfficialReceipt() {   
+    var chkr = verifyMoney() + verifyString();
+    $("#divAlert").empty();
+    if (chkr != "") {
+        $("#alertModal").modal();        
+        $("#divAlert").append(chkr);
         return;
     }
     var OfficialReceiptModel = {};
@@ -118,6 +134,7 @@ function submitSundryOfficialReceipt() {
         OfficialReceiptModel[ctrl.name] = ctrl.value;
     });
     var sundryAccounts = [];
+    var sundryTotalAmount = 0.00;
     $.each($("#tblAddSundry tbody").children(), function (rowKey, row) {
         if (row.cells.length == 1) {
             return false;
@@ -126,8 +143,14 @@ function submitSundryOfficialReceipt() {
         Sundry.ID = row.cells[0].id;
         Sundry.CMDMAccountTypeID = row.cells[1].id;
         Sundry.SundryAmount = row.cells[2].innerHTML;
+        sundryTotalAmount += parseFloat(row.cells[2].innerHTML);
         sundryAccounts[rowKey] = Sundry;
     });
+    if (sundryTotalAmount != $("#OfficialReceipt_AmountReceived").val()) {
+        $("#alertModal").modal();
+        $("#divAlert").append("Sundry Amounts is not equal to the Amount Received.");
+        return;
+    }
     var jsonObject = $.ajax({
         type: 'POST',
         url: 'OfficialReceipt/SubmitSundry',
@@ -135,7 +158,7 @@ function submitSundryOfficialReceipt() {
         data: "{ ORModel: " + JSON.stringify(OfficialReceiptModel) + ",sundry: " + JSON.stringify(sundryAccounts) + " }"
     });
     jsonObject.done(function (data) {
-        if (data == 1) {
+        if (data == 0) {
             toastr.info("Successful Updating.");
             window.location.href = 'Customer?ID=' + PISID;
         } else {
@@ -158,3 +181,4 @@ function getGUID() {
     });
     return ret;
 }
+

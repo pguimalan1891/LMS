@@ -28,12 +28,25 @@ namespace DataObjects.AdoNET
             return db.ReadDictionary(sql, 0, parms);
         }
 
-        public List<Dictionary<string,object>> getOfficialReceiptListing(string Status)
+        public List<Dictionary<string, object>> getOfficialReceiptListing(string Status, string CustomerName)
         {
-            string sql = "Select top(100) b.DESCRIPTION as Status,a.CODE as [OR No],Convert(varchar,a.DATETIME_CREATED,101) as Date,c.DESCRIPTION as Branch,d.DESCRIPTION as Type, " +
-            "Case when a.DIRECT_LOAN_RECEIPT_ID is null then '' else e.CODE end as [DLR No], Case when a.CUSTOMER_NAME is null then g.FIRST_NAME + ' ' + g.MIDDLE_NAME + ' ' + g.LAST_NAME else a.CUSTOMER_NAME end as Customer, " +
-            "h.DESCRIPTION as [Payment Mode],a.AMOUNT_RECEIVED as [Amount Received],a.BANK_NAME as [Bank Name],a.CHECK_NO as [Check No] " +
-            "from official_receipt a  " +
+            string sql = "usp_getOfficialReceiptListing";
+            object[] parms = {
+                "Status",Status,
+                "CustomerName", CustomerName
+            };
+            return db.ReadDictionary(sql, 1, parms);
+        }
+
+        public IEnumerable<OfficialReceipt> getOfficialReceipt(string ORNumber)
+        {
+            string sql = "Select top(100) a.ID,a.CODE as [OR No],Convert(varchar,a.DATETIME_CREATED,101) as ORDate,a.ORGANIZATION_ID,c.DESCRIPTION as Branch,a.OFFICIAL_RECEIPT_TYPE_ID,d.DESCRIPTION as Type,  " +
+            "Case when a.DIRECT_LOAN_RECEIPT_ID is null then '' else e.CODE end as [DLR No],f.CODE as LoanApplicationNumber, Case when a.CUSTOMER_NAME is null then g.FIRST_NAME + ' ' + g.MIDDLE_NAME + ' ' + g.LAST_NAME else a.CUSTOMER_NAME end as Customer,  " +
+            "a.PAYMENT_MODE_ID,h.DESCRIPTION as PaymentMode,Convert(varchar, cast(a.AMOUNT_RECEIVED as money), 1) as [Amount Received],Isnull(Convert(varchar, Cast((a.BILLING_GIBCO + a.BILLING_PIP + a.BILLING_PPD + a.BILLING_RFC) as money), 1),0.00) as AmountDue,a.BANK_NAME as [Bank Name],a.CHECK_NO as [Check No], " +
+            "i.full_name as CreditInvestigator,a.NOTES,a.DATE_DUE,Convert(varchar,Cast(a.BILLING_PIP as money),1) as PIPDue,Convert(varchar,Cast(a.BILLING_GIBCO as money),1) as GIBCODue,Convert(varchar,Cast(a.BILLING_RFC as money),1) as RFCDue,Convert(varchar,Cast(a.BILLING_PPD as money),1) as PPDDue, " +
+            "Convert(varchar,Cast(a.AR_ACCELERATED_DISCOUNT as money),1) as ARAcceleratedDiscount,Convert(varchar,Cast(a.AR_INTEREST_WAIVED as money),1) as ARPenaltyWaived,Convert(varchar,Cast(a.AR_PPD as money),1) as ARPPD,Convert(varchar,Cast(a.AR_TOTAL_DISCOUNT as money),1) as ARTotalDiscount, " +
+            "Convert(varchar,Cast(a.PIP_MI as money),1) as AR_PIP,Convert(varchar,Cast(a.AR_GIBCO_MI as money),1) as AR_GIBCO,Convert(varchar,Cast(a.AR_RFC_MI as money),1) as AR_RFC,Convert(varchar,Cast(a.AR_TOTAL_RFC as money),1) as AR_TOTAL_RFC,a.OFFICIAL_RECEIPT_TYPE_ID " +
+            "from official_receipt a " +
             "inner join document_status_map b on a.DOCUMENT_STATUS_CODE = b.CODE " +
             "inner join organization c on a.ORGANIZATION_ID = c.ID " +
             "left join official_receipt_type d on a.OFFICIAL_RECEIPT_TYPE_ID = d.ID " +
@@ -41,12 +54,59 @@ namespace DataObjects.AdoNET
             "left join loan_application f on e.LOAN_APPLICATION_ID = f.ID " +
             "left join uvw_PISData g on f.CURRENT_PIS_ID = g.ID " +
             "left join payment_mode h on a.PAYMENT_MODE_ID = h.ID " +
-            "where a.DOCUMENT_STATUS_CODE = " + Status + " " +
+            "left join user_account i on a.PREPARED_BY_ID = i.ID " +
+            "where a.Code = @ORNumber " +
             "Order by a.DATETIME_CREATED desc";
-            object[] parms = { };
-            return db.ReadDictionary(sql, 0, parms);
+            object[] parms = { "ORNumber", ORNumber };
+            return db.Read(sql, selectOfficialReceipt, 0, parms);
         }
-
+        static Func<IDataReader, OfficialReceipt> selectOfficialReceipt = reader =>
+           new OfficialReceipt
+           {
+               ORNumber = reader["OR No"].AsString(),
+               ORDate = reader["ORDate"].AsString(),
+               Organization = reader["Branch"].AsString(),
+               PaymentMode = reader["PaymentMode"].AsString(),
+               AmountDue = reader["AmountDue"].AsString(),
+               AmountReceived = reader["Amount Received"].AsString(),
+               Bank = reader["Bank Name"].AsString(),
+               CheckNo = reader["Check No"].AsString(),
+               DateDue = reader["DATE_DUE"].AsString(),
+               PIPDue = reader["PIPDue"].AsString(),
+               GIBCODue = reader["GIBCODue"].AsString(),
+               RFCDue = reader["RFCDue"].AsString(),
+               PPD = reader["PPDDue"].AsString(),
+               LoanAccountNo = reader["LoanApplicationNumber"].AsString(),
+               DirectLoanReceiptNo = reader["DLR No"].AsString(),
+               CustomerName = reader["Customer"].AsString(),
+               CreditInvestigator = reader["CreditInvestigator"].AsString(),
+               AccelerationDiscount = reader["ARAcceleratedDiscount"].AsString(),
+               PenaltyWaived = reader["ARPenaltyWaived"].AsString(),
+               PromptPaymentDiscount = reader["ARPPD"].AsString(),
+               TotalDiscount = reader["ARTotalDiscount"].AsString(),
+               PIP = reader["AR_PIP"].AsString(),
+               GIBCO = reader["AR_GIBCO"].AsString(),
+               RFC = reader["AR_RFC"].AsString(),
+               TotalRFC = reader["AR_TOTAL_RFC"].AsString(),
+               OfficialReceiptType = reader["OFFICIAL_RECEIPT_TYPE_ID"].AsString()               
+           };
+        public IEnumerable<Sundry> getSundry(string ORNumber)
+        {
+            string sql = "Select a.ID,a.OFFICIAL_RECEIPT_ID,a.ACCOUNT_TYPE_ID,b.Description as ACCOUNT_TYPE,Convert(varchar,Cast(a.Amount as money),1) as Amount from official_receipt_account a " +
+            "inner join cmdm_account_type b on a.ACCOUNT_TYPE_ID = b.ID " +
+            "inner join official_receipt c on a.OFFICIAL_RECEIPT_ID = c.ID " +
+            "where c.CODE = @ORNumber";
+            object[] parms = { "ORNumber", ORNumber };
+            return db.Read(sql, selectSundryAccount, 0, parms);
+        }
+        static Func<IDataReader, Sundry> selectSundryAccount = reader =>
+           new Sundry
+           {
+               ID = reader["ID"].AsString(),
+               CMDMAccountTypeID = reader["ACCOUNT_TYPE_ID"].AsString(),
+               CMDMAccountType = reader["ACCOUNT_TYPE"].AsString(),
+               SundryAmount = reader["Amount"].AsString()
+           };
         public IEnumerable<PaymentMode> getPaymentMode()
         {
             string sql = "Select ID,Code,Description from payment_mode";
@@ -116,21 +176,26 @@ namespace DataObjects.AdoNET
                 "OrganizationID",OfficialReceiptModel.OrganizationID,
                 "DirectLoanReceiptNumber",OfficialReceiptModel.DirectLoanReceiptNo,
                 "OfficialReceiptType","1",
-                "AmountReceived",OfficialReceiptModel.AmountReceived,
+                "AmountReceived",OfficialReceiptModel.AmountReceived.Replace(",",""),
                 "PaymentModeID",OfficialReceiptModel.PaymentModeID,
                 "BankName",OfficialReceiptModel.BankID,
                 "CheckNo",OfficialReceiptModel.CheckNo,
-                "ARAcceleratedDiscount",OfficialReceiptModel.AccelerationDiscount,
-                "ARInterestWaived",OfficialReceiptModel.PenaltyWaived,
-                "ARPPD",OfficialReceiptModel.PPD,
-                "ARTotalDiscount",OfficialReceiptModel.TotalDiscount,
+                "ARAcceleratedDiscount",OfficialReceiptModel.AccelerationDiscount.Replace(",",""),
+                "ARInterestWaived",OfficialReceiptModel.PenaltyWaived.Replace(",",""),
+                "ARPPD",OfficialReceiptModel.PromptPaymentDiscount.Replace(",",""),
+                "ARTotalDiscount",OfficialReceiptModel.TotalDiscount.Replace(",",""),
+                "ARRFC",OfficialReceiptModel.RFC.Replace(",",""),
+                "ARTOTALRFC",OfficialReceiptModel.TotalRFC.Replace(",",""),
+                "ARGIBCO",OfficialReceiptModel.GIBCO.Replace(",",""),
+                "ARPIP",OfficialReceiptModel.PIP.Replace(",",""),
                 "SundryTotal", "0.00",
-                "BillingPIP",OfficialReceiptModel.PIPDue,
-                "BillingGIBCO",OfficialReceiptModel.GIBCODue,
-                "BillingRFC",OfficialReceiptModel.RFCDue,
-                "BillingPPD",OfficialReceiptModel.PPD,
+                "BillingPIP",OfficialReceiptModel.PIPDue.Replace(",",""),
+                "BillingGIBCO",OfficialReceiptModel.GIBCODue.Replace(",",""),
+                "BillingRFC",OfficialReceiptModel.RFCDue.Replace(",",""),
+                "BillingPPD",OfficialReceiptModel.PPD.Replace(",",""),
                 "DateDue",OfficialReceiptModel.DateDue,
                 "OfficialReviewerID",Guid.NewGuid().ToString(),
+                "CustomerName",OfficialReceiptModel.CustomerName,
                 "Notes",OfficialReceiptModel.Notes
             };
             return db.Scalar(sql, 1, parms).AsInt();            
@@ -148,22 +213,27 @@ namespace DataObjects.AdoNET
                 "RequestedByID",OfficialReceiptModel.UserID,
                 "OrganizationID",OfficialReceiptModel.OrganizationID,
                 "DirectLoanReceiptNumber",OfficialReceiptModel.DirectLoanReceiptNo,
-                "OfficialReceiptType","1",
-                "AmountReceived",OfficialReceiptModel.AmountReceived,
+                "OfficialReceiptType","2",
+                "AmountReceived",OfficialReceiptModel.AmountReceived.Replace(",",""),
                 "PaymentModeID",OfficialReceiptModel.PaymentModeID,
                 "BankName",OfficialReceiptModel.BankID,
                 "CheckNo",OfficialReceiptModel.CheckNo,
-                "ARAcceleratedDiscount",OfficialReceiptModel.AccelerationDiscount,
-                "ARInterestWaived",OfficialReceiptModel.PenaltyWaived,
-                "ARPPD",OfficialReceiptModel.PPD,
-                "ARTotalDiscount",OfficialReceiptModel.TotalDiscount,
+                "ARAcceleratedDiscount",OfficialReceiptModel.AccelerationDiscount.Replace(",",""),
+                "ARInterestWaived",OfficialReceiptModel.PenaltyWaived.Replace(",",""),
+                "ARPPD",OfficialReceiptModel.PPD.Replace(",",""),
+                "ARTotalDiscount",OfficialReceiptModel.TotalDiscount.Replace(",",""),
+                "ARRFC",OfficialReceiptModel.RFC.Replace(",",""),
+                "ARTOTALRFC",OfficialReceiptModel.TotalRFC.Replace(",",""),
+                "ARGIBCO",OfficialReceiptModel.GIBCO.Replace(",",""),
+                "ARPIP",OfficialReceiptModel.PIP.Replace(",",""),
                 "SundryTotal", "0.00",
-                "BillingPIP",OfficialReceiptModel.PIPDue,
-                "BillingGIBCO",OfficialReceiptModel.GIBCODue,
-                "BillingRFC",OfficialReceiptModel.RFCDue,
-                "BillingPPD",OfficialReceiptModel.PPD,
+                "BillingPIP",OfficialReceiptModel.PIPDue.Replace(",",""),
+                "BillingGIBCO",OfficialReceiptModel.GIBCODue.Replace(",",""),
+                "BillingRFC",OfficialReceiptModel.RFCDue.Replace(",",""),
+                "BillingPPD",OfficialReceiptModel.PPD.Replace(",",""),
                 "DateDue",OfficialReceiptModel.DateDue,
                 "OfficialReviewerID",Guid.NewGuid().ToString(),
+                "CustomerName",OfficialReceiptModel.CustomerName,
                 "Notes",OfficialReceiptModel.Notes
             };
             ret = db.Scalar(sql, 1, parms).AsInt();

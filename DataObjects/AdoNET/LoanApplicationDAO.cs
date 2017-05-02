@@ -339,47 +339,47 @@ namespace DataObjects.AdoNET
                 status = "[All]";
             }
             string sql = "select top 1000 "+
-" loan_application.ID, " +
-" dm.DESCRIPTION as [Status], " +
-" loan_application.code as LA_No,  " +
-" convert(varchar, loan_application.DATETIME_CREATED, 101) as [Date], " +
-" org.DESCRIPTION as Branch, " +
-" pis.LAST_NAME + ' ,' + pis.FIRST_NAME + ' ' + pis.MIDDLE_NAME as Customer, " +
-" city.DESCRIPTION + ', ' + province.DESCRIPTION as [CustomerAddress], " +
-" loan_type.DESCRIPTION as Product, " +
-" loan_application.ORIGINAL_MLV as Desired, " +
-" loan_application.RECOMMENDED_MLV as Recommended, " +
-" loan_application.APPROVED_MLV as Approved, " +
-" loan_set.DESCRIPTION as [Set], " +
-" loan_terms.DESCRIPTION as [Terms], " +
-" loan_application.PURPOSE_OF_LOAN as Purpose, " +
-" user_account.LAST_NAME + ', ' + user_account.FIRST_NAME as CCI, " +
-" ISNULL((select document_status_map.description from document_status_map where document_status_map.code = ci.document_status_code), 'Not Available') as CiStatus " +
-" from loan_application " +
-" inner join document_status_map dm on dm.CODE = loan_application.DOCUMENT_STATUS_CODE " +
-" inner " +
-" join organization org on org.ID = loan_application.ORGANIZATION_ID " +
-" inner " +
-" join pis on pis.ID = loan_application.PIS_ID " +
+                " loan_application.ID, " +
+                " dm.DESCRIPTION as [Status], " +
+                " loan_application.code as LA_No,  " +
+                " convert(varchar, loan_application.DATETIME_CREATED, 101) as [Date], " +
+                " org.DESCRIPTION as Branch, " +
+                " pis.LAST_NAME + ' ,' + pis.FIRST_NAME + ' ' + pis.MIDDLE_NAME as Customer, " +
+                " city.DESCRIPTION + ', ' + province.DESCRIPTION as [CustomerAddress], " +
+                " loan_type.DESCRIPTION as Product, " +
+                " loan_application.ORIGINAL_MLV as Desired, " +
+                " loan_application.RECOMMENDED_MLV as Recommended, " +
+                " loan_application.APPROVED_MLV as Approved, " +
+                " loan_set.DESCRIPTION as [Set], " +
+                " loan_terms.DESCRIPTION as [Terms], " +
+                " loan_application.PURPOSE_OF_LOAN as Purpose, " +
+                " user_account.LAST_NAME + ', ' + user_account.FIRST_NAME as CCI, " +
+                " ISNULL((select document_status_map.description from document_status_map where document_status_map.code = ci.document_status_code), 'Not Available') as CiStatus " +
+                " from loan_application " +
+                " inner join document_status_map dm on dm.CODE = loan_application.DOCUMENT_STATUS_CODE " +
+                " inner " +
+                " join organization org on org.ID = loan_application.ORGANIZATION_ID " +
+                " inner " +
+                " join pis on pis.ID = loan_application.PIS_ID " +
 
-" inner " +
-" join pis_address on pis_address.PIS_ID = loan_application.PIS_ID " +
-" inner " +
-" join city on city.ID = pis_address.CITY_ID " +
-" inner " +
-" join province on province.ID = city.PROVINCE_ID " +
-" inner " +
-" join loan_type on loan_type.ID = loan_application.LOAN_TYPE_ID " +
-" inner " +
-" join loan_set on loan_set.ID = loan_application.LOAN_SET_ID " +
-" inner " +
-" join loan_terms on loan_terms.ID = loan_application.LOAN_TERMS_ID " +
-" inner " +
-" join user_account on user_account.ID = loan_application.REQUESTED_BY_ID " +
-" inner " +
-" join credit_investigation ci on ci.LOAN_APPLICATION_ID = loan_application.id " +
-" inner " +
-" join document_status_map ciStat on ciStat.CODE = ci.DOCUMENT_STATUS_CODE";
+                " inner " +
+                " join pis_address on pis_address.PIS_ID = loan_application.PIS_ID " +
+                " inner " +
+                " join city on city.ID = pis_address.CITY_ID " +
+                " inner " +
+                " join province on province.ID = city.PROVINCE_ID " +
+                " inner " +
+                " join loan_type on loan_type.ID = loan_application.LOAN_TYPE_ID " +
+                " inner " +
+                " join loan_set on loan_set.ID = loan_application.LOAN_SET_ID " +
+                " inner " +
+                " join loan_terms on loan_terms.ID = loan_application.LOAN_TERMS_ID " +
+                " inner " +
+                " join user_account on user_account.ID = loan_application.REQUESTED_BY_ID " +
+                " inner " +
+                " join credit_investigation ci on ci.LOAN_APPLICATION_ID = loan_application.id " +
+                " inner " +
+                " join document_status_map ciStat on ciStat.CODE = ci.DOCUMENT_STATUS_CODE";
 
             if (status == "[Approval]" && searchkey == "[All]")
             {
@@ -479,8 +479,8 @@ namespace DataObjects.AdoNET
         {
             string guid = Guid.NewGuid().ToString();
             string guid_reviewer = Guid.NewGuid().ToString();
-            string sql = "usp_insertLoan";
-            object[] parms = { "guid", guid , "reviewer_id", guid_reviewer, "datetime_created" ,  DateTime.Now.ToShortDateString(),
+            string sql = "exec usp_insertLoan @guid,@code,@datetime_created,@prepared_by_id,@prepared_by_datetime  , @requested_by_id  ,@requested_by_datetime  ,@organization_id  ,@document_status_code  ,@permission  ,@notes  ,@pis_id  ,@history_pis_id  ,@current_pis_id  ,@factor_setup_id  ,@authority_setup_id  ,@ppd_rate_id  ,@handling_fee_id  ,@pp_discount_id  ,@agent_incentive_id  ,@agent_incentive_type_id  ,@dealer_incentive_id  ,@dealer_incentive_type_id  ,@loan_type_id  ,@add_on_rate  ,@loan_amount  ,@recommended_mlv  ,@original_mlv  ,@approved_mlv  ,@loan_set_id  ,@loan_terms_id  ,@purpose_of_loan  ,@required_document_id  ,@character_notes  ,@capacity_notes  ,@collateral_notes  ,@capital_notes  ,@business_environment_notes  ,@restructure_count  ,@direct_loan_receipt_id  ,@pip_balance  ,@gibco_balance  ,@rfc_balance  ,@total_balance  ,@pip_due  ,@gibco_due  ,@rfc_due  ,@total_due  ,@restructure_fee  ,@restructure_income  ,@acceleration_form_id  ,@effective_yield_id  ,@tag  ,@tag_amount  ,@assured  ,@remedial_type_id  ,@reviewer_id  ";
+            object[] parms = { "guid", guid , "reviewer_id", guid_reviewer,"code", guid_reviewer, "datetime_created" ,  DateTime.Now.ToShortDateString(),
         "prepared_by_id" , userID ,
         "prepared_by_datetime" , DateTime.Now.ToShortDateString() ,
         "requested_by_id" ,userID ,
@@ -534,7 +534,7 @@ namespace DataObjects.AdoNET
         "tag_amount" ,"0" ,
         "assured" ,"0" ,
         "remedial_type_id" ,"0" };
-            db.RetValue(sql, 4, parms);
+            db.RetValue(sql, 0, parms);
 
             insertLoanCollateral(guid, loan.ListOfCollaterals);
             insertLoanComaker(guid, loan.ListOfComakers);
