@@ -89,7 +89,69 @@ namespace DataObjects.AdoNET
                 ln.ApprovedMLV = Convert.ToDouble(d["approved_mlv"]).ToString("n2");
                 ln.FirstDueDate = d["first_due_date"].ToString();
                 ln.AddOnRate = d["add_on_rate"].ToString();
+                ln.NetMonthlyInstallment = Convert.ToDouble(d["net_monthly_installment"]).ToString("n2");
                 mdl.Loan = ln;
+                GIBCOModel gibco = new GIBCOModel();
+                gibco.GIBCOBasic1 = Convert.ToDouble(d["gibco_basic_1"]).ToString("n2");
+                gibco.GIBCOBasic2 = Convert.ToDouble(d["gibco_basic_2"]).ToString("n2");
+                gibco.GIBCOBasic3 = Convert.ToDouble(d["gibco_basic_3"]).ToString("n2");
+                gibco.GIBCOBasic4 = Convert.ToDouble(d["gibco_basic_4"]).ToString("n2");
+                gibco.GIBCOBasic5 = Convert.ToDouble(d["gibco_basic_5"]).ToString("n2");
+                
+                gibco.GIBCOYear1 = Convert.ToDouble(d["gibco_first_year"]).ToString("n2");
+                gibco.GIBCOYear2 = Convert.ToDouble(d["gibco_second_year"]).ToString("n2");
+                gibco.GIBCOYear3 = Convert.ToDouble(d["gibco_third_year"]).ToString("n2");
+                gibco.GIBCOYear4 = Convert.ToDouble(d["gibco_fourth_year"]).ToString("n2");
+                gibco.GIBCOYear5 = Convert.ToDouble(d["gibco_fifth_year"]).ToString("n2");
+
+                gibco.GMMU1 = Convert.ToDouble(d["gmmu_1"]).ToString("n2");
+                gibco.GMMU2 = Convert.ToDouble(d["gmmu_2"]).ToString("n2");
+                gibco.GMMU3 = Convert.ToDouble(d["gmmu_3"]).ToString("n2");
+                gibco.GMMU4 = Convert.ToDouble(d["gmmu_4"]).ToString("n2");
+                gibco.GMMU5 = Convert.ToDouble(d["gmmu_5"]).ToString("n2");
+
+                gibco.GIBCODate1 = d["gibco_date_1"].ToString();
+                gibco.GIBCODate2 = d["gibco_date_2"].ToString();
+                gibco.GIBCODate3 = d["gibco_date_3"].ToString();
+                gibco.GIBCODate4 = d["gibco_date_4"].ToString();
+                gibco.GIBCODate5 = d["gibco_date_5"].ToString();
+
+                mdl.GIBCO = gibco;
+
+                OutrightPayments outpayment = new OutrightPayments();
+                outpayment.HandlingORCode = d["or_handling_id"].ToString();
+                if (outpayment.HandlingORCode != String.Empty)
+                {
+                    outpayment.HandlingORDate = d["datetime_created"].ToString();
+                }
+                outpayment.ProcessingORCode = d["or_processing_fee_id"].ToString();
+                if (outpayment.ProcessingORCode != String.Empty)
+                {
+                    outpayment.ProcessingORDate = d["datetime_created"].ToString();
+                }
+                outpayment.DSTORCode = d["or_dst_id"].ToString();
+                if (outpayment.DSTORCode != String.Empty)
+                {
+                    outpayment.DSTORDate = d["datetime_created"].ToString();
+                }
+                outpayment.PIPPVAOORCode = d["or_pip_pvao_id"].ToString();
+                if (outpayment.PIPPVAOORCode != String.Empty)
+                {
+                    outpayment.PIPPVAOORDate = d["datetime_created"].ToString();
+                }
+                outpayment.RestructuringFeeORCode = d["or_restructuring_id"].ToString();
+                if (outpayment.RestructuringFeeORCode != String.Empty)
+                {
+                    outpayment.RestructuringFeeORDate = d["datetime_created"].ToString();
+                }
+
+                outpayment.HandlingORAmount = d["or_amount_handling"].ToString();
+                outpayment.ProcessingORAmount = d["or_amount_processing_fee"].ToString();
+                outpayment.DSTORAmount = d["or_amount_dst"].ToString();
+                outpayment.PIPPVAOORAmount = d["or_amount_pip_pvao"].ToString();
+                outpayment.RestructuringFeeORAmount = d["or_amount_restructuring"].ToString();
+
+                mdl.Outpayments = outpayment;
             }
             return mdl;
         }

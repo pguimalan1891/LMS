@@ -26,5 +26,10 @@ namespace ServiceLayer
         {
             return lnCtrl.getCRForm(code).First();
         }
+
+        public IEnumerable<BusinessObjects.LoanList> getLoanApplicationListing()
+        {
+            return lnCtrl.getLoanApplicationListing("");
+        }
     }
 }

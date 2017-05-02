@@ -614,14 +614,16 @@
     <Content Include="Views\DevelopmentTools\Reference.cshtml" />
     <Content Include="Views\DevelopmentTools\LibraryList.cshtml" />
     <Content Include="Views\DTSecurityManager\RoleMenu.cshtml" />
+    <Content Include="Views\Booking\DLRbyLMSNo.cshtml" />
+    <Content Include="Views\Application\_LoanCollaterals.cshtml" />
+    <Content Include="Views\Application\_LoanComakers.cshtml" />
     <Content Include="Views\CreditInvestigation\CreditInvestigationFrm.cshtml" />
-    <Content Include="Views\OfficialReceipt\_LocateDLR.cshtml" />
+    <Content Include="Views\CreditInvestigation\Index.cshtml" />
+    <Content Include="Views\OfficialReceipt\ORListing.cshtml" />
     <Content Include="Views\OfficialReceipt\SundryOR.cshtml" />
     <Content Include="Views\OfficialReceipt\_AddSundry.cshtml" />
+    <Content Include="Views\OfficialReceipt\_LocateDLR.cshtml" />
     <Content Include="Views\OfficialReceipt\_UpdateSundry.cshtml" />
-    <Content Include="Views\OfficialReceipt\ORListing.cshtml" />
-    <Content Include="Views\OfficialReceipt\_ViewOfficialReceipt.cshtml" />
-    <Content Include="Views\OfficialReceipt\_ViewSundry.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

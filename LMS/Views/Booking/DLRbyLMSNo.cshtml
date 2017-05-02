@@ -16,240 +16,195 @@
 </div>
 
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-12">
         <div class="panel panel-primary">
             <div class="panel-heading">General Information</div>
             <div class="panel-body">
-                <form class="form-horizontal">
-                    <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">LMS DLR No:</label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                            <input type="text" value="@Model.LMSCode" class="form-control" disabled="disabled" placeholder="">
-                        </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">LMS DLR No:</label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <input type="text" value="@Model.LMSCode" class="form-control" disabled="disabled" placeholder="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">DLR No:</label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <input type="text" value="@Model.DLRNo" class="form-control" disabled="disabled" placeholder="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">DLR Date:</label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <input type="text" value="@Model.DLRDate" class="form-control" disabled="disabled" placeholder="">
+                                </div>
+                            </div>
+                        </form>
                     </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">DLR No:</label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                            <input type="text" value="@Model.DLRNo" class="form-control" disabled="disabled" placeholder="">
-                        </div>
+                    <div class="col-md-6">
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Branch:</label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <input type="text" value="@Model.Branch" class="form-control" disabled="disabled" placeholder="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Application Type:</label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <input type="text" value="@Model.ApplicationTypeDesc" class="form-control" disabled="disabled" placeholder="">
+                                </div>
+                            </div>
+                        </form>
                     </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">DLR Date:</label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                            <input type="text" value="@Model.DLRDate" class="form-control" disabled="disabled" placeholder="">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Branch:</label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                            <input type="text" value="@Model.Branch" class="form-control" disabled="disabled" placeholder="">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Application Type:</label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                            <input type="text" value="@Model.ApplicationTypeDesc" class="form-control" disabled="disabled" placeholder="">
-                        </div>
-                    </div>
-                </form>
+                </div>
             </div>
             @*<div class="panel-footer">Panel Footer</div>*@
         </div>
     </div>
-    <div class="col-md-6">
-        <div class="panel panel-primary">
-            <div class="panel-heading">Loan Application Information</div>
-            <div class="panel-body">
-                <form class="form-horizontal">
-                    <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Loan Application No:</label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                            <input type="text" value="@Model.Loan.LoanApplicationNo" class="form-control" disabled="disabled" placeholder="">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Loan Type:</label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                            <input type="text" value="@Model.Loan.LoanTypeDesc" class="form-control" disabled="disabled" placeholder="">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Loan Set:</label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                            <input type="text" value="@Model.Loan.LoanSetDesc" class="form-control" disabled="disabled" placeholder="">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Loan Terms:</label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                            <input type="text" value="@Model.Loan.LoanTermDesc" class="form-control" disabled="disabled" placeholder="">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Desired MLV:</label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                            <input type="text" value="@Model.Loan.DesiredMLV" class="form-control" disabled="disabled" placeholder="">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">First Due Date:</label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                            <input type="text" class="form-control" disabled="disabled" placeholder="">
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
 </div>
-
 <div class="row">
-    
-    <div class="col-md-6">
+    <div class="col-md-12">
         <div class="panel panel-primary">
             <div class="panel-heading">Borrower Profile</div>
             <div class="panel-body">
-                <form class="form-horizontal">
-                    <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Borrower Code:</label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                            <input type="text" value="@Model.Borrower.BorrowerCode" class="form-control" disabled="disabled" placeholder="">
-                        </div>
+                <div class="row">
+                    
+                    <div class="col-md-6">
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Borrower Code:</label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <input type="text" value="@Model.Borrower.BorrowerCode" class="form-control" disabled="disabled" placeholder="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Full Name:</label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <input type="text" value="@Model.Borrower.FullName" class="form-control" disabled="disabled" placeholder="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Province:</label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <input type="text" value="@Model.Borrower.Province" class="form-control" disabled="disabled" placeholder="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">City:</label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <input type="text" value="@Model.Borrower.City" class="form-control" disabled="disabled" placeholder="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Barangay:</label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <input type="text" value="@Model.Borrower.Brgy" class="form-control" disabled="disabled" placeholder="">
+                                </div>
+                            </div>
+                        </form>
                     </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Full Name:</label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                            <input type="text" value="@Model.Borrower.FullName" class="form-control" disabled="disabled" placeholder="">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Province:</label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                            <input type="text" value="@Model.Borrower.Province" class="form-control" disabled="disabled" placeholder="">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">City:</label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                            <input type="text" value="@Model.Borrower.City" class="form-control" disabled="disabled" placeholder="">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Barangay:</label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                            <input type="text" value="@Model.Borrower.Brgy" class="form-control" disabled="disabled" placeholder="">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Street Address:</label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                            <input type="text" value="@Model.Borrower.StreetAddress" class="form-control" disabled="disabled" placeholder="">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Postal Code:</label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                            <input type="text" value="@Model.Borrower.PostalCode" class="form-control" disabled="disabled" placeholder="">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Landline</label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                            <input type="text" value="@Model.Borrower.LandlineNo" class="form-control" disabled="disabled" placeholder="">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Mobile No.</label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                            <input type="text" value="@Model.Borrower.MobileNo" class="form-control" disabled="disabled" placeholder="">
-                        </div>
-                    </div>
-                </form>
-            </div>
-            @*<div class="panel-footer">Panel Footer</div>*@
-        </div>
-    </div>
 
-    <div class="col-md-6">
-        <div class="panel panel-primary">
-            <div class="panel-heading">Net Monthly Installment</div>
-            <div class="panel-body">
-                <form class="form-horizontal">
-                    <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Approved MLV:</label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                            <input type="text" value="@Model.Loan.DesiredMLV" class="form-control" disabled="disabled" placeholder="">
-                        </div>
+                    <div class="col-md-6">
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Street Address:</label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <input type="text" value="@Model.Borrower.StreetAddress" class="form-control" disabled="disabled" placeholder="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Postal Code:</label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <input type="text" value="@Model.Borrower.PostalCode" class="form-control" disabled="disabled" placeholder="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Landline</label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <input type="text" value="@Model.Borrower.LandlineNo" class="form-control" disabled="disabled" placeholder="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Mobile No.</label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <input type="text" value="@Model.Borrower.MobileNo" class="form-control" disabled="disabled" placeholder="">
+                                </div>
+                            </div>
+                        </form>
                     </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Add-on Rate/Nominal:</label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                            <input type="text" value="@Model.Loan.AddOnRate" class="form-control" disabled="disabled" placeholder="">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Net Monthly Installment:</label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                            <input type="text" class="form-control" disabled="disabled" placeholder="">
-                        </div>
-                    </div>
-                </form>
+
+                </div>
+                @*<div class="panel-footer">Panel Footer</div>*@
             </div>
         </div>
     </div>
 </div>
-
 <div class="row">
-    <div class="" role="tabpanel" data-example-id="togglable-tabs">
-        <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
-            <li role="presentation" class="">
-                <a href="#tbgibco" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Guevent Insurance Brokerage Corporation (GIBCO)</a>
-            </li>
-            <li role="presentation" class="">
-                <a href="#tboutpay" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Outright Payments</a>
-            </li>
-            <li role="presentation" class="">
-                <a href="#tbless" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Less: Handling Fee and Rebatable Prompt Payment Discount</a>
-            </li>
-            <li role="presentation" class="">
-                <a href="#tbpnv" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Promissory Note Value (PNV)</a>
-            </li>
-            <li role="presentation" class="">
-                <a href="#tbotherfees" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Other Fees</a>
-            </li>
-            <li role="presentation" class="">
-                <a href="#tbdeduc" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">DEDUCTIONS</a>
-            </li>
-            <li role="presentation" class="">
-                <a href="#tbsumofproceeds" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Summary of Proceeds</a>
-            </li>
-            <li role="presentation" class="">
-                <a href="#tbpampamilya" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Pampamilya Insurance Program Details</a>
-            </li>
-            <li role="presentation" class="">
-                <a href="#tbagent" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Agent Incentive Information</a>
-            </li>
-            <li role="presentation" class="">
-                <a href="#tbcomaker" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Co-Maker/s</a>
-            </li>
-            <li role="presentation" class="">
-                <a href="#tbcollateral" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">List of Collateral</a>
-            </li>
-        </ul>
-        <div id="myTabContent" class="tab-content">
-            <div role="tabpanel" class="tab-pane fade active in" id="tbgeninfo" aria-labelledby="home-tab">
-                
+    <div class="col-md-12">
+        <div class="panel panel-primary">
+            <div class="panel-heading">Loan Application Information</div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Loan Application No:</label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <input type="text" value="@Model.Loan.LoanApplicationNo" class="form-control" disabled="disabled" placeholder="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Loan Type:</label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <input type="text" value="@Model.Loan.LoanTypeDesc" class="form-control" disabled="disabled" placeholder="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Loan Set:</label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <input type="text" value="@Model.Loan.LoanSetDesc" class="form-control" disabled="disabled" placeholder="">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="col-md-6">
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Loan Terms:</label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <input type="text" value="@Model.Loan.LoanTermDesc" class="form-control" disabled="disabled" placeholder="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Desired MLV:</label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <input type="text" value="@Model.Loan.DesiredMLV" class="form-control" disabled="disabled" placeholder="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">First Due Date:</label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <input type="text" value="@Model.Loan.FirstDueDate" class="form-control" disabled="disabled" placeholder="">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
-            <div role="tabpanel" class="tab-pane fade" id="tbborrowerprof" aria-labelledby="profile-tab">
-                
-            </div>
-            <div role="tabpanel" class="tab-pane fade" id="tbloanappinfo" aria-labelledby="profile-tab">
-                <form class="form-horizontal">
-                    
-                </form>
-            </div>
-            <div role="tabpanel" class="tab-pane fade" id="tbgibco" aria-labelledby="profile-tab">
-                <table class="table">
+        </div>
+    </div>
+</div>
+<div class="row">
+    <!--Guevent Insurance Brokerage Corporation (GIBCO)-->
+    <div class="col-md-12">
+        <div class="panel panel-primary">
+            <div class="panel-heading">Guevent Insurance Brokerage Corporation (GIBCO)</div>
+            <div class="panel-body">
+                <table class="table table-bordered">
                     <thead>
                         <tr>
                             <th></th>
@@ -262,375 +217,484 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>Basic: </td>
-                            <td>0.00</td>
-                            <td>0.00</td>
-                            <td>0.00</td>
-                            <td>0.00</td>
-                            <td>0.00</td>
+                            <td class="text-right">Basic: </td>
+                            <td><input type="text" value="@Model.GIBCO.GIBCOBasic1" class="form-control" disabled="disabled" placeholder=""></td>
+                            <td><input type="text" value="@Model.GIBCO.GIBCOBasic2" class="form-control" disabled="disabled" placeholder=""></td>
+                            <td><input type="text" value="@Model.GIBCO.GIBCOBasic3" class="form-control" disabled="disabled" placeholder=""></td>
+                            <td><input type="text" value="@Model.GIBCO.GIBCOBasic4" class="form-control" disabled="disabled" placeholder=""></td>
+                            <td><input type="text" value="@Model.GIBCO.GIBCOBasic5" class="form-control" disabled="disabled" placeholder=""></td>
                         </tr>
                         <tr>
-                            <td>Total Premium: </td>
-                            <td>0.00</td>
-                            <td>0.00</td>
-                            <td>0.00</td>
-                            <td>0.00</td>
-                            <td>0.00</td>
+                            <td class="text-right">Total Premium: </td>
+                            <td><input type="text" value="@Model.GIBCO.GIBCOYear1" class="form-control" disabled="disabled" placeholder=""></td>
+                            <td><input type="text" value="@Model.GIBCO.GIBCOYear2" class="form-control" disabled="disabled" placeholder=""></td>
+                            <td><input type="text" value="@Model.GIBCO.GIBCOYear3" class="form-control" disabled="disabled" placeholder=""></td>
+                            <td><input type="text" value="@Model.GIBCO.GIBCOYear4" class="form-control" disabled="disabled" placeholder=""></td>
+                            <td><input type="text" value="@Model.GIBCO.GIBCOYear5" class="form-control" disabled="disabled" placeholder=""></td>
                         </tr>
                         <tr>
-                            <td>GMMU: </td>
-                            <td>0.00</td>
-                            <td>0.00</td>
-                            <td>0.00</td>
-                            <td>0.00</td>
-                            <td>0.00</td>
+                            <td class="text-right">GMMU: </td>
+                            <td><input type="text" value="@Model.GIBCO.GMMU1" class="form-control" disabled="disabled" placeholder=""></td>
+                            <td><input type="text" value="@Model.GIBCO.GMMU2" class="form-control" disabled="disabled" placeholder=""></td>
+                            <td><input type="text" value="@Model.GIBCO.GMMU3" class="form-control" disabled="disabled" placeholder=""></td>
+                            <td><input type="text" value="@Model.GIBCO.GMMU4" class="form-control" disabled="disabled" placeholder=""></td>
+                            <td><input type="text" value="@Model.GIBCO.GMMU5" class="form-control" disabled="disabled" placeholder=""></td>
                         </tr>
                         <tr>
-                            <td>Inception Date: </td>
-                            <td>0.00</td>
-                            <td>0.00</td>
-                            <td>0.00</td>
-                            <td>0.00</td>
-                            <td>0.00</td>
+                            <td class="text-right">Inception Date: </td>
+                            <td><input type="text" value="@Model.GIBCO.GIBCODate1" class="form-control" disabled="disabled" placeholder=""></td>
+                            <td><input type="text" value="@Model.GIBCO.GIBCODate2" class="form-control" disabled="disabled" placeholder=""></td>
+                            <td><input type="text" value="@Model.GIBCO.GIBCODate3" class="form-control" disabled="disabled" placeholder=""></td>
+                            <td><input type="text" value="@Model.GIBCO.GIBCODate4" class="form-control" disabled="disabled" placeholder=""></td>
+                            <td><input type="text" value="@Model.GIBCO.GIBCODate5" class="form-control" disabled="disabled" placeholder=""></td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-            <div role="tabpanel" class="tab-pane fade" id="tboutpay" aria-labelledby="profile-tab">
-                <table class="table">
+        </div>
+    </div>
+</div>
+<div class="row">
+    <!--Outright Payments-->
+    <div class="col-md-12">
+        <div class="panel panel-primary">
+            <div class="panel-heading">Outright Payments</div>
+            <div class="panel-body">
+                <table class="table table-bordered">
                     <thead>
                         <tr>
                             <th></th>
                             <th>Handling Fee</th>
                             <th>Documentary Stamps</th>
                             <th>Processing Fee</th>
-                            <th>PIP-PVAO</th>
+                            <th>PIP - PVAO</th>
                             <th>Restructuring Fee</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>OR No: </td>
-                            <td colspan="5"></td>
+                            <td class="text-right">OR No.</td>
+                            <td><input type="text" value="@Model.Outpayments.HandlingORCode" class="form-control" disabled="disabled" placeholder=""></td>
+                            <td><input type="text" value="@Model.Outpayments.DSTORCode" class="form-control" disabled="disabled" placeholder=""></td>
+                            <td><input type="text" value="@Model.Outpayments.ProcessingORCode" class="form-control" disabled="disabled" placeholder=""></td>
+                            <td><input type="text" value="@Model.Outpayments.PIPPVAOORCode" class="form-control" disabled="disabled" placeholder=""></td>
+                            <td><input type="text" value="@Model.Outpayments.RestructuringFeeORCode" class="form-control" disabled="disabled" placeholder=""></td>
                         </tr>
                         <tr>
-                            <td>OR Date:</td>
-                            <td></td>
+                            <td class="text-right">OR Date:</td>
+                            <td><input type="text" value="@Model.Outpayments.HandlingORDate" class="form-control" disabled="disabled" placeholder=""></td>
+                            <td><input type="text" value="@Model.Outpayments.DSTORDate" class="form-control" disabled="disabled" placeholder=""></td>
+                            <td><input type="text" value="@Model.Outpayments.ProcessingORDate" class="form-control" disabled="disabled" placeholder=""></td>
+                            <td><input type="text" value="@Model.Outpayments.PIPPVAOORDate" class="form-control" disabled="disabled" placeholder=""></td>
+                            <td><input type="text" value="@Model.Outpayments.RestructuringFeeORDate" class="form-control" disabled="disabled" placeholder=""></td>
+                        </tr>
+                        <tr>
+                            <td class="text-right">Amount:</td>
+                            <td><input type="text" value="@Model.Outpayments.HandlingORAmount" class="form-control" disabled="disabled" placeholder=""></td>
+                            <td><input type="text" value="@Model.Outpayments.DSTORAmount" class="form-control" disabled="disabled" placeholder=""></td>
+                            <td><input type="text" value="@Model.Outpayments.ProcessingORAmount" class="form-control" disabled="disabled" placeholder=""></td>
+                            <td><input type="text" value="@Model.Outpayments.PIPPVAOORAmount" class="form-control" disabled="disabled" placeholder=""></td>
+                            <td><input type="text" value="@Model.Outpayments.RestructuringFeeORAmount" class="form-control" disabled="disabled" placeholder=""></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Sale of Repossessed</th>
+                            <th>GIBCO 1st Year</th>
+                            <th>Downpayment</th>
+                            <th>Restructure PIP</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-right">OR No.</td>
+                            <td colspan="4"></td>
+                        </tr>
+                        <tr>
+                            <td class="text-right">OR Date:</td>
                             <td></td>
                             <td></td>
                             <td></td>
                             <td></td>
                         </tr>
                         <tr>
-                            <td>Amount: </td>
-                            <td>0.00</td>
-                            <td>0.00</td>
-                            <td>0.00</td>
-                            <td>0.00</td>
-                            <td>0.00</td>
+                            <td class="text-right">Amount:</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-            <div role="tabpanel" class="tab-pane fade" id="tbnetmonthly" aria-labelledby="profile-tab">
-                <form class="form-horizontal">
-                    <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Approved MLV:</label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                            <input type="text" class="form-control" disabled="disabled" placeholder="">
-                        </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-primary">
+            <div class="panel-heading">Net Monthly Installment</div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Approved MLV:</label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <input type="text" value="@Model.Loan.DesiredMLV" class="form-control" disabled="disabled" placeholder="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Add-on Rate/Nominal:</label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <input type="text" value="@Model.Loan.AddOnRate" class="form-control" disabled="disabled" placeholder="">
+                                </div>
+                            </div>
+                            
+                        </form>
                     </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Add-on Rate/Nominal:</label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                            <input type="text" class="form-control" disabled="disabled" placeholder="">
-                        </div>
+                    <div class="col-md-6">
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Net Monthly Installment:</label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <input type="text" value="@Model.Loan.NetMonthlyInstallment" class="form-control" disabled="disabled" placeholder="">
+                                </div>
+                            </div>
+                        </form>
                     </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Net Monthly Installment:</label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                            <input type="text" class="form-control" disabled="disabled" placeholder="">
-                        </div>
-                    </div>
-                </form>
+                </div>
             </div>
-            <div role="tabpanel" class="tab-pane fade" id="tbless" aria-labelledby="profile-tab">
-                <table class="table">
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">Less: Handling Fee and Rebatable Prompt Payment Discount</div>
+            <div class="panel-body">
+                <table class="table table-bordered">
                     <thead>
                         <tr>
                             <th></th>
-                            <th>Monthly Installment</th>
+                            <th>Monthly<br />Installment</th>
                             <th>Total</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>Prompt Payment Disc: </td>
+                            <td class="text-right">Prompt Payment Disc: </td>
                             <td></td>
                             <td></td>
                         </tr>
                         <tr>
-                            <td>HF w/o Insurance: </td>
+                            <td class="text-right">HF w/o Insurance: </td>
                             <td></td>
                             <td></td>
                         </tr>
                         <tr>
-                            <td>HF w/o PDC: </td>
+                            <td class="text-right">HF w/o PDC: </td>
                             <td></td>
                             <td></td>
                         </tr>
                         <tr>
-                            <td>Total Handling Fee: </td>
+                            <td class="text-right">Total Handling Fee: </td>
                             <td></td>
                             <td></td>
                         </tr>
                         <tr>
-                            <td>Finance Charges</td>
+                            <td class="text-right">Finance Charges</td>
                             <td coslpan="2"></td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-            <div role="tabpanel" class="tab-pane fade" id="tbpnv" aria-labelledby="profile-tab">
-                <table class="table">
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">Promissory Note Value (PNV)</div>
+            <div class="panel-body">
+                <table class="table table-bordered">
                     <thead>
                         <tr>
                             <th></th>
-                            <th>Monthly Installment</th>
+                            <th>Monthly<br />Installment</th>
                             <th>Total</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>PNV RFC: </td>
+                            <td class="text-right">PNV RFC: </td>
                             <td></td>
                             <td></td>
                         </tr>
                         <tr>
-                            <td>PNV GIBCO: </td>
+                            <td class="text-right">PNV GIBCO: </td>
                             <td></td>
                             <td></td>
                         </tr>
                         <tr>
-                            <td>PNV PIP: </td>
+                            <td class="text-right">PNV PIP: </td>
                             <td></td>
                             <td></td>
                         </tr>
                         <tr>
-                            <td>Total PNV: </td>
+                            <td class="text-right">Total PNV: </td>
                             <td></td>
                             <td></td>
                         </tr>
                         <tr>
-                            <td>PNV MICO:</td>
+                            <td class="text-right">PNV MICO:</td>
                             <td></td>
                             <td></td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-            <div role="tabpanel" class="tab-pane fade" id="tbotherfees" aria-labelledby="profile-tab">
-                <form class="form-horizontal">
-                    <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Processing Fee:</label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                            <input type="text" class="form-control" disabled="disabled" placeholder="">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">PIP (PVAO):</label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                            <input type="text" class="form-control" disabled="disabled" placeholder="">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Documentary Stamps:</label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                            <input type="text" class="form-control" disabled="disabled" placeholder="">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Handling Fee:</label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                            <input type="text" class="form-control" disabled="disabled" placeholder="">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Restructure PIP:</label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                            <input type="text" class="form-control" disabled="disabled" placeholder="">
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div role="tabpanel" class="tab-pane fade" id="tbdeduc" aria-labelledby="profile-tab">
-                <form class="form-horizontal">
-                    <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Previous Outstanding Balance:</label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                            <input type="text" class="form-control" disabled="disabled" placeholder="">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Advance MI:</label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                            <input type="text" class="form-control" disabled="disabled" placeholder="">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">GIBCO 1st Year:</label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                            <input type="text" class="form-control" disabled="disabled" placeholder="">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Handling Fee:</label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                            <input type="text" class="form-control" disabled="disabled" placeholder="">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Documentary Stamp Tax:</label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                            <input type="text" class="form-control" disabled="disabled" placeholder="">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Processing Fee:</label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                            <input type="text" class="form-control" disabled="disabled" placeholder="">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">PIP (Barangay or PVAO):</label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                            <input type="text" class="form-control" disabled="disabled" placeholder="">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Restructure PIP:</label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                            <input type="text" class="form-control" disabled="disabled" placeholder="">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Trading Income:</label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                            <input type="text" class="form-control" disabled="disabled" placeholder="">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Others:</label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                            <input type="text" class="form-control" disabled="disabled" placeholder="">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Others Description:</label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                            <input type="text" class="form-control" disabled="disabled" placeholder="">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Sub Total:</label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                            <input type="text" class="form-control" disabled="disabled" placeholder="">
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div role="tabpanel" class="tab-pane fade" id="tbsumofproceeds" aria-labelledby="profile-tab">
-                <form class="form-horizontal">
-                    <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Before Easy Card Adjustments:</label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                            <input type="text" class="form-control" disabled="disabled" placeholder="">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Easy Card Adjustment:</label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                            <input type="text" class="form-control" disabled="disabled" placeholder="">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Net Amount Due:</label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                            <input type="text" class="form-control" disabled="disabled" placeholder="">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Dealer’s Incentive:</label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                            <input type="text" class="form-control" disabled="disabled" placeholder="">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Total Proceeds:</label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                            <input type="text" class="form-control" disabled="disabled" placeholder="">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Assigned Proceeds:</label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                            <input type="text" class="form-control" disabled="disabled" placeholder="">
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div role="tabpanel" class="tab-pane fade" id="tbpampamilya" aria-labelledby="profile-tab">
-                <form class="form-horizontal">
-                    <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Insurance Code:</label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                            <input type="text" class="form-control" disabled="disabled" placeholder="">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">COI No.:</label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                            <input type="text" class="form-control" disabled="disabled" placeholder="">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">COI Date:</label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                            <input type="text" class="form-control" disabled="disabled" placeholder="">
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div role="tabpanel" class="tab-pane fade" id="tbagent" aria-labelledby="profile-tab">
-                <form class="form-horizontal">
-                    <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Full Name:</label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                            <input type="text" class="form-control" disabled="disabled" placeholder="">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Incentive Amount:</label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                            <input type="text" class="form-control" disabled="disabled" placeholder="">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Setup Code Used:</label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                            <input type="text" class="form-control" disabled="disabled" placeholder="">
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div role="tabpanel" class="tab-pane fade" id="tbcomaker" aria-labelledby="profile-tab">
-
-            </div>
-            <div role="tabpanel" class="tab-pane fade" id="tbcollateral" aria-labelledby="profile-tab">
-
-            </div>
         </div>
     </div>
 </div>
+
+        <div class="row">
+            <div class="" role="tabpanel" data-example-id="togglable-tabs">
+                <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+                    <li role="presentation" class="">
+                        <a href="#tbotherfees" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Other Fees</a>
+                    </li>
+                    <li role="presentation" class="">
+                        <a href="#tbdeduc" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">DEDUCTIONS</a>
+                    </li>
+                    <li role="presentation" class="">
+                        <a href="#tbsumofproceeds" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Summary of Proceeds</a>
+                    </li>
+                    <li role="presentation" class="">
+                        <a href="#tbpampamilya" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Pampamilya Insurance Program Details</a>
+                    </li>
+                    <li role="presentation" class="">
+                        <a href="#tbagent" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Agent Incentive Information</a>
+                    </li>
+                    <li role="presentation" class="">
+                        <a href="#tbcomaker" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Co-Maker/s</a>
+                    </li>
+                    <li role="presentation" class="">
+                        <a href="#tbcollateral" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">List of Collateral</a>
+                    </li>
+                </ul>
+                <div id="myTabContent" class="tab-content">
+                    <div role="tabpanel" class="tab-pane fade" id="tbless" aria-labelledby="profile-tab">
+                        
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="tbpnv" aria-labelledby="profile-tab">
+                        
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="tbotherfees" aria-labelledby="profile-tab">
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Processing Fee:</label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <input type="text" class="form-control" disabled="disabled" placeholder="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">PIP (PVAO):</label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <input type="text" class="form-control" disabled="disabled" placeholder="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Documentary Stamps:</label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <input type="text" class="form-control" disabled="disabled" placeholder="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Handling Fee:</label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <input type="text" class="form-control" disabled="disabled" placeholder="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Restructure PIP:</label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <input type="text" class="form-control" disabled="disabled" placeholder="">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="tbdeduc" aria-labelledby="profile-tab">
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Previous Outstanding Balance:</label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <input type="text" class="form-control" disabled="disabled" placeholder="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Advance MI:</label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <input type="text" class="form-control" disabled="disabled" placeholder="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">GIBCO 1st Year:</label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <input type="text" class="form-control" disabled="disabled" placeholder="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Handling Fee:</label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <input type="text" class="form-control" disabled="disabled" placeholder="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Documentary Stamp Tax:</label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <input type="text" class="form-control" disabled="disabled" placeholder="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Processing Fee:</label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <input type="text" class="form-control" disabled="disabled" placeholder="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">PIP (Barangay or PVAO):</label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <input type="text" class="form-control" disabled="disabled" placeholder="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Restructure PIP:</label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <input type="text" class="form-control" disabled="disabled" placeholder="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Trading Income:</label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <input type="text" class="form-control" disabled="disabled" placeholder="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Others:</label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <input type="text" class="form-control" disabled="disabled" placeholder="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Others Description:</label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <input type="text" class="form-control" disabled="disabled" placeholder="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Sub Total:</label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <input type="text" class="form-control" disabled="disabled" placeholder="">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="tbsumofproceeds" aria-labelledby="profile-tab">
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Before Easy Card Adjustments:</label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <input type="text" class="form-control" disabled="disabled" placeholder="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Easy Card Adjustment:</label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <input type="text" class="form-control" disabled="disabled" placeholder="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Net Amount Due:</label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <input type="text" class="form-control" disabled="disabled" placeholder="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Dealer’s Incentive:</label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <input type="text" class="form-control" disabled="disabled" placeholder="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Total Proceeds:</label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <input type="text" class="form-control" disabled="disabled" placeholder="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Assigned Proceeds:</label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <input type="text" class="form-control" disabled="disabled" placeholder="">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="tbpampamilya" aria-labelledby="profile-tab">
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Insurance Code:</label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <input type="text" class="form-control" disabled="disabled" placeholder="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">COI No.:</label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <input type="text" class="form-control" disabled="disabled" placeholder="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">COI Date:</label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <input type="text" class="form-control" disabled="disabled" placeholder="">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="tbagent" aria-labelledby="profile-tab">
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Full Name:</label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <input type="text" class="form-control" disabled="disabled" placeholder="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Incentive Amount:</label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <input type="text" class="form-control" disabled="disabled" placeholder="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Setup Code Used:</label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <input type="text" class="form-control" disabled="disabled" placeholder="">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="tbcomaker" aria-labelledby="profile-tab">
+
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="tbcollateral" aria-labelledby="profile-tab">
+
+                    </div>
+                </div>
+            </div>
+        </div>
 
 

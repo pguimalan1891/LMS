@@ -11,5 +11,7 @@ namespace ServiceLayer.Interface
         IEnumerable<BusinessObjects.CRIncome> getIncome(string BorrowerID);
         BusinessObjects.CreditInvestigation getCRForm(string code);
 
+        IEnumerable<BusinessObjects.LoanList> getLoanApplicationListing();
+
     }
 }
