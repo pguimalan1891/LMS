@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BusinessObjects;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -10,6 +11,22 @@ namespace DataObjects.AdoNET
     public class LoanApplicationDAO : ILoanApplicationDAO
     {
         static DB db = new DB();
+
+
+
+        public IEnumerable<Agent> getAgent()
+        {
+            string sql = "Select ID,Code,LAST_NAME + ', ' + FIRST_NAME + ' ' + MIDDLE_NAME as Description from agent_profile  where  agent_type_id = '2' order by last_name,first_name";
+            object[] parms = { };
+            return db.Read(sql, selectAgent, 0, parms);
+        }
+        static Func<IDataReader, Agent> selectAgent = reader =>
+           new Agent
+           {
+               AgentProfileID = reader["ID"].AsString(),
+               Code = reader["Code"].AsString(),
+               Description = reader["Description"].AsString()
+           };
 
         public IEnumerable<BusinessObjects.newLoanBorrowerProfile> GetBorrowers(string searchkey)
         {
@@ -73,24 +90,25 @@ namespace DataObjects.AdoNET
                MIGID = reader["MIGID"].AsString()
            };
 
-        public IEnumerable<BusinessObjects.LoanSet> getLoanSet()
+        public IEnumerable<BusinessObjects.LoanSet> getLoanSet(string groupid, string loantype)
         {
-            string sql = "SELECT [ID] " +
-                         ",[CODE] " +
-                         ",[DESCRIPTION] " +
-                         ",[MIGID] " +
-                       "FROM [dbo].[loan_set]"; object[] parms = { };
+            string sql = "select distinct loan_set.id loan_set_id, loan_set.CODE, loan_set.description, loan_Set.MIGID from Final_Testing.dbo.factor_setup inner join Final_Testing.dbo.district_group  on (factor_setup.district_group_id = district_group.id) inner join Final_Testing.dbo.loan_type  on (factor_setup.loan_type_id = loan_type.id) inner join Final_Testing.dbo.loan_set  on (factor_setup.loan_set_id = loan_set.id)  inner join district on district_group.ID=district.DISTRICT_GROUP_ID where factor_setup.document_status_code = 7 and "
+                           + "district.id = @groupid" 
+                            +" and loan_type.id = @loantype order by loan_set.description ";
+            object[] parms = { "groupid",groupid,"loantype", loantype  };
             return db.Read(sql, selectLoanSet, 0, parms);
         }
 
         static Func<IDataReader, BusinessObjects.LoanSet> selectLoanSet = reader =>
            new BusinessObjects.LoanSet
            {
-               ID = reader["ID"].AsString(),
+               ID = reader["loan_set_id"].AsString(),
                CODE = reader["CODE"].AsString(),
-               DESCRIPTION = reader["DESCRIPTION"].AsString(),
+               DESCRIPTION = reader["description"].AsString(),
                MIGID = reader["MIGID"].AsString()
            };
+
+       
 
         public IEnumerable<BusinessObjects.FuelType> getFuelType()
         {
@@ -172,25 +190,24 @@ namespace DataObjects.AdoNET
                MIGID = reader["MIGID"].AsString()
            };
 
-        public IEnumerable<BusinessObjects.LoanTerms> getLoanTerms()
+        public IEnumerable<BusinessObjects.LoanTermsForLoanApplication> getLoanTerms(string groupid, string loantype, string loanset)
         {
-            string sql = "SELECT [ID] " +
-                         ",[CODE] " +
-                         ",[DESCRIPTION] " +
-                         ",[MONTHS] " +
-                         ",[MIGID] " +
-                       "FROM [dbo].[loan_terms]"; object[] parms = { };
-            return db.Read(sql, selectLoanTerms, 0, parms);
+            string sql = "select distinct loan_terms.id loan_terms_id,loan_terms.CODE ,loan_terms.description, loan_terms.months, factor_setup_term.add_on_rate, factor_setup_term.factor_setup_id from Final_Testing.dbo.factor_setup inner join Final_Testing.dbo.district_group  on (factor_setup.district_group_id = district_group.id) inner join Final_Testing.dbo.loan_type  on (factor_setup.loan_type_id = loan_type.id) inner join Final_Testing.dbo.loan_set  on (factor_setup.loan_set_id = loan_set.id) inner join Final_Testing.dbo.factor_setup_term  on (factor_setup_term.factor_setup_id = factor_setup.id) inner join Final_Testing.dbo.loan_terms  on (factor_setup_term.loan_terms_id = loan_terms.id) inner join district on district.district_group_id = district_group.id where factor_setup.document_status_code = 7 and "
+                         +"district.id = @groupid and loan_type.id = @loantype and loan_set.id = @loanset "
+                         +"order by loan_terms.description ";
+            object[] parms = { "groupid", groupid, "loantype", loantype, "loanset", loanset };
+            return db.Read(sql, selectLoanTermsForLoanApplication, 0, parms);
         }
 
-        static Func<IDataReader, BusinessObjects.LoanTerms> selectLoanTerms = reader =>
-           new BusinessObjects.LoanTerms
+        static Func<IDataReader, BusinessObjects.LoanTermsForLoanApplication> selectLoanTermsForLoanApplication = reader =>
+           new BusinessObjects.LoanTermsForLoanApplication
            {
-               ID = reader["ID"].AsString(),
+               ID = reader["loan_terms_id"].AsString(),
                CODE = reader["CODE"].AsString(),
-               DESCRIPTION = reader["DESCRIPTION"].AsString(),
-               MONTHS = reader["MONTHS"].AsString(),
-               MIGID = reader["MIGID"].AsString()
+               DESCRIPTION = reader["description"].AsString(),
+               MONTHS = reader["months"].AsString(),
+               FACTOR_ADDON_RATE = reader["add_on_rate"].AsString(),
+               FACTOR_ID = reader["factor_setup_id"].AsString()
            };
 
 
@@ -204,12 +221,34 @@ namespace DataObjects.AdoNET
             return db.Read(sql, selectDocumentStatus, 0, parms);
         }
 
+
+
+
         static Func<IDataReader, BusinessObjects.DocumentStatus> selectDocumentStatus = reader =>
            new BusinessObjects.DocumentStatus
            {
                 CODE = reader["CODE"].AsString(),
                DESCRIPTION = reader["DESCRIPTION"].AsString(),
             };
+        public IEnumerable<BusinessObjects.DocumentStatus> getDocumentStatus()
+        {
+            string sql = "SELECT '-1' as [CODE], 'All' as [DESCRIPTION] UNION ALL SELECT" +
+                         "[CODE] " +
+                         ",[DESCRIPTION] " +
+                         "FROM [dbo].[document_status_map]";
+            object[] parms = { };
+            return db.Read(sql, selectDocumentStatus, 0, parms);
+        }
+
+
+
+
+        static Func<IDataReader, BusinessObjects.DocumentStatus> selectDocumentStatus = reader =>
+           new BusinessObjects.DocumentStatus
+           {
+               CODE = reader["CODE"].AsString(),
+               DESCRIPTION = reader["DESCRIPTION"].AsString(),
+           };
 
 
         public IEnumerable<BusinessObjects.BorrowerProfile> getBorrowerProfile(string borrowerCode)
@@ -480,7 +519,7 @@ namespace DataObjects.AdoNET
             string guid = Guid.NewGuid().ToString();
             string guid_reviewer = Guid.NewGuid().ToString();
             string sql = "exec usp_insertLoan @guid,@code,@datetime_created,@prepared_by_id,@prepared_by_datetime  , @requested_by_id  ,@requested_by_datetime  ,@organization_id  ,@document_status_code  ,@permission  ,@notes  ,@pis_id  ,@history_pis_id  ,@current_pis_id  ,@factor_setup_id  ,@authority_setup_id  ,@ppd_rate_id  ,@handling_fee_id  ,@pp_discount_id  ,@agent_incentive_id  ,@agent_incentive_type_id  ,@dealer_incentive_id  ,@dealer_incentive_type_id  ,@loan_type_id  ,@add_on_rate  ,@loan_amount  ,@recommended_mlv  ,@original_mlv  ,@approved_mlv  ,@loan_set_id  ,@loan_terms_id  ,@purpose_of_loan  ,@required_document_id  ,@character_notes  ,@capacity_notes  ,@collateral_notes  ,@capital_notes  ,@business_environment_notes  ,@restructure_count  ,@direct_loan_receipt_id  ,@pip_balance  ,@gibco_balance  ,@rfc_balance  ,@total_balance  ,@pip_due  ,@gibco_due  ,@rfc_due  ,@total_due  ,@restructure_fee  ,@restructure_income  ,@acceleration_form_id  ,@effective_yield_id  ,@tag  ,@tag_amount  ,@assured  ,@remedial_type_id  ,@reviewer_id  ";
-            object[] parms = { "guid", guid , "reviewer_id", guid_reviewer,"code", guid_reviewer, "datetime_created" ,  DateTime.Now.ToShortDateString(),
+            object[] parms = { "guid", guid , "reviewer_id", userID,"code", guid_reviewer, "datetime_created" ,  DateTime.Now.ToShortDateString(),
         "prepared_by_id" , userID ,
         "prepared_by_datetime" , DateTime.Now.ToShortDateString() ,
         "requested_by_id" ,userID ,

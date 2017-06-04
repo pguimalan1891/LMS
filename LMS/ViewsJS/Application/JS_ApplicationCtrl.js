@@ -100,6 +100,26 @@ function initStaticOthers() {
 
     });
 
+    jsonReq('../Application/ListAgent', {}, function (data) {
+
+        $('#list_agent').html("");
+        $.each(data, function (datakey, comp) {
+            $("#list_agent").append("<option value='" + comp.AgentProfileID + "' >" + comp.Description + "</option>");
+        });
+
+
+    });
+
+    jsonReq('../Application/ListFuelType', {}, function (data) {
+
+        $('#list_fuelType').html("");
+        $.each(data, function (datakey, comp) {
+            $("#list_fuelType").append("<option value='" + comp.ID + "' >" + comp.DESCRIPTION + "</option>");
+        });
+
+
+    });
+
     jsonReq('../Application/ListColor', {}, function (data) {
 
         $('#list_color').html("");
@@ -120,8 +140,38 @@ function initStaticOthers() {
 
     });
 
+
+
 }
 
+function  getLoanSet(groupid, loantype)
+{
+
+    jsonReq('../Application/LoanSet/'+groupid+'/'+loantype, {}, function (data) {
+        $('#fld_la_LoanSet').attr("disabled", false);
+        $('#fld_la_LoanSet').html("");
+        $.each(data, function (datakey, comp) {
+            $("#fld_la_LoanSet").append("<option   value='" + comp.ID + "' >" + comp.DESCRIPTION + "</option>");
+         
+        });
+
+
+    });
+
+}
+
+function getLoanTerms(groupid, loantype, loanset) {
+
+    jsonReq('../Application/LoanTerms/' + groupid + '/' + loantype+'/'+loanset, {}, function (data) {
+
+        $('#fld_la_LoanTerms').html("");
+        $('#fld_la_LoanTerms').attr("disabled", false);
+        $.each(data, function (datakey, comp) {
+            $("#fld_la_LoanTerms").append("<option   value='" + comp.ID + "' >" + comp.DESCRIPTION + "</option>");
+        });
+    });
+
+}
     function loadComakers(code) {
         jsonReq('../Application/ListComakers', { loanCode: code }, function (data) {
        

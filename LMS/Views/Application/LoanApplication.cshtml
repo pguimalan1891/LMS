@@ -224,9 +224,8 @@
                                     <label class="col-lg-2 control-label">Agent:</label>
 
                                     <div class="col-lg-5">
-                                        <select class="form-control" id="fld_la_Agent">
-                                            <option>Branch One</option>
-                                            <option>Branch One</option>
+                                        <select class="form-control" id="list_agent">
+                                           
                                         </select>
                                     </div>
                                 </div>
@@ -234,7 +233,7 @@
                                     <label class="col-lg-2 control-label">Product:</label>
 
                                     <div class="col-lg-5">
-                                        <select class="form-control" id="fld_la_Product">
+                                        <select class="form-control" id="fld_la_Product" onchange="getLoanSet($('#fld_la_District').val(),$('#fld_la_Product').val())">
                                             @foreach (var product in Model.products)
                                             {
                                                 // cut for brevity, need to add back more code from original
@@ -261,27 +260,8 @@
                                     <label class="col-lg-2 control-label">Set:</label>
 
                                     <div class="col-lg-5">
-                                        <select class="form-control" id="fld_la_LoanSet">
-                                            @foreach (var set in Model.sets)
-                                            {
-                                                // cut for brevity, need to add back more code from original
-                                               
-
-                                                if (Model.SetId != null && Model.SetId == set.ID)
-                                                {
-                                                    // cut for brevity, need to add back more code from original
-                                                    <option value="@set.ID" selected="selected">
-                                                        @set.DESCRIPTION
-                                                    </option>
-                                                }
-                                                else
-                                                {
-                                                    // cut for brevity, need to add back more code from original
-                                                    <option value="@set.ID">
-                                                        @set.DESCRIPTION
-                                                    </option>
-                                                }
-                                            }
+                                        <select class="form-control" id="fld_la_LoanSet" disabled="true" onclick="getLoanTerms($('#fld_la_District').val(),$('#fld_la_Product').val(),$('#fld_la_LoanSet').val())">
+                                           
                                         </select>
                                     </div>
                                 </div>
@@ -291,34 +271,12 @@
                                     <label class="col-lg-2 control-label">Terms</label>
 
                                     <div class="col-lg-5">
-                                        <select class="form-control" id="fld_la_LoanTerms">
-                                            @foreach (var term in Model.terms)
-                                            {
-                                                // cut for brevity, need to add back more code from original
-                                                if (Model.TermsId != null && Model.TermsId == term.ID)
-                                                {
-                                                    // cut for brevity, need to add back more code from original
-                                                    <option value="@term.ID" selected="selected">
-                                                        @term.DESCRIPTION
-                                                    </option>
-                                                }
-                                                else
-                                                {
-                                                    // cut for brevity, need to add back more code from original
-                                                    <option value="@term.ID">
-                                                        @term.DESCRIPTION
-                                                    </option>
-                                                }
-                                              
-                                            }
+                                        <select class="form-control" id="fld_la_LoanTerms" disabled="true" >
+                                                
                                         </select>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label class="col-lg-2 control-label" id="fld_la_Factor">Factor Rate:</label>
-
-                                    <div class="col-lg-10"><input type="text" placeholder="" class="form-control" value="@Model.FactorRate"></div>
-                                </div>
+                               
                                 <div class="form-group">
                                     <label class="col-lg-2 control-label">Desired MLV:</label>
 
@@ -524,7 +482,7 @@
             </div>
             <div class="row">
                 <div class="pull-right">
-                    <div class="btn btn-success" onclick="insertLoan()">
+                    <div class="btn btn-success disabled" onclick="insertLoan()">
                         Submit
                     </div>
                     <div class="btn btn-danger">

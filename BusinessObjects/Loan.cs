@@ -116,6 +116,19 @@ namespace BusinessObjects
         public string DESCRIPTION;
         public string MONTHS;
         public string MIGID;
+
+    }
+
+
+    public class LoanTermsForLoanApplication
+    {
+        public string ID;
+        public string CODE;
+        public string DESCRIPTION;
+        public string MONTHS;
+        public string FACTOR_ADDON_RATE;
+        public string FACTOR_ID;
+
     }
 
     public class DocumentStatus

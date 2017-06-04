@@ -32,14 +32,14 @@ namespace ServiceLayer
             return lnCtrl.getProducts();
         }
 
-        public IEnumerable<BusinessObjects.LoanSet> GetLoanSet()
+        public IEnumerable<BusinessObjects.LoanSet> GetLoanSet(string groupid, string loantype)
         {
-            return lnCtrl.getLoanSet();
+            return lnCtrl.getLoanSet(groupid, loantype);
         }
 
-        public IEnumerable<BusinessObjects.LoanTerms> GetLoanTerms()
+        public IEnumerable<BusinessObjects.LoanTermsForLoanApplication> GetLoanTerms(string groupid, string loantype, string loanset)
         {
-            return lnCtrl.getLoanTerms();
+            return lnCtrl.getLoanTerms(groupid,loantype,loanset);
 
         }
         public BusinessObjects.BorrowerProfile GetBorrowerProfile(string code)
@@ -48,8 +48,14 @@ namespace ServiceLayer
             return list.First();
         }
 
+        public IEnumerable<BusinessObjects.Agent> GetAgents()
+        {
+             IEnumerable<BusinessObjects.Agent> list = lnCtrl.getAgent();
+            return list;
+        }
 
-        public  BusinessObjects.LoanApplicationModel  getLoanFormDetails(string AccountNo)
+
+        public BusinessObjects.LoanApplicationModel  getLoanFormDetails(string AccountNo)
         {
             IEnumerable<BusinessObjects.LoanApplicationModel> list = lnCtrl.getLoanFormDetails(AccountNo);
             return list.First();

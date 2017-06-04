@@ -70,8 +70,8 @@ namespace LMS.Controllers
                 loan.districts = customerComp.getDistrict();
                 loan.applicationTypes = customerComp.getApplicationType();
                 loan.products = service.GetLoanProducts();
-                loan.sets = service.GetLoanSet();
-                loan.terms = service.GetLoanTerms();
+            //    loan.sets = service.GetLoanSet();
+             //   loan.terms = service.GetLoanTerms();
                 loan.borrowerProfile = service.GetBorrowerProfile(loan.BorrowerCode);
                 loan.reqDocs = service.getBorrowerRequiredDocuments(loan.BorrowerCode);
             }
@@ -108,8 +108,8 @@ namespace LMS.Controllers
             loan.products = service.GetLoanProducts();
             loan.DesiredMLV = "0.00";
             
-            loan.sets = service.GetLoanSet();
-            loan.terms = service.GetLoanTerms();
+          //  loan.sets = service.GetLoanSet();
+          //  loan.terms = service.GetLoanTerms();
             loan.borrowerProfile = service.GetBorrowerProfile(borrower);
             loan.reqDocs = service.getBorrowerRequiredDocuments(borrower);
             return View("LoanApplication", loan);
@@ -137,8 +137,43 @@ namespace LMS.Controllers
             return Json(service.GetBorrowers(filterKey));
         }
 
+        [HttpPost]
+        [AuthorizationFilter]
+        [Route("Application/LoanSet/{groupid}/{loantype}")]
+        public ActionResult LoanSet(string groupid, string loantype)
+        {
+            return Json(service.GetLoanSet(groupid, loantype));
+        }
 
-      
+        [HttpPost]
+        [AuthorizationFilter]
+        [Route("Application/LoanTerms/{groupid}/{loantype}/{loanset}")]
+        public ActionResult LoanTerms(string groupid, string loantype, string loanset)
+        {
+            return Json(service.GetLoanTerms(groupid, loantype, loanset));
+        }
+
+        [HttpPost]
+        [AuthorizationFilter]
+        [Route("Application/HandlingFee")]
+        public ActionResult HandlingFee()
+        {
+            return Json();
+        }
+
+
+
+        [HttpPost]
+        [AuthorizationFilter]
+        [Route("Application/ListAgent")]
+        public ActionResult ListAgents()
+        {
+            return Json(service.GetAgents());
+        }
+
+
+
+
 
         [HttpPost]
         [AuthorizationFilter]

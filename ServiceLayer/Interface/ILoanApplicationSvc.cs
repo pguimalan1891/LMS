@@ -12,9 +12,9 @@ namespace ServiceLayer.Interface
 
         IEnumerable<BusinessObjects.LoanType> GetLoanProducts();
 
-        IEnumerable<BusinessObjects.LoanSet> GetLoanSet();
+        IEnumerable<BusinessObjects.LoanSet> GetLoanSet(string groupid, string loantype);
 
-        IEnumerable<BusinessObjects.LoanTerms> GetLoanTerms();
+        IEnumerable<BusinessObjects.LoanTermsForLoanApplication> GetLoanTerms(string groupid, string loantype, string loanset);
 
         BusinessObjects.BorrowerProfile GetBorrowerProfile(string code);
 
@@ -38,6 +38,7 @@ namespace ServiceLayer.Interface
 
         IEnumerable<BusinessObjects.FuelType> GetFuelType();
 
+        IEnumerable<BusinessObjects.Agent> GetAgents();
         string insertLoan(BusinessObjects.LoanApplicationModel loan, string userID);
 
     }

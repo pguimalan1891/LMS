@@ -46,7 +46,7 @@ namespace LMS.Controllers
 
             ci.loanModel = loanService.getLoanFormDetails(LoanApplicationNo);
             ci.loanModel.products = loanService.GetLoanProducts();
-            ci.loanModel.terms = loanService.GetLoanTerms();
+          //  ci.loanModel.terms = loanService.GetLoanTerms();
             ci.RecommendedMLV = "0";
             ci.MonthlyInstallment = "0";
             string BorrowerCode = ci.loanModel.BorrowerCode;
