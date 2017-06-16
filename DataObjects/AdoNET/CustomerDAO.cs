@@ -519,7 +519,7 @@ namespace DataObjects.AdoNET
         #region Citizenship
         public IEnumerable<Citizenship> getCitizenship()
         {
-            string sql = "Select ID,Code,Description from citizenship";
+            string sql = "Select ID,Code,Description from citizenship Order by Description";
             object[] parms = { };
             return db.Read(sql, selectCitizenship, 0, parms);
         }
@@ -535,7 +535,7 @@ namespace DataObjects.AdoNET
         #region District
         public IEnumerable<District> getDistrict()
         {
-            string sql = "Select ID,CODE,DESCRIPTION,DISTRICT_GROUP_ID,REGIONAL_OFFICE_ID from district";
+            string sql = "Select ID,CODE,DESCRIPTION,DISTRICT_GROUP_ID,REGIONAL_OFFICE_ID from district Order by Description";
             object[] parms = { };
             return db.Read(sql, selectDistrict, 0, parms);
         }
@@ -553,7 +553,7 @@ namespace DataObjects.AdoNET
         #region Organization
         public IEnumerable<Organization> getOrganization()
         {
-            string sql = "Select ID,CODE,DESCRIPTION,DISTRICT_ID,MOTHER_BRANCH_ID from organization";
+            string sql = "Select ID,CODE,DESCRIPTION,DISTRICT_ID,MOTHER_BRANCH_ID from organization Order by Description";
             object[] parms = { };
             return db.Read(sql, selectOrganization, 0, parms);
         }
@@ -570,7 +570,7 @@ namespace DataObjects.AdoNET
         #region ApplicationType
         public IEnumerable<ApplicationType> getApplicationType()
         {
-            string sql = "Select ID,Code,Description from application_type";
+            string sql = "Select ID,Code,Description from application_type Order by Description";
             object[] parms = { };
             return db.Read(sql, selectApplicationType, 0, parms);
         }
@@ -586,7 +586,7 @@ namespace DataObjects.AdoNET
         #region BorrowerType
         public IEnumerable<BorrowerType> getBorrowerType()
         {
-            string sql = "Select ID,CODE,DESCRIPTION,BORROWER_GROUP_ID from borrower_type";
+            string sql = "Select ID,CODE,DESCRIPTION,BORROWER_GROUP_ID from borrower_type Order by Description";
             object[] parms = { };
             return db.Read(sql, selectBorrowerType, 0, parms);
         }
@@ -603,7 +603,7 @@ namespace DataObjects.AdoNET
         #region LeadSource
         public IEnumerable<LeadSource> getLeadSource()
         {
-            string sql = "Select ID,Code,Description from lead_source";
+            string sql = "Select ID,Code,Description from lead_source Order by Description";
             object[] parms = { };
             return db.Read(sql, selectLeadSource, 0, parms);
         }
@@ -619,7 +619,7 @@ namespace DataObjects.AdoNET
         #region CivilStatus
         public IEnumerable<CivilStatus> getCivilStatus()
         {
-            string sql = "Select ID,Code,Description from civil_status";
+            string sql = "Select ID,Code,Description from civil_status Order by Description";
             object[] parms = { };
             return db.Read(sql, selectCivilStatus, 0, parms);
         }
@@ -635,7 +635,7 @@ namespace DataObjects.AdoNET
         #region City
         public IEnumerable<City> getCity(string PISID)
         {
-            string sql = "Select ID,CODE,DESCRIPTION,PROVINCE_ID from city where Province_ID in (Select PROVINCEID from uvw_PISAddress where ADDRESS_TYPE_ID = 0 and PIS_ID = '" + PISID + "')";
+            string sql = "Select ID,CODE,DESCRIPTION,PROVINCE_ID from city where Province_ID in (Select PROVINCEID from uvw_PISAddress where ADDRESS_TYPE_ID = 0 and PIS_ID = '" + PISID + "') Order by Description";
             object[] parms = { };
             return db.Read(sql, selectCity, 0, parms);
         }
@@ -650,7 +650,7 @@ namespace DataObjects.AdoNET
            };
         public IEnumerable<City> updateCity(string ProvinceID)
         {
-            string sql = "Select ID,CODE,DESCRIPTION,PROVINCE_ID from city where Province_ID = '" + ProvinceID + "'";
+            string sql = "Select ID,CODE,DESCRIPTION,PROVINCE_ID from city where Province_ID = '" + ProvinceID + "' Order by Description";
             object[] parms = { };
             return db.Read(sql, selectUpdateCity, 0, parms);
         }
@@ -667,7 +667,7 @@ namespace DataObjects.AdoNET
         #region Province
         public IEnumerable<Province> getProvince()
         {
-            string sql = "Select ID,CODE,DESCRIPTION,COUNTRY_ID from province where COUNTRY_ID = 'PH'";
+            string sql = "Select ID,CODE,DESCRIPTION,COUNTRY_ID from province where COUNTRY_ID = 'PH' Order by Description";
             object[] parms = { };
             return db.Read(sql, selectProvince, 0, parms);
         }
@@ -684,7 +684,7 @@ namespace DataObjects.AdoNET
         #region HomeOwnership
         public IEnumerable<HomeOwnership> getHomeOwnership()
         {
-            string sql = "Select ID,Code,Description from home_ownership";
+            string sql = "Select ID,Code,Description from home_ownership Order by Description";
             object[] parms = { };
             return db.Read(sql, selectHomeOwnership, 0, parms);
         }
@@ -700,7 +700,7 @@ namespace DataObjects.AdoNET
         #region BusinessType
         public IEnumerable<BusinessType> getBusinessType()
         {
-            string sql = "Select ID,Code,Description from business_type";
+            string sql = "Select ID,Code,Description from business_type Order by Description";
             object[] parms = { };
             return db.Read(sql, selectBusinessType, 0, parms);
         }
@@ -716,7 +716,7 @@ namespace DataObjects.AdoNET
         #region NatureofBusiness
         public IEnumerable<NatureofBusiness> getNatureofBusiness()
         {
-            string sql = "Select ID,Code,Description from nature_of_business";
+            string sql = "Select ID,Code,Description from nature_of_business Order by Description";
             object[] parms = { };
             return db.Read(sql, selectNatureofBusiness, 0, parms);
         }
@@ -735,11 +735,11 @@ namespace DataObjects.AdoNET
             string sql = "";
             if (includecurrentAddress == true)
             {
-                sql = "Select ID,Code,Description from address_type";
+                sql = "Select ID,Code,Description from address_type Order by Description";
             }
             else
             {
-                sql = "Select ID,Code,Description from address_type where ID <> 0";
+                sql = "Select ID,Code,Description from address_type where ID <> 0 Order by Description";
             }
             object[] parms = { };
             return db.Read(sql, selectAddressType, 0, parms);
@@ -756,7 +756,7 @@ namespace DataObjects.AdoNET
         #region RelationshipType
         public IEnumerable<RelationshipType> getRelationshipType()
         {
-            string sql = "Select ID,Code,Description from relationship_type";
+            string sql = "Select ID,Code,Description from relationship_type Order by Description";
             object[] parms = { };
             return db.Read(sql, selectRelationshipType, 0, parms);
         }
@@ -772,7 +772,7 @@ namespace DataObjects.AdoNET
         #region EducationType
         public IEnumerable<EducationType> getEducationType()
         {
-            string sql = "Select ID,Code,Description from education_type";
+            string sql = "Select ID,Code,Description from education_type Order by Description";
             object[] parms = { };
             return db.Read(sql, selectEducationType, 0, parms);
         }

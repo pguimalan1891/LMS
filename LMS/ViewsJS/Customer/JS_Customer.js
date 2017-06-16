@@ -1,5 +1,6 @@
 ﻿var tblComponent;
 var fntblComponent = $("#tbl-customer thead");
+var GlobalCode = "";
 $(document).ready(function () {    
     loadComponents("Customer/FetchCustomerRecord");
     $('.applyDatePicker').datepicker();
@@ -12,6 +13,17 @@ $(document).ready(function () {
         });
     }
 });
+
+function updateAge() {
+    var today = new Date();
+    var birthDate = new Date($("#custRecord_DateOfBirth").text());
+    var age = today.getFullYear() - birthDate.getFullYear();
+    var m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+    }
+    $("#spnAge").text(age + ' Years Old');
+}
 
 function loadComponents(url) {
     var req = $.ajax({
@@ -84,12 +96,19 @@ function loadComponents(url) {
 function ViewCustomer(code) {
     modalDispCustProf = $("#display-modal-body");
     modalDispCustProfMain = $("#DisplayCustomerModal");
+    GlobalCode = code;
     $.get("Customer/FetchCustomerRecordByID", { "Code": code }, function (data) {
         modalDispCustProf.empty().html(data);
+        updateAge();
         modalDispCustProfMain.modal();
     });
 }
 
 function AddCustomer() {
     window.location.href = 'CustomerAdd';
+}
+
+function UpdateCustomer() {
+    window.location.href = "CustomerUpdate?Code=" + GlobalCode;
+    //@("window.location.href='" + @Url.Action("Update_CustomerRecord", "Customer", new { Code = Model.custRecord.Code }) + "'")
 }

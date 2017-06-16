@@ -54,12 +54,16 @@
 </div>
 
 <div id="DisplayCustomerModal" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
-    <div class="modal-dialog" style="background-color:#ffffff;width:90%">
-        <div class="modal-body" style="background-color:white">
+    <div class="modal-dialog" style="background-color:#ffffff;width:90%;">
+        <div class="modal-header">
+            <a class="btn btn-info" onclick="UpdateCustomer()">Update Customer Profile</a>
+            &nbsp;<a class="btn btn-info" id="dlgadd-close-btn">Print Customer Profile</a>
+            <a class="btn btn-danger pull-right" onclick="$('#DisplayCustomerModal').modal('hide');">Close</a>
+        </div>
+        <div class="modal-body" style="background-color:white;overflow-y:scroll;max-height:600px;">            
             <div id="display-modal-body">
             </div>
         </div>
-
     </div>
 </div>
 

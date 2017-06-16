@@ -65,11 +65,11 @@
                             <div class="form-group">
                                 <label class="col-lg-3 control-label">Date of Birth</label>
                                 <div class="col-lg-5">
-                                    @Html.TextBoxFor(model => model.custRecord.DateOfBirth, new { @class = "form-control applyDatePicker" })
+                                    @Html.TextBoxFor(model => model.custRecord.DateOfBirth, new { @class = "form-control applyDatePicker", @onblur = "updateAge()" })
                                     <br />@Html.ValidationMessageFor(model => model.custRecord.DateOfBirth, "", new { @class = "validation" })
                                 </div>
                                 <div class="col-lg-4">
-                                    <span class="form-control">Years Old</span>
+                                    <span id="spnAge" class="form-control">Years Old</span>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -436,7 +436,13 @@
 
 <div id="UpdateTableData" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog" style="background-color:#ffffff;">
-        <div class="modal-body" style="background-color:white;">
+        <div class="modal-header" style="background-color:#1ab394;color:white;font-size:large;">
+            <b>
+                <div id="update-display-modal-header">
+                </div>
+            </b>
+        </div>
+        <div class="modal-body" style="background-color:white;overflow-y:scroll;max-height:500px;">
             <div id="update-display-modal-body">
             </div>
         </div>
@@ -449,7 +455,13 @@
 
 <div id="AddTableData" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog" style="background-color:#ffffff;">
-        <div class="modal-body" style="background-color:white">
+        <div class="modal-header" style="background-color:#1ab394;color:white;font-size:large;">            
+            <b>
+                <div id="add-display-modal-header">
+                </div>
+            </b>
+        </div>
+        <div class="modal-body" style="background-color:white;overflow-y:scroll;max-height:480px;">
             <div id="add-display-modal-body">
             </div>
         </div>

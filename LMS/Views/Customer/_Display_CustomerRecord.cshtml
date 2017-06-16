@@ -3,9 +3,9 @@
 
 <div class="row" style="padding-bottom:10px">
     <div class="col-md-12">
-        <a class="btn btn-info" onclick="@("window.location.href='" + @Url.Action("Update_CustomerRecord", "Customer", new { Code = Model.custRecord.Code }) + "'")">Update Customer Profile</a>
+        @*<a class="btn btn-info" onclick="@("window.location.href='" + @Url.Action("Update_CustomerRecord", "Customer", new { Code = Model.custRecord.Code }) + "'")">Update Customer Profile</a>
         &nbsp;<a class="btn btn-info" id="dlgadd-close-btn">Print Customer Profile</a>
-        <a class="btn btn-danger pull-right" onclick="$('#DisplayCustomerModal').modal('hide');">Close</a>
+        <a class="btn btn-danger pull-right" onclick="$('#DisplayCustomerModal').modal('hide');">Close</a>*@
     </div>
     
 </div>
@@ -45,10 +45,10 @@
                         <div class="form-group">
                             <label class="col-lg-3 control-label">Date of Birth</label>
                             <div class="col-lg-5">
-                                <span class="form-control">@Model.custRecord.DateOfBirth</span>
+                                <span id="custRecord_DateOfBirth" class="form-control">@Model.custRecord.DateOfBirth</span>
                             </div>
                             <div class="col-lg-4">
-                                <span class="form-control">Years Old</span>
+                                <span id="spnAge" class="form-control">Years Old</span>
                             </div>
                         </div>
                         <div class="form-group">

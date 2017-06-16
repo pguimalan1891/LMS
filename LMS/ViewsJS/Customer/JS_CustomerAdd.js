@@ -5,6 +5,17 @@ $(document).ready(function () {
     UpdateCity("Main");
 });
 
+function updateAge() {
+    var today = new Date();
+    var birthDate = new Date($("#custRecord_DateOfBirth").val());
+    var age = today.getFullYear() - birthDate.getFullYear();
+    var m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+    }
+    $("#spnAge").text(age + ' Years Old');
+}
+
 function editData(row, type) {
     currentRowUpdate = row;
     if (type == "spouse") {
@@ -31,6 +42,8 @@ function editData(row, type) {
             data: "{ UpdateType: 'update', custEmployment: " + JSON.stringify(custEmployment) + " }"
         });
         jsonObject.done(function (data) {
+            $("#update-display-modal-header").empty();
+            $("#update-display-modal-header").append("Spouse Employment");
             $("#update-display-modal-body").children().remove();
             $("#update-display-modal-body").append(data);
             $("#update-display-modal-footer").children().remove();
@@ -64,6 +77,8 @@ function editData(row, type) {
             data: "{ UpdateType: 'update', custAddress: " + JSON.stringify(custAddress) + " }"
         });
         jsonObject.done(function (data) {
+            $("#update-display-modal-header").empty();
+            $("#update-display-modal-header").append("Contacts And Addresses");
             $("#update-display-modal-body").children().remove();
             $("#update-display-modal-body").append(data);
             $("#update-display-modal-footer").children().remove();
@@ -96,6 +111,8 @@ function editData(row, type) {
             data: "{ UpdateType: 'update', custDependents: " + JSON.stringify(custDependents) + " }"
         });
         jsonObject.done(function (data) {
+            $("#update-display-modal-header").empty();
+            $("#update-display-modal-header").append("Dependents");
             $("#update-display-modal-body").children().remove();
             $("#update-display-modal-body").append(data);
             $("#update-display-modal-footer").children().remove();
@@ -128,6 +145,8 @@ function editData(row, type) {
             data: "{ UpdateType: 'update', custEmployment: " + JSON.stringify(custEmployment) + " }"
         });
         jsonObject.done(function (data) {
+            $("#update-display-modal-header").empty();
+            $("#update-display-modal-header").append("Employment/Business Record and History");
             $("#update-display-modal-body").children().remove();
             $("#update-display-modal-body").append(data);
             $("#update-display-modal-footer").children().remove();
@@ -149,6 +168,8 @@ function editData(row, type) {
             data: "{ UpdateType: 'update', custEducation: " + JSON.stringify(custEducation) + " }"
         });
         jsonObject.done(function (data) {
+            $("#update-display-modal-header").empty();
+            $("#update-display-modal-header").append("Acquired Education");
             $("#update-display-modal-body").children().remove();
             $("#update-display-modal-body").append(data);
             $("#update-display-modal-footer").children().remove();
@@ -176,6 +197,8 @@ function editData(row, type) {
             data: "{ UpdateType: 'update', custCharacter: " + JSON.stringify(custCharacter) + " }"
         });
         jsonObject.done(function (data) {
+            $("#update-display-modal-header").empty();
+            $("#update-display-modal-header").append("Character References");
             $("#update-display-modal-body").children().remove();
             $("#update-display-modal-body").append(data);
             $("#update-display-modal-footer").children().remove();
@@ -196,6 +219,8 @@ function addData(type) {
             data: "{ UpdateType: 'add', custEmployment: " + JSON.stringify(custEmployment) + " }"
         });
         jsonObject.done(function (data) {
+            $("#add-display-modal-header").empty();
+            $("#add-display-modal-header").append("Spouse Employment");            
             $("#add-display-modal-body").children().remove();
             $("#add-display-modal-body").append(data);
             $("#add-display-modal-footer").children().remove();
@@ -214,6 +239,8 @@ function addData(type) {
             data: "{ UpdateType: 'add', custAddress: " + JSON.stringify(custAddress) + " }"
         });
         jsonObject.done(function (data) {
+            $("#add-display-modal-header").empty();
+            $("#add-display-modal-header").append("Contacts And Addresses");
             $("#add-display-modal-body").children().remove();
             $("#add-display-modal-body").append(data);
             $("#add-display-modal-footer").children().remove();
@@ -232,6 +259,8 @@ function addData(type) {
             data: "{ UpdateType: 'add', custDependents: " + JSON.stringify(custDependents) + " }"
         });
         jsonObject.done(function (data) {
+            $("#add-display-modal-header").empty();
+            $("#add-display-modal-header").append("Dependents");
             $("#add-display-modal-body").children().remove();
             $("#add-display-modal-body").append(data);
             $("#add-display-modal-footer").children().remove();
@@ -250,6 +279,8 @@ function addData(type) {
             data: "{ UpdateType: 'add', custEmployment: " + JSON.stringify(custEmployment) + " }"
         });
         jsonObject.done(function (data) {
+            $("#add-display-modal-header").empty();
+            $("#add-display-modal-header").append("Employment/Business Record and History");
             $("#add-display-modal-body").children().remove();
             $("#add-display-modal-body").append(data);
             $("#add-display-modal-footer").children().remove();
@@ -268,6 +299,8 @@ function addData(type) {
             data: "{ UpdateType: 'add', custEducation: " + JSON.stringify(custEducation) + " }"
         });
         jsonObject.done(function (data) {
+            $("#add-display-modal-header").empty();
+            $("#add-display-modal-header").append("Acquired Education");
             $("#add-display-modal-body").children().remove();
             $("#add-display-modal-body").append(data);
             $("#add-display-modal-footer").children().remove();
@@ -286,6 +319,8 @@ function addData(type) {
             data: "{ UpdateType: 'add', custCharacter: " + JSON.stringify(custCharacter) + " }"
         });
         jsonObject.done(function (data) {
+            $("#add-display-modal-header").empty();
+            $("#add-display-modal-header").append("Character References");
             $("#add-display-modal-body").children().remove();
             $("#add-display-modal-body").append(data);
             $("#add-display-modal-footer").children().remove();
