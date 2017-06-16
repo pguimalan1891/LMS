@@ -219,7 +219,7 @@ namespace DataObjects.AdoNET
                          "FROM [dbo].[document_status_map]";
             object[] parms = {};
             return db.Read(sql, selectDocumentStatus, 0, parms);
-        }
+        }        
 
 
 
@@ -227,11 +227,11 @@ namespace DataObjects.AdoNET
         static Func<IDataReader, BusinessObjects.DocumentStatus> selectDocumentStatus = reader =>
            new BusinessObjects.DocumentStatus
            {
-                CODE = reader["CODE"].AsString(),
+               CODE = reader["CODE"].AsString(),
                DESCRIPTION = reader["DESCRIPTION"].AsString(),
-            };
+           };
 
-    
+
           public IEnumerable<BusinessObjects.DocumentStatus> getHandlingFee()
         {
             string sql = "select ID, MIGID from handling_fee where migid is not null order by migid";
