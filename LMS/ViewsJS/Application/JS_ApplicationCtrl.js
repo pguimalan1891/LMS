@@ -488,7 +488,6 @@ function getHandlingFee() {
 
     function insertLoan() {
         //alert($('#fld_la_AgentIncent').val());
-       
         jsonReq('../Application/InsertNewLoan', {
             AccountNo: $('#AccountNo').val(),
             organizationid: $('#fld_la_Branch').val(),
