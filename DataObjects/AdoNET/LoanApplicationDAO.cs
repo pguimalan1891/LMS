@@ -230,25 +230,67 @@ namespace DataObjects.AdoNET
                 CODE = reader["CODE"].AsString(),
                DESCRIPTION = reader["DESCRIPTION"].AsString(),
             };
-        public IEnumerable<BusinessObjects.DocumentStatus> getDocumentStatus()
+
+    
+          public IEnumerable<BusinessObjects.DocumentStatus> getHandlingFee()
         {
-            string sql = "SELECT '-1' as [CODE], 'All' as [DESCRIPTION] UNION ALL SELECT" +
-                         "[CODE] " +
-                         ",[DESCRIPTION] " +
-                         "FROM [dbo].[document_status_map]";
+            string sql = "select ID, MIGID from handling_fee where migid is not null order by migid";
             object[] parms = { };
-            return db.Read(sql, selectDocumentStatus, 0, parms);
+            return db.Read(sql, selectHandlingFee, 0, parms);
         }
-
-
-
-
-        static Func<IDataReader, BusinessObjects.DocumentStatus> selectDocumentStatus = reader =>
+        
+        static Func<IDataReader, BusinessObjects.DocumentStatus> selectHandlingFee = reader =>
            new BusinessObjects.DocumentStatus
            {
                CODE = reader["ID"].AsString(),
                DESCRIPTION = reader["MIGID"].AsString(),
            };
+
+
+        public IEnumerable<BusinessObjects.DocumentStatus> getPPDAmounts( string loantype)
+        {
+            string sql = "select ID, PPD_AMOUNT from ppd_rate where LOAN_TYPE_ID= '"+loantype+"'";
+            object[] parms = { };
+            return db.Read(sql, selectPPDAmounts, 0, parms);
+        }
+
+        static Func<IDataReader, BusinessObjects.DocumentStatus> selectPPDAmounts = reader =>
+           new BusinessObjects.DocumentStatus
+           {
+               CODE = reader["ID"].AsString(),
+               DESCRIPTION = reader["PPD_AMOUNT"].AsString(),
+           };
+
+
+        public IEnumerable<BusinessObjects.DocumentStatus> getAgentIncentives(string loantype)
+        {
+            string sql = "select ID,MIGID from agent_incentive_type  where migid is not null order by migid ";
+            object[] parms = { };
+            return db.Read(sql, selectAgentIncentives, 0, parms);
+        }
+
+        static Func<IDataReader, BusinessObjects.DocumentStatus> selectAgentIncentives = reader =>
+           new BusinessObjects.DocumentStatus
+           {
+               CODE = reader["ID"].AsString(),
+               DESCRIPTION = reader["MIGID"].AsString(),
+           };
+
+        public IEnumerable<BusinessObjects.DocumentStatus> getDealerIncentives(string loantype)
+        {
+            string sql = "select ID,MIGID from dealer_incentive_type   where migid is not null order by migid";
+            object[] parms = { };
+            return db.Read(sql, selectDealerIncentives, 0, parms);
+        }
+
+        static Func<IDataReader, BusinessObjects.DocumentStatus> selectDealerIncentives = reader =>
+           new BusinessObjects.DocumentStatus
+           {
+               CODE = reader["ID"].AsString(),
+               DESCRIPTION = reader["MIGID"].AsString(),
+           };
+
+
 
 
         public IEnumerable<BusinessObjects.BorrowerProfile> getBorrowerProfile(string borrowerCode)
