@@ -100,9 +100,30 @@ namespace ServiceLayer
             return lnCtrl.getFuelType();
         }
 
-        public string insertLoan(BusinessObjects.LoanApplicationModel loan, string userID)
+        public string insertLoan(string AccountNo, string organizationid, string notes, string borrowerid, string loantype, string loanset, string loanterms, string ppd_rate_id, string handling_fee_id, string agent_incentive_type, string dealer_incentive_type, string loanamount, string userID , string loanpurpose)
         {
-            return lnCtrl.insertLoan(loan, userID);
+            return lnCtrl.insertLoan(AccountNo, organizationid, notes, borrowerid, loantype, loanset, loanterms, ppd_rate_id, handling_fee_id, agent_incentive_type, dealer_incentive_type, loanamount, userID, loanpurpose);
         }
+        public IEnumerable<BusinessObjects.DocumentStatus> getHandlingFee()
+        {
+            return lnCtrl.getHandlingFee();
+        }
+
+        public IEnumerable<BusinessObjects.DocumentStatus> getPPDAmounts(string loantype)
+        {
+           return lnCtrl.getPPDAmounts(loantype);
+        }
+
+        public IEnumerable<BusinessObjects.DocumentStatus> getAgentIncentives(string loantype)
+        {
+            return lnCtrl.getAgentIncentives(loantype);
+        }
+
+        public IEnumerable<BusinessObjects.DocumentStatus> getDealerIncentives(string loantype)
+        {
+            return lnCtrl.getDealerIncentives(loantype);
+        }
+
+
     }
 }
