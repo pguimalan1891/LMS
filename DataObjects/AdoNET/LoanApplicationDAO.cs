@@ -219,29 +219,7 @@ namespace DataObjects.AdoNET
                          "FROM [dbo].[document_status_map]";
             object[] parms = {};
             return db.Read(sql, selectDocumentStatus, 0, parms);
-        }
-
-
-
-
-        static Func<IDataReader, BusinessObjects.DocumentStatus> selectDocumentStatus = reader =>
-           new BusinessObjects.DocumentStatus
-           {
-                CODE = reader["CODE"].AsString(),
-               DESCRIPTION = reader["DESCRIPTION"].AsString(),
-            };
-        public IEnumerable<BusinessObjects.DocumentStatus> getDocumentStatus()
-        {
-            string sql = "SELECT '-1' as [CODE], 'All' as [DESCRIPTION] UNION ALL SELECT" +
-                         "[CODE] " +
-                         ",[DESCRIPTION] " +
-                         "FROM [dbo].[document_status_map]";
-            object[] parms = { };
-            return db.Read(sql, selectDocumentStatus, 0, parms);
-        }
-
-
-
+        }        
 
         static Func<IDataReader, BusinessObjects.DocumentStatus> selectDocumentStatus = reader =>
            new BusinessObjects.DocumentStatus

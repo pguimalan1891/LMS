@@ -158,7 +158,7 @@ namespace LMS.Controllers
         [Route("Application/HandlingFee")]
         public ActionResult HandlingFee()
         {
-            return Json();
+            return Json("");
         }
 
 

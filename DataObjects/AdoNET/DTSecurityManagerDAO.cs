@@ -217,7 +217,7 @@ namespace DataObjects.AdoNET
 
         public IEnumerable<Position> getPosition()
         {
-            string sql = "Select ID,Code,Description from position";
+            string sql = "Select ID,Code,Description from position Order by Description";
             object[] parms = { };
             return db.Read(sql, selectPosition, 0, parms);
         }

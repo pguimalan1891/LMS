@@ -93,7 +93,7 @@ function getBookingCVRecords(status, searchkey) {
         ajax: {
             type: 'post',
             contentType: 'application/json; charset=utf-8',
-            url: 'New/List',
+            url: 'List',
             data: function (d) {
                 return JSON.stringify(d);
             },

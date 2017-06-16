@@ -34,8 +34,7 @@ namespace LMS.Models.DevelopmentTools
         [Required(ErrorMessage = "Middle Name is required.")]
         public string MiddleName { get; set; }        
         public string FullName { get; set; }
-        public string RoleName { get; set; }
-        [Required(ErrorMessage = "Postal Address is required.")]
+        public string RoleName { get; set; }        
         public string PostalAddress { get; set; }
         [Required(ErrorMessage = "Email Address is required.")]
         public string EmailAddress { get; set; }

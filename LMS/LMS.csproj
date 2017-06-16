@@ -518,6 +518,8 @@
     <Content Include="ViewsJS\Accounting\JS_Accounting_RFP.js" />
     <Content Include="ViewsJS\Application\JS_ApplicationCtrl.js" />
     <Content Include="ViewsJS\Application\JS_ApplicationListCtrl.js" />
+    <Content Include="ViewsJS\Application\JS_CreditInvCtrl.js" />
+    <Content Include="ViewsJS\Application\JS_CreditInvCtrlList.js" />
     <Content Include="ViewsJS\Booking\JS_Booking.js" />
     <Content Include="ViewsJS\Booking\JS_Booking_CCI.js" />
     <Content Include="ViewsJS\Booking\JS_Booking_CIR.js" />
@@ -624,6 +626,7 @@
     <Content Include="Views\OfficialReceipt\_AddSundry.cshtml" />
     <Content Include="Views\OfficialReceipt\_LocateDLR.cshtml" />
     <Content Include="Views\OfficialReceipt\_UpdateSundry.cshtml" />
+    <Content Include="Views\CreditInvestigation\ListOfLoanForCR.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
