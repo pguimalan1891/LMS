@@ -6,6 +6,7 @@ $(function () {
     initCollaterals();
     initStaticOthers();
     intiCollType();
+    getHandlingFee();
 });
 
 var tempComaker = {};
@@ -107,6 +108,10 @@ function initStaticOthers() {
             $("#list_agent").append("<option value='" + comp.AgentProfileID + "' >" + comp.Description + "</option>");
         });
 
+        $('#fld_la_CCI').html("");
+        $.each(data, function (datakey, comp) {
+            $("#fld_la_CCI").append("<option value='" + comp.AgentProfileID + "' >" + comp.Description + "</option>");
+        });
 
     });
 
@@ -168,6 +173,67 @@ function getLoanTerms(groupid, loantype, loanset) {
         $('#fld_la_LoanTerms').attr("disabled", false);
         $.each(data, function (datakey, comp) {
             $("#fld_la_LoanTerms").append("<option   value='" + comp.ID + "' >" + comp.DESCRIPTION + "</option>");
+        });
+    });
+
+}
+
+
+function getPPDAmounts(loantype) {
+
+    jsonReq('../Application/PPDAmounts/' + loantype, {}, function (data) {
+        $('#fld_la_PPDAmount').attr("disabled", false);
+        $('#fld_la_PPDAmount').html("");
+        $.each(data, function (datakey, comp) {
+            $("#fld_la_PPDAmount").append("<option   value='" + comp.CODE + "' >" + comp.DESCRIPTION + "</option>");
+
+        });
+
+
+    });
+
+}
+
+
+function getAgentIncentive(loantype) {
+
+    jsonReq('../Application/AgentIncentive/' + loantype, {}, function (data) {
+        $('#fld_la_AgentIncent').attr("disabled", false);
+        $('#fld_la_AgentIncent').html("");
+        $.each(data, function (datakey, comp) {
+            $("#fld_la_AgentIncent").append("<option   value='" + comp.CODE + "' >" + comp.DESCRIPTION + "</option>");
+
+        });
+
+
+    });
+
+}
+
+function getDealerIncentive(loantype) {
+
+    jsonReq('../Application/DealerIncentive/' + loantype, {}, function (data) {
+        $('#fld_la_DealIncent').attr("disabled", false);
+        $('#fld_la_DealIncent').html("");
+        $.each(data, function (datakey, comp) {
+            $("#fld_la_DealIncent").append("<option   value='" + comp.CODE + "' >" + comp.DESCRIPTION + "</option>");
+
+        });
+
+
+    });
+
+}
+
+
+
+function getHandlingFee() {
+   
+    jsonReq('../Application/HandlingFee', {}, function (data) {
+
+        $('#fld_la_HandlingFee').html("");
+        $.each(data, function (datakey, comp) {
+            $("#fld_la_HandlingFee").append("<option   value='" + comp.CODE + "' >" + comp.DESCRIPTION + "</option>");
         });
     });
 
@@ -421,44 +487,26 @@ function getLoanTerms(groupid, loantype, loanset) {
     }
 
     function insertLoan() {
-        loanModel['BorrowerCode'] = $('#fld_la_BorrowerCode').val();
-        loanModel['TransactionDate'] = $('#fld_la_trandate').val();
-            loanModel['LoanPurpose'] = $('#fld_la_LoanPurpose').val();
-
-            loanModel['DistrictCode'] = $('#fld_la_District').val();
-
-            loanModel['BranchCode'] = $('#fld_la_District').val();
-
-        loanModel['ApplicationType'] = $('#fld_la_AppType').val();
-
-        loanModel['AgentId'] = $('#fld_la_Agent').val();
-
-        loanModel['ProductId'] = $('#fld_la_Product').val();
-
-        loanModel['SetId'] = $('#fld_la_LoanSet').val();
-
-        loanModel['TermsId'] = $('#fld_la_LoanTerms').val();
-
-        loanModel['FactorRate'] = $('#fld_la_Factor').val();
-
-        loanModel['DesiredMLV'] = $('#fld_la_DesiredMLV').val();
-
-
-        loanModel['OriginalMLV'] = $('#fld_la_OriginalMLV').val();
-        loanModel['ApprovedMLV'] = $('#fld_la_ApprovedMLV').val();
-        loanModel['ciFactor'] = $('#fld_la_ciFactor').val();
-        loanModel['Recrate'] = $('#fld_la_RecRate').val();
-        loanModel['AgentIncent'] = $('#fld_la_AgentIncent').val();
-        loanModel['DealIncent'] = $('#fld_la_DealIncent').val();
-        loanModel['CCI'] = $('#fld_la_CCI').val();
-
-        loanModel['Assured'] = $('#fld_la_Assured').val();
-
-        
-
-        loanModel['Notes'] = $('#fld_la_Notes').val();
+        //alert($('#fld_la_AgentIncent').val());
        
-        jsonReq('../Application/InsertNewLoan', { loan: JSON.stringify(loanModel) }, function (data) {
+        jsonReq('../Application/InsertNewLoan', {
+            AccountNo: $('#AccountNo').val(),
+            organizationid: $('#fld_la_Branch').val(),
+            notes: $('#fld_la_Notes').val(),
+            borrowerid: $('#fld_la_BorrowerCode').val(),
+            loantype: $('#fld_la_Product').val(),
+            loanset: $('#fld_la_LoanSet').val(),
+            loanterms: $('#fld_la_LoanTerms').val(),
+            ppd_rate_id: $('#fld_la_PPDAmount').val(),
+            handling_fee_id: $('#fld_la_HandlingFee').val(),
+            agent_incentive_type: $('#fld_la_AgentIncent').val(),
+            dealer_incentive_type: $('#fld_la_DealIncent').val(),
+            loanamount: $('#fld_la_OriginalMLV').val(),
+            userID: '',
+            loanpurpose: $('#fld_la_LoanPurpose').val()
+        }, function (data) {
+
+            alert(data);
 
         });
     }

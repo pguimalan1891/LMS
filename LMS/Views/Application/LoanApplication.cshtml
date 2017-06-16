@@ -233,7 +233,7 @@
                                     <label class="col-lg-2 control-label">Product:</label>
 
                                     <div class="col-lg-5">
-                                        <select class="form-control" id="fld_la_Product" onchange="getLoanSet($('#fld_la_District').val(),$('#fld_la_Product').val())">
+                                        <select class="form-control" id="fld_la_Product" onchange="getLoanSet($('#fld_la_District').val(),$('#fld_la_Product').val()); getPPDAmounts($('#fld_la_Product').val());  getAgentIncentive($('#fld_la_Product').val());    getDealerIncentive($('#fld_la_Product').val());">
                                             @foreach (var product in Model.products)
                                             {
                                                 // cut for brevity, need to add back more code from original
@@ -387,28 +387,29 @@
 
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-lg-2 control-label">Default Handling Fee:</label>
-                                    <div class="col-lg-10"><input type="text" placeholder="" class="form-control" value="Not yet available" readonly="readonly"></div>
+                                    <label class="col-lg-2 control-label"> Handling Fee:</label>
+                                    <div class="col-lg-10"><select class="form-control" id="fld_la_HandlingFee"></select></div>
 
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-lg-2 control-label">Default PPD Amount:</label>
-                                    <div class="col-lg-10"><input type="text" placeholder="" class="form-control" value="Not yet available" readonly="readonly"></div>
+                                    <label class="col-lg-2 control-label"> PPD Amount:</label>
+                                    <div class="col-lg-10"><select class="form-control" id="fld_la_PPDAmount"></select></div>
 
                                 </div>
                                 <div class="form-group">
                                     <label class="col-lg-2 control-label">Agent Incentive:</label>
-                                    <div class="col-lg-5"><input type="text" placeholder="" class="form-control" value=" " id="fld_la_AgentIncent" ></div>
+                                    <div class="col-lg-5"><select id="fld_la_AgentIncent" class="form-control"></select></div>
 
                                 </div>
                                 <div class="form-group">
                                     <label class="col-lg-2 control-label">Dealer Incentive:</label>
-                                    <div class="col-lg-5"><input type="text" placeholder="" class="form-control" value=" " id="fld_la_DealIncent" ></div>
+                                    <div class="col-lg-5"><select id="fld_la_DealIncent" class="form-control"></select></div>
 
                                 </div>
                                 <div class="form-group">
                                     <label class="col-lg-2 control-label">Credit Investigator</label>
-                                    <div class="col-lg-5"><input type="text" placeholder="" class="form-control" value=" " id="fld_la_CCI" readonly="readonly"></div>
+                                    
+                                    <div class="col-lg-5"><select id="fld_la_CCI" class="form-control"></select></div>
 
                                 </div>
                                 <div class="form-group">
@@ -482,7 +483,7 @@
             </div>
             <div class="row">
                 <div class="pull-right">
-                    <div class="btn btn-success disabled" onclick="insertLoan()">
+                    <div class="btn btn-success" onclick="insertLoan()">
                         Submit
                     </div>
                     <div class="btn btn-danger">
