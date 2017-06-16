@@ -17,6 +17,7 @@ namespace BusinessObjects
         public LoanInfoModel Loan { get; set; }
         public GIBCOModel GIBCO { get; set; }
         public OutrightPayments Outpayments { get; set; }
+        public LessHandlingFeeRebatablePaymentDiscount LessHandling { get; set; }
     }
 
     public class LoanInfoModel
@@ -49,6 +50,7 @@ namespace BusinessObjects
     {
         public string GIBCOBasic1 { get; set; }
         public string GIBCOBasic2 { get; set; }
+
         public string GIBCOBasic3 { get; set; }
         public string GIBCOBasic4 { get; set; }
         public string GIBCOBasic5 { get; set; }
@@ -90,5 +92,17 @@ namespace BusinessObjects
         public string RestructuringFeeORCode { get; set; }
         public string RestructuringFeeORDate { get; set; }
         public string RestructuringFeeORAmount { get; set; }
+    }
+
+    public class LessHandlingFeeRebatablePaymentDiscount
+    {
+        public string LessFinanceCharges { get; set; }
+        public string TotalLessHandlingFee { get; set; }
+        public string LessHandlingFee { get; set; }
+        public string LessHandlingWOPDC { get; set; }
+        public string LessHandlingWOInsurance { get; set; }
+        public string TotalLessHandlingWOPDC { get; set; }
+        public string LessRppd { get; set; }
+        public string TotalPpd { get; set; }
     }
 }

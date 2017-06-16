@@ -152,6 +152,16 @@ namespace DataObjects.AdoNET
                 outpayment.RestructuringFeeORAmount = d["or_amount_restructuring"].ToString();
 
                 mdl.Outpayments = outpayment;
+
+                LessHandlingFeeRebatablePaymentDiscount less = new LessHandlingFeeRebatablePaymentDiscount();
+                less.LessHandlingFee = d["handling_fee"].ToString();
+                less.TotalLessHandlingFee = Convert.ToDouble(d["handling_fee_total"]).ToString("n2");
+                less.LessFinanceCharges = d["less_finance_charges"].ToString();
+                less.LessHandlingWOInsurance = d["less_handling_fee_wo_insurance"].ToString();
+                less.LessHandlingWOPDC = d["less_handling_fee_wo_pdc"].ToString();
+                less.LessRppd = d["less_rppd"].ToString();
+                less.TotalPpd = d["total_ppd"].ToString();
+                mdl.LessHandling = less;
             }
             return mdl;
         }

@@ -16,7 +16,7 @@ namespace DataObjects.AdoNET
 
         public IEnumerable<Agent> getAgent()
         {
-            string sql = "Select ID,Code,LAST_NAME + ', ' + FIRST_NAME + ' ' + MIDDLE_NAME as Description from agent_profile  where  agent_type_id != '2' order by last_name,first_name";
+            string sql = "Select ID,Code,LAST_NAME + ', ' + FIRST_NAME + ' ' + MIDDLE_NAME as Description from agent_profile  where  agent_type_id = '2' order by last_name,first_name";
             object[] parms = { };
             return db.Read(sql, selectAgent, 0, parms);
         }
@@ -92,7 +92,7 @@ namespace DataObjects.AdoNET
 
         public IEnumerable<BusinessObjects.LoanSet> getLoanSet(string groupid, string loantype)
         {
-            string sql = "select distinct loan_set.id loan_set_id, loan_set.CODE, loan_set.description, loan_Set.MIGID from dbo.factor_setup inner join  dbo.district_group  on (factor_setup.district_group_id = district_group.id) inner join  dbo.loan_type  on (factor_setup.loan_type_id = loan_type.id) inner join  dbo.loan_set  on (factor_setup.loan_set_id = loan_set.id)  inner join district on district_group.ID=district.DISTRICT_GROUP_ID where factor_setup.document_status_code = 7 and "
+            string sql = "select distinct loan_set.id loan_set_id, loan_set.CODE, loan_set.description, loan_Set.MIGID from Final_Testing.dbo.factor_setup inner join Final_Testing.dbo.district_group  on (factor_setup.district_group_id = district_group.id) inner join Final_Testing.dbo.loan_type  on (factor_setup.loan_type_id = loan_type.id) inner join Final_Testing.dbo.loan_set  on (factor_setup.loan_set_id = loan_set.id)  inner join district on district_group.ID=district.DISTRICT_GROUP_ID where factor_setup.document_status_code = 7 and "
                            + "district.id = @groupid" 
                             +" and loan_type.id = @loantype order by loan_set.description ";
             object[] parms = { "groupid",groupid,"loantype", loantype  };
@@ -192,7 +192,7 @@ namespace DataObjects.AdoNET
 
         public IEnumerable<BusinessObjects.LoanTermsForLoanApplication> getLoanTerms(string groupid, string loantype, string loanset)
         {
-            string sql = "select distinct loan_terms.id loan_terms_id,loan_terms.CODE ,loan_terms.description, loan_terms.months, factor_setup_term.add_on_rate, factor_setup_term.factor_setup_id from  dbo.factor_setup inner join  dbo.district_group  on (factor_setup.district_group_id = district_group.id) inner join  dbo.loan_type  on (factor_setup.loan_type_id = loan_type.id) inner join  dbo.loan_set  on (factor_setup.loan_set_id = loan_set.id) inner join  dbo.factor_setup_term  on (factor_setup_term.factor_setup_id = factor_setup.id) inner join  dbo.loan_terms  on (factor_setup_term.loan_terms_id = loan_terms.id) inner join district on district.district_group_id = district_group.id where factor_setup.document_status_code = 7 and "
+            string sql = "select distinct loan_terms.id loan_terms_id,loan_terms.CODE ,loan_terms.description, loan_terms.months, factor_setup_term.add_on_rate, factor_setup_term.factor_setup_id from Final_Testing.dbo.factor_setup inner join Final_Testing.dbo.district_group  on (factor_setup.district_group_id = district_group.id) inner join Final_Testing.dbo.loan_type  on (factor_setup.loan_type_id = loan_type.id) inner join Final_Testing.dbo.loan_set  on (factor_setup.loan_set_id = loan_set.id) inner join Final_Testing.dbo.factor_setup_term  on (factor_setup_term.factor_setup_id = factor_setup.id) inner join Final_Testing.dbo.loan_terms  on (factor_setup_term.loan_terms_id = loan_terms.id) inner join district on district.district_group_id = district_group.id where factor_setup.document_status_code = 7 and "
                          +"district.id = @groupid and loan_type.id = @loantype and loan_set.id = @loanset "
                          +"order by loan_terms.description ";
             object[] parms = { "groupid", groupid, "loantype", loantype, "loanset", loanset };
@@ -457,9 +457,9 @@ namespace DataObjects.AdoNET
                 " join loan_terms on loan_terms.ID = loan_application.LOAN_TERMS_ID " +
                 " inner " +
                 " join user_account on user_account.ID = loan_application.REQUESTED_BY_ID " +
-                " left " +
+                " inner " +
                 " join credit_investigation ci on ci.LOAN_APPLICATION_ID = loan_application.id " +
-                " left " +
+                " inner " +
                 " join document_status_map ciStat on ciStat.CODE = ci.DOCUMENT_STATUS_CODE";
 
             if (status == "[Approval]" && searchkey == "[All]")
@@ -568,8 +568,8 @@ namespace DataObjects.AdoNET
             object[] parms = {};
             db.RetValue(sql, 0, parms);
 
-          //  insertLoanCollateral(guid, loan.ListOfCollaterals);
-         //   insertLoanComaker(guid, loan.ListOfComakers);
+      //      insertLoanCollateral(guid, loan.ListOfCollaterals);
+       //     insertLoanComaker(guid, loan.ListOfComakers);
 
             return "Success";
 
