@@ -153,13 +153,13 @@ namespace LMS.Controllers
             return Json(service.GetLoanTerms(groupid, loantype, loanset));
         }
 
-        [HttpPost]
-        [AuthorizationFilter]
-        [Route("Application/HandlingFee")]
-        public ActionResult HandlingFee()
-        {
-            return Json();
-        }
+        //[HttpPost]
+        //[AuthorizationFilter]
+        //[Route("Application/HandlingFee")]
+        //public ActionResult HandlingFee()
+        //{
+        //    return Json();
+        //}
 
 
 
