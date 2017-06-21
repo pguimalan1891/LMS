@@ -42,6 +42,8 @@ namespace DataObjects
 
         IEnumerable<BusinessObjects.DocumentStatus> getDealerIncentives(string loantype);
 
+        bool cancelLoanApplication(string loanCode);
+
 
     }
 }
