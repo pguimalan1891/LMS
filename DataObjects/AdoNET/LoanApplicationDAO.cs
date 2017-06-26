@@ -28,6 +28,16 @@ namespace DataObjects.AdoNET
                Description = reader["Description"].AsString()
            };
 
+
+        public bool cancelLoanApplication(string loanCode)
+        {
+            string sql = "UPDATE loan_application set DOCUMENT_STATUS_CODE='1' where CODE='"+loanCode+"'";
+            object[] parms = { };
+            db.RetValue(sql, 0, parms);
+            return true;
+        }
+
+
         public IEnumerable<BusinessObjects.newLoanBorrowerProfile> GetBorrowers(string searchkey)
         {
             string sql = "select 'NewLoanApplication?borrower='+pis.CODE as newLoanLink, pis.id,document_status_map.description as [Status], pis.code as [Code], pis.last_name as [LastName], pis.first_name as [FirstName], pis.middle_name as [MiddleName], Convert(varchar,pis.date_of_birth,101) as [DateofBirth],  " +
