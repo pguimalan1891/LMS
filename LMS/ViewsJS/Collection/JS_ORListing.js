@@ -267,7 +267,7 @@ function viewOR(ORNumber) {
     var modalDispViewORBody = $("#display-modal-body");
     var modalDispViewORMain = $("#ViewOfficialReceiptModal");
     GlobalORNumber = ORNumber;
-    $.get("ViewORNumber", { "ORNumber": ORNumber }, function (data) {
+    $.post("OfficialReceipt/viewORNumber", { "ORNumber": ORNumber }, function (data) {
         modalDispViewORBody.empty().html(data);
         modalDispViewORMain.modal();
     });
