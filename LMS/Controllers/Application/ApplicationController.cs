@@ -57,6 +57,14 @@ namespace LMS.Controllers
 
 
         [AuthorizationFilter]
+        [Route("Application/CancelLoan")]
+        public ActionResult CancelLoan(string loanCode)
+        {
+            service.cancelLoanApplication(loanCode);
+            return Json("Done");
+        }
+        
+        [AuthorizationFilter]
         [Route("Application/LoanApplication")]
         public ActionResult wdLoanApplication(string code)
         {

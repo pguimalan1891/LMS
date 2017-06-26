@@ -157,7 +157,8 @@ namespace LMS.Controllers.Collections
             return pvr;
         }
 
-        [HttpPost]
+        [HttpGet]
+        [Route("ViewORNumber")]
         public ActionResult viewORNumber(string ORNumber)
         {
             Mapper.CreateMap<BusinessObjects.OfficialReceipt, LMS.Models.OfficialReceipt>();

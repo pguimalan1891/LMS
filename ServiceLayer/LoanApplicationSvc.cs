@@ -125,5 +125,10 @@ namespace ServiceLayer
         }
 
 
+        public bool cancelLoanApplication(string loanCode)
+        {
+            return lnCtrl.cancelLoanApplication(loanCode);
+        }
+
     }
 }

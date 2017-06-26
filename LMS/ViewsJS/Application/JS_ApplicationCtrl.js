@@ -473,6 +473,17 @@ function getHandlingFee() {
     }
 
 
+    function cancelLoanApplication()
+    {
+
+        jsonReq('../Application/CancelLoan', { loanCode:  $('#AccountNo').val() }, function (data) {
+            alert("Succesfully Cancelled Loan Application.");
+            window.history.back();
+            
+        });
+        
+    }
+
     function getDescFromOption(key, selectSet)
     {
 
