@@ -40,6 +40,34 @@ namespace BusinessObjects
         public string NOTES;
     }
 
+
+    public class LoanAppLoanInfo
+    {
+        public string Purpose;
+        public string OrgID;
+        public string AgentID;
+        public string DistrictID;
+        public string LoanTypeID;
+        public string LoanSetID;
+        public string LoanTermsID;
+        public string LoanAmount;
+    }
+
+    public class LoanAppCreditInfo
+    {
+        public string RECOMMENDED_MLV;
+        public string ORIGINAL_MLV;
+        public string APPROVED_MLV;
+        public string NET_MI_FACTOR;
+        public string ADD_ON_RATE;
+        public string HANDLING_FEE_ID;
+        public string PPD_RATE_ID;
+        public string AGENT_INCENTIVE_ID;
+        public string DEALER_INCENTIVE_ID;
+        public string CIAGENT;
+        public string ASSURED;
+        public string NOTES;
+    }
     public class newLoanBorrowerProfile
     {
         public string newLoanLink;

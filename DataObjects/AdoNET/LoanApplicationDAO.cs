@@ -16,7 +16,7 @@ namespace DataObjects.AdoNET
 
         public IEnumerable<Agent> getAgent()
         {
-            string sql = "Select ID,Code,LAST_NAME + ', ' + FIRST_NAME + ' ' + MIDDLE_NAME as Description from agent_profile  where  agent_type_id = '2' order by last_name,first_name";
+            string sql = "Select ID,Code,LAST_NAME + ', ' + FIRST_NAME + ' ' + MIDDLE_NAME as Description from user_account where Last_name is not null and first_name is not null order by last_name,first_name";
             object[] parms = { };
             return db.Read(sql, selectAgent, 0, parms);
         }
@@ -102,7 +102,7 @@ namespace DataObjects.AdoNET
 
         public IEnumerable<BusinessObjects.LoanSet> getLoanSet(string groupid, string loantype)
         {
-            string sql = "select distinct loan_set.id loan_set_id, loan_set.CODE, loan_set.description, loan_Set.MIGID from Final_Testing.dbo.factor_setup inner join Final_Testing.dbo.district_group  on (factor_setup.district_group_id = district_group.id) inner join Final_Testing.dbo.loan_type  on (factor_setup.loan_type_id = loan_type.id) inner join Final_Testing.dbo.loan_set  on (factor_setup.loan_set_id = loan_set.id)  inner join district on district_group.ID=district.DISTRICT_GROUP_ID where factor_setup.document_status_code = 7 and "
+            string sql = "select distinct loan_set.id loan_set_id, loan_set.CODE, loan_set.description, loan_Set.MIGID from dbo.factor_setup inner join dbo.district_group  on (factor_setup.district_group_id = district_group.id) inner join dbo.loan_type  on (factor_setup.loan_type_id = loan_type.id) inner join dbo.loan_set  on (factor_setup.loan_set_id = loan_set.id)  inner join district on district_group.ID=district.DISTRICT_GROUP_ID where factor_setup.document_status_code = 7 and "
                            + "district.id = @groupid" 
                             +" and loan_type.id = @loantype order by loan_set.description ";
             object[] parms = { "groupid",groupid,"loantype", loantype  };
@@ -202,8 +202,8 @@ namespace DataObjects.AdoNET
 
         public IEnumerable<BusinessObjects.LoanTermsForLoanApplication> getLoanTerms(string groupid, string loantype, string loanset)
         {
-            string sql = "select distinct loan_terms.id loan_terms_id,loan_terms.CODE ,loan_terms.description, loan_terms.months, factor_setup_term.add_on_rate, factor_setup_term.factor_setup_id from Final_Testing.dbo.factor_setup inner join Final_Testing.dbo.district_group  on (factor_setup.district_group_id = district_group.id) inner join Final_Testing.dbo.loan_type  on (factor_setup.loan_type_id = loan_type.id) inner join Final_Testing.dbo.loan_set  on (factor_setup.loan_set_id = loan_set.id) inner join Final_Testing.dbo.factor_setup_term  on (factor_setup_term.factor_setup_id = factor_setup.id) inner join Final_Testing.dbo.loan_terms  on (factor_setup_term.loan_terms_id = loan_terms.id) inner join district on district.district_group_id = district_group.id where factor_setup.document_status_code = 7 and "
-                         +"district.id = @groupid and loan_type.id = @loantype and loan_set.id = @loanset "
+            string sql = "select distinct loan_terms.id loan_terms_id,loan_terms.CODE ,loan_terms.description, loan_terms.months, factor_setup_term.NET_MI_FACTOR as add_on_rate, factor_setup_term.factor_setup_id from dbo.factor_setup inner join dbo.district_group  on (factor_setup.district_group_id = district_group.id) inner join dbo.loan_type  on (factor_setup.loan_type_id = loan_type.id) inner join dbo.loan_set  on (factor_setup.loan_set_id = loan_set.id) inner join dbo.factor_setup_term  on (factor_setup_term.factor_setup_id = factor_setup.id) inner join dbo.loan_terms  on (factor_setup_term.loan_terms_id = loan_terms.id) inner join district on district.district_group_id = district_group.id where factor_setup.document_status_code = 7 and "
+                         + "district.id = @groupid and loan_type.id = @loantype and loan_set.id = @loanset "
                          +"order by loan_terms.description ";
             object[] parms = { "groupid", groupid, "loantype", loantype, "loanset", loanset };
             return db.Read(sql, selectLoanTermsForLoanApplication, 0, parms);
@@ -467,9 +467,9 @@ namespace DataObjects.AdoNET
                 " join loan_terms on loan_terms.ID = loan_application.LOAN_TERMS_ID " +
                 " inner " +
                 " join user_account on user_account.ID = loan_application.REQUESTED_BY_ID " +
-                " inner " +
+                " left " +
                 " join credit_investigation ci on ci.LOAN_APPLICATION_ID = loan_application.id " +
-                " inner " +
+                " left " +
                 " join document_status_map ciStat on ciStat.CODE = ci.DOCUMENT_STATUS_CODE";
 
             if (status == "[Approval]" && searchkey == "[All]")
@@ -566,14 +566,14 @@ namespace DataObjects.AdoNET
            };
 
 
-        public string insertLoan(string AccountNo, string organizationid,string notes,string borrowerid, string loantype, string loanset, string loanterms, string ppd_rate_id, string handling_fee_id, string agent_incentive_type, string dealer_incentive_type, string loanamount , string userID, string loanpurpose)
+        public string insertLoan(string AccountNo, string organizationid,string notes,string borrowerid, string loantype, string loanset, string loanterms, string ppd_rate_id, string handling_fee_id, string agent_incentive_type, string dealer_incentive_type, string loanamount , string userID, string loanpurpose, string addOnRate, string agent, string district, string assured)
         {
             string guid = Guid.NewGuid().ToString();
             string guid_reviewer = Guid.NewGuid().ToString();
-            string sql = "INSERT INTO Final_Testing.dbo.loan_application (id,code,datetime_created,prepared_by_id,prepared_by_datetime,requested_by_id,requested_by_datetime,organization_id,document_status_code,permission,notes,pis_id,history_pis_id,current_pis_id,factor_setup_id,authority_setup_id,ppd_rate_id,handling_fee_id,pp_discount_id,agent_incentive_id,agent_incentive_type_id,dealer_incentive_id,dealer_incentive_type_id,loan_type_id,add_on_rate,loan_amount,recommended_mlv,original_mlv,approved_mlv,loan_set_id,loan_terms_id,purpose_of_loan,required_document_id,character_notes,capacity_notes,collateral_notes,capital_notes,business_environment_notes,restructure_count,direct_loan_receipt_id,pip_balance,gibco_balance,rfc_balance,total_balance,pip_due,gibco_due,rfc_due,total_due,restructure_fee,restructure_income,acceleration_form_id,effective_yield_id,tag,tag_amount,assured,remedial_type_id) "+
-                         "SELECT '"+guid+"', '"+AccountNo+"', GETDATE(), '"+userID+ "', GETDATE(),'" + userID + "', GETDATE(), '" + organizationid + "', 31, 581, '"+notes+"', '"+borrowerid+ "', '" + borrowerid + "', '" + borrowerid + "', ISNULL((SELECT TOP 1  ID from factor_setup where loan_type_id = '" + loantype + "' and LOAN_SET_ID = '" + loanset + "' and ORGANIZATION_ID = '" + organizationid + "'), (SELECT TOP 1  ID from factor_setup where loan_type_id = '" + loantype + "' and LOAN_SET_ID = '" + loanset + "')),'{61e088df-7122-42b2-bc58-f3857d8cc1fc}','" + ppd_rate_id + "','" + handling_fee_id + "','1', (SELECT TOP 1  agent_incentive.id from agent_incentive_type inner join agent_incentive on agent_incentive.AGENT_INCENTIVE_TYPE_ID = agent_incentive_type.id where agent_incentive_type.id = '"+agent_incentive_type+"' and agent_incentive.LOAN_TYPE_ID = '"+loantype+ "'), '" + agent_incentive_type + "', (SELECT TOP 1  dealer_incentive.id from dealer_incentive_type inner join dealer_incentive on dealer_incentive.DEALER_INCENTIVE_TYPE_ID = dealer_incentive_type.id where dealer_incentive.LOAN_TYPE_ID = '" + loantype + "' and dealer_incentive_type.id = '" + dealer_incentive_type + "'), '" + dealer_incentive_type + "','" + loantype + "','0','" + loanamount + "','" + loanamount + "',0,'" + loanamount + "','" + loanset + "','" + loanterms + "','"+loanpurpose+"','{4d2b1dbd-a919-478c-9343-c91394c8d4d0}',null,null,null,null,null,0,null,0,0,0,0,0,0,0,0,0,0,null,null,0,0,'" + loanamount + "','0'";
+            string sql = "DELETE FROM loan_application where code='"+ AccountNo + "'; INSERT INTO dbo.loan_application (id,code,datetime_created,prepared_by_id,prepared_by_datetime,requested_by_id,requested_by_datetime,organization_id,document_status_code,permission,notes,pis_id,history_pis_id,current_pis_id,factor_setup_id,authority_setup_id,ppd_rate_id,handling_fee_id,pp_discount_id,agent_incentive_id,agent_incentive_type_id,dealer_incentive_id,dealer_incentive_type_id,loan_type_id,add_on_rate,loan_amount,recommended_mlv,original_mlv,approved_mlv,loan_set_id,loan_terms_id,purpose_of_loan,required_document_id,character_notes,capacity_notes,collateral_notes,capital_notes,business_environment_notes,restructure_count,direct_loan_receipt_id,pip_balance,gibco_balance,rfc_balance,total_balance,pip_due,gibco_due,rfc_due,total_due,restructure_fee,restructure_income,acceleration_form_id,effective_yield_id,tag,tag_amount,assured,remedial_type_id,DISTRICT_ID) " +
+                         "SELECT '"+guid+"', '"+AccountNo+"', GETDATE(), '"+userID+ "', GETDATE(),'" + agent + "', GETDATE(), '" + organizationid + "', 31, 581, '"+notes+"', '"+borrowerid+ "', '" + borrowerid + "', '" + borrowerid + "', ISNULL((SELECT TOP 1  ID from factor_setup where loan_type_id = '" + loantype + "' and LOAN_SET_ID = '" + loanset + "' and ORGANIZATION_ID = '" + organizationid + "'), (SELECT TOP 1  ID from factor_setup where loan_type_id = '" + loantype + "' and LOAN_SET_ID = '" + loanset + "')),'{61e088df-7122-42b2-bc58-f3857d8cc1fc}','" + ppd_rate_id + "','" + handling_fee_id + "','1', (SELECT TOP 1  agent_incentive.id from agent_incentive_type inner join agent_incentive on agent_incentive.AGENT_INCENTIVE_TYPE_ID = agent_incentive_type.id where agent_incentive_type.id = '"+agent_incentive_type+"' and agent_incentive.LOAN_TYPE_ID = '"+loantype+ "'), '" + agent_incentive_type + "', (SELECT TOP 1  dealer_incentive.id from dealer_incentive_type inner join dealer_incentive on dealer_incentive.DEALER_INCENTIVE_TYPE_ID = dealer_incentive_type.id where dealer_incentive.LOAN_TYPE_ID = '" + loantype + "' and dealer_incentive_type.id = '" + dealer_incentive_type + "'), '" + dealer_incentive_type + "','" + loantype + "','"+addOnRate+"','" + loanamount + "',0,'"+loanamount+"','0','" + loanset + "','" + loanterms + "','"+loanpurpose+"','{4d2b1dbd-a919-478c-9343-c91394c8d4d0}',null,null,null,null,null,0,null,0,0,0,0,0,0,0,0,0,0,null,null,0,0,'" + assured + "','0','"+district+"'";
             string reviewer_guid = Guid.NewGuid().ToString();
-            sql += "  INSERT INTO Final_Testing.dbo.loan_application_reviewer (id,loan_application_id,reviewer_id,datetime_created,seq_number,status_code,current_record,action_status_code,permission) VALUES ('"+reviewer_guid+"','"+guid+ "','0',GETDATE(),  31,1,'Y',13,581)  ";
+            sql += "  INSERT INTO dbo.loan_application_reviewer (id,loan_application_id,reviewer_id,datetime_created,seq_number,status_code,current_record,action_status_code,permission) VALUES ('"+reviewer_guid+"','"+guid+ "','0',GETDATE(),  31,1,'Y',13,581)  ";
 
             object[] parms = {};
             db.RetValue(sql, 0, parms);
@@ -614,6 +614,55 @@ namespace DataObjects.AdoNET
           
             return "Success";
         }
+
+        public IEnumerable<BusinessObjects.LoanAppLoanInfo> getloanInfo(string loanCode)
+        {
+            string sql = "select PURPOSE_OF_LOAN,ORGANIZATION_ID,DISTRICT_ID,loan_application.REQUESTED_BY_ID,LOAN_TYPE_ID,LOAN_SET_ID,LOAN_TERMS_ID,LOAN_AMOUNT from loan_application where CODE='" + loanCode + "'";
+            object[] parms = { "loanCode", loanCode };
+            return db.Read(sql, selectLoanInfo, 0, parms);
+        }
+
+        static Func<IDataReader, BusinessObjects.LoanAppLoanInfo> selectLoanInfo = reader =>
+           new BusinessObjects.LoanAppLoanInfo
+           {
+               Purpose = reader["PURPOSE_OF_LOAN"].ToString(),
+               OrgID = reader["ORGANIZATION_ID"].ToString(),
+               DistrictID = reader["DISTRICT_ID"].ToString(),
+
+               AgentID = reader["REQUESTED_BY_ID"].ToString(),
+               LoanTypeID = reader["LOAN_TYPE_ID"].ToString(),
+            
+               LoanSetID = reader["LOAN_SET_ID"].ToString(),
+               LoanTermsID = reader["LOAN_TERMS_ID"].ToString(),
+               LoanAmount = reader["LOAN_AMOUNT"].ToString()
+           };
+
+
+        public IEnumerable<BusinessObjects.LoanAppCreditInfo> getloanCreditInfo(string loanCode)
+        {
+            string sql = "select RECOMMENDED_MLV,ORIGINAL_MLV,APPROVED_MLV, factor_setup_term.NET_MI_FACTOR ,loan_application.ADD_ON_RATE,HANDLING_FEE_ID,PPD_RATE_ID,AGENT_INCENTIVE_TYPE_ID,DEALER_INCENTIVE_TYPE_ID,'' as CIAGENT,ASSURED,loan_application.NOTES from loan_application inner join factor_setup on factor_setup.ID = loan_application.FACTOR_SETUP_ID inner join factor_setup_term on factor_setup_term.Factor_setup_id = factor_Setup.id and factor_setup_term.LOAN_TERMS_ID = loan_application.LOAN_TERMS_ID  where loan_application.CODE ='" + loanCode + "'";
+            object[] parms = { "loanCode", loanCode };
+            return db.Read(sql, selectLoanCreditInfo, 0, parms);
+        }
+
+        static Func<IDataReader, BusinessObjects.LoanAppCreditInfo> selectLoanCreditInfo = reader =>
+           new BusinessObjects.LoanAppCreditInfo
+           {
+                RECOMMENDED_MLV=reader["RECOMMENDED_MLV"].ToString(),
+                ORIGINAL_MLV =reader["ORIGINAL_MLV"].ToString(),
+                APPROVED_MLV=reader["APPROVED_MLV"].ToString(),
+                NET_MI_FACTOR=reader["NET_MI_FACTOR"].ToString(),
+                ADD_ON_RATE=reader["ADD_ON_RATE"].ToString(),
+                HANDLING_FEE_ID=reader["HANDLING_FEE_ID"].ToString(),
+                PPD_RATE_ID=reader["PPD_RATE_ID"].ToString(),
+                AGENT_INCENTIVE_ID=reader["AGENT_INCENTIVE_TYPE_ID"].ToString(),
+                DEALER_INCENTIVE_ID = reader["DEALER_INCENTIVE_TYPE_ID"].ToString(),
+                CIAGENT =reader["CIAGENT"].ToString(),
+                ASSURED=reader["ASSURED"].ToString(),
+                     NOTES = reader["NOTES"].ToString()
+           };
+
+
         public IEnumerable<BusinessObjects.CollateralProfile> getCollaterals(string loanCode)
         {
             string sql = " SELECT  lp.[ID] " +

@@ -15,11 +15,11 @@ namespace LMS.Controllers
     {
         private ILoanApplicationSvc service;
         private ICustomerSvc customerComp;
-       
+
         // GET: Application
 
         public ApplicationController()
-            :this(new LoanApplicationSvc(), new CustomerSvc())
+            : this(new LoanApplicationSvc(), new CustomerSvc())
         {
 
         }
@@ -57,14 +57,6 @@ namespace LMS.Controllers
 
 
         [AuthorizationFilter]
-        [Route("Application/CancelLoan")]
-        public ActionResult CancelLoan(string loanCode)
-        {
-            service.cancelLoanApplication(loanCode);
-            return Json("Done");
-        }
-        
-        [AuthorizationFilter]
         [Route("Application/LoanApplication")]
         public ActionResult wdLoanApplication(string code)
         {
@@ -78,14 +70,14 @@ namespace LMS.Controllers
                 loan.districts = customerComp.getDistrict();
                 loan.applicationTypes = customerComp.getApplicationType();
                 loan.products = service.GetLoanProducts();
-            //    loan.sets = service.GetLoanSet();
-             //   loan.terms = service.GetLoanTerms();
+                //    loan.sets = service.GetLoanSet();
+                //   loan.terms = service.GetLoanTerms();
                 loan.borrowerProfile = service.GetBorrowerProfile(loan.BorrowerCode);
                 loan.reqDocs = service.getBorrowerRequiredDocuments(loan.BorrowerCode);
             }
-           
-           // loan.AccountNo = loanID;
-           
+
+            // loan.AccountNo = loanID;
+
             return View("LoanApplication", loan);
         }
 
@@ -103,7 +95,7 @@ namespace LMS.Controllers
             return PartialView("_LoanCollaterals", null);
         }
 
-    
+
         [AuthorizationFilter]
         public ActionResult NewLoanApplication(string borrower)
         {
@@ -115,13 +107,13 @@ namespace LMS.Controllers
             loan.applicationTypes = customerComp.getApplicationType();
             loan.products = service.GetLoanProducts();
             loan.DesiredMLV = "0.00";
-            
-          //  loan.sets = service.GetLoanSet();
-          //  loan.terms = service.GetLoanTerms();
+
+            //  loan.sets = service.GetLoanSet();
+            //  loan.terms = service.GetLoanTerms();
             loan.borrowerProfile = service.GetBorrowerProfile(borrower);
             loan.reqDocs = service.getBorrowerRequiredDocuments(borrower);
             return View("LoanApplication", loan);
-       
+
         }
 
 
@@ -130,11 +122,11 @@ namespace LMS.Controllers
         [Route("Application/ListApplications/{status}/{filterKey}")]
         public ActionResult ListApplications(string status, string filterKey)
         {
-            if(status == "undefined")
+            if (status == "undefined")
             {
                 status = "[All]";
             }
-            return Json(service.getLoanApplicationListing(status,filterKey));
+            return Json(service.getLoanApplicationListing(status, filterKey));
         }
 
         [HttpPost]
@@ -161,13 +153,13 @@ namespace LMS.Controllers
             return Json(service.GetLoanTerms(groupid, loantype, loanset));
         }
 
-        //[HttpPost]
-        //[AuthorizationFilter]
-        //[Route("Application/HandlingFee")]
-        //public ActionResult HandlingFee()
-        //{
-        //    return Json();
-        //}
+        [HttpPost]
+        [AuthorizationFilter]
+        [Route("Application/HandlingFee")]
+        public ActionResult HandlingFee()
+        {
+            return Json(service.getHandlingFee());
+        }
 
 
 
@@ -179,7 +171,30 @@ namespace LMS.Controllers
             return Json(service.GetAgents());
         }
 
+        [HttpPost]
+        [AuthorizationFilter]
+        [Route("Application/PPDAmounts/{loantype}")]
+        public ActionResult PPDAmounts(string loantype)
+        {
+            return Json(service.getPPDAmounts(loantype));
+        }
 
+        [HttpPost]
+        [AuthorizationFilter]
+        [Route("Application/AgentIncentive/{loantype}")]
+        public ActionResult AgentIncentive(string loantype)
+        {
+            return Json(service.getAgentIncentives(loantype));
+        }
+
+
+        [HttpPost]
+        [AuthorizationFilter]
+        [Route("Application/DealerIncentive/{loantype}")]
+        public ActionResult DealerIncentive(string loantype)
+        {
+            return Json(service.getDealerIncentives(loantype));
+        }
 
 
 
@@ -245,16 +260,46 @@ namespace LMS.Controllers
             return Json(service.getCollaterals(loanCode));
         }
 
-       
+
 
         [HttpPost]
-        public ActionResult InsertNewLoan(string AccountNo, string organizationid, string notes, string borrowerid, string loantype, string loanset, string loanterms, string ppd_rate_id, string handling_fee_id, string agent_incentive_type, string dealer_incentive_type, string loanamount, string userID, string loanpurpose)
+        public ActionResult InsertNewLoan(string AccountNo, string organizationid, string notes, string borrowerid, string loantype, string loanset, string loanterms, string ppd_rate_id, string handling_fee_id, string agent_incentive_type, string dealer_incentive_type, string loanamount, string loanpurpose, string addOnRate, string agentID, string district, string assured)
         {
+            //JavaScriptSerializer jsonSerializer = new JavaScriptSerializer();
+            //BusinessObjects.LoanApplicationModel obj = jsonSerializer.Deserialize<BusinessObjects.LoanApplicationModel>(loan);
+
+
             List<Dictionary<string, object>> session = (List<Dictionary<string, object>>)Session["loginDetails"];
-            
+
             string user = session[0]["ID"].ToString();
-            return Json(service.insertLoan(AccountNo, organizationid, notes, borrowerid, loantype, loanset, loanterms, ppd_rate_id, handling_fee_id, agent_incentive_type, dealer_incentive_type, loanamount, user, loanpurpose));
+            return Json(service.insertLoan(AccountNo, organizationid, notes, borrowerid, loantype, loanset, loanterms, ppd_rate_id, handling_fee_id, agent_incentive_type, dealer_incentive_type, loanamount, user, loanpurpose,  addOnRate, agentID, district, assured));
         }
+
+        [AuthorizationFilter]
+        [Route("Application/CancelLoan")]
+        public ActionResult CancelLoan(string loanCode)
+        {
+            service.cancelLoanApplication(loanCode);
+            return Json("Done");
+        }
+
+        [AuthorizationFilter]
+        [Route("Application/getloanInfo")]
+        public ActionResult getloanInfo(string loanCode)
+        {
+            return Json(service.getloanInfo(loanCode));
+        }
+
+        [AuthorizationFilter]
+        [Route("Application/getloanCreditInfo")]
+        public ActionResult getloanCreditInfo(string loanCode)
+        {
+            
+            return Json(service.getloanCreditInfo(loanCode));
+        }
+
+
+
 
         //getDistrict, getBranch, getApplicationType, getLoanProduct, getSetPerProduct, getTerms, getCollateralType
     }
