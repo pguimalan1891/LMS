@@ -409,44 +409,43 @@ function initStaticOthers() {
     }
 
     function insertLoan() {
-        loanModel['BorrowerCode'] = $('#fld_la_BorrowerCode').val();
-        loanModel['TransactionDate'] = $('#fld_la_trandate').val();
-            loanModel['LoanPurpose'] = $('#fld_la_LoanPurpose').val();
-
-            loanModel['DistrictCode'] = $('#fld_la_District').val();
-
-            loanModel['BranchCode'] = $('#fld_la_District').val();
-
-        loanModel['ApplicationType'] = $('#fld_la_AppType').val();
-
-        loanModel['AgentId'] = $('#fld_la_Agent').val();
-
-        loanModel['ProductId'] = $('#fld_la_Product').val();
-
-        loanModel['SetId'] = $('#fld_la_LoanSet').val();
-
-        loanModel['TermsId'] = $('#fld_la_LoanTerms').val();
-
-        loanModel['FactorRate'] = $('#fld_la_Factor').val();
-
-        loanModel['DesiredMLV'] = $('#fld_la_DesiredMLV').val();
-
-
-        loanModel['OriginalMLV'] = $('#fld_la_OriginalMLV').val();
-        loanModel['ApprovedMLV'] = $('#fld_la_ApprovedMLV').val();
-        loanModel['ciFactor'] = $('#fld_la_ciFactor').val();
-        loanModel['Recrate'] = $('#fld_la_RecRate').val();
-        loanModel['AgentIncent'] = $('#fld_la_AgentIncent').val();
-        loanModel['DealIncent'] = $('#fld_la_DealIncent').val();
-        loanModel['CCI'] = $('#fld_la_CCI').val();
-
-        loanModel['Assured'] = $('#fld_la_Assured').val();
-
-        
-
-        loanModel['Notes'] = $('#fld_la_Notes').val();
        
-        jsonReq('../Application/InsertNewLoan', { loan: JSON.stringify(loanModel) }, function (data) {
+       
+        jsonReq('../Save', {
+            income : $('#cir_income').val(),
+            deduction : $('#cir_deduction').val(),
+            net_income : $('#cir_netIncome').val(),
+            spouse_income : $('#cir_spouseIncome').val(),
+            spouse_deduction : $('#cir_spouseDeduction').val(),
+            spouse_net_income : $('#cir_spouseNetIncome').val(),
+            business_income : $('#cir_businessIncome').val(),
+            other_income : '0',
+            total_income : $('#cir_netIncome').val()+ $('#cir_spouseNetIncome').val(),
+            living_expenses : $('#cir_livingExpense').val(),
+            rentals : $('#cir_rentals').val(),
+            utility : $('#cir_lightWater').val(),
+            education : $('#cir_education').val(),
+            amortization : $('#cir_amortization').val(), 
+            transportation : $('#cir_transportation').val(),
+            other_expenses : $('#cir_otherExpense').val(),
+            total_expenses : $('#cir_totalExpenses').val(),
+            gross_disposable_income : $('#cir_GDI').val(),
+            class_amount  : $('#cir_Class').val(),
+            net_disposable_income : $('#cir_NDI').val(),
+            mi_result : $('#cir_sumMonthlyInstallment').val(),
+            excess_amount : $('#cir_Excess').val(),
+            document_status_code :'32',
+            notes : $('#cir_Class').val(),
+            loan_code : $('#AccountNo').val(),
+            recommended_mlv : $('#DesiredMLV').val()
+        }, function (data) {
+            if (data === "Success") {
+                alert("Successfully saved Credit Investigation Report");
 
+                window.history.back();
+
+            } else {
+                alert(data);
+            }
         });
     }

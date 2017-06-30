@@ -113,50 +113,43 @@
                                     <label class="col-lg-2 control-label">Product:</label>
 
                                     <div class="col-lg-5">
-                                            @foreach (var product in Model.loanModel.products)
+                                        @foreach (var product in Model.loanModel.products)
+                                        {
+                                            // cut for brevity, need to add back more code from original
+                                            if (Model.loanModel.ProductId != null && Model.loanModel.ProductId == product.ID)
                                             {
                                                 // cut for brevity, need to add back more code from original
-                                                if (Model.loanModel.ProductId != null && Model.loanModel.ProductId == product.ID)
-                                                {
-                                                    // cut for brevity, need to add back more code from original
-                                                    <input value=" @product.DESCRIPTION" type="text" readonly="readonly">
-                                                     
-                                                }
-                                               
+                                                <input value=" @product.DESCRIPTION" class="form-control"   type="text" readonly="readonly">
 
                                             }
+
+
+                                        }  
+                                         
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-lg-2 control-label">Term:</label>
 
                                     <div class="col-lg-5">
-                                        @foreach (var term in Model.loanModel.terms)
-                                        {
-                                            // cut for brevity, need to add back more code from original
-                                            if (Model.loanModel.TermsId != null && Model.loanModel.TermsId == term.ID)
-                                            {
-                                                // cut for brevity, need to add back more code from original
-                                                <input value=" @term.DESCRIPTION" type="text" readonly="readonly">
+                                        
+                                                <input value="@Model.TermsDescription" class="form-control"  type="text" readonly="readonly">
 
-                                            }
-
-
-                                        }
+                                       
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-lg-2 control-label">Recommended MLV:</label>
 
                                     <div class="col-lg-5">
-                                        <input value="@Model.loanModel.DesiredMLV" type="text" readonly="readonly">
+                                        <input value="@Model.loanModel.DesiredMLV" class="form-control"  type="text" id="DesiredMLV" >
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-lg-2 control-label">Monthly Installment:</label>
 
                                     <div class="col-lg-5">
-                                        <input value="@Model.MonthlyInstallment" type="text" readonly="readonly">
+                                        <input value="@Model.MonthlyInstallment" class="form-control"  type="text" readonly="readonly">
                                     </div>
                                 </div>
 
@@ -184,7 +177,7 @@
                                             if (product.IncomeType == "EMPLOYED_INCOME")
                                             {
                                                 // cut for brevity, need to add back more code from original
-                                                <input value=" @product.IncomeAmount" type="text" readonly="readonly" id="cir_income">
+                                                <input value=" @product.IncomeAmount" type="text" class="form-control"  readonly="readonly" id="cir_income">
 
                                             }
 
@@ -197,7 +190,7 @@
 
                                     <div class="col-lg-5">
 
-                                        <input value="@Model.Deduction" type="text"  id="cir_deduction">
+                                        <input value="@Model.Deduction"  class="form-control"  type="text"  id="cir_deduction">
 
                                     </div>
                                 </div>
@@ -206,7 +199,7 @@
 
                                     <div class="col-lg-5">
 
-                                        <input value="@Model.NetIncome" type="text" readonly="readonly" id="cir_netIncome">
+                                        <input value="@Model.NetIncome"  class="form-control" type="text" readonly="readonly" id="cir_netIncome">
 
                                     </div>
                                 </div>
@@ -220,7 +213,7 @@
                                             if (product.IncomeType == "SPOUSE_INCOME")
                                             {
                                                 // cut for brevity, need to add back more code from original
-                                                <input value=" @product.IncomeAmount" type="text" readonly="readonly"  id="cir_spouseIncome">
+                                                <input value=" @product.IncomeAmount"  class="form-control"  type="text" readonly="readonly"  id="cir_spouseIncome">
 
                                             }
 
@@ -233,7 +226,7 @@
 
                                     <div class="col-lg-5">
 
-                                        <input value="@Model.spouseDeduction" type="text" id="cir_spouseDeduction">
+                                        <input value="@Model.spouseDeduction"  class="form-control"  type="text" id="cir_spouseDeduction">
 
                                     </div>
                                 </div>
@@ -242,7 +235,7 @@
 
                                     <div class="col-lg-5">
 
-                                        <input value="@Model.spouseNetIncome" type="text" readonly="readonly"   id="cir_spouseNetIncome">
+                                        <input value="@Model.spouseNetIncome"  class="form-control"  type="text" readonly="readonly"   id="cir_spouseNetIncome">
 
                                     </div>
                                 </div>
@@ -256,7 +249,7 @@
                                             if (product.IncomeType == "BUSINESS_INCOME")
                                             {
                                                 // cut for brevity, need to add back more code from original
-                                                <input value=" @product.IncomeAmount" type="text" readonly="readonly"   id="cir_businessIncome">
+                                                <input  class="form-control"  value=" @product.IncomeAmount" type="text" readonly="readonly"   id="cir_businessIncome">
 
                                             }
 
@@ -285,42 +278,42 @@
                                 <div class="form-group">
                                     <label class="col-lg-4 control-label">Living Expenses:</label>
 
-                                    <div class="col-lg-5"><input value="0" type="text" id="cir_livingExpense" onchange=" computeSummary()"></div>
+                                    <div class="col-lg-5"><input value="0" type="text"  class="form-control"  id="cir_livingExpense" onchange=" computeSummary()"></div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-lg-4 control-label">Rentals:</label>
 
-                                    <div class="col-lg-5"><input value="0" type="text" id="cir_rentals" onchange=" computeSummary()"></div>
+                                    <div class="col-lg-5"><input value="0" type="text" class="form-control"  id="cir_rentals" onchange=" computeSummary()"></div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-lg-4 control-label">Light &amp; Water:</label>
 
-                                    <div class="col-lg-5"><input value="0" type="text" id="cir_lightWater" onchange=" computeSummary()"></div>
+                                    <div class="col-lg-5"><input value="0" type="text" class="form-control"  id="cir_lightWater" onchange=" computeSummary()"></div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-lg-4 control-label">Education:</label>
 
-                                    <div class="col-lg-5"><input value="0" type="text" id="cir_education" onchange=" computeSummary()"></div>
+                                    <div class="col-lg-5"><input value="0" type="text" class="form-control"  id="cir_education" onchange=" computeSummary()"></div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-lg-4 control-label">Amortization:</label>
 
-                                    <div class="col-lg-5"><input value="0" type="text" id="cir_amortization" onchange=" computeSummary()"></div>
+                                    <div class="col-lg-5"><input value="0" type="text" class="form-control"  id="cir_amortization" onchange=" computeSummary()"></div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-lg-4 control-label">Transportation:</label>
 
-                                    <div class="col-lg-5"><input value="0" type="text" id="cir_transportation" onchange=" computeSummary()"></div>
+                                    <div class="col-lg-5"><input value="0" type="text" class="form-control"  id="cir_transportation" onchange=" computeSummary()"></div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-lg-4 control-label">Other Expenses:</label>
 
-                                    <div class="col-lg-5"><input value="0" type="text" id="cir_otherExpense" onchange=" computeSummary()"></div>
+                                    <div class="col-lg-5"><input value="0" type="text" class="form-control"  id="cir_otherExpense" onchange=" computeSummary()"></div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-lg-4 control-label">Total Expenses:</label>
 
-                                    <div class="col-lg-5"><input value="0" type="text" id="cir_totalExpenses"></div>
+                                    <div class="col-lg-5"><input value="0" type="text" class="form-control" readonly="true"  id="cir_totalExpenses"></div>
                                 </div>
                                
 
@@ -343,7 +336,7 @@
 
                                     <div class="col-lg-5">
                                        
-                                               <input value="0" type="text" readonly="readonly" id="cir_GDI">
+                                               <input value="0" type="text" class="form-control" readonly="readonly" id="cir_GDI">
 
                                     </div>
                                 </div>
@@ -352,7 +345,7 @@
 
                                     <div class="col-lg-5">
 
-                                        <input value="0" type="text" id="cir_Class">
+                                        <input value="0" type="text" class="form-control"  id="cir_Class">
 
                                     </div>
                                 </div>
@@ -361,7 +354,7 @@
 
                                     <div class="col-lg-5">
 
-                                        <input value="0" type="text" readonly="readonly" id="cir_NDI" />
+                                        <input value="0" type="text" class="form-control"  readonly="readonly" id="cir_NDI" />
 
                                     </div>
                                 </div>
@@ -370,7 +363,7 @@
 
                                     <div class="col-lg-5">
 
-                                        <input value="0" type="text" readonly="readonly" id="cir_sumMonthlyInstallment">
+                                        <input value="0" type="text"  class="form-control" id="cir_sumMonthlyInstallment">
 
                                     </div>
                                 </div>
@@ -379,7 +372,7 @@
 
                                     <div class="col-lg-5">
 
-                                        <input value="0" type="text" readonly="readonly" id="cir_Excess">
+                                        <input value="0" type="text"  class="form-control" readonly="readonly" id="cir_Excess">
 
                                     </div>
                                 </div>

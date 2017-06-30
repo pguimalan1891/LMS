@@ -263,6 +263,8 @@ namespace LMS.Controllers
 
 
         [HttpPost]
+        [AuthorizationFilter]
+        [Route("Application/InsertNewLoan")]
         public ActionResult InsertNewLoan(string AccountNo, string organizationid, string notes, string borrowerid, string loantype, string loanset, string loanterms, string ppd_rate_id, string handling_fee_id, string agent_incentive_type, string dealer_incentive_type, string loanamount, string loanpurpose, string addOnRate, string agentID, string district, string assured)
         {
             //JavaScriptSerializer jsonSerializer = new JavaScriptSerializer();

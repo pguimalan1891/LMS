@@ -9,7 +9,7 @@ $(function () {
     getHandlingFee();
     getLoan();
 });
-
+var flag_Saved = 0;
 var tempComaker = {};
 var tempCollaterls = {};
 var tmpCollObject = {
@@ -94,7 +94,8 @@ function intiCollType() {
 
 function  getLoan()
 {
-    jsonReq('../Application/getloanInfo', {loanCode: $('#AccountNo').val()}, function (data) {
+    jsonReq('../Application/getloanInfo', { loanCode: $('#AccountNo').val() }, function (data) {
+        flag_Saved = 1;
         $('#fld_la_Branch').val(data.OrgID);
         $('#fld_la_Product').val(data.LoanTypeID);
         $('#fld_la_District').val(data.DistrictID);
@@ -522,8 +523,11 @@ function getHandlingFee() {
     function cancelLoanApplication()
     {
 
-        jsonReq('../Application/CancelLoan', { loanCode:  $('#AccountNo').val() }, function (data) {
-            alert("Succesfully Cancelled Loan Application.");
+        jsonReq('../Application/CancelLoan', { loanCode: $('#AccountNo').val() }, function (data) {
+            if (flag_Saved == 1)
+            {
+                alert("Succesfully Cancelled Loan Application.");
+            }
             window.history.back();
             
         });
@@ -578,7 +582,16 @@ function getHandlingFee() {
 
              }, function (data) {
 
-                 alert(data);
+                 if(data==="Success")
+                 {
+                     alert("Successfully saved loan application");
+
+                     window.history.back();
+                     
+                 }else
+                 {
+                     alert(data);
+                 }
 
              });
         }

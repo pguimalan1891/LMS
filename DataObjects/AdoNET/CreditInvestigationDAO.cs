@@ -144,42 +144,70 @@ namespace DataObjects.AdoNET
                CiStatus = reader["CiStatus"].AsString()
            };
 
+
+        public string updateCI(string income, string deduction, string net_income, string spouse_income, string spouse_deduction, string spouse_net_income, string business_income, string other_income, string total_income, string living_expenses, string rentals, string utility, string education, string amortization, string transportation, string other_expenses, string total_expenses, string gross_disposable_income, string class_amount, string net_disposable_income, string mi_result, string excess_amount, string document_status_code, string notes, string loan_code, string recommended_mlv,string prepared_by)
+        {
+            string guid = Guid.NewGuid().ToString();
+            string guid_reviewer = Guid.NewGuid().ToString();
+            string sql = "UPDATE dbo.credit_investigation SET INCOME = @income,DEDUCTION = @deduction,NET_INCOME = @net_income,SPOUSE_INCOME = @spouse_income,SPOUSE_DEDUCTION = @spouse_deduction,SPOUSE_NET_INCOME = @spouse_net_income,BUSINESS_INCOME = @business_income,OTHER_INCOME = @other_income,TOTAL_INCOME = @total_income,LIVING_EXPENSES = @living_expenses,RENTALS = @rentals,UTILITY = @utility,EDUCATION = @education,AMORTIZATION = @amortization,TRANSPORTATION = @transportation,OTHER_EXPENSES = @other_expenses,TOTAL_EXPENSES = @total_expenses,GROSS_DISPOSABLE_INCOME = @gross_disposable_income,CLASS_AMOUNT = @class_amount,NET_DISPOSABLE_INCOME = @net_disposable_income,MI_RESULT = @mi_result ,EXCESS_AMOUNT = @excess_amount,PREPARED_BY_ID = @prepared_by,PREPARED_BY_DATETIME = GETDATE(),DOCUMENT_STATUS_CODE = @document_status_code,NOTES = @notes where CODE=@loan_code;"
+                        +" UPDATE dbo.loan_application set RECOMMENDED_MLV = @recommended_mlv,DOCUMENT_STATUS_CODE = @document_status_code where CODE = CONCAT('LA-', @loan_code)";
+            object[] parms = { "income",income, "deduction", deduction,"net_income",net_income, "spouse_income", spouse_income, "spouse_deduction", spouse_deduction, "spouse_net_income", spouse_net_income, "business_income", business_income, "other_income", other_income, "total_income", total_income, "living_expenses", living_expenses, "rentals",rentals, "utility",utility, "education",education, "amortization" ,amortization, "transportation", transportation, "other_expenses", other_expenses, "total_expenses", total_expenses, "gross_disposable_income", gross_disposable_income, "class_amount", class_amount, "net_disposable_income", net_disposable_income, "mi_result", mi_result, "excess_amount", excess_amount, "document_status_code", document_status_code, "notes", notes, "loan_code", loan_code,"recommended_mlv", recommended_mlv, "prepared_by", prepared_by };
+            db.RetValue(sql, 0, parms);
+
+            //      insertLoanCollateral(guid, loan.ListOfCollaterals"
+            //     insertLoanComaker(guid, loan.ListOfComakers);
+
+            return "Success";
+
+        }
         public IEnumerable<BusinessObjects.CreditInvestigation> getCRForm(string code)
         {
             string sql = "SELECT ID "
-      + "  ,  CODE  "
-      + "  ,  DATETIME_CREATED "
-      + "  ,  ORGANIZATION_ID "
-      + "  ,  LOAN_APPLICATION_ID "
-      + "  ,  NEIGHBORHOOD_NOTES "
-      + "  ,  ENVIRONMENT_NOTES "
-      + "  ,  INCOME "
-      + "  ,  DEDUCTION "
-      + "  ,  NET_INCOME "
-      + "  ,  SPOUSE_INCOME "
-      + "  ,  SPOUSE_DEDUCTION "
-      + "  ,  SPOUSE_NET_INCOME "
-      + "  ,  BUSINESS_INCOME "
-      + "  ,  OTHER_INCOME "
-      + "  ,  TOTAL_INCOME "
-      + "  ,  LIVING_EXPENSES "
-      + "  ,  RENTALS "
-      + "  ,  UTILITY "
-      + "  ,  EDUCATION "
-      + "  ,  AMORTIZATION "
-      + "  ,  TRANSPORTATION "
-      + "  ,  OTHER_EXPENSES "
-      + "  ,  TOTAL_EXPENSES "
-      + "  ,  GROSS_DISPOSABLE_INCOME "
-      + "  ,  CLASS_AMOUNT "
-      + "  ,  NET_DISPOSABLE_INCOME "
-      + "  ,  MI_RESULT "
-      + "  ,  EXCESS_AMOUNT "
-      + "  ,  NOTES "
-    + " FROM dbo.credit_investigation "
-    + " where CODE = @CI_CODE";
-            object[] parms = { "CI_CODE", code };
-            return db.Read(sql, selectCRForm, 0, parms);
+                  + "  ,  CODE  "
+                  + "  ,  DATETIME_CREATED "
+                  + "  ,  ORGANIZATION_ID "
+                  + "  ,  LOAN_APPLICATION_ID "
+                  + "  ,  NEIGHBORHOOD_NOTES "
+                  + "  ,  ENVIRONMENT_NOTES "
+                  + "  ,  INCOME "
+                  + "  ,  DEDUCTION "
+                  + "  ,  NET_INCOME "
+                  + "  ,  SPOUSE_INCOME "
+                  + "  ,  SPOUSE_DEDUCTION "
+                  + "  ,  SPOUSE_NET_INCOME "
+                  + "  ,  BUSINESS_INCOME "
+                  + "  ,  OTHER_INCOME "
+                  + "  ,  TOTAL_INCOME "
+                  + "  ,  LIVING_EXPENSES "
+                  + "  ,  RENTALS "
+                  + "  ,  UTILITY "
+                  + "  ,  EDUCATION "
+                  + "  ,  AMORTIZATION "
+                  + "  ,  TRANSPORTATION "
+                  + "  ,  OTHER_EXPENSES "
+                  + "  ,  TOTAL_EXPENSES "
+                  + "  ,  GROSS_DISPOSABLE_INCOME "
+                  + "  ,  CLASS_AMOUNT "
+                  + "  ,  NET_DISPOSABLE_INCOME "
+                  + "  ,  MI_RESULT "
+                  + "  ,  EXCESS_AMOUNT "
+                  + "  ,  NOTES "
+                    + "  ,  (select MIGID from loan_terms where ID=(SELECT top 1 Loan_terms_ID from loan_application where code =   CONCAT('LA-', @CI_CODE))) as LoanTermsApp"
+
+                + " FROM dbo.credit_investigation "
+                + " where CODE = @CI_CODE";
+                        object[] parms = { "CI_CODE", code };
+                        IEnumerable<BusinessObjects.CreditInvestigation> temp = db.Read(sql, selectCRForm, 0, parms);
+                        if(temp.Count()<=0)
+                        {
+                                string ci_guid = new Guid().ToString();
+                                string sql2 = "insert into dbo.credit_investigation( [ID],[CODE],[DATETIME_CREATED],[ORGANIZATION_ID],[LOAN_APPLICATION_ID],[NEIGHBORHOOD_NOTES],[ENVIRONMENT_NOTES],[INCOME],[DEDUCTION],[NET_INCOME],[SPOUSE_INCOME],[SPOUSE_DEDUCTION],[SPOUSE_NET_INCOME],[BUSINESS_INCOME],[OTHER_INCOME],[TOTAL_INCOME],[LIVING_EXPENSES],[RENTALS],[UTILITY],[EDUCATION],[AMORTIZATION],[TRANSPORTATION],[OTHER_EXPENSES],[TOTAL_EXPENSES],[GROSS_DISPOSABLE_INCOME],[CLASS_AMOUNT],[NET_DISPOSABLE_INCOME],[MI_RESULT],[EXCESS_AMOUNT],[REQUESTED_BY_ID],[REQUESTED_BY_DATETIME],[PREPARED_BY_ID],[PREPARED_BY_DATETIME],[DOCUMENT_STATUS_CODE],[PERMISSION],[NOTES],[LOAN_APPLICATION_PIS_ID],[PIS_ID],[CURRENT_PIS_ID],[HISTORY_PIS_ID])"
+                                +" select '"+ci_guid+"','"+ code + "',GETDATE(),organization_id,ID,'','',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,REQUESTED_BY_ID,REQUESTED_BY_DATETIME,PREPARED_BY_ID,GETDATE(),33,1,'','',CURRENT_PIS_ID,CURRENT_PIS_ID,HISTORY_PIS_ID from loan_application where CODE = 'LA-"+code+"'";
+                                db.Insert(sql2, 0, parms);
+                                IEnumerable<BusinessObjects.CreditInvestigation> temp2 = db.Read(sql, selectCRForm, 0, parms);
+                            return temp2;
+                        }
+            return temp;
         }
 
         static Func<IDataReader, BusinessObjects.CreditInvestigation> selectCRForm = reader =>
@@ -212,7 +240,8 @@ namespace DataObjects.AdoNET
               NDI = reader["NET_DISPOSABLE_INCOME"].AsString(),
               SummaryMonthlyInstallment = reader["MI_RESULT"].AsString(),
               Excess = reader["EXCESS_AMOUNT"].AsString(),
-              Notes = reader["NOTES"].AsString()
+              Notes = reader["NOTES"].AsString(),
+              TermsDescription = reader["LoanTermsApp"].AsString()
           };
     }
 

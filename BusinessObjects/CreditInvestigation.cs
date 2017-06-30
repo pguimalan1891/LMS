@@ -43,6 +43,9 @@ namespace BusinessObjects
         public string SummaryMonthlyInstallment;
         public string Excess;
 
+        public string TermsDescription;
+
+
 
         public string Notes;
 
