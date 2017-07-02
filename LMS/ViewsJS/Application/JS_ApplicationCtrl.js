@@ -52,8 +52,12 @@ var tmpComObject = {
     'ADDRESS': '',
     'NOTES': ''
 }
-
-function changeCollateralFields(fldType)
+function mAlert(content)
+{
+    $('#modalAlertContent').html(content);
+    $('#modalAlertContent_frm').modal('show');
+}
+    function changeCollateralFields(fldType)
 {
     
 
@@ -526,7 +530,7 @@ function getHandlingFee() {
         jsonReq('../Application/CancelLoan', { loanCode: $('#AccountNo').val() }, function (data) {
             if (flag_Saved == 1)
             {
-                alert("Succesfully Cancelled Loan Application.");
+                mAlert("Succesfully Cancelled Loan Application.");
             }
             window.history.back();
             
@@ -548,16 +552,16 @@ function getHandlingFee() {
     }
 
     function insertLoan() {
-        //alert($('#fld_la_AgentIncent').val());
+        //mAlert($('#fld_la_AgentIncent').val());
         if ($('#fld_la_DesiredMLV').val() <= 0)
         {
-            alert('Loan amount must be greater than zero.');
+            mAlert('Loan amount must be greater than zero.');
         } else if ($('#fld_la_LoanPurpose').val().trim() === "")
         {
-            alert('Loan must have purpose.');
+            mAlert('Loan must have purpose.');
         } else
             if ($('#fld_la_LoanTerms').val() === null || $('#fld_la_LoanTerms').val() === "undefined" || $('#fld_la_LoanTerms').val().trim() === "") {
-                alert('Please completely indicate loan product, loan set & loan terms.');
+                mAlert('Please completely indicate loan product, loan set & loan terms.');
             } else
         {
              jsonReq('../Application/InsertNewLoan', {
@@ -584,13 +588,13 @@ function getHandlingFee() {
 
                  if(data==="Success")
                  {
-                     alert("Successfully saved loan application");
+                     mAlert("Successfully saved loan application");
 
                      window.history.back();
                      
                  }else
                  {
-                     alert(data);
+                     mAlert(data);
                  }
 
              });
