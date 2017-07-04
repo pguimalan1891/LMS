@@ -14,11 +14,18 @@
 }
 <script>
     var tmpCrObject = @Html.Raw(Json.Encode(Model));
+    var ResultStatus = @Model.loanModel.ResultStatus;
 
 </script>
 <div class="panel panel-info">
     <div class="panel panel-heading">
-        <h2>Credit Investigation</h2>
+        <div>
+            <h2>Credit Investigation Report</h2>
+
+            <button type="button" id="backHistory" class="btn btn-danger pull-right" style="margin-top:-40px;" onclick="window.history.back();">Back to Loan Application</button>
+
+        </div>
+
     </div>
     <div class="panel panel-body">
         <div class="container-fluid">
@@ -486,10 +493,10 @@
             </div>
             <div class="row">
                 <div class="pull-right">
-                    <div class="btn btn-success" onclick="insertLoan()">
+                    <div class="btn btn-success submitBtn" onclick="insertLoan()">
                         Submit
                     </div>
-                    <div class="btn btn-danger">
+                    <div class="btn btn-danger submitBtn">
                         Cancel
                     </div>
                 </div>

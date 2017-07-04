@@ -11,7 +11,10 @@
 }
 
 
-<script> var myJsVariable = '@ViewBag.getStatus' </script>
+<script> var myJsVariable = '@ViewBag.getStatus';
+   
+
+  </script>
 
 <div class="row">
     <div class="col-md-12">
@@ -20,11 +23,12 @@
                 <label>Search by Borrower Name</label>
                 <input type="text" id="filter_searchkey" placeholder="Leave blank to view all" value="" class="form-control" />
             </div>
+
             <div class="form-group">
-                <label>Filter by Status</label>
+                <label>Status</label>
                 <select id="filter_DocumentStatus" class="form-control"></select>
             </div>
-            <button type="button" class="btn btn-default" onclick="getBookingCVRecordsWithFilter($('#filter_DocumentStatus').val(), $('#filter_searchkey').val())">Filter Search</button>
+            <button type="button" id="filterBtnStatus" class="btn btn-default" onclick="getBookingCVRecordsWithFilter($('#filter_DocumentStatus').val(), $('#filter_searchkey').val())">Filter Search</button>
             <button type="button" class="btn btn-danger pull-right"><a href="~/Application/" style="color: black;">Back to Application Menu</a></button>
         </div>
            

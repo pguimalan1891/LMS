@@ -16,6 +16,15 @@ $(function () {
       
         computeSummary();
     });
+
+    if(ResultStatus!= "31" && ResultStatus != "32")
+    {
+        $('.submitBtn').hide();
+    }
+
+    
+
+
 });
 function mmAlert(content) {
     $('#modalAlertContent').html(content);

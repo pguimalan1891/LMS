@@ -200,7 +200,7 @@ namespace DataObjects.AdoNET
                         IEnumerable<BusinessObjects.CreditInvestigation> temp = db.Read(sql, selectCRForm, 0, parms);
                         if(temp.Count()<=0)
                         {
-                                string ci_guid = new Guid().ToString();
+                                string ci_guid = Guid.NewGuid().ToString();
                                 string sql2 = "insert into dbo.credit_investigation( [ID],[CODE],[DATETIME_CREATED],[ORGANIZATION_ID],[LOAN_APPLICATION_ID],[NEIGHBORHOOD_NOTES],[ENVIRONMENT_NOTES],[INCOME],[DEDUCTION],[NET_INCOME],[SPOUSE_INCOME],[SPOUSE_DEDUCTION],[SPOUSE_NET_INCOME],[BUSINESS_INCOME],[OTHER_INCOME],[TOTAL_INCOME],[LIVING_EXPENSES],[RENTALS],[UTILITY],[EDUCATION],[AMORTIZATION],[TRANSPORTATION],[OTHER_EXPENSES],[TOTAL_EXPENSES],[GROSS_DISPOSABLE_INCOME],[CLASS_AMOUNT],[NET_DISPOSABLE_INCOME],[MI_RESULT],[EXCESS_AMOUNT],[REQUESTED_BY_ID],[REQUESTED_BY_DATETIME],[PREPARED_BY_ID],[PREPARED_BY_DATETIME],[DOCUMENT_STATUS_CODE],[PERMISSION],[NOTES],[LOAN_APPLICATION_PIS_ID],[PIS_ID],[CURRENT_PIS_ID],[HISTORY_PIS_ID])"
                                 +" select '"+ci_guid+"','"+ code + "',GETDATE(),organization_id,ID,'','',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,REQUESTED_BY_ID,REQUESTED_BY_DATETIME,PREPARED_BY_ID,GETDATE(),33,1,'','',CURRENT_PIS_ID,CURRENT_PIS_ID,HISTORY_PIS_ID from loan_application where CODE = 'LA-"+code+"'";
                                 db.Insert(sql2, 0, parms);

@@ -11,12 +11,19 @@
 }
 <script>
     var loanModel = @Html.Raw(Json.Encode(Model));
+    var resultStatus = @Model.ResultStatus;
 
 </script>
 
 <div class="panel panel-info">
     <div class="panel panel-heading">
-        <h2>Loan Application</h2>
+        <div>
+            <h2>Loan Application</h2>
+
+            <button type="button" id="backHistory" class="btn btn-danger pull-right" style="margin-top:-40px;" onclick="window.history.back();">Back to Application Menu</button>
+
+        </div>
+        
     </div>
     <div class="panel panel-body">
         <div class="container-fluid">
@@ -357,7 +364,7 @@
                     <div class="ibox float-e-margins">
                         <div class="ibox-title">
                             <h5>Credit Investigation Info </h5>
-                            <div class="btn btn-success pull-right btn-sm" style="margin-top:-5px;"><a href="../CreditInvestigation/New/@Model.AccountNo" style="color: white;"> View C.I. Report</a></div>
+                            <div class="btn btn-success pull-right btn-sm" style="margin-top:-5px;"><a href="../CreditInvestigation/New/@Model.AccountNo" style="color: white;" id="CiReport"> View C.I. Report</a></div>
                         </div>
                         <div class="ibox-content">
                             <div class="form-horizontal">
@@ -483,10 +490,19 @@
             </div>
             <div class="row">
                 <div class="pull-right">
-                    <div class="btn btn-success" onclick="insertLoan()">
-                        Submit
+                    <div class="btn btn-success" id="draftLoan" onclick="insertLoan('0')">
+                        Save as Draft
                     </div>
-                    <div class="btn btn-danger" onclick="cancelLoanApplication()">
+                    <div class="btn btn-success" id="ciLoan" onclick="insertLoan('31')">
+                        Submit for Credit Investigation
+                    </div>
+                    <div class="btn btn-success" id="approveLoan" onclick="insertLoan('3')">
+                        Approve Loan Application
+                    </div>
+                    <div class="btn btn-success" id="disapproveLoan" onclick="insertLoan('2')">
+                        Dispprove Loan Application
+                    </div>
+                    <div class="btn btn-danger" id="cancelLoan" onclick="cancelLoanApplication()">
                         Cancel
                     </div>
                 </div>

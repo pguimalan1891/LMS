@@ -344,7 +344,8 @@ namespace DataObjects.AdoNET
             "loan_application.LOAN_TERMS_ID as TermsId, " +
             "loan_application.FACTOR_SETUP_ID as FactorRate, " +
             "loan_application.ORIGINAL_MLV as DesiredMLV, " +
-            "loan_application.NOTES as Notes " +
+            "loan_application.NOTES as Notes, " +
+            "loan_application.DOCUMENT_STATUS_CODE AS LOAN_STATUS_CODE " +
             "from loan_application inner join " +
             "pis on pis.id = loan_application.PIS_ID " +
             "inner " +
@@ -389,7 +390,9 @@ namespace DataObjects.AdoNET
 
                  FactorRate = reader["FactorRate"].AsString(),
 
-                 DesiredMLV = reader["DesiredMLV"].AsString()
+                 DesiredMLV = reader["DesiredMLV"].AsString(),
+
+                 ResultStatus = reader["LOAN_STATUS_CODE"].AsString()
            };
 
         public IEnumerable<BusinessObjects.RequiredDocuments> getBorrowerRequiredDocuments(string borrowerCode)
@@ -481,7 +484,7 @@ namespace DataObjects.AdoNET
             else if(status == "[Approval]" && searchkey != "[All]")
             {
                 object[] parms = { "stat", status, "search", searchkey };
-                sql += "  where  dm.Description like '% Approval'  and (pis.LAST_NAME like '%'+@search+'%' OR pis.FIRST_NAME like '%'+@search+'%' OR pis.CODE like '%'+@search+'%') ";
+                sql += "  where  dm.Description like '% Recommends %'  and (pis.LAST_NAME like '%'+@search+'%' OR pis.FIRST_NAME like '%'+@search+'%' OR pis.CODE like '%'+@search+'%') ";
                 return db.Read(sql, selectLoanList, 0, parms);
             }
             else
@@ -566,14 +569,14 @@ namespace DataObjects.AdoNET
            };
 
 
-        public string insertLoan(string AccountNo, string organizationid,string notes,string borrowerid, string loantype, string loanset, string loanterms, string ppd_rate_id, string handling_fee_id, string agent_incentive_type, string dealer_incentive_type, string loanamount , string userID, string loanpurpose, string addOnRate, string agent, string district, string assured)
+        public string insertLoan(string AccountNo, string organizationid,string notes,string borrowerid, string loantype, string loanset, string loanterms, string ppd_rate_id, string handling_fee_id, string agent_incentive_type, string dealer_incentive_type, string loanamount , string userID, string loanpurpose, string addOnRate, string agent, string district, string assured, string status)
         {
             string guid = Guid.NewGuid().ToString();
             string guid_reviewer = Guid.NewGuid().ToString();
             string sql = "DELETE FROM loan_application where code='"+ AccountNo + "'; INSERT INTO dbo.loan_application (id,code,datetime_created,prepared_by_id,prepared_by_datetime,requested_by_id,requested_by_datetime,organization_id,document_status_code,permission,notes,pis_id,history_pis_id,current_pis_id,factor_setup_id,authority_setup_id,ppd_rate_id,handling_fee_id,pp_discount_id,agent_incentive_id,agent_incentive_type_id,dealer_incentive_id,dealer_incentive_type_id,loan_type_id,add_on_rate,loan_amount,recommended_mlv,original_mlv,approved_mlv,loan_set_id,loan_terms_id,purpose_of_loan,required_document_id,character_notes,capacity_notes,collateral_notes,capital_notes,business_environment_notes,restructure_count,direct_loan_receipt_id,pip_balance,gibco_balance,rfc_balance,total_balance,pip_due,gibco_due,rfc_due,total_due,restructure_fee,restructure_income,acceleration_form_id,effective_yield_id,tag,tag_amount,assured,remedial_type_id,DISTRICT_ID) " +
-                         "SELECT '"+guid+"', '"+AccountNo+"', GETDATE(), '"+userID+ "', GETDATE(),'" + agent + "', GETDATE(), '" + organizationid + "', 31, 581, '"+notes+"', (SELECT TOP 1 ID FROM dbo.PIS where CODE= '"+borrowerid+ "'), (SELECT TOP 1 ID FROM dbo.PIS where CODE= '" + borrowerid + "'),  (SELECT TOP 1 ID FROM dbo.PIS where CODE= '" + borrowerid + "'), ISNULL((SELECT TOP 1  ID from factor_setup where loan_type_id = '" + loantype + "' and LOAN_SET_ID = '" + loanset + "' and ORGANIZATION_ID = '" + organizationid + "'), (SELECT TOP 1  ID from factor_setup where loan_type_id = '" + loantype + "' and LOAN_SET_ID = '" + loanset + "')),'{61e088df-7122-42b2-bc58-f3857d8cc1fc}','" + ppd_rate_id + "','" + handling_fee_id + "','1', (SELECT TOP 1  agent_incentive.id from agent_incentive_type inner join agent_incentive on agent_incentive.AGENT_INCENTIVE_TYPE_ID = agent_incentive_type.id where agent_incentive_type.id = '"+agent_incentive_type+"' and agent_incentive.LOAN_TYPE_ID = '"+loantype+ "'), '" + agent_incentive_type + "', (SELECT TOP 1  dealer_incentive.id from dealer_incentive_type inner join dealer_incentive on dealer_incentive.DEALER_INCENTIVE_TYPE_ID = dealer_incentive_type.id where dealer_incentive.LOAN_TYPE_ID = '" + loantype + "' and dealer_incentive_type.id = '" + dealer_incentive_type + "'), '" + dealer_incentive_type + "','" + loantype + "','"+addOnRate+"','" + loanamount + "',0,'"+loanamount+"','0','" + loanset + "','" + loanterms + "','"+loanpurpose+"','{4d2b1dbd-a919-478c-9343-c91394c8d4d0}',null,null,null,null,null,0,null,0,0,0,0,0,0,0,0,0,0,null,null,0,0,'" + assured + "','0','"+district+"'";
+                         "SELECT '"+guid+"', '"+AccountNo+"', GETDATE(), '"+userID+ "', GETDATE(),'" + agent + "', GETDATE(), '" + organizationid + "', "+status+", 581, '"+notes+"', (SELECT TOP 1 ID FROM dbo.PIS where CODE= '"+borrowerid+ "'), (SELECT TOP 1 ID FROM dbo.PIS where CODE= '" + borrowerid + "'),  (SELECT TOP 1 ID FROM dbo.PIS where CODE= '" + borrowerid + "'), ISNULL((SELECT TOP 1  ID from factor_setup where loan_type_id = '" + loantype + "' and LOAN_SET_ID = '" + loanset + "' and ORGANIZATION_ID = '" + organizationid + "'), (SELECT TOP 1  ID from factor_setup where loan_type_id = '" + loantype + "' and LOAN_SET_ID = '" + loanset + "')),'{61e088df-7122-42b2-bc58-f3857d8cc1fc}','" + ppd_rate_id + "','" + handling_fee_id + "','1', (SELECT TOP 1  agent_incentive.id from agent_incentive_type inner join agent_incentive on agent_incentive.AGENT_INCENTIVE_TYPE_ID = agent_incentive_type.id where agent_incentive_type.id = '"+agent_incentive_type+"' and agent_incentive.LOAN_TYPE_ID = '"+loantype+ "'), '" + agent_incentive_type + "', (SELECT TOP 1  dealer_incentive.id from dealer_incentive_type inner join dealer_incentive on dealer_incentive.DEALER_INCENTIVE_TYPE_ID = dealer_incentive_type.id where dealer_incentive.LOAN_TYPE_ID = '" + loantype + "' and dealer_incentive_type.id = '" + dealer_incentive_type + "'), '" + dealer_incentive_type + "','" + loantype + "','"+addOnRate+"','" + loanamount + "',0,'"+loanamount+"','0','" + loanset + "','" + loanterms + "','"+loanpurpose+"','{4d2b1dbd-a919-478c-9343-c91394c8d4d0}',null,null,null,null,null,0,null,0,0,0,0,0,0,0,0,0,0,null,null,0,0,'" + assured + "','0','"+district+"'";
             string reviewer_guid = Guid.NewGuid().ToString();
-            sql += "  INSERT INTO dbo.loan_application_reviewer (id,loan_application_id,reviewer_id,datetime_created,seq_number,status_code,current_record,action_status_code,permission) VALUES ('"+reviewer_guid+"','"+guid+ "','0',GETDATE(),  31,1,'Y',13,581)  ";
+            sql += "  INSERT INTO dbo.loan_application_reviewer (id,loan_application_id,reviewer_id,datetime_created,seq_number,status_code,current_record,action_status_code,permission) VALUES ('"+reviewer_guid+"','"+guid+ "','0',GETDATE(),  "+status+",1,'Y',13,581)  ";
 
             object[] parms = {};
             db.RetValue(sql, 0, parms);

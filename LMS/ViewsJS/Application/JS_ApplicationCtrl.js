@@ -98,8 +98,39 @@ function intiCollType() {
 
 function  getLoan()
 {
+    $('#backHistory').html('Back to List of Borrowers');
+    $('#CiReport').hide();
     jsonReq('../Application/getloanInfo', { loanCode: $('#AccountNo').val() }, function (data) {
         flag_Saved = 1;
+        $('#backHistory').html('Back to List of Applications');
+
+        if (resultStatus == 44 || resultStatus == 45) {
+            
+            $('#ciLoan').hide();
+            $('#draftLoan').hide();
+
+        } else
+        {
+            $("#approveLoan").hide()
+            $("#disapproveLoan").hide();
+        }
+        if (flag_Saved == 1)
+        {
+            $('#CiReport').show();
+            if (resultStatus != "0" )
+            {
+                $('#draftLoan').hide();
+
+            }
+            if (resultStatus == "31") {
+                $('#ciLoan').html("Save");
+
+            }
+            if (parseInt(resultStatus) != 0 && parseInt(resultStatus) != 31)
+            {
+                $('#ciLoan').hide();
+            }
+        }
         $('#fld_la_Branch').val(data.OrgID);
         $('#fld_la_Product').val(data.LoanTypeID);
         $('#fld_la_District').val(data.DistrictID);
@@ -551,7 +582,7 @@ function getHandlingFee() {
 
     }
 
-    function insertLoan() {
+    function insertLoan(stats) {
         //mAlert($('#fld_la_AgentIncent').val());
         if ($('#fld_la_DesiredMLV').val() <= 0)
         {
@@ -564,7 +595,7 @@ function getHandlingFee() {
                 mAlert('Please completely indicate loan product, loan set & loan terms.');
             } else
         {
-             jsonReq('../Application/InsertNewLoan', {
+             jsonReq('../Application/InsertNewLoan/'+stats, {
                  AccountNo: $('#AccountNo').val(),
                  organizationid: $('#fld_la_Branch').val(),
                  notes: $('#fld_la_Notes').val(),
@@ -588,7 +619,7 @@ function getHandlingFee() {
 
                  if(data==="Success")
                  {
-                     mAlert("Successfully saved loan application");
+                     alert("Successfully saved loan application");
 
                      window.history.back();
                      

@@ -29,6 +29,12 @@ function jsonReq(url, parms, callback, returnType) {
 
 function listDocumentStatus()
 {
+     if (myJsVariable != '[All]') {
+
+        $('#filter_DocumentStatus').prop("disabled", "true");
+        $('#filterBtnStatus').hide();
+    }
+   
     jsonReq("../ListDocumentStatus", {}, function (data) {
         $("#filter_DocumentStatus").html("");
         $.each(data, function (datakey, comp) {
@@ -63,6 +69,8 @@ function getBookingCVRecordsWithFilter(status, searchkey) {
     if (searchkey == "" || searchkey === undefined) {
         searchkey = "[All]";
     }
+
+   
 
 
     jsonReq('../ListApplications/' + status + '/' + searchkey, {}, function (newDataArray) {

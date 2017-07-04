@@ -47,7 +47,7 @@ namespace ServiceLayer.Interface
         IEnumerable<BusinessObjects.DocumentStatus> getAgentIncentives(string loantype);
 
         IEnumerable<BusinessObjects.DocumentStatus> getDealerIncentives(string loantype);
-        string insertLoan(string AccountNo, string organizationid, string notes, string borrowerid, string loantype, string loanset, string loanterms, string ppd_rate_id, string handling_fee_id, string agent_incentive_type, string dealer_incentive_type, string loanamount, string userID, string loanpurpose, string addOnRate, string agent, string district, string assured);
+        string insertLoan(string AccountNo, string organizationid, string notes, string borrowerid, string loantype, string loanset, string loanterms, string ppd_rate_id, string handling_fee_id, string agent_incentive_type, string dealer_incentive_type, string loanamount, string userID, string loanpurpose, string addOnRate, string agent, string district, string assured, string status);
         bool cancelLoanApplication(string loanCode);
 
         BusinessObjects.LoanAppLoanInfo getloanInfo(string loanCode);

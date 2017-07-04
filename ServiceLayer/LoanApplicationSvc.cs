@@ -100,9 +100,9 @@ namespace ServiceLayer
             return lnCtrl.getFuelType();
         }
 
-        public string insertLoan(string AccountNo, string organizationid, string notes, string borrowerid, string loantype, string loanset, string loanterms, string ppd_rate_id, string handling_fee_id, string agent_incentive_type, string dealer_incentive_type, string loanamount, string userID, string loanpurpose, string addOnRate, string agent, string district, string assured)
+        public string insertLoan(string AccountNo, string organizationid, string notes, string borrowerid, string loantype, string loanset, string loanterms, string ppd_rate_id, string handling_fee_id, string agent_incentive_type, string dealer_incentive_type, string loanamount, string userID, string loanpurpose, string addOnRate, string agent, string district, string assured, string status)
         {
-            return lnCtrl.insertLoan(AccountNo, organizationid, notes, borrowerid, loantype, loanset, loanterms, ppd_rate_id, handling_fee_id, agent_incentive_type, dealer_incentive_type, loanamount, userID, loanpurpose, addOnRate, agent, district, assured);
+            return lnCtrl.insertLoan(AccountNo, organizationid, notes, borrowerid, loantype, loanset, loanterms, ppd_rate_id, handling_fee_id, agent_incentive_type, dealer_incentive_type, loanamount, userID, loanpurpose, addOnRate, agent, district, assured, status);
         }
         public IEnumerable<BusinessObjects.DocumentStatus> getHandlingFee()
         {
